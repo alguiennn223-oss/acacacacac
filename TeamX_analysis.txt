@@ -1,0 +1,30 @@
+PES TEAMX BINARY INVESTIGATION
+============================================================
+
+File: TeamX.bin
+Size: 66643 bytes
+
+First 128 bytes:
+00000000  FF 10 81 57 45 53 59 53 43 04 01 00 C4 CE 10 00  |...WESYSC.......|
+00000010  78 DA EC 7D 0D 70 1B C7 95 E6 10 A0 FE 25 5B 8E  |x..}.p.......%[.|
+00000020  2D E5 C7 4E 76 B2 52 6C C5 B2 1C 29 76 7E 7C 4E  |-..Nv.Rl...)v~|N|
+00000030  72 1A 02 43 62 04 60 86 9A 01 28 53 E5 EC 25 29  |r..Cb.`...(S..%)|
+00000040  F9 EC 5B 27 1B C7 9B 73 72 59 67 43 02 92 48 88  |..['...srYgC..H.|
+00000050  A2 44 8A A4 28 91 14 49 F0 4F A2 48 89 90 48 99  |.D..(..I.O.H..H.|
+00000060  12 45 FD C4 A0 1C EF 9E 8F 87 F3 A6 62 5F 6A 37  |.E..........b_j7|
+00000070  71 16 1C 10 BC F3 5E F6 B6 EE AE 76 AB B6 6A AF  |q.....^....v..j.|
+
+
+Potential zlib streams:
+Candidates found: 4
+
+SUCCESS #1
+Offset: 0x10 (16)
+Compressed remaining bytes: 66627
+Decompressed size: 1101508 bytes
+Unused trailing bytes: 0
+Binary: TeamX_zlib_001.bin
+Hex: TeamX_zlib_001_hex.txt
+
+
+Investigation finished.
