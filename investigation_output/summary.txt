@@ -1,0 +1,16 @@
+PES BINARY INVESTIGATION
+========================
+
+Folder:
+D:\Games\eFootball PES 20212\eFootball PES 2021\livecpk\MODGAMESX_Database\common\etc\pesdb
+
+
+Files found:
+TeamX.bin - 66643 bytes
+CompetitionRegulation.bin - 18751 bytes
+
+Generated:
+TeamX_hex.txt
+CompetitionRegulation_hex.txt
+
+Original BIN files were NOT modified.
