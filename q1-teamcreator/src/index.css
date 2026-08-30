@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #0a0a0c;
+    --panel-bg: #151518;
+    --accent: #00ff88;
+    --accent-dim: rgba(0, 255, 136, 0.12);
+    --card-bg: #1e1e22;
+    --text-primary: #ffffff;
+    --text-secondary: #8e8e93;
+    --border: #2c2c32;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+  }
+}
+
+.font-display {
+  font-family: 'Inter', 'Chakra Petch', sans-serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom scrollbars for Sleek dark PES aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2c2c32;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff88;
+}
+
+/* Slot cursor pulse and tactical neon glow */
+@keyframes slotPulse {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(0, 255, 136, 0.4), inset 0 0 10px rgba(0, 255, 136, 0.15);
+    border-color: #00ff88;
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(0, 255, 136, 0.7), inset 0 0 15px rgba(0, 255, 136, 0.25);
+    border-color: #55ffaa;
+  }
+}
+
+.slot-focused {
+  animation: slotPulse 1.8s infinite ease-in-out;
+}
+
+/* Sleek pitch tactical pattern */
+.pitch-bg {
+  background: radial-gradient(circle at center, #142416 0%, #0a0a0c 100%);
+}
+
+.tactical-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+

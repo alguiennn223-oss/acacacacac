@@ -1,0 +1,7 @@
+{
+  "name": "Q1 Team Creator",
+  "description": "Herramienta externa y creador/editor de equipos para PES 2021 con navegación por gamepad/teclado, gestión de Starting XI y Bench, y arquitectura modular PES.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
