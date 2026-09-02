@@ -1,0 +1,761 @@
+PS D:\Games\pes patch mio\4ccEditoe\4ccEditor-master> findstr /s /n /i "struct player_entry struct team_entry player_entry team_entry num_players num_on_team players\[" *.cpp *.h
+aatf.cpp:14://Struct to hold the necessary data to check if each player skill matches its target rating and, if not, print an error message
+aatf.cpp:15:struct skillCheck
+aatf.cpp:23://This array encodes the mapping between the registered position IDs (0-12) used in the player_export struct's reg_pos field
+aatf.cpp:113:void aatf_single(HWND hAatfbox, int pesVersion, int teamSel, player_entry* gplayers, team_entry* gteams, int gnum_players)
+aatf.cpp:115:   player_entry player;
+aatf.cpp:139:   for (int ii = 0; ii < gteams[teamSel].num_on_team; ii++)
+aatf.cpp:142:           for (int jj = 0; jj < gnum_players; jj++)
+aatf.cpp:144:                   if (gplayers[jj].id == gteams[teamSel].players[ii])
+aatf.cpp:146:                           player = gplayers[jj];
+aatf.cpp:160:   for(int ii=0; ii<gteams[teamSel].num_on_team; ii++)
+aatf.cpp:163:           for(int jj=0; jj<gnum_players; jj++)
+aatf.cpp:165:                   if(gplayers[jj].id == gteams[teamSel].players[ii])
+aatf.cpp:167:                           player = gplayers[jj];
+aatf.cpp:219:           if (player.id == gteams[teamSel].players[gteams[teamSel].captain_ind]) hasCaptain = true;
+aatf.cpp:277:                           if(jj==25 && player.id == gteams[teamSel].players[gteams[teamSel].captain_ind])
+comparator.cpp:17:tstring do_comparison(int, player_entry*, int, team_entry*, int);
+comparator.cpp:18:tstring compare_single_team(int, int, player_entry*, int, team_entry*);
+comparator.cpp:20:player_entry* c_players = NULL;
+comparator.cpp:21:team_entry* c_teams = NULL;
+comparator.cpp:22:int c_num_players, c_num_teams;
+comparator.cpp:37:void save_comparator(HWND hCompareBox, int nPesVersion, player_entry* gplayers, int gnum_players, team_entry* gteams, int gnum_teams, TCHAR *cs_file_name, void *hc_descriptor)
+comparator.cpp:48://    ofn.lStructSize = sizeof(OPENFILENAME);
+comparator.cpp:61:              tstring result = do_comparison(nPesVersion, gplayers, gnum_players, gteams, gnum_teams);
+comparator.cpp:126:             c_num_players = ((FileDescriptor15*)hc_descriptor)->data[0x34];
+comparator.cpp:127:             c_num_players += (((FileDescriptor15*)hc_descriptor)->data[0x35]) * 256;
+comparator.cpp:137:             for (int ii = 0; ii < c_num_players; ii++)
+comparator.cpp:142:             //place player info+appearance entries into array of structs
+comparator.cpp:144:             c_players = new player_entry[c_num_players];
+comparator.cpp:145:             for (int ii = 0; ii < c_num_players; ii++)
+comparator.cpp:147:                     read_player_entry15(c_players[ii], current_byte, hc_descriptor);
+comparator.cpp:148:                     read_appearance_entry15(c_players[ii], umap_pid_to_startByte, hc_descriptor);
+comparator.cpp:151:             //Place team entries into array of structs
+comparator.cpp:153:             c_teams = new team_entry[c_num_teams];
+comparator.cpp:179:             c_num_players = ((FileDescriptorOld*)hc_descriptor)->data[0x34];
+comparator.cpp:180:             c_num_players += (((FileDescriptorOld*)hc_descriptor)->data[0x35])*256;
+comparator.cpp:185:             //place player info+appearance entries into array of structs
+comparator.cpp:188:             c_players = new player_entry[c_num_players];
+comparator.cpp:189:             for(ii=0;ii<c_num_players;ii++)
+comparator.cpp:191:                     fill_player_entry16(c_players[ii], current_byte, hc_descriptor);
+comparator.cpp:192:                     fill_appearance_entry16(c_players[ii], appearance_byte, hc_descriptor);
+comparator.cpp:195:             //place team entries into array of structs
+comparator.cpp:197:             c_teams = new team_entry[c_num_teams];
+comparator.cpp:223:             c_num_players = ((FileDescriptorOld*)hc_descriptor)->data[0x5C];
+comparator.cpp:224:             c_num_players += (((FileDescriptorOld*)hc_descriptor)->data[0x5D])*256;
+comparator.cpp:229:             //place player info+appearance entries into array of structs
+comparator.cpp:231:             c_players = new player_entry[c_num_players];
+comparator.cpp:232:             for(ii=0;ii<c_num_players;ii++)
+comparator.cpp:234:                     fill_player_entry17(c_players[ii], current_byte, hc_descriptor);
+comparator.cpp:237:             //place team entries into array of structs
+comparator.cpp:239:             c_teams = new team_entry[c_num_teams];
+comparator.cpp:273:             c_num_players = ((FileDescriptorNew*)hc_descriptor)->data[96];
+comparator.cpp:274:             c_num_players += (((FileDescriptorNew*)hc_descriptor)->data[97])*256;
+comparator.cpp:279:             //place player info+appearance entries into array of structs
+comparator.cpp:281:             c_players = new player_entry[c_num_players];
+comparator.cpp:282:             for(ii=0;ii<c_num_players;ii++)
+comparator.cpp:284:                     fill_player_entry18(c_players[ii], current_byte, hc_descriptor);
+comparator.cpp:287:             //place team entries into array of structs
+comparator.cpp:289:             c_teams = new team_entry[c_num_teams];
+comparator.cpp:323:             c_num_players = ((FileDescriptorNew*)hc_descriptor)->data[96];
+comparator.cpp:324:             c_num_players += (((FileDescriptorNew*)hc_descriptor)->data[97])*256;
+comparator.cpp:329:             //place player info+appearance entries into array of structs
+comparator.cpp:331:             c_players = new player_entry[c_num_players];
+comparator.cpp:332:             for(int ii=0;ii<c_num_players;ii++)
+comparator.cpp:334:                     fill_player_entry19(c_players[ii], current_byte, hc_descriptor);
+comparator.cpp:337:             //place team entries into array of structs
+comparator.cpp:339:             c_teams = new team_entry[c_num_teams];
+comparator.cpp:368:             c_num_players = ((FileDescriptorNew*)hc_descriptor)->data[96];
+comparator.cpp:369:             c_num_players += (((FileDescriptorNew*)hc_descriptor)->data[97])*256;
+comparator.cpp:374:             //place player info+appearance entries into array of structs
+comparator.cpp:376:             c_players = new player_entry[c_num_players];
+comparator.cpp:377:             for(int ii=0;ii<c_num_players;ii++)
+comparator.cpp:379:                     fill_player_entry20(c_players[ii], current_byte, hc_descriptor);
+comparator.cpp:382:             //place team entries into array of structs
+comparator.cpp:384:             c_teams = new team_entry[c_num_teams];
+comparator.cpp:405:     for(ii=0;ii<c_num_players;ii++)
+comparator.cpp:412:                             if(c_teams[jj].players[kk]==c_players[ii].id)
+comparator.cpp:420:                             c_players[ii].team_ind = jj;
+comparator.cpp:421:                             c_players[ii].team_lineup_ind = kk;
+comparator.cpp:425:             if(c_players[ii].team_ind < 0)
+comparator.cpp:427:                     c_players[ii].b_show = false;
+comparator.cpp:436:tstring do_comparison(int nPesVersion, player_entry* gplayers, int gnum_players, team_entry* gteams, int gnum_teams)
+comparator.cpp:453:             msgOut += compare_single_team(nPesVersion, ii, gplayers, gnum_players, gteams);
+comparator.cpp:460:tstring compare_single_team(int pesVersion, int teamSel, player_entry* gplayers, int gnum_players, team_entry* gteams)
+comparator.cpp:462:     player_entry playerA, playerB;
+comparator.cpp:471:     int num_on_team;
+comparator.cpp:473:     if(gteams[teamSel].num_on_team != c_teams[teamSel].num_on_team)
+comparator.cpp:475:             errorMsg << _T("WARNING: Size of squad differs, A: ") << gteams[teamSel].num_on_team <<_T(", B: ") <<
+comparator.cpp:476:                     c_teams[teamSel].num_on_team << _T("\r\n");
+comparator.cpp:477:             num_on_team = min(gteams[teamSel].num_on_team, c_teams[teamSel].num_on_team);
+comparator.cpp:480:             num_on_team = gteams[teamSel].num_on_team;
+comparator.cpp:484:     for(int ii=0; ii<num_on_team; ii++)
+comparator.cpp:487:             for(int jj=0; jj<gnum_players; jj++)
+comparator.cpp:489:                     if(gplayers[jj].id == gteams[teamSel].players[ii])
+comparator.cpp:491:                             playerA = gplayers[jj];
+comparator.cpp:496:             for(int jj=0; jj<c_num_players; jj++)
+comparator.cpp:498:                     if(c_players[jj].id == c_teams[teamSel].players[ii])
+comparator.cpp:500:                             playerB = c_players[jj];
+crypt.cpp:11:   struct _stat file;
+crypt.h:7:struct FileHeaderNew
+crypt.h:19:struct FileHeaderOld
+crypt.h:30:struct FileDescriptorNew
+crypt.h:33:    struct FileHeaderNew *fileHeader;
+crypt.h:41:struct FileDescriptorOld
+crypt.h:44:    struct FileHeaderOld *fileHeader;
+crypt.h:52:struct FileDescriptor15
+crypt.h:67://struct FileDescriptor CRYPTER_EXPORT *createFileDescriptor();
+crypt.h:68:typedef struct FileDescriptorOld* (__cdecl *pf_createFileDescriptorOld)();
+crypt.h:69:typedef struct FileDescriptorNew* (__cdecl *pf_createFileDescriptorNew)();
+crypt.h:70:typedef struct FileDescriptor15* (__cdecl* pf_createFileDescriptor15)();
+crypt.h:72://void CRYPTER_EXPORT destroyFileDescriptor(struct FileDescriptor *desc);
+crypt.h:73:typedef void (__cdecl *pf_destroyFileDescriptorOld)(struct FileDescriptorOld*);
+crypt.h:74:typedef void (__cdecl *pf_destroyFileDescriptorNew)(struct FileDescriptorNew*);
+crypt.h:75:typedef void (__cdecl *pf_destroyFileDescriptor15)(struct FileDescriptor15*);
+crypt.h:77://void CRYPTER_EXPORT decryptWithKey(struct FileDescriptor *descriptor, const uint8_t *input, const char *masterKey);
+crypt.h:78:typedef void (__cdecl *pf_decryptWithKeyOld)(struct FileDescriptorOld*, const uint8_t*, const char*);
+crypt.h:79:typedef void (__cdecl *pf_decryptWithKeyNew)(struct FileDescriptorNew*, const uint8_t*, const char*);
+crypt.h:80:typedef void (__cdecl *pf_decryptFile15)(struct FileDescriptor15*, const uint8_t*);
+crypt.h:82://uint8_t CRYPTER_EXPORT *encryptWithKey(const struct FileDescriptor *descriptor, int *size, const char *masterKey);
+crypt.h:83:typedef uint8_t* (__cdecl *pf_encryptWithKeyOld)(const struct FileDescriptorOld*, int*, const char*);
+crypt.h:84:typedef uint8_t* (__cdecl *pf_encryptWithKeyNew)(const struct FileDescriptorNew*, int*, const char*);
+crypt.h:85:typedef uint8_t* (__cdecl *pf_encryptFile15)(const struct FileDescriptor15*, int*);
+editor.h:23:/*Data structures*/
+editor.h:25:struct player_export
+editor.h:197:struct player_entry : player_export
+editor.h:208:   //Constructor
+editor.h:209:   player_entry()
+editor.h:219:   bool operator==(const player_entry& rhs)
+editor.h:549:struct stripSet
+editor.h:555:struct team_entry
+editor.h:564:   unsigned long players[team_max];
+editor.h:571:   int num_on_team;
+editor.h:589:   //Constructor
+editor.h:590:   team_entry()
+editor.h:602:                   players[ii] = 0;
+editor.h:606:           num_on_team = 0;
+editor.h:624:   bool operator==(const team_entry& rhs)
+editor.h:634:           for(ii=0;ii<this->team_max;ii++) b_out = b_out && (this->players[ii]==rhs.players[ii]);
+editor.h:650:struct resize_info
+editor.h:682:void read_player_entry15(player_entry&, int&, void*);
+editor.h:683:void read_appearance_entry15(player_entry&, appearance_map&, void*);
+editor.h:684:void read_team_ids15(team_entry&, int&, void*);
+editor.h:685:void read_team_rosters15(int&, void*, team_entry*, int);
+editor.h:686:void read_team_tactics15(int&, void*, team_entry*, int);
+editor.h:687:void write_player_entry15(player_entry, int&, appearance_map&, void*);
+editor.h:688:void write_team_info15(team_entry, int&, void*);
+editor.h:689:void write_teamplayer_info15(team_entry, int&, void*);
+editor.h:690:void write_team_tactics15(team_entry, int&, void*);
+editor.h:692:void fill_player_entry16(player_entry &, int &, void*);
+editor.h:693:void fill_appearance_entry16(player_entry &, int &, void*);
+editor.h:694:void fill_team_ids16(team_entry &, int &, void*);
+editor.h:695:void fill_team_rosters16(int &, void*, team_entry*, int);
+editor.h:696:void fill_team_tactics16(int &, void*, team_entry*, int);
+editor.h:697:void extract_player_entry16(player_entry, int &, int &, void*);
+editor.h:698:void extract_team_info16(team_entry, int &, void*);
+editor.h:699:void extract_teamplayer_info16(team_entry, int &, void*);
+editor.h:700:void extract_team_tactics16(team_entry, int &, void*);
+editor.h:702:void fill_player_entry17(player_entry &, int &, void*);
+editor.h:703:void fill_team_ids17(team_entry &, int &, void*);
+editor.h:704:void fill_team_rosters17(int &, void*, team_entry*, int);
+editor.h:705:void fill_team_tactics17(int &, void*, team_entry*, int);
+editor.h:706:void extract_player_entry17(player_entry, int &, void*);
+editor.h:707:void extract_team_info17(team_entry, int &, void*);
+editor.h:708:void extract_teamplayer_info17(team_entry, int &, void*);
+editor.h:709:void extract_team_tactics17(team_entry, int &, void*);
+editor.h:711:void fill_player_entry18(player_entry &, int &, void*);
+editor.h:712:void fill_team_ids18(team_entry &, int &, void*);
+editor.h:713:void fill_team_rosters18(int &, void*, team_entry*, int);
+editor.h:714:void fill_team_tactics18(int &, void*, team_entry*, int);
+editor.h:715:void extract_player_entry18(player_entry, int &, void*);
+editor.h:716:void extract_team_info18(team_entry, int &, void*);
+editor.h:717:void extract_teamplayer_info18(team_entry, int &, void*);
+editor.h:718:void extract_team_tactics18(team_entry, int &, void*);
+editor.h:720:void fill_player_entry19(player_entry &, int &, void*);
+editor.h:721:void fill_team_ids19(team_entry &, int &, void*);
+editor.h:722:void fill_team_rosters19(int &, void*, team_entry*, int);
+editor.h:723:void fill_team_tactics19(int &, void*, team_entry*, int);
+editor.h:724:void extract_player_entry19(player_entry, int &, void*);
+editor.h:725:void extract_team_info19(team_entry, int &, void*);
+editor.h:726:void extract_teamplayer_info19(team_entry, int &, void*);
+editor.h:727:void extract_team_tactics19(team_entry, int &, void*);
+editor.h:729:void fill_player_entry20(player_entry &, int &, void*);
+editor.h:730:void fill_team_ids20(team_entry &, int &, void*);
+editor.h:731:void fill_team_ids21(team_entry&, int&, void*);
+editor.h:732:void fill_team_rosters20(int &, void*, team_entry*, int);
+editor.h:733:void fill_team_tactics20(int &, void*, team_entry*, int);
+editor.h:734:void extract_player_entry20(player_entry, int &, void*);
+editor.h:735:void extract_team_info20(team_entry, int &, void*);
+editor.h:736:void extract_team_info21(team_entry, int&, void*);
+editor.h:737:void extract_teamplayer_info20(team_entry, int &, void*);
+editor.h:738:void extract_team_tactics20(team_entry, int &, void*);
+editor.h:740:void aatf_single(HWND, int, int, player_entry*, team_entry*, int);
+editor.h:742:void save_comparator(HWND, int, player_entry*, int, team_entry*, int, TCHAR*, void*);
+editor.h:755:void enable_fpc_invis_for_player(player_entry&, int);
+editor.h:756:void disable_fpc_invis_for_player(player_entry&, int);
+fpc.cpp:92:void enable_fpc_invis_for_player(player_entry &player, int iPesVersion)
+fpc.cpp:152:void disable_fpc_invis_for_player(player_entry &player, int iPesVersion)
+main.cpp:49:void extract_player_entry(player_entry, int &);
+main.cpp:51:void extract_team_info(team_entry, int &);
+main.cpp:52:void extract_teamplayer_info(team_entry, int &);
+main.cpp:55:player_entry get_form_player_info(int);
+main.cpp:56:bool get_form_team_info(int, team_entry &);
+main.cpp:97:player_entry* gplayers = NULL;
+main.cpp:99:team_entry* gteams = NULL;
+main.cpp:102:int gnum_players, gnum_teams, gn_listsel=-1, gn_teamsel=-1, gn_forceupdate=-1;
+main.cpp:351:                   LPDRAWITEMSTRUCT lpdis = (LPDRAWITEMSTRUCT)L; // item drawing information
+main.cpp:445:                                           player_entry pe_current = get_form_player_info(gn_forceupdate);
+main.cpp:446:                                           if( !(gplayers[gn_forceupdate] == pe_current) )
+main.cpp:448:                                                   if( wcscmp(gplayers[gn_forceupdate].name, pe_current.name) )
+main.cpp:450:                                                   gplayers[gn_forceupdate] = pe_current;
+main.cpp:458:                                                           if(gplayers[gn_playind[ii]].id==pe_current.id)
+main.cpp:468:                                                           memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:477:                                           team_entry te_current;
+main.cpp:480:                                                   int ti = gplayers[gn_forceupdate].team_ind;
+main.cpp:502:                                                   player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:503:                                                   if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+main.cpp:505:                                                           if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+main.cpp:507:                                                           gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:511:                                                           memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:519:                                                   team_entry te_current;
+main.cpp:522:                                                           int ti = gplayers[gn_playind[gn_listsel]].team_ind;
+main.cpp:550:                                                   if(gplayers[gn_playind[gn_listsel-1]].team_ind == gplayers[gn_playind[gn_listsel]].team_ind)
+main.cpp:553:                                                           player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:554:                                                           if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+main.cpp:556:                                                                   if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+main.cpp:558:                                                                   gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:560:                                                           //export settings for current player into temp struct 1
+main.cpp:561:                                                           player_export currPlyrExport = gplayers[gn_playind[gn_listsel]].PlayerExport();
+main.cpp:562:                                                           //export settings for prev player into temp struct 2
+main.cpp:563:                                                           player_export prevPlyrExport = gplayers[gn_playind[gn_listsel-1]].PlayerExport();
+main.cpp:570:                                                           //swap temp struct 2 into (old) current player, set b_changed flag
+main.cpp:571:                                                           gplayers[gn_playind[gn_listsel]].PlayerImport(prevPlyrExport);
+main.cpp:572:                                                           gplayers[gn_playind[gn_listsel]].b_changed = true;
+main.cpp:573:                                                           //import temp struct 1 into (old) prev player, set b_changed flag
+main.cpp:574:                                                           gplayers[gn_playind[gn_listsel-1]].PlayerImport(currPlyrExport);
+main.cpp:575:                                                           gplayers[gn_playind[gn_listsel-1]].b_changed = true;
+main.cpp:581:                                                           memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:583:                                                           lvI.pszText = gplayers[gn_playind[gn_listsel]].name;
+main.cpp:587:                                                           lvI.pszText = gplayers[gn_playind[gn_listsel-1]].name;
+main.cpp:601:                                                   if(gplayers[gn_playind[gn_listsel+1]].team_ind == gplayers[gn_playind[gn_listsel]].team_ind)
+main.cpp:604:                                                           player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:605:                                                           if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+main.cpp:607:                                                                   if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+main.cpp:609:                                                                   gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:611:                                                           //export settings for current player into temp struct 1
+main.cpp:612:                                                           player_export currPlyrExport = gplayers[gn_playind[gn_listsel]].PlayerExport();
+main.cpp:613:                                                           //export settings for next player into temp struct 2
+main.cpp:614:                                                           player_export nextPlyrExport = gplayers[gn_playind[gn_listsel+1]].PlayerExport();
+main.cpp:621:                                                           //swap temp struct 2 into (old) current player, set b_changed flag
+main.cpp:622:                                                           gplayers[gn_playind[gn_listsel]].PlayerImport(nextPlyrExport);
+main.cpp:623:                                                           gplayers[gn_playind[gn_listsel]].b_changed = true;
+main.cpp:624:                                                           //import temp struct 1 into (old) next player, set b_changed flag
+main.cpp:625:                                                           gplayers[gn_playind[gn_listsel+1]].PlayerImport(currPlyrExport);
+main.cpp:626:                                                           gplayers[gn_playind[gn_listsel+1]].b_changed = true;
+main.cpp:632:                                                           memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:634:                                                           lvI.pszText = gplayers[gn_playind[gn_listsel]].name;
+main.cpp:638:                                                           lvI.pszText = gplayers[gn_playind[gn_listsel+1]].name;
+main.cpp:797:                                           int ii, jj, num_on_team, csel;
+main.cpp:811:                                                           for(num_on_team=0;num_on_team < gteams->team_max; num_on_team++)
+main.cpp:813:                                                                   if(!gteams[gn_teamCbIndToArray[csel]].players[num_on_team]) break;
+main.cpp:817:                                                           gn_playind = new int[num_on_team];
+main.cpp:818:                                                           for (int ii=0; ii<num_on_team; ii++) gn_playind[ii] = -1;
+main.cpp:822:                                                           memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:825:                                                           for(ii=0;ii<gnum_players;ii++)
+main.cpp:827:                                                                   for(jj=0;jj<num_on_team;jj++)
+main.cpp:829:                                                                           if(gplayers[ii].id == gteams[gn_teamCbIndToArray[csel]].players[jj])
+main.cpp:832:                                                                                   lvI.pszText = gplayers[ii].name;
+main.cpp:839:                                                                   if(kk==num_on_team) break;
+main.cpp:877:                                                   if(gteams[gplayers[gn_playind[gn_listsel]].team_ind].captain_ind !=
+main.cpp:878:                                                           gplayers[gn_playind[gn_listsel]].team_lineup_ind)
+main.cpp:880:                                                           gteams[gplayers[gn_playind[gn_listsel]].team_ind].captain_ind =
+main.cpp:881:                                                                   gplayers[gn_playind[gn_listsel]].team_lineup_ind;
+main.cpp:882:                                                           gteams[gplayers[gn_playind[gn_listsel]].team_ind].b_changed = true;
+main.cpp:977:                                           aatf_single(ghAatfbox, giPesVersion, gn_teamsel, gplayers, gteams, gnum_players);
+main.cpp:1006:                                          ofn.lStructSize = sizeof(OPENFILENAME);
+main.cpp:1031:                                          player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:1032:                                          if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+main.cpp:1033:                                                  gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:1038:                                          //team_entry te_current = get_form_team_info();
+main.cpp:1150:  ofn.lStructSize = sizeof(OPENFILENAME);
+main.cpp:1207:  ofn.lStructSize = sizeof(OPENFILENAME);
+main.cpp:1433:          gnum_players = ((FileDescriptor15*)ghdescriptor)->data[0x34];
+main.cpp:1434:          gnum_players += (((FileDescriptor15*)ghdescriptor)->data[0x35]) * 256;
+main.cpp:1443:          for (int ii = 0; ii < gnum_players; ii++)
+main.cpp:1448:          //place player info+appearance entries into array of structs
+main.cpp:1451:          gplayers = new player_entry[gnum_players];
+main.cpp:1452:          for (int ii = 0; ii < gnum_players; ii++)
+main.cpp:1454:                  read_player_entry15(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:1455:                  read_appearance_entry15(gplayers[ii], g_umap_pid_to_startByte, ghdescriptor);
+main.cpp:1458:          //Place team entries into array of structs
+main.cpp:1461:          gteams = new team_entry[gnum_teams];
+main.cpp:1509:          gnum_players = ((FileDescriptorOld*)ghdescriptor)->data[0x34];
+main.cpp:1510:          gnum_players += (((FileDescriptorOld*)ghdescriptor)->data[0x35])*256;
+main.cpp:1515:          //place player info+appearance entries into array of structs
+main.cpp:1519:          gplayers = new player_entry[gnum_players];
+main.cpp:1520:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:1522:                  fill_player_entry16(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:1523:                  fill_appearance_entry16(gplayers[ii], appearance_byte, ghdescriptor);
+main.cpp:1526:          //place team entries into array of structs
+main.cpp:1529:          gteams = new team_entry[gnum_teams];
+main.cpp:1567:          gnum_players = ((FileDescriptorOld*)ghdescriptor)->data[0x5C];
+main.cpp:1568:          gnum_players += (((FileDescriptorOld*)ghdescriptor)->data[0x5D])*256;
+main.cpp:1573:          //place player info+appearance entries into array of structs
+main.cpp:1576:          gplayers = new player_entry[gnum_players];
+main.cpp:1577:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:1579:                  fill_player_entry17(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:1582:          //place team entries into array of structs
+main.cpp:1585:          gteams = new team_entry[gnum_teams];
+main.cpp:1623:          gnum_players = ((FileDescriptorNew*)ghdescriptor)->data[96];
+main.cpp:1624:          gnum_players += (((FileDescriptorNew*)ghdescriptor)->data[97])*256;
+main.cpp:1629:          //place player info+appearance entries into array of structs
+main.cpp:1632:          gplayers = new player_entry[gnum_players];
+main.cpp:1633:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:1635:                  fill_player_entry18(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:1638:          //place team entries into array of structs
+main.cpp:1641:          gteams = new team_entry[gnum_teams];
+main.cpp:1685:          gnum_players = ((FileDescriptorNew*)ghdescriptor)->data[96];
+main.cpp:1686:          gnum_players += (((FileDescriptorNew*)ghdescriptor)->data[97])*256;
+main.cpp:1691:          //place player info+appearance entries into array of structs
+main.cpp:1694:          gplayers = new player_entry[gnum_players];
+main.cpp:1695:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:1697:                  fill_player_entry19(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:1700:          //place team entries into array of structs
+main.cpp:1703:          gteams = new team_entry[gnum_teams];
+main.cpp:1795:          gnum_players = ((FileDescriptorNew*)ghdescriptor)->data[96];
+main.cpp:1796:          gnum_players += (((FileDescriptorNew*)ghdescriptor)->data[97])*256;
+main.cpp:1801:          //place player info+appearance entries into array of structs
+main.cpp:1804:          gplayers = new player_entry[gnum_players];
+main.cpp:1805:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:1807:                  fill_player_entry20(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:1810:          //place team entries into array of structs
+main.cpp:1813:          gteams = new team_entry[gnum_teams];
+main.cpp:1846:  for(ii=0;ii<gnum_players;ii++)
+main.cpp:1853:                          if(gteams[jj].players[kk]==gplayers[ii].id)
+main.cpp:1861:                          gplayers[ii].team_ind = jj;
+main.cpp:1862:                          gplayers[ii].team_lineup_ind = kk;
+main.cpp:1866:          if(gplayers[ii].team_ind < 0)
+main.cpp:1868:                  //player_entry pe = gplayers[ii]; //DEBUG
+main.cpp:1869:                  gplayers[ii].b_show = false;
+main.cpp:1897:  while(!gplayers[ii].b_show) ii++;
+main.cpp:1906:  //First update the data structure to reflect any changes the user has made to the current player/team
+main.cpp:1909:          player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:1910:          if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+main.cpp:1912:                  if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+main.cpp:1914:                  gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:1918:                  memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:1928:          team_entry te_current;
+main.cpp:1931:                  int ti = gplayers[gn_playind[gn_listsel]].team_ind;
+main.cpp:1948:          //Extract player info & appearance from array of structs
+main.cpp:1951:          for (int ii = 0; ii < gnum_players; ii++)
+main.cpp:1953:                  write_player_entry15(gplayers[ii], current_byte, g_umap_pid_to_startByte, ghdescriptor);
+main.cpp:1956:          //Extract team info from array of structs
+main.cpp:1981:          //Extract player info & appearance from array of structs
+main.cpp:1984:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:1986:                  extract_player_entry16(gplayers[ii], current_byte, appearance_byte, ghdescriptor);
+main.cpp:1991:          //Extract team info from array of structs
+main.cpp:2016:          //Extract player info & appearance from array of structs
+main.cpp:2018:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:2020:                  extract_player_entry17(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:2023:          //Extract team info from array of structs
+main.cpp:2048:          //Extract player info & appearance from array of structs
+main.cpp:2050:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:2052:                  extract_player_entry18(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:2055:          //Extract team info from array of structs
+main.cpp:2080:          //Extract player info & appearance from array of structs
+main.cpp:2082:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:2084:                  extract_player_entry19(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:2087:          //Extract team info from array of structs
+main.cpp:2112:          //Extract player info & appearance from array of structs
+main.cpp:2114:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:2116:                  extract_player_entry20(gplayers[ii], current_byte, ghdescriptor);
+main.cpp:2119:          //Extract team info from array of structs
+main.cpp:2166:  gn_playind = new int[gnum_players];
+main.cpp:2169:  memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:2172:  for(ii=0;ii<gnum_players;ii++)
+main.cpp:2174:          if(gplayers[ii].b_show)
+main.cpp:2177:                  lvI.pszText = gplayers[ii].name;
+main.cpp:2202:          SendDlgItemMessage(ghw_main, IDT_PLAY_NAME, WM_SETTEXT, 0, (LPARAM)gplayers[p_ind].name);
+main.cpp:2204:          _itow_s(gplayers[p_ind].id, buffer, 12, 10);
+main.cpp:2207:          mbstowcs(buffer, gplayers[p_ind].shirt_name, 20);
+main.cpp:2210:          _itow_s(gplayers[p_ind].nation, buffer, 12, 10);
+main.cpp:2213:          _itow_s(gplayers[p_ind].height, buffer, 12, 10);
+main.cpp:2216:          _itow_s(gplayers[p_ind].weight, buffer, 12, 10);
+main.cpp:2219:          _itow_s(gplayers[p_ind].age, buffer, 12, 10);
+main.cpp:2222:          if(gplayers[p_ind].b_edit_player) Button_SetCheck(GetDlgItem(ghw_main, IDB_PLAY_EDIT),BST_CHECKED);
+main.cpp:2225:          SendDlgItemMessage(ghw_main, IDC_PLAY_FOOT, CB_SETCURSEL, (WPARAM)gplayers[p_ind].strong_foot, 0);
+main.cpp:2227:                  SendDlgItemMessage(ghw_tab2, IDC_PLAY_HAND, CB_SETCURSEL, (WPARAM)gplayers[p_ind].strong_hand, 0);
+main.cpp:2229:          SendDlgItemMessage(ghw_main, IDC_PLAY_RPOS, CB_SETCURSEL, (WPARAM)gplayers[p_ind].reg_pos, 0);
+main.cpp:2231:          ii = gplayers[p_ind].play_style;
+main.cpp:2237:                  SendDlgItemMessage(ghw_tab1, IDS_PLAY_CF+ii, TBM_SETPOS, (WPARAM)TRUE, (LPARAM)gplayers[p_ind].play_pos[ii]);
+main.cpp:2242:                  Button_SetCheck(GetDlgItem(ghw_tab1, IDB_COM_TRIC+ii),gplayers[p_ind].com_style[ii]);
+main.cpp:2251:                  Button_SetCheck(GetDlgItem(ghw_tab1, IDB_SKIL_SCIS+ii),gplayers[p_ind].play_skill[ii]);
+main.cpp:2254:          _itow_s(gplayers[p_ind].atk, buffer, 3, 10);
+main.cpp:2257:          _itow_s(gplayers[p_ind].ball_ctrl, buffer, 3, 10);
+main.cpp:2260:          _itow_s(gplayers[p_ind].drib, buffer, 3, 10);
+main.cpp:2263:          _itow_s(gplayers[p_ind].lowpass, buffer, 3, 10);
+main.cpp:2266:          _itow_s(gplayers[p_ind].loftpass, buffer, 3, 10);
+main.cpp:2269:          _itow_s(gplayers[p_ind].finish, buffer, 3, 10);
+main.cpp:2272:          _itow_s(gplayers[p_ind].place_kick, buffer, 3, 10);
+main.cpp:2275:          _itow_s(gplayers[p_ind].swerve, buffer, 3, 10);
+main.cpp:2278:          _itow_s(gplayers[p_ind].header, buffer, 3, 10);
+main.cpp:2281:          _itow_s(gplayers[p_ind].def, buffer, 3, 10);
+main.cpp:2284:          _itow_s(gplayers[p_ind].ball_win, buffer, 3, 10);
+main.cpp:2287:          _itow_s(gplayers[p_ind].kick_pwr, buffer, 3, 10);
+main.cpp:2290:          _itow_s(gplayers[p_ind].speed, buffer, 3, 10);
+main.cpp:2293:          _itow_s(gplayers[p_ind].exp_pwr, buffer, 3, 10);
+main.cpp:2296:          _itow_s(gplayers[p_ind].body_ctrl, buffer, 3, 10);
+main.cpp:2301:                  _itow_s(gplayers[p_ind].phys_cont, buffer, 3, 10);
+main.cpp:2305:          _itow_s(gplayers[p_ind].jump, buffer, 3, 10);
+main.cpp:2308:          _itow_s(gplayers[p_ind].stamina, buffer, 3, 10);
+main.cpp:2311:          _itow_s(gplayers[p_ind].gk, buffer, 3, 10);
+main.cpp:2314:          _itow_s(gplayers[p_ind].catching, buffer, 3, 10);
+main.cpp:2319:                  _itow_s(gplayers[p_ind].clearing, buffer, 3, 10);
+main.cpp:2322:                  _itow_s(gplayers[p_ind].reflex, buffer, 3, 10);
+main.cpp:2325:                  _itow_s(gplayers[p_ind].cover, buffer, 3, 10);
+main.cpp:2331:                  _itow_s(gplayers[p_ind].tight_pos, buffer, 3, 10);
+main.cpp:2334:                  _itow_s(gplayers[p_ind].aggres, buffer, 3, 10);
+main.cpp:2338:          _itow_s(gplayers[p_ind].weak_use + 1, buffer, 3, 10);
+main.cpp:2341:          _itow_s(gplayers[p_ind].weak_acc + 1, buffer, 3, 10);
+main.cpp:2344:          _itow_s(gplayers[p_ind].form + 1, buffer, 3, 10);
+main.cpp:2347:          _itow_s(gplayers[p_ind].injury + 1, buffer, 3, 10);
+main.cpp:2352:                  _itow_s(gplayers[p_ind].star, buffer, 3, 10);
+main.cpp:2357:                  _itow_s(gplayers[p_ind].play_attit, buffer, 3, 10);
+main.cpp:2361:          Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_FACE),gplayers[p_ind].b_edit_face);
+main.cpp:2362:          Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_HAIR),gplayers[p_ind].b_edit_hair);
+main.cpp:2363:          Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_PHYS),gplayers[p_ind].b_edit_phys);
+main.cpp:2364:          Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_STRP),gplayers[p_ind].b_edit_strip);
+main.cpp:2366:          Button_SetCheck(GetDlgItem(ghw_tab2, IDB_COPY_BASE),gplayers[p_ind].b_base_copy);
+main.cpp:2368:          _itow_s(gplayers[p_ind].copy_id, buffer, 18, 10);
+main.cpp:2371:          _itow_s(gplayers[p_ind].head_len - 7, buffer, 18, 10);
+main.cpp:2373:          _itow_s(gplayers[p_ind].head_wid - 7, buffer, 18, 10);
+main.cpp:2375:          _itow_s(gplayers[p_ind].head_dep - 7, buffer, 18, 10);
+main.cpp:2377:          _itow_s(gplayers[p_ind].neck_len - 7, buffer, 18, 10);
+main.cpp:2379:          _itow_s(gplayers[p_ind].neck_size - 7, buffer, 18, 10);
+main.cpp:2381:          _itow_s(gplayers[p_ind].shldr_hi - 7, buffer, 18, 10);
+main.cpp:2383:          _itow_s(gplayers[p_ind].shldr_wid - 7, buffer, 18, 10);
+main.cpp:2385:          _itow_s(gplayers[p_ind].chest - 7, buffer, 18, 10);
+main.cpp:2387:          _itow_s(gplayers[p_ind].waist - 7, buffer, 18, 10);
+main.cpp:2389:          _itow_s(gplayers[p_ind].arm_size - 7, buffer, 18, 10);
+main.cpp:2391:          _itow_s(gplayers[p_ind].arm_len - 7, buffer, 18, 10);
+main.cpp:2393:          _itow_s(gplayers[p_ind].thigh - 7, buffer, 18, 10);
+main.cpp:2395:          _itow_s(gplayers[p_ind].calf - 7, buffer, 18, 10);
+main.cpp:2397:          _itow_s(gplayers[p_ind].leg_len - 7, buffer, 18, 10);
+main.cpp:2400:          if(giPesVersion>=18 && gplayers[p_ind].skin_col==7)
+main.cpp:2402:                  gplayers[p_ind].skin_col=0;
+main.cpp:2403:                  gplayers[p_ind].b_changed=true;
+main.cpp:2405:          SendDlgItemMessage(ghw_tab2, IDC_PHYS_SKIN, CB_SETCURSEL, (WPARAM)gplayers[p_ind].skin_col, 0);
+main.cpp:2407:          SendDlgItemMessage(ghw_tab2, IDC_PHYS_EYES, CB_SETCURSEL, (WPARAM)gplayers[p_ind].iris_col, 0);
+main.cpp:2409:          _itow_s(gplayers[p_ind].boot_id, buffer, 18, 10);
+main.cpp:2412:          _itow_s(gplayers[p_ind].glove_id, buffer, 18, 10);
+main.cpp:2415:          SendDlgItemMessage(ghw_tab2, IDC_STRP_WRTA, CB_SETCURSEL, (WPARAM)gplayers[p_ind].wrist_tape, 0);
+main.cpp:2417:          SendDlgItemMessage(ghw_tab2, IDC_STRP_GLST, CB_SETCURSEL, (WPARAM)gplayers[p_ind].spec_style, 0);
+main.cpp:2419:          SendDlgItemMessage(ghw_tab2, IDC_STRP_GLCO, CB_SETCURSEL, (WPARAM)gplayers[p_ind].spec_col, 0);
+main.cpp:2421:          SendDlgItemMessage(ghw_tab2, IDC_STRP_SLEE, CB_SETCURSEL, (WPARAM)gplayers[p_ind].sleeve, 0);
+main.cpp:2423:          SendDlgItemMessage(ghw_tab2, IDC_STRP_SLIN, CB_SETCURSEL, (WPARAM)gplayers[p_ind].inners, 0);
+main.cpp:2425:          SendDlgItemMessage(ghw_tab2, IDC_STRP_SOCK, CB_SETCURSEL, (WPARAM)gplayers[p_ind].socks, 0);
+main.cpp:2427:          SendDlgItemMessage(ghw_tab2, IDC_STRP_UNDR, CB_SETCURSEL, (WPARAM)gplayers[p_ind].undershorts, 0);
+main.cpp:2429:          SendDlgItemMessage(ghw_tab2, IDC_STRP_TAIL, CB_SETCURSEL, (WPARAM)gplayers[p_ind].untucked, 0);
+main.cpp:2431:          Button_SetCheck(GetDlgItem(ghw_tab2, IDB_STRP_ANTA),gplayers[p_ind].ankle_tape);
+main.cpp:2432:          Button_SetCheck(GetDlgItem(ghw_tab2, IDB_STRP_GLOV),gplayers[p_ind].gloves);
+main.cpp:2434:          _itow_s(gplayers[p_ind].mo_hunchd + 1, buffer, 18, 10);
+main.cpp:2436:          _itow_s(gplayers[p_ind].mo_armd + 1, buffer, 18, 10);
+main.cpp:2438:          _itow_s(gplayers[p_ind].mo_hunchr + 1, buffer, 18, 10);
+main.cpp:2440:          _itow_s(gplayers[p_ind].mo_armr + 1, buffer, 18, 10);
+main.cpp:2442:          _itow_s(gplayers[p_ind].mo_ck + 1, buffer, 18, 10);
+main.cpp:2444:          _itow_s(gplayers[p_ind].mo_fk + 1, buffer, 18, 10);
+main.cpp:2446:          _itow_s(gplayers[p_ind].mo_pk + 1, buffer, 18, 10);
+main.cpp:2448:          _itow_s(gplayers[p_ind].gc1, buffer, 18, 10);
+main.cpp:2450:          _itow_s(gplayers[p_ind].gc2, buffer, 18, 10);
+main.cpp:2455:                  _itow_s(gplayers[p_ind].mo_drib, buffer, 18, 10);
+main.cpp:2464:                          if(gteams[ii].players[jj]==gplayers[p_ind].id)
+main.cpp:2472:                          gplayers[p_ind].team_ind = ii;
+main.cpp:2473:                          gplayers[p_ind].team_lineup_ind = jj;
+main.cpp:2487:                          if(gteams[ii].players[gteams[ii].captain_ind] == gplayers[p_ind].id)
+main.cpp:2820:player_entry get_form_player_info(int index)
+main.cpp:2825:  //player_entry output;
+main.cpp:2826:  //if(index<0 || index > gnum_players) return output; //DEBUG, fix
+main.cpp:2828:  player_entry output = gplayers[index]; //need to handle case it is empty
+main.cpp:3131:bool get_form_team_info(int player_index, team_entry &output)
+main.cpp:3139:  ti = gplayers[player_index].team_ind;
+main.cpp:3140:  tli = gplayers[player_index].team_lineup_ind;
+main.cpp:3310:                          while(ii< gteams->team_max && gteams[gn_teamsel].players[ii]!=0)
+main.cpp:3312:                                  if(ii>22) gteams[gn_teamsel].players[ii]=0;
+main.cpp:3757:                                  //t_ind = gplayers[p_ind].team_ind;
+main.cpp:3857:                                                          cc.lStructSize = sizeof(cc);
+main.cpp:3915:                                                          cc.lStructSize = sizeof(cc);
+main.cpp:3969:  int csel, num_on_team, ii, jj;
+main.cpp:3978:  for(num_on_team=0;num_on_team< gteams->team_max;num_on_team++)
+main.cpp:3980:          if(!gteams[csel].players[num_on_team]) break;
+main.cpp:3984:  gn_playind = new int[num_on_team];
+main.cpp:3988:  memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:3991:  for(ii=0;ii<gnum_players;ii++)
+main.cpp:3993:          if(gplayers[ii].id == gteams[csel].players[jj] && gplayers[ii].b_show)
+main.cpp:3996:                  lvI.pszText = gplayers[ii].name;
+main.cpp:4002:          if(jj==num_on_team) break;
+main.cpp:4020:  if((gn_listsel > -1) && gplayers[gn_playind[gn_listsel]].team_ind >= 0)
+main.cpp:4022:          iteam = gplayers[gn_playind[gn_listsel]].team_ind;
+main.cpp:4025:                  if( gteams[iteam].players[ii] && gteams[iteam].players[ii]!=gplayers[gn_playind[gn_listsel]].id )
+main.cpp:4027:                          for(jj=0;jj<gnum_players;jj++)
+main.cpp:4029:                                  if( gteams[iteam].players[ii]==gplayers[jj].id )
+main.cpp:4031:                                          if(gplayers[jj].b_edit_face)
+main.cpp:4033:                                                  gplayers[jj].b_edit_face=false;
+main.cpp:4034:                                                  gplayers[jj].b_changed=true;
+main.cpp:4036:                                          if(gplayers[jj].b_edit_hair)
+main.cpp:4038:                                                  gplayers[jj].b_edit_hair=false;
+main.cpp:4039:                                                  gplayers[jj].b_changed=true;
+main.cpp:4041:                                          if(gplayers[jj].b_edit_phys)
+main.cpp:4043:                                                  gplayers[jj].b_edit_phys=false;
+main.cpp:4044:                                                  gplayers[jj].b_changed=true;
+main.cpp:4046:                                          if(gplayers[jj].b_edit_strip)
+main.cpp:4048:                                                  gplayers[jj].b_edit_strip=false;
+main.cpp:4049:                                                  gplayers[jj].b_changed=true;
+main.cpp:4065:  if((gn_listsel > -1) && gplayers[gn_playind[gn_listsel]].team_ind >= 0)
+main.cpp:4067:          iteam = gplayers[gn_playind[gn_listsel]].team_ind;
+main.cpp:4070:                  if( gteams[iteam].players[ii] && gteams[iteam].players[ii]!=gplayers[gn_playind[gn_listsel]].id )
+main.cpp:4072:                          for(jj=0;jj<gnum_players;jj++)
+main.cpp:4074:                                  if( gteams[iteam].players[ii]==gplayers[jj].id )
+main.cpp:4076:                                          if(!gplayers[jj].b_edit_player)
+main.cpp:4078:                                                  gplayers[jj].b_edit_player=true;
+main.cpp:4079:                                                  gplayers[jj].b_changed=true;
+main.cpp:4103:          player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:4104:          if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+main.cpp:4106:                  if (wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name))
+main.cpp:4108:                  gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:4112:          if(gplayers[gn_playind[gn_listsel]].team_ind >= 0)
+main.cpp:4114:                  iteam = gplayers[gn_playind[gn_listsel]].team_ind;
+main.cpp:4117:                          if( gteams[iteam].players[ii] && gteams[iteam].players[ii]!=gplayers[gn_playind[gn_listsel]].id )
+main.cpp:4119:                                  for(jj=0;jj<gnum_players;jj++)
+main.cpp:4121:                                          if( gteams[iteam].players[ii]==gplayers[jj].id )
+main.cpp:4123:                                                  enable_fpc_invis_for_player(gplayers[jj], giPesVersion);
+main.cpp:4148:          player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:4149:          if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+main.cpp:4151:                  if (wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name))
+main.cpp:4153:                  gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:4156:          if(gplayers[gn_playind[gn_listsel]].team_ind >= 0)
+main.cpp:4158:                  iteam = gplayers[gn_playind[gn_listsel]].team_ind;
+main.cpp:4161:                          if( gteams[iteam].players[ii] && gteams[iteam].players[ii]!=gplayers[gn_playind[gn_listsel]].id )
+main.cpp:4163:                                  for(jj=0;jj<gnum_players;jj++)
+main.cpp:4165:                                          if( gteams[iteam].players[ii]==gplayers[jj].id )
+main.cpp:4167:                                                  disable_fpc_invis_for_player(gplayers[jj], giPesVersion);
+main.cpp:4635:                                          player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:4636:                                          if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+main.cpp:4638:                                                  if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+main.cpp:4640:                                                  gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:4651:                                  for(int ii=0;ii<gnum_players;ii++)
+main.cpp:4654:                                          if(gplayers[ii].id == srcPID)
+main.cpp:4657:                                                  srcPlyrExport = gplayers[srcIndex].PlayerExport();
+main.cpp:4659:                                          if(gplayers[ii].id == destPID)
+main.cpp:4667:                                  gplayers[destIndex].PlayerImport(srcPlyrExport, true, false);
+main.cpp:4668:                                  gplayers[destIndex].b_changed = true;
+main.cpp:4727:                  player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:4728:                  if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+main.cpp:4730:                          if (wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name))
+main.cpp:4732:                          gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:4742:                  for (int ii = 0; ii < gnum_players; ii++)
+main.cpp:4745:                          if (gplayers[ii].id == srcPID)
+main.cpp:4748:                                  srcPlyrExport = gplayers[srcIndex].PlayerExport();
+main.cpp:4750:                          if (gplayers[ii].id == destPID)
+main.cpp:4753:                                  destPlyrExport = gplayers[destIndex].PlayerExport();
+main.cpp:4759:                  gplayers[destIndex].PlayerImport(srcPlyrExport, true, false);
+main.cpp:4760:                  gplayers[destIndex].b_changed = true;
+main.cpp:4762:                  gplayers[srcIndex].PlayerImport(destPlyrExport, true, false);
+main.cpp:4763:                  gplayers[srcIndex].b_changed = true;
+main.cpp:4917:                  if( gteams[iteam].players[ii] )
+main.cpp:4919:                          for(int jj=0;jj<gnum_players;jj++)
+main.cpp:4921:                                  if( gteams[iteam].players[ii]==gplayers[jj].id )
+main.cpp:4928:                                          if(gplayers[jj].finish == 99) _tcscpy(buffer,_T("GOLD "));
+main.cpp:4929:                                          else if(gplayers[jj].finish > 85) _tcscpy(buffer,_T("SILVER "));
+main.cpp:4935:                                          _itot_s(gplayers[jj].finish, buffer, 6, 10);
+main.cpp:4944:                                          _itot_s(gplayers[jj].height, buffer, 6, 10);
+main.cpp:4949:                                          int ind = gplayers[jj].play_style;
+main.cpp:4960:                                                  if(gplayers[jj].play_skill[kk])
+main.cpp:4969:                                                  if(gplayers[jj].com_style[kk])
+main.cpp:4976:                                          _ftprintf(outStream, _T("%d\t%s\t%s\t%s\n"), gteams[iteam].numbers[ii], gplayers[jj].name,
+main.cpp:4977:                                                  gpc_pos_short[gplayers[jj].reg_pos], outstr.c_str());
+main.cpp:4978://for Ved:                                        _ftprintf(outStream, _T("%s,%s,%s%d\n"), poss[gplayers[jj].reg_pos], gplayers[jj].name,
+main.cpp:4995:  for(ii=0;ii<gnum_players;ii++)
+main.cpp:4997:          if(!gplayers[ii].b_base_copy && gplayers[ii].copy_id != gplayers[ii].id && gplayers[ii].copy_id != 0)
+main.cpp:4999:                  gplayers[ii].copy_id = 0;
+main.cpp:5000:                  gplayers[ii].b_changed=true;
+main.cpp:5002:          else if(gplayers[ii].b_base_copy &&
+main.cpp:5003:                      (gplayers[ii].copy_id == gplayers[ii].id || gplayers[ii].copy_id == 0)) //If it's not a base copy of another player but the base copy flag is set, unset it
+main.cpp:5005:                  //gplayers[ii].copy_id = gplayers[ii].id;
+main.cpp:5006:                  gplayers[ii].b_base_copy=false;
+main.cpp:5007:                  gplayers[ii].b_changed=true;
+main.cpp:5010:          if(gplayers[ii].b_edit_face)
+main.cpp:5012:                  gplayers[ii].b_edit_face=false;
+main.cpp:5013:                  gplayers[ii].b_changed=true;
+main.cpp:5016:          if(gplayers[ii].b_edit_hair)
+main.cpp:5018:                  gplayers[ii].b_edit_hair=false;
+main.cpp:5019:                  gplayers[ii].b_changed=true;
+main.cpp:5022:          if(gplayers[ii].b_edit_phys)
+main.cpp:5024:                  gplayers[ii].b_edit_phys=false;
+main.cpp:5025:                  gplayers[ii].b_changed=true;
+main.cpp:5028:          if(gplayers[ii].b_edit_strip)
+main.cpp:5030:                  gplayers[ii].b_edit_strip=false;
+main.cpp:5031:                  gplayers[ii].b_changed=true;
+main.cpp:5114:  int num_on_team, csel, current_listsel;
+main.cpp:5127:  player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:5128:  if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+main.cpp:5130:          gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:5142:          wcsncpy_s(gplayers[gn_playind[ii]].name, gpc_positions[gplayers[gn_playind[ii]].reg_pos], 61); //Could also use gpc_pos_short
+main.cpp:5143:          gplayers[gn_playind[ii]].b_edit_player = true;
+main.cpp:5144:          //if (!wcscmp(gplayers[ii].name, buffer))
+main.cpp:5147:          memset(&lvI, 0, sizeof(lvI)); //Zero out struct members
+main.cpp:5149:          lvI.pszText = gplayers[gn_playind[ii]].name;
+main.cpp:5156:  TCHAR* tmp = gplayers[gn_playind[gn_listsel]].name;
+main.cpp:5163:  int ii, jj, kk, num_on_team, csel;
+main.cpp:5170:  //First update the data structure to reflect any changes the user has made to the current player/team
+main.cpp:5171:  player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:5172:  if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+main.cpp:5174:          if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+main.cpp:5176:          gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:5180:          memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:5190:  team_entry te_current;
+main.cpp:5193:          int ti = gplayers[gn_playind[gn_listsel]].team_ind;
+main.cpp:5228:  ofn.lStructSize = sizeof(OPENFILENAME);
+main.cpp:5251:          for(num_on_team=0;num_on_team< gteams->team_max;num_on_team++)
+main.cpp:5253:                  if(!gteams[gn_teamCbIndToArray[csel]].players[num_on_team]) break;
+main.cpp:5257:          for(ii=0;ii<gnum_players;ii++)
+main.cpp:5259:                  for(jj=0;jj<num_on_team;jj++)
+main.cpp:5261:                          if(gplayers[ii].id == gteams[gn_teamCbIndToArray[csel]].players[jj])
+main.cpp:5263:                                  player_export pOut = gplayers[ii].PlayerExport();
+main.cpp:5277:                  if(kk==num_on_team) break;
+main.cpp:5291:  int ii, jj, kk, num_on_team, csel;
+main.cpp:5304:  ofn.lStructSize = sizeof(OPENFILENAME);
+main.cpp:5354:                  for(num_on_team=0; num_on_team < gteams->team_max; num_on_team++)
+main.cpp:5356:                          if(!gteams[gn_teamCbIndToArray[csel]].players[num_on_team]) break;
+main.cpp:5360:                  for(ii=0;ii<gnum_players;ii++)
+main.cpp:5362:                          for(jj=0;jj<num_on_team;jj++)
+main.cpp:5364:                                  if(gplayers[ii].id == gteams[gn_teamCbIndToArray[csel]].players[jj])
+main.cpp:5368:                                          gplayers[ii].PlayerImport(pIn, gb_importStats, gb_importAes);
+main.cpp:5370:                                          if(gb_importAes && giPesVersion>=18 && gplayers[ii].skin_col==7) gplayers[ii].skin_col=0;
+main.cpp:5375:                                                  if (pesVer <= 16 && (giPesVersion == 17 || giPesVersion == 18)) gplayers[ii].play_style = n_playstyle16to1718[gplayers[ii].play_style];
+main.cpp:5376:                                                  else if (pesVer <= 16 && giPesVersion == 19) gplayers[ii].play_style = n_playstyle16to19[gplayers[ii].play_style];
+main.cpp:5377:                                                  else if (pesVer <= 16 && giPesVersion >= 20) gplayers[ii].play_style = n_playstyle16to2021[gplayers[ii].play_style];
+main.cpp:5378:                                                  else if ((pesVer == 17 || pesVer == 18) && giPesVersion <= 16) gplayers[ii].play_style = n_playstyle1718to16[gplayers[ii].play_style];
+main.cpp:5379:                                                  else if ((pesVer == 17 || pesVer == 18) && giPesVersion == 19) gplayers[ii].play_style = n_playstyle1718to19[gplayers[ii].play_style];
+main.cpp:5380:                                                  else if ((pesVer == 17 || pesVer == 18) && giPesVersion >= 20) gplayers[ii].play_style = n_playstyle1718to2021[gplayers[ii].play_style];
+main.cpp:5381:                                                  else if (pesVer == 19 && giPesVersion <= 16) gplayers[ii].play_style = n_playstyle19to16[gplayers[ii].play_style];
+main.cpp:5382:                                                  else if (pesVer == 19 && (giPesVersion == 17 || giPesVersion == 18)) gplayers[ii].play_style = n_playstyle19to1718[gplayers[ii].play_style];
+main.cpp:5383:                                                  else if (pesVer == 19 && giPesVersion >= 20) gplayers[ii].play_style = n_playstyle19to2021[gplayers[ii].play_style];
+main.cpp:5384:                                                  else if (pesVer >= 20 && giPesVersion <= 16) gplayers[ii].play_style = n_playstyle2021to16[gplayers[ii].play_style];
+main.cpp:5385:                                                  else if (pesVer >= 20 && (giPesVersion == 17 || giPesVersion == 18)) gplayers[ii].play_style = n_playstyle2021to1718[gplayers[ii].play_style];
+main.cpp:5386:                                                  else if (pesVer >= 20 && giPesVersion == 19) gplayers[ii].play_style = n_playstyle2021to19[gplayers[ii].play_style];
+main.cpp:5393:                          if(kk==num_on_team) break;
+main.cpp:5414:                          ListView_SetItemText(GetDlgItem(ghw_main, IDC_NAME_LIST), ii, 0, gplayers[gn_playind[ii]].name)
+main.cpp:5478:                                  player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:5479:                                  if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+main.cpp:5481:                                          if (wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name))
+main.cpp:5483:                                          gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:5499:                                          for (int ii = 0; ii < gnum_players; ii++)
+main.cpp:5503:                                                  if (gplayers[ii].id == team * 100 + playerCounter)
+main.cpp:5506:                                                          gplayers[ii].boot_id = bootID;
+main.cpp:5507:                                                          gplayers[ii].b_changed = true;
+main.cpp:5523:                                          for (int ii = 0; ii < gnum_players; ii++)
+main.cpp:5526:                                                  if (gplayers[ii].id == team * 100 + playerCounter)
+main.cpp:5529:                                                          gplayers[ii].boot_id = bootID;
+main.cpp:5530:                                                          gplayers[ii].b_changed = true;
+main.cpp:5540:                                          for (int ii = 0; ii < gnum_players; ii++)
+main.cpp:5543:                                                  if (gplayers[ii].id == team * 100 + playerCounter)
+main.cpp:5546:                                                          gplayers[ii].glove_id = gplayers[ii].boot_id;
+main.cpp:5547:                                                          gplayers[ii].b_changed = true;
+main.cpp:5562:                                          for (int ii = 0; ii < gnum_players; ii++)
+main.cpp:5565:                                                  if (gplayers[ii].id == team * 100 + playerCounter)
+main.cpp:5568:                                                          gplayers[ii].glove_id = gloveID;
+main.cpp:5569:                                                          gplayers[ii].b_changed = true;
+main.cpp:5629:                  aatf_single(hwnd, giPesVersion, lParam, gplayers, gteams, gnum_players);
+main.cpp:5707:                          save_comparator(hwnd, giPesVersion, gplayers, gnum_players, gteams, gnum_teams, cs_file_path, hc_descriptor);
+main.cpp:5751:  //First update the data structure to reflect any changes the user has made to the current player/team
+main.cpp:5752:  player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+main.cpp:5753:  if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+main.cpp:5755:          if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+main.cpp:5757:          gplayers[gn_playind[gn_listsel]] = pe_current;
+main.cpp:5761:          memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+main.cpp:5771:  team_entry te_current;
+main.cpp:5774:          int ti = gplayers[gn_playind[gn_listsel]].team_ind;
+pes15.cpp:16:void read_player_entry15(player_entry& player, int& current_byte, void* ghdescriptor)
+pes15.cpp:210:void read_appearance_entry15(player_entry& player, appearance_map& umap_pid_to_startByte, void* ghdescriptor)
+pes15.cpp:301:void read_team_ids15(team_entry& team, int& current_byte, void* ghdescriptor)
+pes15.cpp:332:void read_team_rosters15(int& current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes15.cpp:350:          gteams[t_ind].players[ii] = player_id;
+pes15.cpp:351:          if (player_id) gteams[t_ind].num_on_team++; //new
+pes15.cpp:354:  if (gteams[t_ind].players[0] == 0)
+pes15.cpp:367:void read_team_tactics15(int& current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes15.cpp:392:void write_player_entry15(player_entry player, int& current_byte, appearance_map& umap_pid_to_startByte, void* ghdescriptor)
+pes15.cpp:668:void write_team_info15(team_entry team, int& current_byte, void* ghdescriptor)
+pes15.cpp:700:void write_teamplayer_info15(team_entry team, int& current_byte, void* ghdescriptor)
+pes15.cpp:715:          write_data15(team.players[ii], 0, 4 * 8, current_byte, pDescriptor15);
+pes15.cpp:727:void write_team_tactics15(team_entry team, int& current_byte, void* ghdescriptor)
+pes16.cpp:3:void fill_player_entry16(player_entry &players, int &current_byte, void* ghdescriptor)
+pes16.cpp:195:void fill_appearance_entry16(player_entry &players, int &current_byte, void* ghdescriptor)
+pes16.cpp:282:void fill_team_ids16(team_entry &team, int &current_byte, void* ghdescriptor)
+pes16.cpp:309:void fill_team_rosters16(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes16.cpp:327:          gteams[t_ind].players[ii] = player_id;
+pes16.cpp:328:          if(player_id) gteams[t_ind].num_on_team++; //new
+pes16.cpp:331:  if(gteams[t_ind].players[0] == 0)
+pes16.cpp:342:void fill_team_tactics16(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes16.cpp:364:void extract_player_entry16(player_entry player, int &current_byte, int &appear_byte, void* ghdescriptor)
+pes16.cpp:644:void extract_team_info16(team_entry team, int &current_byte, void* ghdescriptor)
+pes16.cpp:691:void extract_teamplayer_info16(team_entry team, int &current_byte, void* ghdescriptor)
+pes16.cpp:706:          write_dataOld(team.players[ii], 0, 4 * 8, current_byte, pDescriptorOld);
+pes16.cpp:716:void extract_team_tactics16(team_entry team, int &current_byte, void* ghdescriptor)
+pes17.cpp:3:void fill_player_entry17(player_entry &players, int &current_byte, void* ghdescriptor)
+pes17.cpp:268:void fill_team_ids17(team_entry &team, int &current_byte, void* ghdescriptor)
+pes17.cpp:319:void fill_team_rosters17(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes17.cpp:337:          gteams[t_ind].players[ii] = player_id;
+pes17.cpp:338:          if(player_id) gteams[t_ind].num_on_team++; //new
+pes17.cpp:341:  if(gteams[t_ind].players[0] == 0)
+pes17.cpp:352:void fill_team_tactics17(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes17.cpp:382:void extract_player_entry17(player_entry player, int &current_byte, void* ghdescriptor)
+pes17.cpp:655:void extract_team_info17(team_entry team, int &current_byte, void* ghdescriptor)
+pes17.cpp:705:void extract_teamplayer_info17(team_entry team, int &current_byte, void* ghdescriptor)
+pes17.cpp:720:          write_dataOld(team.players[ii], 0, 4 * 8, current_byte, pDescriptorOld);
+pes17.cpp:730:void extract_team_tactics17(team_entry team, int &current_byte, void* ghdescriptor)
+pes18.cpp:3:void fill_player_entry18(player_entry &players, int &current_byte, void* ghdescriptor)
+pes18.cpp:381:void fill_team_ids18(team_entry &team, int &current_byte, void* ghdescriptor)
+pes18.cpp:437:void fill_team_rosters18(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes18.cpp:469:          gteams[t_ind].players[ii] = player_id;
+pes18.cpp:470:          if(player_id) gteams[t_ind].num_on_team++; //new
+pes18.cpp:473:  if(gteams[t_ind].players[0] == 0)
+pes18.cpp:484:void fill_team_tactics18(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes18.cpp:522:void extract_player_entry18(player_entry player, int &current_byte, void* ghdescriptor)
+pes18.cpp:891:void extract_team_info18(team_entry team, int &current_byte, void* ghdescriptor)
+pes18.cpp:944:void extract_teamplayer_info18(team_entry team, int &current_byte, void* ghdescriptor)
+pes18.cpp:966:          pDescriptorNew->data[current_byte] = team.players[ii] & 255; //8/32
+pes18.cpp:968:          pDescriptorNew->data[current_byte] = (team.players[ii] >> 8) & 255; //8/32
+pes18.cpp:970:          pDescriptorNew->data[current_byte] = (team.players[ii] >> 16) & 255; //8/32
+pes18.cpp:972:          pDescriptorNew->data[current_byte] = (team.players[ii] >> 24) & 255; //8/32
+pes18.cpp:984:void extract_team_tactics18(team_entry team, int &current_byte, void* ghdescriptor)
+pes19.cpp:3:void fill_player_entry19(player_entry &players, int &current_byte, void* ghdescriptor)
+pes19.cpp:280:void fill_team_ids19(team_entry &team, int &current_byte, void* ghdescriptor)
+pes19.cpp:352:void fill_team_rosters19(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes19.cpp:387:          gteams[t_ind].players[ii] = player_id;
+pes19.cpp:388:          if(player_id) gteams[t_ind].num_on_team++; //new
+pes19.cpp:391:  if(gteams[t_ind].players[0] == 0)
+pes19.cpp:404:void fill_team_tactics19(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes19.cpp:443:void extract_player_entry19(player_entry player, int &current_byte, void* ghdescriptor)
+pes19.cpp:726:void extract_team_info19(team_entry team, int &current_byte, void* ghdescriptor)
+pes19.cpp:797:void extract_teamplayer_info19(team_entry team, int &current_byte, void* ghdescriptor)
+pes19.cpp:818:          pDescriptorNew->data[current_byte] = team.players[ii] & 255; //8/32
+pes19.cpp:820:          pDescriptorNew->data[current_byte] = (team.players[ii] >> 8) & 255; //8/32
+pes19.cpp:822:          pDescriptorNew->data[current_byte] = (team.players[ii] >> 16) & 255; //8/32
+pes19.cpp:824:          pDescriptorNew->data[current_byte] = (team.players[ii] >> 24) & 255; //8/32
+pes19.cpp:838:void extract_team_tactics19(team_entry team, int &current_byte, void* ghdescriptor)
+pes20.cpp:3:void fill_player_entry20(player_entry &players, int &current_byte, void* ghdescriptor)
+pes20.cpp:204:void fill_team_ids20(team_entry &team, int &current_byte, void* ghdescriptor)
+pes20.cpp:257:void fill_team_ids21(team_entry& team, int& current_byte, void* ghdescriptor)
+pes20.cpp:310:void fill_team_rosters20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes20.cpp:328:          gteams[t_ind].players[ii] = player_id;
+pes20.cpp:329:          if(player_id) gteams[t_ind].num_on_team++; //Increment player count
+pes20.cpp:332:  if(gteams[t_ind].players[0] == 0)
+pes20.cpp:345:void fill_team_tactics20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+pes20.cpp:377:void extract_player_entry20(player_entry player, int &current_byte, void* ghdescriptor)
+pes20.cpp:580:void extract_team_info20(team_entry team, int &current_byte, void* ghdescriptor)
+pes20.cpp:635:void extract_team_info21(team_entry team, int& current_byte, void* ghdescriptor)
+pes20.cpp:690:void extract_teamplayer_info20(team_entry team, int &current_byte, void* ghdescriptor)
+pes20.cpp:704:          write_data(team.players[ii], 0, 4*8, current_byte, pDescriptorNew);
+pes20.cpp:717:void extract_team_tactics20(team_entry team, int &current_byte, void* ghdescriptor)
+window.cpp:28:  memset(&lvc,0,sizeof(lvc)); //Zero out struct members
+window.h:11:                                            //  SHGetPathFromIDList(), BROWSEINFO struct)
