@@ -1,0 +1,1732 @@
+PS D:\Games\pes patch mio\4ccEditoe\4ccEditor-master> Get-ChildItem -Recurse -File -Include *.cpp,*.h | Select-String -Pattern "players.id|player.id|\.id =|id =" -Context 5,8
+
+  aatf.cpp:91:int goldCOM = 2;
+  aatf.cpp:92:
+  aatf.cpp:93:int greenGiga = 0; //Green height bracket
+  aatf.cpp:94:int greenGiant = 5;
+  aatf.cpp:95:int greenTall = 6;
+> aatf.cpp:96:int greenMid = 6;
+  aatf.cpp:97:int greenManlet = 6;
+  aatf.cpp:98:
+  aatf.cpp:99:int redGiga = 0; //Red height bracket
+  aatf.cpp:100:int redGiant = 0;
+  aatf.cpp:101:int redTall = 10;
+> aatf.cpp:102:int redMid = 7;
+  aatf.cpp:103:int redManlet = 6;
+  aatf.cpp:104:
+  aatf.cpp:105:int heightGiga = 199; //Player heights in each category
+  aatf.cpp:106:int heightGiant = 194;
+  aatf.cpp:107:int heightTall = 185;
+  aatf.cpp:108:int heightTallGK = 189;
+> aatf.cpp:109:int heightMid = 180;
+  aatf.cpp:110:int heightManlet = 175;
+  aatf.cpp:111:
+  aatf.cpp:112:
+  aatf.cpp:113:void aatf_single(HWND hAatfbox, int pesVersion, int teamSel, player_entry* gplayers, team_entry* gteams, int gnum_players)
+  aatf.cpp:114:{
+  aatf.cpp:115: player_entry player;
+  aatf.cpp:116: tstring msgOut;
+  aatf.cpp:117: msgOut+=_T("Team: ");
+  aatf.cpp:128: int numGold = 0;
+  aatf.cpp:129: //Count of height brackets
+  aatf.cpp:130: int numGiga = 0;
+  aatf.cpp:131: int numGiant = 0;
+  aatf.cpp:132: int numTall = 0;
+> aatf.cpp:133: int numMid = 0;
+  aatf.cpp:134: int numManlet = 0;
+  aatf.cpp:135: bool usingRed = true;
+  aatf.cpp:136: bool eCheck = false;
+  aatf.cpp:137:
+  aatf.cpp:138: //Run through all players once to determine height system
+  aatf.cpp:139: for (int ii = 0; ii < gteams[teamSel].num_on_team; ii++)
+  aatf.cpp:140: {
+  aatf.cpp:141:         //Find each player on team
+  aatf.cpp:142:         for (int jj = 0; jj < gnum_players; jj++)
+  aatf.cpp:143:         {
+> aatf.cpp:144:                 if (gplayers[jj].id == gteams[teamSel].players[ii])
+  aatf.cpp:145:                 {
+  aatf.cpp:146:                         player = gplayers[jj];
+  aatf.cpp:147:                         break;
+  aatf.cpp:148:                 }
+  aatf.cpp:149:         }
+  aatf.cpp:150:         //If any player is in the green height brackets, team is on Green height system and we can halt
+  aatf.cpp:151:         if (player.height >= heightGiant)
+  aatf.cpp:152:         {
+  aatf.cpp:160: for(int ii=0; ii<gteams[teamSel].num_on_team; ii++)
+  aatf.cpp:161: {
+  aatf.cpp:162:         //Find each player on team
+  aatf.cpp:163:         for(int jj=0; jj<gnum_players; jj++)
+  aatf.cpp:164:         {
+> aatf.cpp:165:                 if(gplayers[jj].id == gteams[teamSel].players[ii])
+  aatf.cpp:166:                 {
+  aatf.cpp:167:                         player = gplayers[jj];
+  aatf.cpp:168:                         break;
+  aatf.cpp:169:                 }
+  aatf.cpp:170:         }
+  aatf.cpp:171:
+  aatf.cpp:172:         msgOut+=_T("\x2022 Checking ");
+  aatf.cpp:173:         msgOut+=player.name;
+  aatf.cpp:214:                 errorTot++;
+  aatf.cpp:215:            errorMsg << _T("Injury resist is ") << player.injury+1 << _T(", cannot exceed 3; ");
+  aatf.cpp:216:         }*/
+  aatf.cpp:217:
+  aatf.cpp:218:         //Check if this player is the captain
+> aatf.cpp:219:         if (player.id == gteams[teamSel].players[gteams[teamSel].captain_ind]) hasCaptain = true;
+  aatf.cpp:220:
+  aatf.cpp:221:         //Check if registered pos has playable set to A
+  aatf.cpp:222:         int requiredAPos = regPosToPlayPosMap[player.reg_pos];
+  aatf.cpp:223:         if(player.play_pos[requiredAPos] != 2)
+  aatf.cpp:224:         {
+  aatf.cpp:225:                 errorTot++;
+  aatf.cpp:226:                 errorMsg << _T("Doesn't have A in registered position; ");
+  aatf.cpp:227:         }
+  aatf.cpp:272:            {
+  aatf.cpp:273:                cardCount++;
+  aatf.cpp:274:                         //SPECIAL Winter/Spring 24: Malicia (21) is a free card
+  aatf.cpp:275:                         if(jj==21) cardMod++;
+  aatf.cpp:276:                //Captain gets free captaincy card
+> aatf.cpp:277:                         if(jj==25 && player.id == gteams[teamSel].players[gteams[teamSel].captain_ind])
+  aatf.cpp:278:                    cardMod++;
+  aatf.cpp:279:                //Trick cards may be free, count number
+  aatf.cpp:280:                if(jj<6 || jj==16 || jj==28 || jj==29 || jj==30 || jj==34)
+  aatf.cpp:281:                         {
+  aatf.cpp:282:                    hasTrick = true;
+  aatf.cpp:283:                                 numTrick++;
+  aatf.cpp:284:                         }
+  aatf.cpp:285:            }
+  comparator.cpp:127:           c_num_players += (((FileDescriptor15*)hc_descriptor)->data[0x35]) * 256;
+  comparator.cpp:128:
+  comparator.cpp:129:           c_num_teams = ((FileDescriptor15*)hc_descriptor)->data[0x38];
+  comparator.cpp:130:           c_num_teams += (((FileDescriptor15*)hc_descriptor)->data[0x39]) * 256;
+  comparator.cpp:131:
+> comparator.cpp:132:           //First, generate map b/w player ID and Appearance Entry start byte so we can access the correct start byte position
+> comparator.cpp:133:           // for each player ID when we loop over the Player Entry, even if they're in different orders
+  comparator.cpp:134:           appearance_byte = 0x2AB9CC;
+> comparator.cpp:135:           int pid = 0;
+  comparator.cpp:136:           appearance_map umap_pid_to_startByte;
+  comparator.cpp:137:           for (int ii = 0; ii < c_num_players; ii++)
+  comparator.cpp:138:           {
+  comparator.cpp:139:                   build_appearance_map15(umap_pid_to_startByte, appearance_byte, hc_descriptor);
+  comparator.cpp:140:           }
+  comparator.cpp:141:
+  comparator.cpp:142:           //place player info+appearance entries into array of structs
+  comparator.cpp:143:           current_byte = 0x4C;
+  comparator.cpp:484:   for(int ii=0; ii<num_on_team; ii++)
+  comparator.cpp:485:   {
+  comparator.cpp:486:           //Find each player on team
+  comparator.cpp:487:           for(int jj=0; jj<gnum_players; jj++)
+  comparator.cpp:488:           {
+> comparator.cpp:489:                   if(gplayers[jj].id == gteams[teamSel].players[ii])
+  comparator.cpp:490:                   {
+  comparator.cpp:491:                           playerA = gplayers[jj];
+  comparator.cpp:492:                           break;
+  comparator.cpp:493:                   }
+  comparator.cpp:494:           }
+  comparator.cpp:495:
+  comparator.cpp:496:           for(int jj=0; jj<c_num_players; jj++)
+  comparator.cpp:497:           {
+> comparator.cpp:498:                   if(c_players[jj].id == c_teams[teamSel].players[ii])
+  comparator.cpp:499:                   {
+  comparator.cpp:500:                           playerB = c_players[jj];
+  comparator.cpp:501:                           break;
+  comparator.cpp:502:                   }
+  comparator.cpp:503:           }
+  comparator.cpp:504:
+  comparator.cpp:505:           if(playerA == playerB) continue;
+  comparator.cpp:506:           errorMsg << _T("    Player ") << ii+1 << _T(" (PID ") << playerA.id << _T(")\r\n");
+  editor.h:196:
+  editor.h:197:struct player_entry : player_export
+  editor.h:198:{
+  editor.h:199: unsigned long id;
+  editor.h:200: //Appearance
+> editor.h:201: unsigned long app_id; //Player ID again
+  editor.h:202:
+  editor.h:203: bool b_changed;
+  editor.h:204: bool b_show;
+  editor.h:205: int team_ind;
+  editor.h:206: int team_lineup_ind;
+  editor.h:207:
+  editor.h:208: //Constructor
+  editor.h:209: player_entry()
+  editor.h:384:         memcpy(pExport.shirt_name, this->shirt_name, sizeof(this->shirt_name)); //Shirt Name
+  editor.h:385:         pExport.b_edit_face = this->b_edit_face; //Edited Face
+  editor.h:386:         pExport.b_edit_hair = this->b_edit_hair; //Edited Hairstyle
+  editor.h:387:         pExport.b_edit_phys = this->b_edit_phys; //Edited Physique
+  editor.h:388:         pExport.b_edit_strip = this->b_edit_strip; //Edited Strip Style
+> editor.h:389:         pExport.boot_id = this->boot_id; //Boots
+> editor.h:390:         pExport.glove_id = this->glove_id; //Goalkeeper gloves
+> editor.h:391:         pExport.copy_id = this->copy_id; //Base Copy Player
+  editor.h:392:         pExport.neck_len = this->neck_len; //Neck Length
+  editor.h:393:         pExport.neck_size = this->neck_size; //Neck Size
+  editor.h:394:         pExport.shldr_hi = this->shldr_hi; //Shoulder Height
+> editor.h:395:         pExport.shldr_wid = this->shldr_wid; //Shoulder Width
+  editor.h:396:         pExport.chest = this->chest; //Chest Measurement
+  editor.h:397:         pExport.waist = this->waist; //Waist Size
+  editor.h:398:         pExport.arm_size = this->arm_size; //Arm Size
+  editor.h:399:         pExport.arm_len = this->arm_len; //Arm Length
+  editor.h:400:         pExport.thigh = this->thigh; //Thigh Size
+  editor.h:401:         pExport.calf = this->calf; //Calf Size
+  editor.h:402:         pExport.leg_len = this->leg_len; //Leg Length
+  editor.h:403:         pExport.head_len = this->head_len; //Head Length
+> editor.h:404:         pExport.head_wid = this->head_wid; //Head Width
+  editor.h:405:         pExport.head_dep = this->head_dep; //Head Depth
+  editor.h:406:         pExport.wrist_col_l = this->wrist_col_l; //Wrist Tape: Color left
+  editor.h:407:         pExport.wrist_col_r = this->wrist_col_r; //Wrist Tape: Color right
+  editor.h:408:         pExport.wrist_tape = this->wrist_tape; //Wrist Taping
+  editor.h:409:         pExport.spec_col = this->spec_col; //Spectacles frame color
+  editor.h:410:         pExport.spec_style = this->spec_style; //Spectacles style
+  editor.h:411:         pExport.sleeve = this->sleeve; //Sleeves
+  editor.h:412:         pExport.inners = this->inners; //Long-Sleeved Inners
+  editor.h:504:                 memcpy(this->shirt_name, pImport.shirt_name, sizeof(pImport.shirt_name)); //Shirt Name
+  editor.h:505:                 this->b_edit_face = pImport.b_edit_face; //Edited Face
+  editor.h:506:                 this->b_edit_hair = pImport.b_edit_hair; //Edited Hairstyle
+  editor.h:507:                 this->b_edit_phys = pImport.b_edit_phys; //Edited Physique
+  editor.h:508:                 this->b_edit_strip = pImport.b_edit_strip; //Edited Strip Style
+> editor.h:509:                 this->boot_id = pImport.boot_id; //Boots
+> editor.h:510:                 this->glove_id = pImport.glove_id; //Goalkeeper gloves
+> editor.h:511:                 this->copy_id = pImport.copy_id; //Base Copy Player
+  editor.h:512:                 this->neck_len = pImport.neck_len; //Neck Length
+  editor.h:513:                 this->neck_size = pImport.neck_size; //Neck Size
+  editor.h:514:                 this->shldr_hi = pImport.shldr_hi; //Shoulder Height
+> editor.h:515:                 this->shldr_wid = pImport.shldr_wid; //Shoulder Width
+  editor.h:516:                 this->chest = pImport.chest; //Chest Measurement
+  editor.h:517:                 this->waist = pImport.waist; //Waist Size
+  editor.h:518:                 this->arm_size = pImport.arm_size; //Arm Size
+  editor.h:519:                 this->arm_len = pImport.arm_len; //Arm Length
+  editor.h:520:                 this->thigh = pImport.thigh; //Thigh Size
+  editor.h:521:                 this->calf = pImport.calf; //Calf Size
+  editor.h:522:                 this->leg_len = pImport.leg_len; //Leg Length
+  editor.h:523:                 this->head_len = pImport.head_len; //Head Length
+> editor.h:524:                 this->head_wid = pImport.head_wid; //Head Width
+  editor.h:525:                 this->head_dep = pImport.head_dep; //Head Depth
+  editor.h:526:                 this->wrist_col_l = pImport.wrist_col_l; //Wrist Tape: Color left
+  editor.h:527:                 this->wrist_col_r = pImport.wrist_col_r; //Wrist Tape: Color right
+  editor.h:528:                 this->wrist_tape = pImport.wrist_tape; //Wrist Taping
+  editor.h:529:                 this->spec_col = pImport.spec_col; //Spectacles frame color
+  editor.h:530:                 this->spec_style = pImport.spec_style; //Spectacles style
+  editor.h:531:                 this->sleeve = pImport.sleeve; //Sleeves
+  editor.h:532:                 this->inners = pImport.inners; //Long-Sleeved Inners
+  editor.h:612:         color2_green = 0;
+  editor.h:613:
+  editor.h:614:         for (int ii = 0; ii < 10; ii++)
+  editor.h:615:         {
+  editor.h:616:                 stripBlock[ii].stripNumber = 0;
+> editor.h:617:                 stripBlock[ii].stripTeamId = 0;
+  editor.h:618:         }
+  editor.h:619:
+> editor.h:620:         manager_id = 0;
+> editor.h:621:         stadium_id = 0;
+  editor.h:622: }
+  editor.h:623:
+  editor.h:624: bool operator==(const team_entry& rhs)
+  editor.h:625: {
+  editor.h:626:         int ii;
+  editor.h:627:         bool b_out = this->id==rhs.id;
+  editor.h:628:
+  editor.h:629:         b_out = b_out && this->manager_id==rhs.manager_id;
+  fpc.cpp:2:#include "resource.h"
+  fpc.cpp:3:#include <stdio.h>
+  fpc.cpp:4:#include <windowsx.h>
+  fpc.cpp:5:
+  fpc.cpp:6://Boots and glove IDs for FPC are now 55 and 11 respectively in all versions
+> fpc.cpp:7:int iHideBootId = 55;
+> fpc.cpp:8:int iHideGkGloveId = 11;
+> fpc.cpp:9:int iShowBootId = 0;
+> fpc.cpp:10:int iShowGkGloveId = 0;
+  fpc.cpp:11:
+  fpc.cpp:12:
+  fpc.cpp:13:void disable_fpc_invis_for_displayed_player(HWND hw_tab2, int iPesVersion)
+  fpc.cpp:14:{
+  fpc.cpp:15:   wchar_t buffer[20];
+  fpc.cpp:16:   wchar_t hideBoot[3], hideGkGlove[3], showBoot[3], showGkGlove[3];
+  fpc.cpp:17:
+  fpc.cpp:18:   //Boots and glove IDs for FPC are now 55 and 11 respectively in all versions
+  fpc.cpp:104:  if (player.skin_col != 7 && iPesVersion < 18) //Skin to Custom
+  fpc.cpp:105:  {
+  fpc.cpp:106:          player.skin_col = 7;
+  fpc.cpp:107:          player.b_changed = true;
+  fpc.cpp:108:  }
+> fpc.cpp:109:  if (player.boot_id == iShowBootId) //Hide boots
+  fpc.cpp:110:  {
+> fpc.cpp:111:          player.boot_id = iHideBootId;
+  fpc.cpp:112:          player.b_changed = true;
+  fpc.cpp:113:  }
+> fpc.cpp:114:  if (player.glove_id == iShowGkGloveId) //Hide GK gloves
+  fpc.cpp:115:  {
+> fpc.cpp:116:          player.glove_id = iHideGkGloveId;
+  fpc.cpp:117:          player.b_changed = true;
+  fpc.cpp:118:  }
+  fpc.cpp:119:  if (player.socks != 2) //Socks to short
+  fpc.cpp:120:  {
+  fpc.cpp:121:          player.socks = 2;
+  fpc.cpp:122:          player.b_changed = true;
+  fpc.cpp:123:  }
+  fpc.cpp:124:  if (player.wrist_tape != 0) //No wrist tape
+  fpc.cpp:164:  if (player.skin_col == 7 && iPesVersion < 18) //Custom skin to Light
+  fpc.cpp:165:  {
+  fpc.cpp:166:          player.skin_col = 1;
+  fpc.cpp:167:          player.b_changed = true;
+  fpc.cpp:168:  }
+> fpc.cpp:169:  if (player.boot_id == iHideBootId) //Show boots
+  fpc.cpp:170:  {
+> fpc.cpp:171:          player.boot_id = iShowBootId;
+  fpc.cpp:172:          player.b_changed = true;
+  fpc.cpp:173:  }
+> fpc.cpp:174:  if (player.glove_id == iHideGkGloveId) //Show GK gloves
+  fpc.cpp:175:  {
+> fpc.cpp:176:          player.glove_id = iShowBootId;
+  fpc.cpp:177:          player.b_changed = true;
+  fpc.cpp:178:  }
+  fpc.cpp:179:  if (player.socks == 2) //Short socks to standard
+  fpc.cpp:180:  {
+  fpc.cpp:181:          player.socks = 0;
+  fpc.cpp:182:          player.b_changed = true;
+  fpc.cpp:183:  }
+  fpc.cpp:184:  if (player.wrist_tape != 0) //Wrist tape off
+  main.cpp:107:int g_prevx=0;
+  main.cpp:108:int giPesVersion = 0;
+  main.cpp:109:int g_bumpAmount = 0;
+  main.cpp:110:const uint8_t* gpMasterKey;
+  main.cpp:111:
+> main.cpp:112:appearance_map g_umap_pid_to_startByte; //Map from player ID to start byte of appearance entry
+  main.cpp:113:
+  main.cpp:114:int gi_lastAbility = IDC_ABIL_AGGR; //Final control ID in list of Player Ability, for looping over them
+  main.cpp:115:
+  main.cpp:116://Brushes
+  main.cpp:117:HBRUSH gTeamColor1 = NULL;
+  main.cpp:118:HBRUSH gTeamColor2 = NULL;
+  main.cpp:119:HBRUSH g_hbr = NULL;
+  main.cpp:120:
+  main.cpp:375:                         //rctext.left += GetSystemMetrics(SM_CXEDGE);
+  main.cpp:376:
+  main.cpp:377:                         //int test = TabCtrl_GetCurSel(hTabCtrl);
+  main.cpp:378:
+  main.cpp:379:                         //TextOut(lpdis->hDC,rctext.left,rctext.top,tci.pszText,lstrlen(tci.pszText));
+> main.cpp:380:                         if( lpdis->itemID == TabCtrl_GetCurSel(hTabCtrl) )
+  main.cpp:381:                                 DrawText(lpdis->hDC, tci.pszText, lstrlen(tci.pszText), &lpdis->rcItem, DT_SINGLELINE|DT_VCENTER|DT_CENTER);
+  main.cpp:382:                         else
+  main.cpp:383:                                 DrawText(lpdis->hDC, tci.pszText, lstrlen(tci.pszText), &lpdis->rcItem, DT_SINGLELINE|DT_BOTTOM|DT_CENTER);
+  main.cpp:384:
+  main.cpp:385:                         DeleteObject(hbr);
+  main.cpp:386:                 }
+  main.cpp:387:         }
+  main.cpp:388:         break;
+  main.cpp:561:                                                         player_export currPlyrExport = gplayers[gn_playind[gn_listsel]].PlayerExport();
+  main.cpp:562:                                                         //export settings for prev player into temp struct 2
+  main.cpp:563:                                                         player_export prevPlyrExport = gplayers[gn_playind[gn_listsel-1]].PlayerExport();
+  main.cpp:564:
+  main.cpp:565:                                                         //Have player copy ids match new slot
+> main.cpp:566:                                                         unsigned long tmp_id = currPlyrExport.copy_id;
+> main.cpp:567:                                                         currPlyrExport.copy_id = prevPlyrExport.copy_id;
+> main.cpp:568:                                                         prevPlyrExport.copy_id = tmp_id;
+  main.cpp:569:
+  main.cpp:570:                                                         //swap temp struct 2 into (old) current player, set b_changed flag
+  main.cpp:571:                                                         gplayers[gn_playind[gn_listsel]].PlayerImport(prevPlyrExport);
+  main.cpp:572:                                                         gplayers[gn_playind[gn_listsel]].b_changed = true;
+  main.cpp:573:                                                         //import temp struct 1 into (old) prev player, set b_changed flag
+  main.cpp:574:                                                         gplayers[gn_playind[gn_listsel-1]].PlayerImport(currPlyrExport);
+  main.cpp:575:                                                         gplayers[gn_playind[gn_listsel-1]].b_changed = true;
+  main.cpp:576:
+  main.cpp:612:                                                         player_export currPlyrExport = gplayers[gn_playind[gn_listsel]].PlayerExport();
+  main.cpp:613:                                                         //export settings for next player into temp struct 2
+  main.cpp:614:                                                         player_export nextPlyrExport = gplayers[gn_playind[gn_listsel+1]].PlayerExport();
+  main.cpp:615:
+  main.cpp:616:                                                         //Have player copy ids match new slot
+> main.cpp:617:                                                         unsigned long tmp_id = currPlyrExport.copy_id;
+> main.cpp:618:                                                         currPlyrExport.copy_id = nextPlyrExport.copy_id;
+> main.cpp:619:                                                         nextPlyrExport.copy_id = tmp_id;
+  main.cpp:620:
+  main.cpp:621:                                                         //swap temp struct 2 into (old) current player, set b_changed flag
+  main.cpp:622:                                                         gplayers[gn_playind[gn_listsel]].PlayerImport(nextPlyrExport);
+  main.cpp:623:                                                         gplayers[gn_playind[gn_listsel]].b_changed = true;
+  main.cpp:624:                                                         //import temp struct 1 into (old) next player, set b_changed flag
+  main.cpp:625:                                                         gplayers[gn_playind[gn_listsel+1]].PlayerImport(currPlyrExport);
+  main.cpp:626:                                                         gplayers[gn_playind[gn_listsel+1]].b_changed = true;
+  main.cpp:627:
+  main.cpp:824:                                                         int kk=0;
+  main.cpp:825:                                                         for(ii=0;ii<gnum_players;ii++)
+  main.cpp:826:                                                         {
+  main.cpp:827:                                                                 for(jj=0;jj<num_on_team;jj++)
+  main.cpp:828:                                                                 {
+> main.cpp:829:                                                                         if(gplayers[ii].id == gteams[gn_teamCbIndToArray[csel]].players[jj])
+  main.cpp:830:                                                                         {
+  main.cpp:831:                                                                                 gn_playind[kk] = ii;
+  main.cpp:832:                                                                                 lvI.pszText = gplayers[ii].name;
+  main.cpp:833:                                                                                 lvI.iItem = kk;
+  main.cpp:834:                                                                                 SendDlgItemMessage(ghw_main, IDC_NAME_LIST, LVM_INSERTITEM, 0, (LPARAM)&lvI);
+  main.cpp:835:                                                                                 kk++;
+  main.cpp:836:                                                                                 break;
+  main.cpp:837:                                                                         }
+  main.cpp:1434:                gnum_players += (((FileDescriptor15*)ghdescriptor)->data[0x35]) * 256;
+  main.cpp:1435:
+  main.cpp:1436:                gnum_teams = ((FileDescriptor15*)ghdescriptor)->data[0x38];
+  main.cpp:1437:                gnum_teams += (((FileDescriptor15*)ghdescriptor)->data[0x39]) * 256;
+  main.cpp:1438:
+> main.cpp:1439:                //First, generate map b/w player ID and Appearance Entry start byte so we can access the correct start byte position
+> main.cpp:1440:                // for each player ID when we loop over the Player Entry, even if they're in different orders
+  main.cpp:1441:                appearance_byte = 0x2AB9CC;
+> main.cpp:1442:                int pid = 0;
+  main.cpp:1443:                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:1444:                {
+  main.cpp:1445:                        build_appearance_map15(g_umap_pid_to_startByte, appearance_byte, ghdescriptor);
+  main.cpp:1446:                }
+  main.cpp:1447:
+  main.cpp:1448:                //place player info+appearance entries into array of structs
+  main.cpp:1449:                current_byte = 0x4C;
+  main.cpp:1450:                if (gplayers != NULL) delete[] gplayers;
+  main.cpp:2831:        if(giPesVersion<20) playerNameLen=46;
+  main.cpp:2832:        else playerNameLen=61;
+  main.cpp:2833:        SendDlgItemMessage(ghw_main, IDT_PLAY_NAME, WM_GETTEXT, (WPARAM)playerNameLen, (LPARAM)output.name);
+  main.cpp:2834:
+  main.cpp:2835:        SendDlgItemMessage(ghw_main, IDT_PLAY_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:2836:        output.id = _wtoi(buffer);
+  main.cpp:2837:
+  main.cpp:2838:        if(giPesVersion==16) shirtNameLen=16; //This is correct, 15 has 18 len shirt names
+  main.cpp:2839:        else if(giPesVersion<20) shirtNameLen=18;
+  main.cpp:2840:        else shirtNameLen=20;
+  main.cpp:2841:        SendDlgItemMessage(ghw_main, IDT_PLAY_SHIRT, WM_GETTEXT, shirtNameLen+1, (LPARAM)buffer);
+  main.cpp:2842:        ii = 0;
+  main.cpp:2843:        while(buffer[ii])
+  main.cpp:2844:        {
+  main.cpp:3018:                output.b_edit_style=true;
+  main.cpp:3019:        }
+  main.cpp:3020:        else output.b_base_copy=false;
+  main.cpp:3021:
+  main.cpp:3022:        SendDlgItemMessage(ghw_tab2, IDT_COPY_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:3023:        output.copy_id = _wtoi(buffer);
+  main.cpp:3024:
+  main.cpp:3025:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_HELE, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3026:        output.head_len = _wtoi(buffer) + 7;
+  main.cpp:3027:
+  main.cpp:3028:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEWI, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:3029:        output.head_wid = _wtoi(buffer) + 7;;
+  main.cpp:3030:
+  main.cpp:3031:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEDE, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3032:        output.head_dep = _wtoi(buffer) + 7;
+  main.cpp:3033:
+  main.cpp:3034:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_NELE, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3035:        output.neck_len = _wtoi(buffer) + 7;
+  main.cpp:3036:
+  main.cpp:3037:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_NESI, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3039:
+  main.cpp:3040:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_SHHE, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3041:        output.shldr_hi = _wtoi(buffer) + 7;
+  main.cpp:3042:
+  main.cpp:3043:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_SHWI, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:3044:        output.shldr_wid = _wtoi(buffer) + 7;
+  main.cpp:3045:
+  main.cpp:3046:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_CHSI, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3047:        output.chest = _wtoi(buffer) + 7;
+  main.cpp:3048:
+  main.cpp:3049:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_WASI, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3050:        output.waist = _wtoi(buffer) + 7;
+  main.cpp:3051:
+  main.cpp:3052:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_ARSI, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3067:        output.skin_col = SendDlgItemMessage(ghw_tab2, IDC_PHYS_SKIN, CB_GETCURSEL, 0, 0);
+  main.cpp:3068:
+  main.cpp:3069:        output.iris_col = SendDlgItemMessage(ghw_tab2, IDC_PHYS_EYES, CB_GETCURSEL, 0, 0);
+  main.cpp:3070:
+  main.cpp:3071:        SendDlgItemMessage(ghw_tab2, IDT_STRP_BOID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:3072:        output.boot_id = _wtoi(buffer);
+  main.cpp:3073:
+  main.cpp:3074:        SendDlgItemMessage(ghw_tab2, IDT_STRP_GLID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:3075:        output.glove_id = _wtoi(buffer);
+  main.cpp:3076:
+  main.cpp:3077:        output.wrist_tape = SendDlgItemMessage(ghw_tab2, IDC_STRP_WRTA, CB_GETCURSEL, 0, 0);
+  main.cpp:3078:
+  main.cpp:3079:        output.spec_style = SendDlgItemMessage(ghw_tab2, IDC_STRP_GLST, CB_GETCURSEL, 0, 0);
+  main.cpp:3080:
+  main.cpp:3081:        output.spec_col = SendDlgItemMessage(ghw_tab2, IDC_STRP_GLCO, CB_GETCURSEL, 0, 0);
+  main.cpp:3082:
+  main.cpp:3083:        output.sleeve = SendDlgItemMessage(ghw_tab2, IDC_STRP_SLEE, CB_GETCURSEL, 0, 0);
+  main.cpp:3152:                        _tcscpy(output.name, buffer);
+  main.cpp:3153:                        output.b_edit_name = true;
+  main.cpp:3154:                }
+  main.cpp:3155:
+  main.cpp:3156:                SendDlgItemMessage(ghw_main, IDT_TEAM_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:3157:                output.id = _wtoi(buffer);
+  main.cpp:3158:
+  main.cpp:3159:                //Manually send EN_CHANGE message to avoid edge cases
+  main.cpp:3160:                //SendMessage(ghw_main, WM_COMMAND, MAKEWPARAM(IDT_TEAM_SHORT, EN_CHANGE), LPARAM(GetDlgItem(ghw_main, IDT_TEAM_SHORT)));
+  main.cpp:3161:                SendDlgItemMessage(ghw_main, IDT_TEAM_SHORT, WM_GETTEXT, 4, (LPARAM)buffer);
+  main.cpp:3162:                buffer[4] = 0;
+  main.cpp:3163:                ii = 0;
+  main.cpp:3164:                while(buffer[ii])
+  main.cpp:3165:                {
+  main.cpp:3197:
+  main.cpp:3198:                SendDlgItemMessage(ghw_tab3, IDT_TCOL_B2, WM_GETTEXT, 4, (LPARAM)buffer);
+  main.cpp:3199:                output.color2_blue = _wtoi(buffer);
+  main.cpp:3200:
+  main.cpp:3201:                SendDlgItemMessage(ghw_tab3, IDT_MANAGER, WM_GETTEXT, 9, (LPARAM)buffer);
+> main.cpp:3202:                output.manager_id = _wtoi(buffer);
+  main.cpp:3203:
+  main.cpp:3204:                SendDlgItemMessage(ghw_tab3, IDT_STADIUM, WM_GETTEXT, 4, (LPARAM)buffer);
+  main.cpp:3205:                if( output.stadium_id != _wtoi(buffer) )
+  main.cpp:3206:                {
+> main.cpp:3207:                        output.stadium_id = _wtoi(buffer);
+  main.cpp:3208:                        output.b_edit_stadium = true;
+  main.cpp:3209:                }
+  main.cpp:3210:        }
+  main.cpp:3211:
+  main.cpp:3212:        return result;
+  main.cpp:3213:}
+  main.cpp:3214:
+  main.cpp:3215://Subclassed control procedure for a listview control.  Used by the
+  main.cpp:3988:        memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+  main.cpp:3989:        lvI.mask = LVIF_TEXT;
+  main.cpp:3990:        jj=0;
+  main.cpp:3991:        for(ii=0;ii<gnum_players;ii++)
+  main.cpp:3992:        {
+> main.cpp:3993:                if(gplayers[ii].id == gteams[csel].players[jj] && gplayers[ii].b_show)
+  main.cpp:3994:                {
+  main.cpp:3995:                        gn_playind[jj] = ii;
+  main.cpp:3996:                        lvI.pszText = gplayers[ii].name;
+  main.cpp:3997:                        lvI.iItem = jj;
+  main.cpp:3998:                        SendDlgItemMessage(ghw_main, IDC_NAME_LIST, LVM_INSERTITEM, 0, (LPARAM)&lvI);
+  main.cpp:3999:
+  main.cpp:4000:                        jj++;
+  main.cpp:4001:                }
+  main.cpp:4641:                                                }
+  main.cpp:4642:                                        }
+  main.cpp:4643:
+  main.cpp:4644:                                        //Get source and destination PIDs:
+  main.cpp:4645:                                        SendDlgItemMessage(hwnd, IDT_STAT_SOUR, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:4646:                                        srcPID = _wtoi(buffer);
+  main.cpp:4647:                                        SendDlgItemMessage(hwnd, IDT_STAT_DEST, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:4648:                                        destPID = _wtoi(buffer);
+  main.cpp:4649:
+  main.cpp:4650:                                        //Find the source and destination players by PID
+  main.cpp:4651:                                        for(int ii=0;ii<gnum_players;ii++)
+  main.cpp:4652:                                        {
+  main.cpp:4653:                                                if(srcIndex > -1 && destIndex > -1) break;
+> main.cpp:4654:                                                if(gplayers[ii].id == srcPID)
+  main.cpp:4655:                                                {
+  main.cpp:4656:                                                        srcIndex = ii;
+  main.cpp:4657:                                                        srcPlyrExport = gplayers[srcIndex].PlayerExport();
+  main.cpp:4658:                                                }
+> main.cpp:4659:                                                if(gplayers[ii].id == destPID)
+  main.cpp:4660:                                                {
+  main.cpp:4661:                                                        destIndex = ii;
+  main.cpp:4662:                                                }
+  main.cpp:4663:                                        }
+  main.cpp:4664:                                        if(srcIndex == -1 || destIndex == -1) break;
+  main.cpp:4665:
+  main.cpp:4666:                                        //Overwrite stats of dest player (leave Aes alone), set b_changed flag
+  main.cpp:4667:                                        gplayers[destIndex].PlayerImport(srcPlyrExport, true, false);
+  main.cpp:4732:                                gplayers[gn_playind[gn_listsel]] = pe_current;
+  main.cpp:4733:                        }
+  main.cpp:4734:
+  main.cpp:4735:                        //Get source and destination PIDs:
+  main.cpp:4736:                        SendDlgItemMessage(hwnd, IDT_STAT_FPID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:4737:                        srcPID = _wtoi(buffer);
+  main.cpp:4738:                        SendDlgItemMessage(hwnd, IDT_STAT_SPID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:4739:                        destPID = _wtoi(buffer);
+  main.cpp:4740:
+  main.cpp:4741:                        //Find the source and destination players by PID
+  main.cpp:4742:                        for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:4743:                        {
+  main.cpp:4744:                                if (srcIndex > -1 && destIndex > -1) break;
+> main.cpp:4745:                                if (gplayers[ii].id == srcPID)
+  main.cpp:4746:                                {
+  main.cpp:4747:                                        srcIndex = ii;
+  main.cpp:4748:                                        srcPlyrExport = gplayers[srcIndex].PlayerExport();
+  main.cpp:4749:                                }
+> main.cpp:4750:                                if (gplayers[ii].id == destPID)
+  main.cpp:4751:                                {
+  main.cpp:4752:                                        destIndex = ii;
+  main.cpp:4753:                                        destPlyrExport = gplayers[destIndex].PlayerExport();
+  main.cpp:4754:                                }
+  main.cpp:4755:                        }
+  main.cpp:4756:                        if (srcIndex == -1 || destIndex == -1) break;
+  main.cpp:4757:
+  main.cpp:4758:                        //Overwrite stats of dest player (leave Aes alone), set b_changed flag
+  main.cpp:4994:
+  main.cpp:4995:        for(ii=0;ii<gnum_players;ii++)
+  main.cpp:4996:        {
+  main.cpp:4997:                if(!gplayers[ii].b_base_copy && gplayers[ii].copy_id != gplayers[ii].id && gplayers[ii].copy_id != 0)
+  main.cpp:4998:                {
+> main.cpp:4999:                        gplayers[ii].copy_id = 0;
+  main.cpp:5000:                        gplayers[ii].b_changed=true;
+  main.cpp:5001:                }
+  main.cpp:5002:                else if(gplayers[ii].b_base_copy &&
+> main.cpp:5003:                            (gplayers[ii].copy_id == gplayers[ii].id || gplayers[ii].copy_id == 0)) //If it's not a base copy of another player but the base copy flag is set, unset it
+  main.cpp:5004:                {
+> main.cpp:5005:                        //gplayers[ii].copy_id = gplayers[ii].id;
+  main.cpp:5006:                        gplayers[ii].b_base_copy=false;
+  main.cpp:5007:                        gplayers[ii].b_changed=true;
+  main.cpp:5008:                }
+  main.cpp:5009:
+  main.cpp:5010:                if(gplayers[ii].b_edit_face)
+  main.cpp:5011:                {
+  main.cpp:5012:                        gplayers[ii].b_edit_face=false;
+  main.cpp:5013:                        gplayers[ii].b_changed=true;
+  main.cpp:5048:                //Set all subsequent strip entries to a non-existent team ID (0xFFFFC0)
+  main.cpp:5049:                if (gteams[ii].stripBlock[0].stripNumber != 0x0 ||
+  main.cpp:5050:                        gteams[ii].stripBlock[0].stripTeamId != gteams[ii].id * 0x40)
+  main.cpp:5051:                {
+  main.cpp:5052:                        gteams[ii].stripBlock[0].stripNumber = 0x0;
+> main.cpp:5053:                        gteams[ii].stripBlock[0].stripTeamId = gteams[ii].id * 0x40;
+  main.cpp:5054:                        gteams[ii].b_changed = true;
+  main.cpp:5055:                }
+  main.cpp:5056:                if (gteams[ii].stripBlock[1].stripNumber != 0x1 ||
+  main.cpp:5057:                        gteams[ii].stripBlock[1].stripTeamId != gteams[ii].id * 0x40)
+  main.cpp:5058:                {
+  main.cpp:5059:                        gteams[ii].stripBlock[1].stripNumber = 0x1;
+> main.cpp:5060:                        gteams[ii].stripBlock[1].stripTeamId = gteams[ii].id * 0x40;
+  main.cpp:5061:                        gteams[ii].b_changed = true;
+  main.cpp:5062:                }
+  main.cpp:5063:                if (gteams[ii].stripBlock[2].stripNumber != 0x80 ||
+  main.cpp:5064:                        gteams[ii].stripBlock[2].stripTeamId != gteams[ii].id * 0x40)
+  main.cpp:5065:                {
+  main.cpp:5066:                        gteams[ii].stripBlock[2].stripNumber = 0x80; //GK strip
+> main.cpp:5067:                        gteams[ii].stripBlock[2].stripTeamId = gteams[ii].id * 0x40;
+  main.cpp:5068:                        gteams[ii].b_changed = true;
+  main.cpp:5069:                }
+  main.cpp:5070:                for (int jj = 3; jj < 10; jj++)
+  main.cpp:5071:                {
+  main.cpp:5072:                        if (gteams[ii].stripBlock[jj].stripNumber != 0x0 ||
+  main.cpp:5073:                                gteams[ii].stripBlock[jj].stripTeamId != 0xFFFFC0)
+  main.cpp:5074:                        {
+  main.cpp:5075:                                gteams[ii].stripBlock[jj].stripNumber = 0x0;
+> main.cpp:5076:                                gteams[ii].stripBlock[jj].stripTeamId = 0xFFFFC0; //Non-existent team ID
+  main.cpp:5077:                                gteams[ii].b_changed = true;
+  main.cpp:5078:                        }
+  main.cpp:5079:                }
+  main.cpp:5080:        }
+  main.cpp:5081:        if (giPesVersion == 17)
+  main.cpp:5082:        {       //Fix kit team IDs in Unknown section so kit preview colors 12 and 2 display properly
+  main.cpp:5083:                int current_byte = 0x425180;
+  main.cpp:5084:                FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  main.cpp:5250:                //Find number of players on this team
+  main.cpp:5251:                for(num_on_team=0;num_on_team< gteams->team_max;num_on_team++)
+  main.cpp:5252:                {
+  main.cpp:5253:                        if(!gteams[gn_teamCbIndToArray[csel]].players[num_on_team]) break;
+  main.cpp:5254:                }
+> main.cpp:5255:                //Find the entry in the gplayer array matching each player ID on this team
+  main.cpp:5256:                kk=0;
+  main.cpp:5257:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:5258:                {
+  main.cpp:5259:                        for(jj=0;jj<num_on_team;jj++)
+  main.cpp:5260:                        {
+> main.cpp:5261:                                if(gplayers[ii].id == gteams[gn_teamCbIndToArray[csel]].players[jj])
+  main.cpp:5262:                                {
+  main.cpp:5263:                                        player_export pOut = gplayers[ii].PlayerExport();
+  main.cpp:5264:                                        if (giPesVersion <= 16) pOut.phys_cont = pOut.body_ctrl;
+  main.cpp:5265:                                        if (giPesVersion <= 15)
+  main.cpp:5266:                                        {
+  main.cpp:5267:                                                pOut.clearing = pOut.body_ctrl;
+  main.cpp:5268:                                                pOut.reflex = pOut.body_ctrl;
+  main.cpp:5269:                                                pOut.cover = pOut.body_ctrl;
+  main.cpp:5353:                        //Find number of players on this team
+  main.cpp:5354:                        for(num_on_team=0; num_on_team < gteams->team_max; num_on_team++)
+  main.cpp:5355:                        {
+  main.cpp:5356:                                if(!gteams[gn_teamCbIndToArray[csel]].players[num_on_team]) break;
+  main.cpp:5357:                        }
+> main.cpp:5358:                        //Find the entry in the gplayer array matching each player ID on this team
+  main.cpp:5359:                        kk=0;
+  main.cpp:5360:                        for(ii=0;ii<gnum_players;ii++)
+  main.cpp:5361:                        {
+  main.cpp:5362:                                for(jj=0;jj<num_on_team;jj++)
+  main.cpp:5363:                                {
+> main.cpp:5364:                                        if(gplayers[ii].id == gteams[gn_teamCbIndToArray[csel]].players[jj])
+  main.cpp:5365:                                        {
+  main.cpp:5366:                                                player_export pIn;
+  main.cpp:5367:                                                input_file.read((char *)&pIn, sizeof(pIn));
+  main.cpp:5368:                                                gplayers[ii].PlayerImport(pIn, gb_importStats, gb_importAes);
+  main.cpp:5369:                                                //No Custom skin in 18
+  main.cpp:5370:                                                if(gb_importAes && giPesVersion>=18 && gplayers[ii].skin_col==7) gplayers[ii].skin_col=0;
+  main.cpp:5371:                                                //Convert between 19+ and 18- play style nunmbers if needed
+  main.cpp:5372:                                                if(gb_importStats)
+  main.cpp:5433:                        TCHAR buffer[20], bootIDChar[20];
+  main.cpp:5434:                        INT bootID;
+  main.cpp:5435:                        SendDlgItemMessage(hwnd, IDT_BOOT_END, EM_SETREADONLY, 1, 0);
+  main.cpp:5436:                        GetDlgItemText(ghw_tab2, IDT_STRP_BOID, buffer, 20);
+  main.cpp:5437:                        SetDlgItemText(hwnd, IDT_BOOT_START, buffer);
+> main.cpp:5438:                        bootID = _tstoi(buffer)+22;
+  main.cpp:5439:                        wsprintfW(buffer, L"%d", bootID);
+  main.cpp:5440:                        SetDlgItemText(hwnd, IDT_BOOT_END, buffer);
+  main.cpp:5441:                        GetDlgItemText(ghw_tab2, IDT_STRP_GLID, buffer, 20);
+  main.cpp:5442:                        SetDlgItemText(hwnd, IDT_BOOT_ID, buffer);
+  main.cpp:5443:                        SetDlgItemText(hwnd, IDT_GLOVE_ID, buffer);
+  main.cpp:5444:                        SendDlgItemMessage(hwnd, IDT_BOOT_OPT1, BM_SETCHECK, (WPARAM)BST_CHECKED, 0);
+  main.cpp:5445:                        SendDlgItemMessage(hwnd, IDT_GLOVE_OPT1, BM_SETCHECK, (WPARAM)BST_CHECKED, 0);
+  main.cpp:5446:
+  main.cpp:5456:                                        if (LOWORD(wParam) == IDT_BOOT_START)
+  main.cpp:5457:                                        {
+  main.cpp:5458:                                                TCHAR buffer[20];
+  main.cpp:5459:                                                INT bootID;
+  main.cpp:5460:                                                GetDlgItemText(hwnd, IDT_BOOT_START, buffer,20);
+> main.cpp:5461:                                                bootID = _tstoi(buffer) + 22;
+  main.cpp:5462:                                                wsprintfW(buffer, L"%d", bootID);
+  main.cpp:5463:                                                SetDlgItemText(hwnd, IDT_BOOT_END, buffer);
+  main.cpp:5464:                                        }
+  main.cpp:5465:                                        break;
+  main.cpp:5466:
+  main.cpp:5467:                        }
+  main.cpp:5468:
+  main.cpp:5469:                        switch (LOWORD(wParam))
+  main.cpp:5490:                                        //If "Boot: set incremental value" is set
+  main.cpp:5491:                                        if (SendDlgItemMessage(hwnd, IDT_BOOT_OPT2, BM_GETCHECK, 0, 0)) {
+  main.cpp:5492:
+  main.cpp:5493:                                                //Get starting boot:
+  main.cpp:5494:                                                SendDlgItemMessage(hwnd, IDT_BOOT_START, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:5495:                                                bootID = _wtoi(buffer);
+  main.cpp:5496:
+  main.cpp:5497:                                                //Loop through each player
+  main.cpp:5498:                                                playerCounter = 1;
+  main.cpp:5499:                                                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:5500:                                                {
+  main.cpp:5501:                                                        //Stop if we updated 23 players
+  main.cpp:5502:                                                        if (playerCounter >= 24) break;
+> main.cpp:5503:                                                        if (gplayers[ii].id == team * 100 + playerCounter)
+  main.cpp:5504:                                                        {
+  main.cpp:5505:                                                                //Set boot ID
+> main.cpp:5506:                                                                gplayers[ii].boot_id = bootID;
+  main.cpp:5507:                                                                gplayers[ii].b_changed = true;
+  main.cpp:5508:                                                                playerCounter++;
+  main.cpp:5509:                                                                bootID++;
+  main.cpp:5510:                                                        }
+  main.cpp:5511:                                                }
+  main.cpp:5512:                                        }
+  main.cpp:5513:
+  main.cpp:5514:                                        //If "Boot: set all to the same ID" is set
+  main.cpp:5515:                                        if (SendDlgItemMessage(hwnd, IDT_BOOT_OPT3, BM_GETCHECK, 0, 0)) {
+  main.cpp:5516:
+  main.cpp:5517:                                                //Get boot ID:
+  main.cpp:5518:                                                SendDlgItemMessage(hwnd, IDT_BOOT_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:5519:                                                bootID = _wtoi(buffer);
+  main.cpp:5520:
+  main.cpp:5521:                                                //Loop through each player
+  main.cpp:5522:                                                playerCounter = 1;
+  main.cpp:5523:                                                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:5524:                                                {
+  main.cpp:5525:                                                        if (playerCounter >= 24) break;
+> main.cpp:5526:                                                        if (gplayers[ii].id == team * 100 + playerCounter)
+  main.cpp:5527:                                                        {
+  main.cpp:5528:                                                                //Set glove ID
+> main.cpp:5529:                                                                gplayers[ii].boot_id = bootID;
+  main.cpp:5530:                                                                gplayers[ii].b_changed = true;
+  main.cpp:5531:                                                                playerCounter++;
+  main.cpp:5532:                                                        }
+  main.cpp:5533:                                                }
+  main.cpp:5534:                                        }
+  main.cpp:5535:
+  main.cpp:5536:                                        //If "Glove: set like boot IDs" is set
+  main.cpp:5537:                                        if (SendDlgItemMessage(hwnd, IDT_GLOVE_OPT2, BM_GETCHECK, 0, 0)) {
+  main.cpp:5538:                                                //Loop through each player
+  main.cpp:5539:                                                playerCounter = 1;
+  main.cpp:5540:                                                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:5541:                                                {
+  main.cpp:5542:                                                        if (playerCounter >= 24) break;
+> main.cpp:5543:                                                        if (gplayers[ii].id == team * 100 + playerCounter)
+  main.cpp:5544:                                                        {
+  main.cpp:5545:                                                                //Set glove ID as boot ID
+> main.cpp:5546:                                                                gplayers[ii].glove_id = gplayers[ii].boot_id;
+  main.cpp:5547:                                                                gplayers[ii].b_changed = true;
+  main.cpp:5548:                                                                playerCounter++;
+  main.cpp:5549:                                                        }
+  main.cpp:5550:                                                }
+  main.cpp:5551:                                        }
+  main.cpp:5552:
+  main.cpp:5553:                                        //If "Glove: set all to the same ID" is set
+  main.cpp:5554:                                        if (SendDlgItemMessage(hwnd, IDT_GLOVE_OPT3, BM_GETCHECK, 0, 0)) {
+  main.cpp:5555:
+  main.cpp:5556:                                                //Get glove ID:
+  main.cpp:5557:                                                SendDlgItemMessage(hwnd, IDT_GLOVE_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:5558:                                                gloveID = _wtoi(buffer);
+  main.cpp:5559:
+  main.cpp:5560:                                                //Loop through each player
+  main.cpp:5561:                                                playerCounter = 1;
+  main.cpp:5562:                                                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:5563:                                                {
+  main.cpp:5564:                                                        if (playerCounter >= 24) break;
+> main.cpp:5565:                                                        if (gplayers[ii].id == team * 100 + playerCounter)
+  main.cpp:5566:                                                        {
+  main.cpp:5567:                                                                //Set glove ID
+> main.cpp:5568:                                                                gplayers[ii].glove_id = gloveID;
+  main.cpp:5569:                                                                gplayers[ii].b_changed = true;
+  main.cpp:5570:                                                                playerCounter++;
+  main.cpp:5571:                                                        }
+  main.cpp:5572:                                                }
+  main.cpp:5573:                                        }
+  main.cpp:5574:
+  main.cpp:5575:                                        //Refresh display of currently selected player
+  main.cpp:5576:                                        show_player_info(gn_playind[gn_listsel]);
+  pes15.cpp:4:{
+  pes15.cpp:5:  FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:6:  //Appearance entries
+  pes15.cpp:7:  int pid, startByte;
+  pes15.cpp:8:  startByte = current_byte;
+> pes15.cpp:9:  pid = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:10:
+  pes15.cpp:11: umap_pid_to_startByte[pid] = startByte;
+  pes15.cpp:12:
+  pes15.cpp:13: current_byte = startByte + 0x44; //Advance by length of 1 Appearance Entry
+  pes15.cpp:14:}
+  pes15.cpp:15:
+  pes15.cpp:16:void read_player_entry15(player_entry& player, int& current_byte, void* ghdescriptor)
+  pes15.cpp:17:{
+  pes15.cpp:18: FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:19:
+> pes15.cpp:20: player.id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:21:
+  pes15.cpp:22: //Commentary Name
+  pes15.cpp:23: //Unknown A
+  pes15.cpp:24: current_byte += 0x6;
+  pes15.cpp:25:
+  pes15.cpp:26: player.nation = read_data15(0, 2 * 8, current_byte, pDescriptor15); //0xA
+  pes15.cpp:27:
+  pes15.cpp:28: player.height = pDescriptor15->data[current_byte]; //0xC
+  pes15.cpp:210:void read_appearance_entry15(player_entry& player, appearance_map& umap_pid_to_startByte, void* ghdescriptor)
+  pes15.cpp:211:{
+  pes15.cpp:212:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:213:
+  pes15.cpp:214:        //Check if played ID has a corresponding start byte in the map, return if not
+> pes15.cpp:215:        auto checkKey = umap_pid_to_startByte.find(player.id);
+  pes15.cpp:216:        if (checkKey == umap_pid_to_startByte.end())
+  pes15.cpp:217:                return;
+  pes15.cpp:218:
+  pes15.cpp:219:        int current_byte = checkKey->second; //Set current byte to PID start byte
+  pes15.cpp:220:        current_byte += 4; //Advance by 4 to get past 4 byte PID entry
+  pes15.cpp:221:
+  pes15.cpp:222:        player.b_edit_face = read_data15(0, 1, current_byte, pDescriptor15);
+  pes15.cpp:223:        player.b_edit_hair = read_data15(1, 1, current_byte, pDescriptor15);
+  pes15.cpp:224:        player.b_edit_phys = read_data15(2, 1, current_byte, pDescriptor15);
+  pes15.cpp:225:        player.b_edit_strip = read_data15(3, 1, current_byte, pDescriptor15);
+  pes15.cpp:226:
+> pes15.cpp:227:        player.boot_id = read_data15(4, 14, current_byte, pDescriptor15);
+  pes15.cpp:228:
+> pes15.cpp:229:        player.glove_id = read_data15(2, 14, current_byte, pDescriptor15); //Extend to be 14 bits, using Unk B space
+  pes15.cpp:230:
+> pes15.cpp:231:        player.copy_id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:232:
+  pes15.cpp:233:        player.neck_len = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:234:
+  pes15.cpp:235:        player.neck_size = read_data15(4, 4, current_byte, pDescriptor15);
+  pes15.cpp:236:
+  pes15.cpp:237:        player.shldr_hi = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:238:
+> pes15.cpp:239:        player.shldr_wid = read_data15(4, 4, current_byte, pDescriptor15);
+  pes15.cpp:240:
+  pes15.cpp:241:        player.chest = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:242:
+  pes15.cpp:243:        player.waist = read_data15(4, 4, current_byte, pDescriptor15);
+  pes15.cpp:244:
+  pes15.cpp:245:        player.arm_size = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:246:
+  pes15.cpp:247:        player.arm_len = read_data15(4, 4, current_byte, pDescriptor15);
+  pes15.cpp:252:
+  pes15.cpp:253:        player.leg_len = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:254:
+  pes15.cpp:255:        player.head_len = read_data15(4, 4, current_byte, pDescriptor15);
+  pes15.cpp:256:
+> pes15.cpp:257:        player.head_wid = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:258:
+  pes15.cpp:259:        player.head_dep = read_data15(4, 4, current_byte, pDescriptor15);
+  pes15.cpp:260:
+  pes15.cpp:261:        player.wrist_col_l = read_data15(0, 3, current_byte, pDescriptor15);
+  pes15.cpp:262:        player.wrist_col_r = read_data15(3, 3, current_byte, pDescriptor15);
+  pes15.cpp:263:        player.wrist_tape = read_data15(6, 2, current_byte, pDescriptor15);
+  pes15.cpp:264:
+  pes15.cpp:265:        player.spec_col = read_data15(0, 3, current_byte, pDescriptor15);
+  pes15.cpp:300:
+  pes15.cpp:301:void read_team_ids15(team_entry& team, int& current_byte, void* ghdescriptor)
+  pes15.cpp:302:{
+  pes15.cpp:303:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:304:
+> pes15.cpp:305:        team.id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:306:
+  pes15.cpp:307:        current_byte += 0xE;
+  pes15.cpp:308:        team.b_edit_name = read_data15(0, 1, current_byte, pDescriptor15);
+  pes15.cpp:309:        team.b_edit_shortname = read_data15(1, 1, current_byte, pDescriptor15);
+  pes15.cpp:310:
+  pes15.cpp:311:        current_byte += 0x82;
+  pes15.cpp:312:
+  pes15.cpp:313:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR) & (pDescriptor15->data[current_byte]), -1, team.name, 0x46);
+  pes15.cpp:332:void read_team_rosters15(int& current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes15.cpp:333:{
+  pes15.cpp:334:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:335:
+  pes15.cpp:336:        int ii, t_ind;
+> pes15.cpp:337:        unsigned long team_id, player_id;
+  pes15.cpp:338:
+> pes15.cpp:339:        team_id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:340:
+  pes15.cpp:341:        for (t_ind = 0; t_ind < gnum_teams; t_ind++)
+  pes15.cpp:342:        {
+> pes15.cpp:343:                if (team_id == gteams[t_ind].id) break;
+  pes15.cpp:344:        }
+  pes15.cpp:345:
+  pes15.cpp:346:        for (ii = 0; ii < 32; ii++)
+  pes15.cpp:347:        {
+> pes15.cpp:348:                player_id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:349:
+> pes15.cpp:350:                gteams[t_ind].players[ii] = player_id;
+> pes15.cpp:351:                if (player_id) gteams[t_ind].num_on_team++; //new
+  pes15.cpp:352:        }
+  pes15.cpp:353:        //Hide team with no players
+  pes15.cpp:354:        if (gteams[t_ind].players[0] == 0)
+  pes15.cpp:355:                gteams[t_ind].b_show = false;
+  pes15.cpp:356:
+  pes15.cpp:357:        for (ii = 0; ii < 32; ii++)
+  pes15.cpp:358:        {
+  pes15.cpp:359:                gteams[t_ind].numbers[ii] = pDescriptor15->data[current_byte];
+  pes15.cpp:369:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:370:
+  pes15.cpp:371:        int t_ind;
+  pes15.cpp:372:        unsigned long team_id;
+  pes15.cpp:373:
+> pes15.cpp:374:        team_id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:375:
+  pes15.cpp:376:        for (t_ind = 0; t_ind < gnum_teams; t_ind++)
+  pes15.cpp:377:        {
+> pes15.cpp:378:                if (team_id == gteams[t_ind].id) break;
+  pes15.cpp:379:        }
+  pes15.cpp:380:        current_byte += 0x1F6;
+  pes15.cpp:381:
+  pes15.cpp:382:        gteams[t_ind].captain_ind = (char)pDescriptor15->data[current_byte]; //0x1FA
+  pes15.cpp:383:        current_byte += 0xA;
+  pes15.cpp:384:
+  pes15.cpp:385:        //Block length: 0x204
+  pes15.cpp:386:}
+  pes15.cpp:397:        {
+  pes15.cpp:398:                current_byte += 0x70;
+  pes15.cpp:399:                return;
+  pes15.cpp:400:        }
+  pes15.cpp:401:
+> pes15.cpp:402:        write_data15(player.id, 0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:403:
+  pes15.cpp:404:        //Commentary Name
+  pes15.cpp:405:        //Unknown A
+  pes15.cpp:406:        current_byte += 0x6;
+  pes15.cpp:407:
+  pes15.cpp:408:        write_data15(player.nation, 0, 2 * 8, current_byte, pDescriptor15); //0xA
+  pes15.cpp:409:
+  pes15.cpp:410:        write_data15(player.height, 0, 1 * 8, current_byte, pDescriptor15); //0xC
+  pes15.cpp:577:
+  pes15.cpp:578:        //=================================================================================
+  pes15.cpp:579:        //Appearance entries
+  pes15.cpp:580:
+  pes15.cpp:581:        //Check if played ID has a corresponding start byte in the map, return if not
+> pes15.cpp:582:        auto checkKey = umap_pid_to_startByte.find(player.id);
+  pes15.cpp:583:        if (checkKey == umap_pid_to_startByte.end())
+  pes15.cpp:584:                return;
+  pes15.cpp:585:
+  pes15.cpp:586:        int appear_byte = checkKey->second; //Set current byte to PID start byte
+  pes15.cpp:587:        appear_byte += 4; //Advance by 4 to get past 4 byte PID entry
+  pes15.cpp:588:
+  pes15.cpp:589:        write_data15(player.b_edit_face, 0, 1, appear_byte, pDescriptor15);
+  pes15.cpp:590:        write_data15(player.b_edit_hair, 1, 1, appear_byte, pDescriptor15);
+  pes15.cpp:673:        {
+  pes15.cpp:674:                current_byte += 0x1C8;
+  pes15.cpp:675:                return;
+  pes15.cpp:676:        }
+  pes15.cpp:677:
+> pes15.cpp:678:        //teams.id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:679:        current_byte += 0x4; //Advance past team ID
+  pes15.cpp:680:
+  pes15.cpp:681:        current_byte += 0xE;
+  pes15.cpp:682:        write_data15(team.b_edit_name, 0, 1, current_byte, pDescriptor15);
+  pes15.cpp:683:        write_data15(team.b_edit_shortname, 1, 1, current_byte, pDescriptor15);
+  pes15.cpp:684:
+  pes15.cpp:685:        current_byte += 0x82;
+  pes15.cpp:686:
+  pes16.cpp:2:
+  pes16.cpp:3:void fill_player_entry16(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes16.cpp:4:{
+  pes16.cpp:5:  FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:6:
+> pes16.cpp:7:  players.id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:8:  /*
+> pes16.cpp:9:  if(players.id==73301)//Debug
+  pes16.cpp:10: {
+  pes16.cpp:11:         int d3=0;
+  pes16.cpp:12: }
+  pes16.cpp:13: */
+  pes16.cpp:14: current_byte += 0x6;
+  pes16.cpp:15:
+  pes16.cpp:16: players.nation = read_dataOld(0, 2 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:17:
+  pes16.cpp:196:{
+  pes16.cpp:197:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:198:
+  pes16.cpp:199:        //Appearance entries
+  pes16.cpp:200:        unsigned long checkId;
+> pes16.cpp:201:        checkId = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:202:
+> pes16.cpp:203:        if(players.id!=checkId) return;
+  pes16.cpp:204:
+  pes16.cpp:205:        players.b_edit_face = read_dataOld(0, 1, current_byte, pDescriptorOld);
+  pes16.cpp:206:        players.b_edit_hair = read_dataOld(1, 1, current_byte, pDescriptorOld);
+  pes16.cpp:207:        players.b_edit_phys = read_dataOld(2, 1, current_byte, pDescriptorOld);
+  pes16.cpp:208:        players.b_edit_strip = read_dataOld(3, 1, current_byte, pDescriptorOld);
+  pes16.cpp:209:
+> pes16.cpp:210:        players.boot_id = read_dataOld(4, 14, current_byte, pDescriptorOld);
+  pes16.cpp:211:
+> pes16.cpp:212:        players.glove_id = read_dataOld(2, 14, current_byte, pDescriptorOld); //Extend to be 14 bits, using Unk B space
+  pes16.cpp:213:
+> pes16.cpp:214:        players.copy_id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:215:
+  pes16.cpp:216:        players.neck_len = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:217:
+  pes16.cpp:218:        players.neck_size = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes16.cpp:219:
+  pes16.cpp:220:        players.shldr_hi = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:221:
+> pes16.cpp:222:        players.shldr_wid = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes16.cpp:223:
+  pes16.cpp:224:        players.chest = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:225:
+  pes16.cpp:226:        players.waist = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes16.cpp:227:
+  pes16.cpp:228:        players.arm_size = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:229:
+  pes16.cpp:230:        players.arm_len = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes16.cpp:235:
+  pes16.cpp:236:        players.leg_len = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:237:
+  pes16.cpp:238:        players.head_len = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes16.cpp:239:
+> pes16.cpp:240:        players.head_wid = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:241:
+  pes16.cpp:242:        players.head_dep = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes16.cpp:243:
+  pes16.cpp:244:        players.wrist_col_l = read_dataOld(0, 3, current_byte, pDescriptorOld);
+  pes16.cpp:245:        players.wrist_col_r = read_dataOld(3, 3, current_byte, pDescriptorOld);
+  pes16.cpp:246:        players.wrist_tape = read_dataOld(6, 2, current_byte, pDescriptorOld);
+  pes16.cpp:247:
+  pes16.cpp:248:        players.spec_col = read_dataOld(0, 3, current_byte, pDescriptorOld);
+  pes16.cpp:281:
+  pes16.cpp:282:void fill_team_ids16(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes16.cpp:283:{
+  pes16.cpp:284:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:285:
+> pes16.cpp:286:        team.id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:287:
+  pes16.cpp:288:        current_byte+=0xE;
+  pes16.cpp:289:        team.b_edit_name = read_dataOld(0, 1, current_byte, pDescriptorOld); //(pDescriptorOld->data[current_byte]) & 1;
+  pes16.cpp:290:
+  pes16.cpp:291:        current_byte+=0x82;
+  pes16.cpp:292:
+  pes16.cpp:293:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorOld->data[current_byte]), -1, team.name, 0x46);
+  pes16.cpp:294:        current_byte+=0x46;
+  pes16.cpp:309:void fill_team_rosters16(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes16.cpp:310:{
+  pes16.cpp:311:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:312:
+  pes16.cpp:313:        int ii, t_ind;
+> pes16.cpp:314:        unsigned long team_id, player_id;
+  pes16.cpp:315:
+> pes16.cpp:316:        team_id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:317:
+  pes16.cpp:318:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes16.cpp:319:        {
+> pes16.cpp:320:                if(team_id == gteams[t_ind].id) break;
+  pes16.cpp:321:        }
+  pes16.cpp:322:
+  pes16.cpp:323:        for(ii=0;ii<32;ii++)
+  pes16.cpp:324:        {
+> pes16.cpp:325:                player_id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:326:
+> pes16.cpp:327:                gteams[t_ind].players[ii] = player_id;
+> pes16.cpp:328:                if(player_id) gteams[t_ind].num_on_team++; //new
+  pes16.cpp:329:        }
+  pes16.cpp:330:        //Hide team with no players
+  pes16.cpp:331:        if(gteams[t_ind].players[0] == 0)
+  pes16.cpp:332:                gteams[t_ind].b_show = false;
+  pes16.cpp:333:
+  pes16.cpp:334:        for(ii=0;ii<32;ii++)
+  pes16.cpp:335:        {
+  pes16.cpp:336:                gteams[t_ind].numbers[ii] = pDescriptorOld->data[current_byte];
+  pes16.cpp:344:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:345:
+  pes16.cpp:346:        int t_ind;
+  pes16.cpp:347:        unsigned long team_id;
+  pes16.cpp:348:
+> pes16.cpp:349:        team_id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:350:
+  pes16.cpp:351:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes16.cpp:352:        {
+> pes16.cpp:353:                if(team_id == gteams[t_ind].id) break;
+  pes16.cpp:354:        }
+  pes16.cpp:355:        current_byte+=0x1FA;
+  pes16.cpp:356:
+  pes16.cpp:357:        gteams[t_ind].captain_ind = (char)pDescriptorOld->data[current_byte];
+  pes16.cpp:358:        current_byte+=0xA;
+  pes16.cpp:359:}
+  pes16.cpp:360:
+  pes16.cpp:361://-------------------------------------------------------------------------------------
+  pes16.cpp:373:        }
+  pes16.cpp:374:
+  pes16.cpp:375://      unsigned char test[4];
+  pes16.cpp:376:        int cb=0;
+  pes16.cpp:377:
+> pes16.cpp:378:        write_dataOld(player.id, 0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:379:
+  pes16.cpp:380:        current_byte += 0x6;
+  pes16.cpp:381:
+  pes16.cpp:382:        write_dataOld(player.nation, 0, 2 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:383:
+  pes16.cpp:384:        pDescriptorOld->data[current_byte] = player.height;
+  pes16.cpp:385:        current_byte++;
+  pes16.cpp:386:
+  pes17.cpp:2:
+  pes17.cpp:3:void fill_player_entry17(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes17.cpp:4:{
+  pes17.cpp:5:  FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:6:
+> pes17.cpp:7:  players.id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:8:
+  pes17.cpp:9:  current_byte += 0x6;
+  pes17.cpp:10:
+  pes17.cpp:11: players.nation = read_dataOld(0, 2 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:12:
+  pes17.cpp:13: players.height = pDescriptorOld->data[current_byte];
+  pes17.cpp:14: current_byte++;
+  pes17.cpp:15:
+  pes17.cpp:191:        players.b_edit_face = read_dataOld(0, 1, current_byte, pDescriptorOld);
+  pes17.cpp:192:        players.b_edit_hair = read_dataOld(1, 1, current_byte, pDescriptorOld);
+  pes17.cpp:193:        players.b_edit_phys = read_dataOld(2, 1, current_byte, pDescriptorOld);
+  pes17.cpp:194:        players.b_edit_strip = read_dataOld(3, 1, current_byte, pDescriptorOld);
+  pes17.cpp:195:
+> pes17.cpp:196:        players.boot_id = read_dataOld(4, 14, current_byte, pDescriptorOld);
+  pes17.cpp:197:
+> pes17.cpp:198:        players.glove_id = read_dataOld(2, 14, current_byte, pDescriptorOld); //Extend to be 14 bits, using Unk A space
+  pes17.cpp:199:
+> pes17.cpp:200:        players.copy_id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:201:
+  pes17.cpp:202:        players.neck_len = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:203:
+  pes17.cpp:204:        players.neck_size = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:205:
+  pes17.cpp:206:        players.shldr_hi = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:207:
+> pes17.cpp:208:        players.shldr_wid = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:209:
+  pes17.cpp:210:        players.chest = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:211:
+  pes17.cpp:212:        players.waist = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:213:
+  pes17.cpp:214:        players.arm_size = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:215:
+  pes17.cpp:216:        players.arm_len = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:221:
+  pes17.cpp:222:        players.leg_len = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:223:
+  pes17.cpp:224:        players.head_len = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:225:
+> pes17.cpp:226:        players.head_wid = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:227:
+  pes17.cpp:228:        players.head_dep = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:229:
+  pes17.cpp:230:        players.wrist_col_l = read_dataOld(0, 3, current_byte, pDescriptorOld);
+  pes17.cpp:231:        players.wrist_col_r = read_dataOld(3, 3, current_byte, pDescriptorOld);
+  pes17.cpp:232:        players.wrist_tape = read_dataOld(6, 2, current_byte, pDescriptorOld);
+  pes17.cpp:233:
+  pes17.cpp:234:        players.spec_col = read_dataOld(0, 3, current_byte, pDescriptorOld);
+  pes17.cpp:267:
+  pes17.cpp:268:void fill_team_ids17(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes17.cpp:269:{
+  pes17.cpp:270:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:271:
+> pes17.cpp:272:        team.id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:273:
+  pes17.cpp:274:        current_byte+=0xE; //0x12
+  pes17.cpp:275:        team.color1_red = read_dataOld(0, 6, current_byte, pDescriptorOld); //0x12:0 - 0x12:5
+  pes17.cpp:276:
+  pes17.cpp:277:        team.color1_green = read_dataOld(6, 6, current_byte, pDescriptorOld); //0x12:6 - 0x13:3
+  pes17.cpp:278:
+  pes17.cpp:279:        current_byte++; //0x14
+  pes17.cpp:280:        team.color2_red = read_dataOld(0, 6, current_byte, pDescriptorOld); //0x14:0 - 0x14:5
+  pes17.cpp:293:
+  pes17.cpp:294:        current_byte += 2; //0x1C
+  pes17.cpp:295:        for (int ii = 0; ii < 10; ii++)
+  pes17.cpp:296:        {
+  pes17.cpp:297:                team.stripBlock[ii].stripNumber = read_dataOld(0, 1 * 8, current_byte, pDescriptorOld); //Loop from 0x1C to 0x40
+> pes17.cpp:298:                team.stripBlock[ii].stripTeamId = read_dataOld(0, 3 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:299:        }
+  pes17.cpp:300:
+  pes17.cpp:301:        current_byte += 0x54;
+  pes17.cpp:302:
+  pes17.cpp:303:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorOld->data[current_byte]), -1, team.name, 0x46); //0x98
+  pes17.cpp:304:        current_byte+=0x46;
+  pes17.cpp:305:
+  pes17.cpp:306:        strncpy_s(team.short_name, 0x4, (const char*)&(pDescriptorOld->data[current_byte]), 0x4 - 1); //0xDE
+  pes17.cpp:319:void fill_team_rosters17(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes17.cpp:320:{
+  pes17.cpp:321:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:322:
+  pes17.cpp:323:        int ii, t_ind;
+> pes17.cpp:324:        unsigned long team_id, player_id;
+  pes17.cpp:325:
+> pes17.cpp:326:        team_id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:327:
+  pes17.cpp:328:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes17.cpp:329:        {
+> pes17.cpp:330:                if(team_id == gteams[t_ind].id) break;
+  pes17.cpp:331:        }
+  pes17.cpp:332:
+  pes17.cpp:333:        for(ii=0;ii<32;ii++)
+  pes17.cpp:334:        {
+> pes17.cpp:335:                player_id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:336:
+> pes17.cpp:337:                gteams[t_ind].players[ii] = player_id;
+> pes17.cpp:338:                if(player_id) gteams[t_ind].num_on_team++; //new
+  pes17.cpp:339:        }
+  pes17.cpp:340:        //Hide team with no players
+  pes17.cpp:341:        if(gteams[t_ind].players[0] == 0)
+  pes17.cpp:342:                gteams[t_ind].b_show = false;
+  pes17.cpp:343:
+  pes17.cpp:344:        for(ii=0;ii<32;ii++)
+  pes17.cpp:345:        {
+  pes17.cpp:346:                gteams[t_ind].numbers[ii] = pDescriptorOld->data[current_byte];
+  pes17.cpp:354:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:355:
+  pes17.cpp:356:        int t_ind;
+  pes17.cpp:357:        unsigned long team_id;
+  pes17.cpp:358:
+> pes17.cpp:359:        team_id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:360:
+  pes17.cpp:361:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes17.cpp:362:        {
+> pes17.cpp:363:                if(team_id == gteams[t_ind].id) break;
+  pes17.cpp:364:        }
+  pes17.cpp:365:        current_byte+=0x1E0;
+  pes17.cpp:366:
+  pes17.cpp:367:        //Starting lineup
+  pes17.cpp:368:        for(int ii=0; ii<11; ii++)
+  pes17.cpp:369:        {
+  pes17.cpp:370:                gteams[t_ind].starting11[ii] = pDescriptorOld->data[current_byte];
+  pes17.cpp:371:                current_byte++;
+  pes17.cpp:390:        }
+  pes17.cpp:391:
+  pes17.cpp:392://      unsigned char test[4];
+  pes17.cpp:393:        int cb=0;
+  pes17.cpp:394:
+> pes17.cpp:395:        write_dataOld(player.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:396:
+  pes17.cpp:397:        current_byte += 0x6;
+  pes17.cpp:398:
+  pes17.cpp:399:        write_dataOld(player.nation, 0, 2 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:400:
+  pes17.cpp:401:        write_dataOld(player.height, 0, 8, current_byte, pDescriptorOld);
+  pes17.cpp:402:
+  pes17.cpp:403:        write_dataOld(player.weight, 0, 8, current_byte, pDescriptorOld);
+  pes18.cpp:2:
+  pes18.cpp:3:void fill_player_entry18(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes18.cpp:4:{
+  pes18.cpp:5:  FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:6:
+> pes18.cpp:7:  players.id = pDescriptorNew->data[current_byte];
+  pes18.cpp:8:  current_byte++;
+> pes18.cpp:9:  players.id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:10: current_byte++;
+> pes18.cpp:11: players.id += pDescriptorNew->data[current_byte] << 16;
+  pes18.cpp:12: current_byte++;
+> pes18.cpp:13: players.id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:14: current_byte++;
+  pes18.cpp:15:
+  pes18.cpp:16: current_byte += 0x6;
+  pes18.cpp:17:
+  pes18.cpp:18: players.nation = pDescriptorNew->data[current_byte];
+  pes18.cpp:19: current_byte++;
+  pes18.cpp:20: players.nation += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:21: current_byte++;
+  pes18.cpp:116:        current_byte++;
+  pes18.cpp:117:        players.reg_pos += (pDescriptorNew->data[current_byte] << 2) & 12;
+  pes18.cpp:118:
+  pes18.cpp:119:        //Unknown C - 1 bit
+  pes18.cpp:120:
+> pes18.cpp:121://      if(players.id == 73301)
+  pes18.cpp:122://      {
+  pes18.cpp:123://              int test1 = pDescriptorNew->data[current_byte] >> 3;
+  pes18.cpp:124://              test1 = 0;
+  pes18.cpp:125://      }
+  pes18.cpp:126:
+  pes18.cpp:127:        players.play_style = pDescriptorNew->data[current_byte] >> 3;
+  pes18.cpp:128:        current_byte++;
+  pes18.cpp:129:
+  pes18.cpp:271:        players.b_edit_face = pDescriptorNew->data[current_byte] & 1;
+  pes18.cpp:272:        players.b_edit_hair = (pDescriptorNew->data[current_byte] >> 1) & 1;
+  pes18.cpp:273:        players.b_edit_phys = (pDescriptorNew->data[current_byte] >> 2) & 1;
+  pes18.cpp:274:        players.b_edit_strip = (pDescriptorNew->data[current_byte] >> 3) & 1;
+  pes18.cpp:275:
+> pes18.cpp:276:        players.boot_id = pDescriptorNew->data[current_byte] >> 4;
+  pes18.cpp:277:        current_byte++;
+  pes18.cpp:278:        players.boot_id += pDescriptorNew->data[current_byte] << 4;
+  pes18.cpp:279:        current_byte++;
+  pes18.cpp:280:        players.boot_id += (pDescriptorNew->data[current_byte] & 3) << 12;
+  pes18.cpp:281:
+> pes18.cpp:282:        players.glove_id = pDescriptorNew->data[current_byte] >> 2;
+  pes18.cpp:283:        current_byte++;
+  pes18.cpp:284:        //players.glove_id += (pDescriptorNew->data[current_byte] & 15) << 6;
+  pes18.cpp:285:        players.glove_id += (pDescriptorNew->data[current_byte]) << 6; //Extend to be 14 bits, using Unk B space
+  pes18.cpp:286:
+  pes18.cpp:287:        //Unknown B - 4/4
+  pes18.cpp:288:        current_byte++;
+  pes18.cpp:289:
+> pes18.cpp:290:        players.copy_id = pDescriptorNew->data[current_byte];
+  pes18.cpp:291:        current_byte++;
+  pes18.cpp:292:        players.copy_id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:293:        current_byte++;
+  pes18.cpp:294:        players.copy_id += pDescriptorNew->data[current_byte] << 16;
+  pes18.cpp:295:        current_byte++;
+  pes18.cpp:296:        players.copy_id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:297:        current_byte++;
+  pes18.cpp:298:
+  pes18.cpp:301:        players.neck_size = pDescriptorNew->data[current_byte] >> 4;
+  pes18.cpp:302:        current_byte++;
+  pes18.cpp:303:
+  pes18.cpp:304:        players.shldr_hi = pDescriptorNew->data[current_byte] & 15;
+  pes18.cpp:305:
+> pes18.cpp:306:        players.shldr_wid = pDescriptorNew->data[current_byte] >> 4;
+  pes18.cpp:307:        current_byte++;
+  pes18.cpp:308:
+  pes18.cpp:309:        players.chest = pDescriptorNew->data[current_byte] & 15;
+  pes18.cpp:310:
+  pes18.cpp:311:        players.waist = pDescriptorNew->data[current_byte] >> 4;
+  pes18.cpp:312:        current_byte++;
+  pes18.cpp:313:
+  pes18.cpp:314:        players.arm_size = pDescriptorNew->data[current_byte] & 15;
+  pes18.cpp:324:        players.leg_len = pDescriptorNew->data[current_byte] & 15;
+  pes18.cpp:325:
+  pes18.cpp:326:        players.head_len = pDescriptorNew->data[current_byte] >> 4;
+  pes18.cpp:327:        current_byte++;
+  pes18.cpp:328:
+> pes18.cpp:329:        players.head_wid = pDescriptorNew->data[current_byte] & 15;
+  pes18.cpp:330:
+  pes18.cpp:331:        players.head_dep = pDescriptorNew->data[current_byte] >> 4;
+  pes18.cpp:332:        current_byte++;
+  pes18.cpp:333:
+  pes18.cpp:334:        players.wrist_col_l = pDescriptorNew->data[current_byte] & 7;
+  pes18.cpp:335:        players.wrist_col_r = (pDescriptorNew->data[current_byte] >> 3) & 7;
+  pes18.cpp:336:        players.wrist_tape = pDescriptorNew->data[current_byte] >> 6;
+  pes18.cpp:337:        current_byte++;
+  pes18.cpp:380:
+  pes18.cpp:381:void fill_team_ids18(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes18.cpp:382:{
+  pes18.cpp:383:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:384:
+> pes18.cpp:385:        team.id = pDescriptorNew->data[current_byte];
+  pes18.cpp:386:        current_byte++; //1
+  pes18.cpp:387:        team.id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:388:        current_byte++; //2
+  pes18.cpp:389:        team.id += pDescriptorNew->data[current_byte] << 16;
+  pes18.cpp:390:        current_byte++; //3
+  pes18.cpp:391:        team.id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:392:        current_byte++; //4
+  pes18.cpp:393:
+  pes18.cpp:437:void fill_team_rosters18(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes18.cpp:438:{
+  pes18.cpp:439:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:440:
+  pes18.cpp:441:        int ii, t_ind;
+> pes18.cpp:442:        unsigned long team_id, player_id;
+  pes18.cpp:443:
+> pes18.cpp:444:        team_id = pDescriptorNew->data[current_byte];
+  pes18.cpp:445:        current_byte++;
+  pes18.cpp:446:        team_id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:447:        current_byte++;
+  pes18.cpp:448:        team_id += pDescriptorNew->data[current_byte] << 16;
+  pes18.cpp:449:        current_byte++;
+  pes18.cpp:450:        team_id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:451:        current_byte++;
+  pes18.cpp:452:
+  pes18.cpp:453:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes18.cpp:454:        {
+> pes18.cpp:455:                if(team_id == gteams[t_ind].id) break;
+  pes18.cpp:456:        }
+  pes18.cpp:457:
+  pes18.cpp:458:        for(ii=0;ii<32;ii++)
+  pes18.cpp:459:        {
+> pes18.cpp:460:                player_id = pDescriptorNew->data[current_byte];
+  pes18.cpp:461:                current_byte++;
+> pes18.cpp:462:                player_id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:463:                current_byte++;
+> pes18.cpp:464:                player_id += pDescriptorNew->data[current_byte] << 16;
+  pes18.cpp:465:                current_byte++;
+> pes18.cpp:466:                player_id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:467:                current_byte++;
+  pes18.cpp:468:
+> pes18.cpp:469:                gteams[t_ind].players[ii] = player_id;
+> pes18.cpp:470:                if(player_id) gteams[t_ind].num_on_team++; //new
+  pes18.cpp:471:        }
+  pes18.cpp:472:        //Hide team with no players
+  pes18.cpp:473:        if(gteams[t_ind].players[0] == 0)
+  pes18.cpp:474:                gteams[t_ind].b_show = false;
+  pes18.cpp:475:
+  pes18.cpp:476:        for(ii=0;ii<32;ii++)
+  pes18.cpp:477:        {
+  pes18.cpp:478:                gteams[t_ind].numbers[ii] = pDescriptorNew->data[current_byte];
+  pes18.cpp:486:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:487:
+  pes18.cpp:488:        int t_ind;
+  pes18.cpp:489:        unsigned long team_id;
+  pes18.cpp:490:
+> pes18.cpp:491:        team_id = pDescriptorNew->data[current_byte];
+  pes18.cpp:492:        current_byte++;
+  pes18.cpp:493:        team_id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:494:        current_byte++;
+  pes18.cpp:495:        team_id += pDescriptorNew->data[current_byte] << 16;
+  pes18.cpp:496:        current_byte++;
+  pes18.cpp:497:        team_id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:498:        current_byte++;
+  pes18.cpp:499:
+  pes18.cpp:500:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes18.cpp:501:        {
+> pes18.cpp:502:                if(team_id == gteams[t_ind].id) break;
+  pes18.cpp:503:        }
+  pes18.cpp:504:        //current_byte+=0x209;
+  pes18.cpp:505:        current_byte+=0x1E0;
+  pes18.cpp:506:
+  pes18.cpp:507:        //Starting lineup
+  pes18.cpp:508:        for(int ii=0; ii<11; ii++)
+  pes18.cpp:509:        {
+  pes18.cpp:510:                gteams[t_ind].starting11[ii] = pDescriptorNew->data[current_byte];
+  pes18.cpp:530:        }
+  pes18.cpp:531:
+  pes18.cpp:532://      unsigned char test[4];
+  pes18.cpp:533:        int cb=0;
+  pes18.cpp:534:
+> pes18.cpp:535:        pDescriptorNew->data[current_byte] = player.id & 255;
+  pes18.cpp:536:        current_byte++;
+> pes18.cpp:537:        pDescriptorNew->data[current_byte] = (player.id >> 8) & 255;
+  pes18.cpp:538:        current_byte++;
+> pes18.cpp:539:        pDescriptorNew->data[current_byte] = (player.id >> 16) & 255;
+  pes18.cpp:540:        current_byte++;
+> pes18.cpp:541:        pDescriptorNew->data[current_byte] = (player.id >> 24) & 255;
+  pes18.cpp:542:        current_byte++;
+  pes18.cpp:543:
+  pes18.cpp:544:        current_byte += 0x6;
+  pes18.cpp:545:
+  pes18.cpp:546:        pDescriptorNew->data[current_byte] = player.nation & 255;
+  pes18.cpp:547:        current_byte++;
+  pes18.cpp:548:        pDescriptorNew->data[current_byte] = (player.nation >> 8) & 255;
+  pes18.cpp:549:        current_byte++;
+  pes19.cpp:2:
+  pes19.cpp:3:void fill_player_entry19(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes19.cpp:4:{
+  pes19.cpp:5:  FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:6:
+> pes19.cpp:7:  players.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+> pes19.cpp:8:  /*players.id = pDescriptorNew->data[current_byte];
+  pes19.cpp:9:  current_byte++;
+> pes19.cpp:10: players.id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:11: current_byte++;
+> pes19.cpp:12: players.id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:13: current_byte++;
+> pes19.cpp:14: players.id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:15: current_byte++;*/
+  pes19.cpp:16:
+  pes19.cpp:17: current_byte += 0x4;
+  pes19.cpp:18:
+  pes19.cpp:19: players.nation = pDescriptorNew->data[current_byte];
+  pes19.cpp:20: current_byte++;
+  pes19.cpp:21: players.nation += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:22: current_byte++;
+  pes19.cpp:171:        players.b_edit_face = pDescriptorNew->data[current_byte] & 1;
+  pes19.cpp:172:        players.b_edit_hair = (pDescriptorNew->data[current_byte] >> 1) & 1;
+  pes19.cpp:173:        players.b_edit_phys = (pDescriptorNew->data[current_byte] >> 2) & 1;
+  pes19.cpp:174:        players.b_edit_strip = (pDescriptorNew->data[current_byte] >> 3) & 1;
+  pes19.cpp:175:
+> pes19.cpp:176:        players.boot_id = pDescriptorNew->data[current_byte] >> 4;
+  pes19.cpp:177:        current_byte++;
+  pes19.cpp:178:        players.boot_id += pDescriptorNew->data[current_byte] << 4;
+  pes19.cpp:179:        current_byte++;
+  pes19.cpp:180:        players.boot_id += (pDescriptorNew->data[current_byte] & 3) << 12;
+  pes19.cpp:181:
+> pes19.cpp:182:        players.glove_id = pDescriptorNew->data[current_byte] >> 2;
+  pes19.cpp:183:        current_byte++;
+  pes19.cpp:184:        players.glove_id += (pDescriptorNew->data[current_byte]) << 6; //Extend to be 14 bits, using Unk B space //&15
+  pes19.cpp:185:
+  pes19.cpp:186:        //Unknown B - 4/4
+  pes19.cpp:187:        current_byte++;
+  pes19.cpp:188:        //0x08:0
+> pes19.cpp:189:        players.copy_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:190:        current_byte++;
+  pes19.cpp:191:        players.copy_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:192:        current_byte++;
+  pes19.cpp:193:        players.copy_id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:194:        current_byte++;
+  pes19.cpp:195:        players.copy_id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:196:        current_byte++;
+  pes19.cpp:197:        //0x0C:0
+  pes19.cpp:200:        players.neck_size = pDescriptorNew->data[current_byte] >> 4;
+  pes19.cpp:201:        current_byte++;
+  pes19.cpp:202:        //0x0D:0
+  pes19.cpp:203:        players.shldr_hi = pDescriptorNew->data[current_byte] & 15;
+  pes19.cpp:204:
+> pes19.cpp:205:        players.shldr_wid = pDescriptorNew->data[current_byte] >> 4;
+  pes19.cpp:206:        current_byte++;
+  pes19.cpp:207:        //0x0E:0
+  pes19.cpp:208:        players.chest = pDescriptorNew->data[current_byte] & 15;
+  pes19.cpp:209:
+  pes19.cpp:210:        players.waist = pDescriptorNew->data[current_byte] >> 4;
+  pes19.cpp:211:        current_byte++;
+  pes19.cpp:212:        //0x0F:0
+  pes19.cpp:213:        players.arm_size = pDescriptorNew->data[current_byte] & 15;
+  pes19.cpp:223:        players.leg_len = pDescriptorNew->data[current_byte] & 15;
+  pes19.cpp:224:
+  pes19.cpp:225:        players.head_len = pDescriptorNew->data[current_byte] >> 4;
+  pes19.cpp:226:        current_byte++;
+  pes19.cpp:227:
+> pes19.cpp:228:        players.head_wid = pDescriptorNew->data[current_byte] & 15;
+  pes19.cpp:229:
+  pes19.cpp:230:        players.head_dep = pDescriptorNew->data[current_byte] >> 4;
+  pes19.cpp:231:        current_byte++;
+  pes19.cpp:232:
+  pes19.cpp:233:        players.wrist_col_l = pDescriptorNew->data[current_byte] & 7;
+  pes19.cpp:234:        players.wrist_col_r = (pDescriptorNew->data[current_byte] >> 3) & 7;
+  pes19.cpp:235:        players.wrist_tape = pDescriptorNew->data[current_byte] >> 6;
+  pes19.cpp:236:        current_byte++;
+  pes19.cpp:279:
+  pes19.cpp:280:void fill_team_ids19(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes19.cpp:281:{
+  pes19.cpp:282:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:283:
+> pes19.cpp:284:        team.id = pDescriptorNew->data[current_byte];
+  pes19.cpp:285:        current_byte++; //1
+  pes19.cpp:286:        team.id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:287:        current_byte++; //2
+  pes19.cpp:288:        team.id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:289:        current_byte++; //3
+  pes19.cpp:290:        team.id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:291:        current_byte++; //4
+  pes19.cpp:292:
+> pes19.cpp:293:        team.manager_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:294:        current_byte++; //1
+  pes19.cpp:295:        team.manager_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:296:        current_byte++; //2
+  pes19.cpp:297:        team.manager_id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:298:        current_byte++; //3
+  pes19.cpp:299:        team.manager_id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:300:        current_byte++; //4
+  pes19.cpp:301:
+  pes19.cpp:302:        current_byte+=2; //Team emblem
+  pes19.cpp:303:
+> pes19.cpp:304:        team.stadium_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:305:        current_byte++; //1
+  pes19.cpp:306:        team.stadium_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:307:        current_byte++; //2
+  pes19.cpp:308:
+  pes19.cpp:309:        current_byte+=0xA; //22
+  pes19.cpp:310:        team.color1_red = (pDescriptorNew->data[current_byte] >> 2);
+  pes19.cpp:311:
+  pes19.cpp:312:        current_byte++; //23
+  pes19.cpp:352:void fill_team_rosters19(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes19.cpp:353:{
+  pes19.cpp:354:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:355:
+  pes19.cpp:356:        int ii, t_ind;
+> pes19.cpp:357:        unsigned long team_id, player_id;
+  pes19.cpp:358:
+> pes19.cpp:359:        team_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:360:        current_byte++;
+  pes19.cpp:361:        team_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:362:        current_byte++;
+  pes19.cpp:363:        team_id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:364:        current_byte++;
+  pes19.cpp:365:        team_id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:366:        current_byte++;
+  pes19.cpp:367:
+  pes19.cpp:368:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes19.cpp:369:        {
+> pes19.cpp:370:                if(team_id == gteams[t_ind].id) break;
+  pes19.cpp:371:        }
+  pes19.cpp:372:
+  pes19.cpp:373://      if(team_id==100)
+  pes19.cpp:374://              int test=0;
+  pes19.cpp:375:
+  pes19.cpp:376:        for(ii=0;ii<40;ii++)
+  pes19.cpp:377:        {
+> pes19.cpp:378:                player_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:379:                current_byte++;
+> pes19.cpp:380:                player_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:381:                current_byte++;
+> pes19.cpp:382:                player_id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:383:                current_byte++;
+> pes19.cpp:384:                player_id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:385:                current_byte++;
+  pes19.cpp:386:
+> pes19.cpp:387:                gteams[t_ind].players[ii] = player_id;
+> pes19.cpp:388:                if(player_id) gteams[t_ind].num_on_team++; //new
+  pes19.cpp:389:        }
+  pes19.cpp:390:        //Hide team with no players
+  pes19.cpp:391:        if(gteams[t_ind].players[0] == 0)
+  pes19.cpp:392:                gteams[t_ind].b_show = false;
+  pes19.cpp:393:
+  pes19.cpp:394:        for(ii=0;ii<40;ii++)
+  pes19.cpp:395:        {
+  pes19.cpp:396:                gteams[t_ind].numbers[ii] = pDescriptorNew->data[current_byte];
+  pes19.cpp:407:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:408:
+  pes19.cpp:409:        int t_ind;
+  pes19.cpp:410:        unsigned long team_id;
+  pes19.cpp:411:
+> pes19.cpp:412:        team_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:413:        current_byte++;
+  pes19.cpp:414:        team_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:415:        current_byte++;
+  pes19.cpp:416:        team_id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:417:        current_byte++;
+  pes19.cpp:418:        team_id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:419:        current_byte++;
+  pes19.cpp:420:
+  pes19.cpp:421:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes19.cpp:422:        {
+> pes19.cpp:423:                if(team_id == gteams[t_ind].id) break;
+  pes19.cpp:424:        }
+  pes19.cpp:425:        //current_byte+=0x209;
+  pes19.cpp:426:        current_byte+=0x1E0;
+  pes19.cpp:427:
+  pes19.cpp:428:        //Starting lineup
+  pes19.cpp:429:        for(int ii=0; ii<11; ii++)
+  pes19.cpp:430:        {
+  pes19.cpp:431:                gteams[t_ind].starting11[ii] = pDescriptorNew->data[current_byte];
+  pes19.cpp:451:        }
+  pes19.cpp:452:
+  pes19.cpp:453://      unsigned char test[4];
+  pes19.cpp:454:        int cb=0;
+  pes19.cpp:455:
+> pes19.cpp:456:        pDescriptorNew->data[current_byte] = player.id & 255;
+  pes19.cpp:457:        current_byte++;
+> pes19.cpp:458:        pDescriptorNew->data[current_byte] = (player.id >> 8) & 255;
+  pes19.cpp:459:        current_byte++;
+> pes19.cpp:460:        pDescriptorNew->data[current_byte] = (player.id >> 16) & 255;
+  pes19.cpp:461:        current_byte++;
+> pes19.cpp:462:        pDescriptorNew->data[current_byte] = (player.id >> 24) & 255;
+  pes19.cpp:463:        current_byte++;
+  pes19.cpp:464:
+  pes19.cpp:465:        current_byte += 0x4;
+  pes19.cpp:466:
+  pes19.cpp:467:        pDescriptorNew->data[current_byte] = player.nation & 255;
+  pes19.cpp:468:        current_byte++;
+  pes19.cpp:469:        pDescriptorNew->data[current_byte] = (player.nation >> 8) & 255;
+  pes19.cpp:470:        current_byte++;
+  pes20.cpp:2:
+  pes20.cpp:3:void fill_player_entry20(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes20.cpp:4:{
+  pes20.cpp:5:  FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:6:
+> pes20.cpp:7:  players.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:8:
+  pes20.cpp:9:  current_byte += 0x4;
+  pes20.cpp:10:
+  pes20.cpp:11: players.nation = read_data(0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:12: players.height = read_data(0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:13: players.weight = read_data(0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:14:
+  pes20.cpp:15: players.gc1 = read_data(0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:203:
+  pes20.cpp:204:void fill_team_ids20(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes20.cpp:205:{
+  pes20.cpp:206:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:207:
+> pes20.cpp:208:        team.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+> pes20.cpp:209:        team.manager_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:210:
+  pes20.cpp:211:        current_byte+=2; //Team emblem
+  pes20.cpp:212:        //0xA
+> pes20.cpp:213:        team.stadium_id = read_data(0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:214:
+  pes20.cpp:215:        current_byte+=0xA; //Skip to 0x16
+  pes20.cpp:216:        team.color1_red = read_data(2, 6, current_byte, pDescriptorNew);
+  pes20.cpp:217:        team.color1_green       = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:218:        team.b_edit_name        = read_data(6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:219:        current_byte++; //Edited emblem: 1 bit
+  pes20.cpp:220:        team.color2_green       = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:221:        team.color2_blue        = read_data(6, 6, current_byte, pDescriptorNew);
+  pes20.cpp:256:
+  pes20.cpp:257:void fill_team_ids21(team_entry& team, int& current_byte, void* ghdescriptor)
+  pes20.cpp:258:{
+  pes20.cpp:259:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:260:
+> pes20.cpp:261:        team.id = read_data(0, 4 * 8, current_byte, pDescriptorNew);
+> pes20.cpp:262:        team.manager_id = read_data(0, 4 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:263:
+  pes20.cpp:264:        current_byte += 2; //Team emblem
+  pes20.cpp:265:        //0xA
+> pes20.cpp:266:        team.stadium_id = read_data(0, 2 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:267:
+  pes20.cpp:268:        current_byte += 0xA; //Skip to 0x16
+  pes20.cpp:269:        team.color1_red = read_data(2, 6, current_byte, pDescriptorNew);
+  pes20.cpp:270:        team.color1_green = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:271:        team.b_edit_name = read_data(6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:272:        current_byte++; //Edited emblem: 1 bit
+  pes20.cpp:273:        team.color2_green = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:274:        team.color2_blue = read_data(6, 6, current_byte, pDescriptorNew);
+  pes20.cpp:310:void fill_team_rosters20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes20.cpp:311:{
+  pes20.cpp:312:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:313:
+  pes20.cpp:314:        int ii, t_ind;
+> pes20.cpp:315:        unsigned long team_id, player_id;
+  pes20.cpp:316:
+> pes20.cpp:317:        team_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:318:
+  pes20.cpp:319:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes20.cpp:320:        {
+> pes20.cpp:321:                if(team_id == gteams[t_ind].id) break;
+  pes20.cpp:322:        }
+  pes20.cpp:323:
+  pes20.cpp:324:        for(ii=0;ii<40;ii++)
+  pes20.cpp:325:        {
+> pes20.cpp:326:                player_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:327:
+> pes20.cpp:328:                gteams[t_ind].players[ii] = player_id;
+> pes20.cpp:329:                if(player_id) gteams[t_ind].num_on_team++; //Increment player count
+  pes20.cpp:330:        }
+  pes20.cpp:331:        //Hide team with no players
+  pes20.cpp:332:        if(gteams[t_ind].players[0] == 0)
+  pes20.cpp:333:                gteams[t_ind].b_show = false;
+  pes20.cpp:334:
+  pes20.cpp:335:        for(ii=0;ii<40;ii++)
+  pes20.cpp:336:        {
+  pes20.cpp:337:                //Player shirt numbers
+  pes20.cpp:348:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:349:
+  pes20.cpp:350:        int t_ind;
+  pes20.cpp:351:        unsigned long team_id;
+  pes20.cpp:352:
+> pes20.cpp:353:        team_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:354:
+  pes20.cpp:355:        //Find team array entry that matches this ID
+  pes20.cpp:356:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes20.cpp:357:        {
+> pes20.cpp:358:                if(team_id == gteams[t_ind].id) break;
+  pes20.cpp:359:        }
+  pes20.cpp:360:        current_byte+=0x1E0;
+  pes20.cpp:361:
+  pes20.cpp:362:        //Starting lineup
+  pes20.cpp:363:        for(int ii=0; ii<11; ii++)
+  pes20.cpp:364:        {
+  pes20.cpp:365:                gteams[t_ind].starting11[ii] = pDescriptorNew->data[current_byte];
+  pes20.cpp:366:                current_byte++;
+  pes20.cpp:382:        {
+  pes20.cpp:383:                current_byte += 0xF0+0x48;
+  pes20.cpp:384:                return;
+  pes20.cpp:385:        }
+  pes20.cpp:386:
+> pes20.cpp:387:        write_data(player.id, 0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:388:        current_byte += 0x4; //Commentary name
+  pes20.cpp:389:        write_data(player.nation, 0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:390:        write_data(player.height,               0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:391:        write_data(player.weight,               0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:392:        write_data(player.gc1,                  0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:393:        write_data(player.gc2,                  0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:394:        write_data(player.atk,                  0, 7, current_byte, pDescriptorNew);
+  pes20.cpp:395:        write_data(player.ball_ctrl,    7, 7, current_byte, pDescriptorNew);
+  window.cpp:86:        hw_new = CreateWindowEx(WS_EX_CLIENTEDGE, _T("EDIT"), _T(""),
+  window.cpp:87:                ES_AUTOHSCROLL | WS_TABSTOP | WS_CHILD | WS_VISIBLE,
+  window.cpp:88:                x1, 50, 219, 23, H, (HMENU)IDT_PLAY_NAME, GetModuleHandle(NULL), NULL);
+  window.cpp:89:        setup_control(hw_new, ghFont, scale_cntl_proc);
+  window.cpp:90:
+> window.cpp:91:        hw_new = CreateWindowEx(0, _T("Static"), _T("Player ID:"),
+  window.cpp:92:                SS_SIMPLE | SS_NOPREFIX | WS_CHILD | WS_VISIBLE,
+  window.cpp:93:                x1, 82, 53, 17, H, (HMENU)IDC_STATIC_B3, GetModuleHandle(NULL), NULL);
+  window.cpp:94:        setup_control(hw_new, ghFont, scale_cntl_proc);
+  window.cpp:95:
+  window.cpp:96:        hw_new = CreateWindowEx(WS_EX_CLIENTEDGE, _T("EDIT"), _T(""),
+  window.cpp:97:                ES_READONLY | WS_TABSTOP | WS_CHILD | WS_VISIBLE,
+  window.cpp:98:                x1, 99, 88, 23, H, (HMENU)IDT_PLAY_ID, GetModuleHandle(NULL), NULL);
+  window.cpp:99:        setup_control(hw_new, ghFont, scale_cntl_proc);
