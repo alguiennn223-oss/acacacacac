@@ -1,0 +1,2065 @@
+PS D:\Games\pes patch mio\4ccEditoe\4ccEditor-master> Get-ChildItem -Recurse -File -Include *.cpp,*.h | Select-String -Pattern "current_byte\s*=|current_byte\s*\+=" -Context 3,5
+
+  comparator.cpp:140:           }
+  comparator.cpp:141:
+  comparator.cpp:142:           //place player info+appearance entries into array of structs
+> comparator.cpp:143:           current_byte = 0x4C;
+  comparator.cpp:144:           c_players = new player_entry[c_num_players];
+  comparator.cpp:145:           for (int ii = 0; ii < c_num_players; ii++)
+  comparator.cpp:146:           {
+  comparator.cpp:147:                   read_player_entry15(c_players[ii], current_byte, hc_descriptor);
+  comparator.cpp:148:                   read_appearance_entry15(c_players[ii], umap_pid_to_startByte, hc_descriptor);
+  comparator.cpp:149:           }
+  comparator.cpp:150:
+  comparator.cpp:151:           //Place team entries into array of structs
+> comparator.cpp:152:           current_byte = 0x44AA6C;
+  comparator.cpp:153:           c_teams = new team_entry[c_num_teams];
+  comparator.cpp:154:           for (ii = 0; ii < c_num_teams; ii++)
+  comparator.cpp:155:           {
+  comparator.cpp:156:                   read_team_ids15(c_teams[ii], current_byte, hc_descriptor);
+  comparator.cpp:157:           }
+  comparator.cpp:158:
+> comparator.cpp:159:           current_byte = 0x4E45CC;
+  comparator.cpp:160:           for (ii = 0; ii < c_num_teams; ii++)
+  comparator.cpp:161:           {
+  comparator.cpp:162:                   read_team_rosters15(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:163:           }
+  comparator.cpp:164:
+> comparator.cpp:165:           current_byte = 0x507194;
+  comparator.cpp:166:           for (ii = 0; ii < c_num_teams; ii++)
+  comparator.cpp:167:           {
+  comparator.cpp:168:                   read_team_tactics15(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:169:           }
+  comparator.cpp:170:   }
+  comparator.cpp:183:           c_num_teams += (((FileDescriptorOld*)hc_descriptor)->data[0x39])*256;
+  comparator.cpp:184:
+  comparator.cpp:185:           //place player info+appearance entries into array of structs
+> comparator.cpp:186:           current_byte = 0x4C;
+  comparator.cpp:187:           appearance_byte = 0x2AB9CC;
+  comparator.cpp:188:           c_players = new player_entry[c_num_players];
+  comparator.cpp:189:           for(ii=0;ii<c_num_players;ii++)
+  comparator.cpp:190:           {
+  comparator.cpp:191:                   fill_player_entry16(c_players[ii], current_byte, hc_descriptor);
+  comparator.cpp:193:           }
+  comparator.cpp:194:
+  comparator.cpp:195:           //place team entries into array of structs
+> comparator.cpp:196:           current_byte = 0x46310C;
+  comparator.cpp:197:           c_teams = new team_entry[c_num_teams];
+  comparator.cpp:198:           for(ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:199:           {
+  comparator.cpp:200:                   fill_team_ids16(c_teams[ii], current_byte, hc_descriptor);
+  comparator.cpp:201:           }
+  comparator.cpp:202:
+> comparator.cpp:203:           current_byte = 0x4FCC6C;
+  comparator.cpp:204:           for(ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:205:           {
+  comparator.cpp:206:                   fill_team_rosters16(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:207:           }
+  comparator.cpp:208:
+> comparator.cpp:209:           current_byte = 0x51F814;
+  comparator.cpp:210:           for(ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:211:           {
+  comparator.cpp:212:                   fill_team_tactics16(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:213:           }
+  comparator.cpp:214:   }
+  comparator.cpp:227:           c_num_teams += (((FileDescriptorOld*)hc_descriptor)->data[0x61])*256;
+  comparator.cpp:228:
+  comparator.cpp:229:           //place player info+appearance entries into array of structs
+> comparator.cpp:230:           current_byte = 0x78;
+  comparator.cpp:231:           c_players = new player_entry[c_num_players];
+  comparator.cpp:232:           for(ii=0;ii<c_num_players;ii++)
+  comparator.cpp:233:           {
+  comparator.cpp:234:                   fill_player_entry17(c_players[ii], current_byte, hc_descriptor);
+  comparator.cpp:235:           }
+  comparator.cpp:236:
+  comparator.cpp:237:           //place team entries into array of structs
+> comparator.cpp:238:           current_byte = 0x3C3E58;
+  comparator.cpp:239:           c_teams = new team_entry[c_num_teams];
+  comparator.cpp:240:           for(ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:241:           {
+  comparator.cpp:242:                   fill_team_ids17(c_teams[ii], current_byte, hc_descriptor);
+  comparator.cpp:243:           }
+  comparator.cpp:244:
+> comparator.cpp:245:           current_byte = 0x475A90;
+  comparator.cpp:246:           for(ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:247:           {
+  comparator.cpp:248:                   fill_team_rosters17(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:249:           }
+  comparator.cpp:250:
+> comparator.cpp:251:           current_byte = 0x490640;
+  comparator.cpp:252:           for(ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:253:           {
+  comparator.cpp:254:                   fill_team_tactics17(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:255:           }
+  comparator.cpp:256:   }
+  comparator.cpp:277:           c_num_teams += (((FileDescriptorNew*)hc_descriptor)->data[101])*256;
+  comparator.cpp:278:
+  comparator.cpp:279:           //place player info+appearance entries into array of structs
+> comparator.cpp:280:           current_byte = 0x7C;
+  comparator.cpp:281:           c_players = new player_entry[c_num_players];
+  comparator.cpp:282:           for(ii=0;ii<c_num_players;ii++)
+  comparator.cpp:283:           {
+  comparator.cpp:284:                   fill_player_entry18(c_players[ii], current_byte, hc_descriptor);
+  comparator.cpp:285:           }
+  comparator.cpp:286:
+  comparator.cpp:287:           //place team entries into array of structs
+> comparator.cpp:288:           current_byte = 0x3C3E5C;
+  comparator.cpp:289:           c_teams = new team_entry[c_num_teams];
+  comparator.cpp:290:           for(ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:291:           {
+  comparator.cpp:292:                   fill_team_ids18(c_teams[ii], current_byte, hc_descriptor);
+  comparator.cpp:293:           }
+  comparator.cpp:294:
+> comparator.cpp:295:           current_byte = 0x46FF54;
+  comparator.cpp:296:           for(ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:297:           {
+  comparator.cpp:298:                   fill_team_rosters18(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:299:           }
+  comparator.cpp:300:
+> comparator.cpp:301:           current_byte = 0x488B74;
+  comparator.cpp:302:           for(ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:303:           {
+  comparator.cpp:304:                   fill_team_tactics18(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:305:           }
+  comparator.cpp:306:   }
+  comparator.cpp:327:           c_num_teams += (((FileDescriptorNew*)hc_descriptor)->data[101])*256;
+  comparator.cpp:328:
+  comparator.cpp:329:           //place player info+appearance entries into array of structs
+> comparator.cpp:330:           current_byte = 0x7C;
+  comparator.cpp:331:           c_players = new player_entry[c_num_players];
+  comparator.cpp:332:           for(int ii=0;ii<c_num_players;ii++)
+  comparator.cpp:333:           {
+  comparator.cpp:334:                   fill_player_entry19(c_players[ii], current_byte, hc_descriptor);
+  comparator.cpp:335:           }
+  comparator.cpp:336:
+  comparator.cpp:337:           //place team entries into array of structs
+> comparator.cpp:338:           current_byte = 0x5BCC7C;
+  comparator.cpp:339:           c_teams = new team_entry[c_num_teams];
+  comparator.cpp:340:           for(int ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:341:           {
+  comparator.cpp:342:                   fill_team_ids19(c_teams[ii], current_byte, hc_descriptor);
+  comparator.cpp:343:           }
+  comparator.cpp:344:
+> comparator.cpp:345:           current_byte = 0x6773C4;
+  comparator.cpp:346:           for(int ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:347:           {
+  comparator.cpp:348:                   fill_team_rosters19(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:349:           }
+  comparator.cpp:350:
+> comparator.cpp:351:           current_byte = 0x69EC8C;
+  comparator.cpp:352:           for(int ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:353:           {
+  comparator.cpp:354:                   fill_team_tactics19(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:355:           }
+  comparator.cpp:356:   }
+  comparator.cpp:372:           c_num_teams += (((FileDescriptorNew*)hc_descriptor)->data[101])*256;
+  comparator.cpp:373:
+  comparator.cpp:374:           //place player info+appearance entries into array of structs
+> comparator.cpp:375:           current_byte = 0x7C;
+  comparator.cpp:376:           c_players = new player_entry[c_num_players];
+  comparator.cpp:377:           for(int ii=0;ii<c_num_players;ii++)
+  comparator.cpp:378:           {
+  comparator.cpp:379:                   fill_player_entry20(c_players[ii], current_byte, hc_descriptor);
+  comparator.cpp:380:           }
+  comparator.cpp:381:
+  comparator.cpp:382:           //place team entries into array of structs
+> comparator.cpp:383:           current_byte = 0x8ED2FC;
+  comparator.cpp:384:           c_teams = new team_entry[c_num_teams];
+  comparator.cpp:385:           for(int ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:386:           {
+  comparator.cpp:387:                   fill_team_ids20(c_teams[ii], current_byte, hc_descriptor);
+  comparator.cpp:388:           }
+  comparator.cpp:389:
+> comparator.cpp:390:           current_byte = 0x9D4648;
+  comparator.cpp:391:           for(int ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:392:           {
+  comparator.cpp:393:                   fill_team_rosters20(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:394:           }
+  comparator.cpp:395:
+> comparator.cpp:396:           current_byte = 0xA09880;
+  comparator.cpp:397:           for(int ii=0;ii<c_num_teams;ii++)
+  comparator.cpp:398:           {
+  comparator.cpp:399:                   fill_team_tactics20(current_byte, hc_descriptor, c_teams, c_num_teams);
+  comparator.cpp:400:           }
+  comparator.cpp:401:   }
+  main.cpp:1446:                }
+  main.cpp:1447:
+  main.cpp:1448:                //place player info+appearance entries into array of structs
+> main.cpp:1449:                current_byte = 0x4C;
+  main.cpp:1450:                if (gplayers != NULL) delete[] gplayers;
+  main.cpp:1451:                gplayers = new player_entry[gnum_players];
+  main.cpp:1452:                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:1453:                {
+  main.cpp:1454:                        read_player_entry15(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:1456:                }
+  main.cpp:1457:
+  main.cpp:1458:                //Place team entries into array of structs
+> main.cpp:1459:                current_byte = 0x44AA6C;
+  main.cpp:1460:                if (gteams != NULL) delete[] gteams;
+  main.cpp:1461:                gteams = new team_entry[gnum_teams];
+  main.cpp:1462:                for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1463:                {
+  main.cpp:1464:                        read_team_ids15(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1465:                }
+  main.cpp:1466:
+> main.cpp:1467:                current_byte = 0x4E45CC;
+  main.cpp:1468:                for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1469:                {
+  main.cpp:1470:                        read_team_rosters15(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1471:                }
+  main.cpp:1472:
+> main.cpp:1473:                current_byte = 0x507194;
+  main.cpp:1474:                for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1475:                {
+  main.cpp:1476:                        read_team_tactics15(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1477:                }
+  main.cpp:1478:        }
+  main.cpp:1513:                gnum_teams += (((FileDescriptorOld*)ghdescriptor)->data[0x39])*256;
+  main.cpp:1514:
+  main.cpp:1515:                //place player info+appearance entries into array of structs
+> main.cpp:1516:                current_byte = 0x4C;
+  main.cpp:1517:                appearance_byte = 0x2AB9CC;
+  main.cpp:1518:                if(gplayers != NULL) delete[] gplayers;
+  main.cpp:1519:                gplayers = new player_entry[gnum_players];
+  main.cpp:1520:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1521:                {
+  main.cpp:1524:                }
+  main.cpp:1525:
+  main.cpp:1526:                //place team entries into array of structs
+> main.cpp:1527:                current_byte = 0x46310C;
+  main.cpp:1528:                if(gteams != NULL) delete[] gteams;
+  main.cpp:1529:                gteams = new team_entry[gnum_teams];
+  main.cpp:1530:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1531:                {
+  main.cpp:1532:                        fill_team_ids16(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1533:                }
+  main.cpp:1534:
+> main.cpp:1535:                current_byte = 0x4FCC6C;
+  main.cpp:1536:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1537:                {
+  main.cpp:1538:                        fill_team_rosters16(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1539:                }
+  main.cpp:1540:
+> main.cpp:1541:                current_byte = 0x51F814;
+  main.cpp:1542:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1543:                {
+  main.cpp:1544:                        fill_team_tactics16(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1545:                }
+  main.cpp:1546:        }
+  main.cpp:1571:                gnum_teams += (((FileDescriptorOld*)ghdescriptor)->data[0x61])*256;
+  main.cpp:1572:
+  main.cpp:1573:                //place player info+appearance entries into array of structs
+> main.cpp:1574:                current_byte = 0x78;
+  main.cpp:1575:                if(gplayers != NULL) delete[] gplayers;
+  main.cpp:1576:                gplayers = new player_entry[gnum_players];
+  main.cpp:1577:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1578:                {
+  main.cpp:1579:                        fill_player_entry17(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:1580:                }
+  main.cpp:1581:
+  main.cpp:1582:                //place team entries into array of structs
+> main.cpp:1583:                current_byte = 0x3C3E58;
+  main.cpp:1584:                if(gteams != NULL) delete[] gteams;
+  main.cpp:1585:                gteams = new team_entry[gnum_teams];
+  main.cpp:1586:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1587:                {
+  main.cpp:1588:                        fill_team_ids17(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1589:                }
+  main.cpp:1590:
+> main.cpp:1591:                current_byte = 0x475A90;
+  main.cpp:1592:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1593:                {
+  main.cpp:1594:                        fill_team_rosters17(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1595:                }
+  main.cpp:1596:
+> main.cpp:1597:                current_byte = 0x490640;
+  main.cpp:1598:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1599:                {
+  main.cpp:1600:                        fill_team_tactics17(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1601:                }
+  main.cpp:1602:        }
+  main.cpp:1627:                gnum_teams += (((FileDescriptorNew*)ghdescriptor)->data[101])*256;
+  main.cpp:1628:
+  main.cpp:1629:                //place player info+appearance entries into array of structs
+> main.cpp:1630:                current_byte = 0x7C;
+  main.cpp:1631:                if(gplayers != NULL) delete[] gplayers;
+  main.cpp:1632:                gplayers = new player_entry[gnum_players];
+  main.cpp:1633:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1634:                {
+  main.cpp:1635:                        fill_player_entry18(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:1636:                }
+  main.cpp:1637:
+  main.cpp:1638:                //place team entries into array of structs
+> main.cpp:1639:                current_byte = 0x3C3E5C;
+  main.cpp:1640:                if(gteams != NULL) delete[] gteams;
+  main.cpp:1641:                gteams = new team_entry[gnum_teams];
+  main.cpp:1642:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1643:                {
+  main.cpp:1644:                        fill_team_ids18(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1645:                }
+  main.cpp:1646:
+> main.cpp:1647:                current_byte = 0x46FF54;
+  main.cpp:1648:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1649:                {
+  main.cpp:1650:                        fill_team_rosters18(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1651:                }
+  main.cpp:1652:
+> main.cpp:1653:                current_byte = 0x488B74;
+  main.cpp:1654:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1655:                {
+  main.cpp:1656:                        fill_team_tactics18(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1657:                }
+  main.cpp:1658:        }
+  main.cpp:1689:                gnum_teams += (((FileDescriptorNew*)ghdescriptor)->data[101])*256;
+  main.cpp:1690:
+  main.cpp:1691:                //place player info+appearance entries into array of structs
+> main.cpp:1692:                current_byte = 0x7C;
+  main.cpp:1693:                if(gplayers != NULL) delete[] gplayers;
+  main.cpp:1694:                gplayers = new player_entry[gnum_players];
+  main.cpp:1695:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1696:                {
+  main.cpp:1697:                        fill_player_entry19(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:1698:                }
+  main.cpp:1699:
+  main.cpp:1700:                //place team entries into array of structs
+> main.cpp:1701:                current_byte = 0x5BCC7C;
+  main.cpp:1702:                if(gteams != NULL) delete[] gteams;
+  main.cpp:1703:                gteams = new team_entry[gnum_teams];
+  main.cpp:1704:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1705:                {
+  main.cpp:1706:                        fill_team_ids19(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1707:                }
+  main.cpp:1708:
+> main.cpp:1709:                current_byte = 0x6773C4;
+  main.cpp:1710:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1711:                {
+  main.cpp:1712:                        fill_team_rosters19(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1713:                }
+  main.cpp:1714:
+> main.cpp:1715:                current_byte = 0x69EC8C;
+  main.cpp:1716:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1717:                {
+  main.cpp:1718:                        fill_team_tactics19(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1719:                }
+  main.cpp:1720:        }
+  main.cpp:1799:                gnum_teams += (((FileDescriptorNew*)ghdescriptor)->data[101])*256;
+  main.cpp:1800:
+  main.cpp:1801:                //place player info+appearance entries into array of structs
+> main.cpp:1802:                current_byte = 0x7C;
+  main.cpp:1803:                if(gplayers != NULL) delete[] gplayers;
+  main.cpp:1804:                gplayers = new player_entry[gnum_players];
+  main.cpp:1805:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1806:                {
+  main.cpp:1807:                        fill_player_entry20(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:1808:                }
+  main.cpp:1809:
+  main.cpp:1810:                //place team entries into array of structs
+> main.cpp:1811:                current_byte = 0x8ED2FC;
+  main.cpp:1812:                if(gteams != NULL) delete[] gteams;
+  main.cpp:1813:                gteams = new team_entry[gnum_teams];
+  main.cpp:1814:                if (giPesVersion == 20)
+  main.cpp:1815:                {
+  main.cpp:1816:                        for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1826:                        }
+  main.cpp:1827:                }
+  main.cpp:1828:
+> main.cpp:1829:                if (giPesVersion == 20) current_byte = 0x9ccc04;
+> main.cpp:1830:                else current_byte = 0x9D4648;
+  main.cpp:1831:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1832:                {
+  main.cpp:1833:                        fill_team_rosters20(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1834:                }
+  main.cpp:1835:
+> main.cpp:1836:                if (giPesVersion == 20) current_byte = 0xa01e3c;
+> main.cpp:1837:                else current_byte = 0xA09880;
+  main.cpp:1838:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1839:                {
+  main.cpp:1840:                        fill_team_tactics20(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1841:                }
+  main.cpp:1842:        }
+  main.cpp:1946:        if (giPesVersion == 15)
+  main.cpp:1947:        {
+  main.cpp:1948:                //Extract player info & appearance from array of structs
+> main.cpp:1949:                int current_byte = 0x4C;
+  main.cpp:1950:
+  main.cpp:1951:                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:1952:                {
+  main.cpp:1953:                        write_player_entry15(gplayers[ii], current_byte, g_umap_pid_to_startByte, ghdescriptor);
+  main.cpp:1954:                }
+  main.cpp:1955:
+  main.cpp:1956:                //Extract team info from array of structs
+> main.cpp:1957:                current_byte = 0x44AA6C;
+  main.cpp:1958:                for (int ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1959:                {
+  main.cpp:1960:                        write_team_info15(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1961:                }
+> main.cpp:1962:                current_byte = 0x4E45CC;
+  main.cpp:1963:                for (int ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1964:                {
+  main.cpp:1965:                        write_teamplayer_info15(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1966:                }
+> main.cpp:1967:                current_byte = 0x507194;
+  main.cpp:1968:                for (int ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1969:                {
+  main.cpp:1970:                        write_team_tactics15(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1971:                }
+  main.cpp:1972:
+  main.cpp:1979:        else if(giPesVersion==16)
+  main.cpp:1980:        {
+  main.cpp:1981:                //Extract player info & appearance from array of structs
+> main.cpp:1982:                int ii, current_byte = 0x4C, appearance_byte = 0x2AB9CC;
+  main.cpp:1983:                //char strcheck[0x72]; //DEBUG
+  main.cpp:1984:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1985:                {
+  main.cpp:1986:                        extract_player_entry16(gplayers[ii], current_byte, appearance_byte, ghdescriptor);
+  main.cpp:1987:                        //memcpy(strcheck, &(ghdescriptor->data[0x82C]), 0x70); //DEBUG
+  main.cpp:1989:                }
+  main.cpp:1990:
+  main.cpp:1991:                //Extract team info from array of structs
+> main.cpp:1992:                current_byte = 0x46310C;
+  main.cpp:1993:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1994:                {
+  main.cpp:1995:                        extract_team_info16(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1996:                }
+> main.cpp:1997:                current_byte = 0x4FCC6C;
+  main.cpp:1998:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1999:                {
+  main.cpp:2000:                        extract_teamplayer_info16(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2001:                }
+> main.cpp:2002:                current_byte = 0x51F814;
+  main.cpp:2003:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2004:                {
+  main.cpp:2005:                        extract_team_tactics16(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2006:                }
+  main.cpp:2007:
+  main.cpp:2014:        else if(giPesVersion==17)
+  main.cpp:2015:        {
+  main.cpp:2016:                //Extract player info & appearance from array of structs
+> main.cpp:2017:                int ii, current_byte = 0x78;
+  main.cpp:2018:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:2019:                {
+  main.cpp:2020:                        extract_player_entry17(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:2021:                }
+  main.cpp:2022:
+  main.cpp:2023:                //Extract team info from array of structs
+> main.cpp:2024:                current_byte = 0x3C3E58;
+  main.cpp:2025:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2026:                {
+  main.cpp:2027:                        extract_team_info17(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2028:                }
+> main.cpp:2029:                current_byte = 0x475A90;
+  main.cpp:2030:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2031:                {
+  main.cpp:2032:                        extract_teamplayer_info17(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2033:                }
+> main.cpp:2034:                current_byte = 0x490640;
+  main.cpp:2035:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2036:                {
+  main.cpp:2037:                        extract_team_tactics17(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2038:                }
+  main.cpp:2039:
+  main.cpp:2046:        else if(giPesVersion==18)
+  main.cpp:2047:        {
+  main.cpp:2048:                //Extract player info & appearance from array of structs
+> main.cpp:2049:                int ii, current_byte = 0x7C;
+  main.cpp:2050:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:2051:                {
+  main.cpp:2052:                        extract_player_entry18(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:2053:                }
+  main.cpp:2054:
+  main.cpp:2055:                //Extract team info from array of structs
+> main.cpp:2056:                current_byte = 0x3C3E5C;
+  main.cpp:2057:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2058:                {
+  main.cpp:2059:                        extract_team_info18(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2060:                }
+> main.cpp:2061:                current_byte = 0x46FF54;
+  main.cpp:2062:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2063:                {
+  main.cpp:2064:                        extract_teamplayer_info18(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2065:                }
+> main.cpp:2066:                current_byte = 0x488B74;
+  main.cpp:2067:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2068:                {
+  main.cpp:2069:                        extract_team_tactics18(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2070:                }
+  main.cpp:2071:
+  main.cpp:2078:        else if(giPesVersion==19)
+  main.cpp:2079:        {
+  main.cpp:2080:                //Extract player info & appearance from array of structs
+> main.cpp:2081:                int ii, current_byte = 0x7C;
+  main.cpp:2082:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:2083:                {
+  main.cpp:2084:                        extract_player_entry19(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:2085:                }
+  main.cpp:2086:
+  main.cpp:2087:                //Extract team info from array of structs
+> main.cpp:2088:                current_byte = 0x5BCC7C;
+  main.cpp:2089:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2090:                {
+  main.cpp:2091:                        extract_team_info19(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2092:                }
+> main.cpp:2093:                current_byte = 0x6773C4;
+  main.cpp:2094:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2095:                {
+  main.cpp:2096:                        extract_teamplayer_info19(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2097:                }
+> main.cpp:2098:                current_byte = 0x69EC8C;
+  main.cpp:2099:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2100:                {
+  main.cpp:2101:                        extract_team_tactics19(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2102:                }
+  main.cpp:2103:
+  main.cpp:2110:        else //PES 20/21
+  main.cpp:2111:        {
+  main.cpp:2112:                //Extract player info & appearance from array of structs
+> main.cpp:2113:                int ii, current_byte = 0x7C;
+  main.cpp:2114:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:2115:                {
+  main.cpp:2116:                        extract_player_entry20(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:2117:                }
+  main.cpp:2118:
+  main.cpp:2119:                //Extract team info from array of structs
+> main.cpp:2120:                current_byte = 0x8ED2FC;
+  main.cpp:2121:                if (giPesVersion == 20)
+  main.cpp:2122:                {
+  main.cpp:2123:                        for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:2124:                        {
+  main.cpp:2125:                                extract_team_info20(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2133:                        }
+  main.cpp:2134:                }
+  main.cpp:2135:
+> main.cpp:2136:                if (giPesVersion == 20) current_byte = 0x9ccc04;
+> main.cpp:2137:                else current_byte = 0x9D4648;
+  main.cpp:2138:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2139:                {
+  main.cpp:2140:                        extract_teamplayer_info20(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2141:                }
+  main.cpp:2142:
+> main.cpp:2143:                if (giPesVersion == 20) current_byte = 0xa01e3c;
+> main.cpp:2144:                else current_byte = 0xA09880;
+  main.cpp:2145:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2146:                {
+  main.cpp:2147:                        extract_team_tactics20(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2148:                }
+  main.cpp:2149:
+  main.cpp:5080:        }
+  main.cpp:5081:        if (giPesVersion == 17)
+  main.cpp:5082:        {       //Fix kit team IDs in Unknown section so kit preview colors 12 and 2 display properly
+> main.cpp:5083:                int current_byte = 0x425180;
+  main.cpp:5084:                FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  main.cpp:5085:                for (int ii = 0; ii < 2500; ii++) //2500 entries
+  main.cpp:5086:                {
+  main.cpp:5087:                        write_dataOld(0xFFFFC0, 0, 4 * 8, current_byte, pDescriptorOld);
+> main.cpp:5088:                        current_byte += 0x80;
+  main.cpp:5089:                }
+  main.cpp:5090:        }
+  main.cpp:5091:}
+  main.cpp:5092:
+  main.cpp:5093:
+  pes15.cpp:10:
+  pes15.cpp:11: umap_pid_to_startByte[pid] = startByte;
+  pes15.cpp:12:
+> pes15.cpp:13: current_byte = startByte + 0x44; //Advance by length of 1 Appearance Entry
+  pes15.cpp:14:}
+  pes15.cpp:15:
+  pes15.cpp:16:void read_player_entry15(player_entry& player, int& current_byte, void* ghdescriptor)
+  pes15.cpp:17:{
+  pes15.cpp:18: FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:21:
+  pes15.cpp:22: //Commentary Name
+  pes15.cpp:23: //Unknown A
+> pes15.cpp:24: current_byte += 0x6;
+  pes15.cpp:25:
+  pes15.cpp:26: player.nation = read_data15(0, 2 * 8, current_byte, pDescriptor15); //0xA
+  pes15.cpp:27:
+  pes15.cpp:28: player.height = pDescriptor15->data[current_byte]; //0xC
+  pes15.cpp:29: current_byte++;
+  pes15.cpp:198:        //player.b_edit_motion = read_data15(1, 1, current_byte, pDescriptor15);
+  pes15.cpp:199:
+  pes15.cpp:200:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR) & (pDescriptor15->data[current_byte]), -1, player.name, 46);
+//0x30
+> pes15.cpp:201:        current_byte += 0x2E; //46
+  pes15.cpp:202:
+  pes15.cpp:203:        strncpy_s(player.shirt_name, 18, (const char*)&(pDescriptor15->data[current_byte]), 18 - 1); //0x5E
+> pes15.cpp:204:        current_byte += 0x12; //18
+  pes15.cpp:205:
+  pes15.cpp:206:        //Block length: 0x70
+  pes15.cpp:207:}
+  pes15.cpp:208:
+  pes15.cpp:209:
+  pes15.cpp:216:        if (checkKey == umap_pid_to_startByte.end())
+  pes15.cpp:217:                return;
+  pes15.cpp:218:
+> pes15.cpp:219:        int current_byte = checkKey->second; //Set current byte to PID start byte
+> pes15.cpp:220:        current_byte += 4; //Advance by 4 to get past 4 byte PID entry
+  pes15.cpp:221:
+  pes15.cpp:222:        player.b_edit_face = read_data15(0, 1, current_byte, pDescriptor15);
+  pes15.cpp:223:        player.b_edit_hair = read_data15(1, 1, current_byte, pDescriptor15);
+  pes15.cpp:224:        player.b_edit_phys = read_data15(2, 1, current_byte, pDescriptor15);
+  pes15.cpp:225:        player.b_edit_strip = read_data15(3, 1, current_byte, pDescriptor15);
+  pes15.cpp:278:        current_byte++;
+  pes15.cpp:279:
+  pes15.cpp:280:        //Unknown E
+> pes15.cpp:281:        current_byte += 22;
+  pes15.cpp:282:
+  pes15.cpp:283:        player.skin_col = read_data15(0, 3, current_byte, pDescriptor15);
+  pes15.cpp:284:        //Unknown F
+  pes15.cpp:285:        current_byte++;
+  pes15.cpp:286:
+  pes15.cpp:287:        //Unknown G
+> pes15.cpp:288:        current_byte += 18;
+  pes15.cpp:289:
+  pes15.cpp:290:        player.iris_col = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:291:        //Unknown H
+  pes15.cpp:292:        current_byte++;
+  pes15.cpp:293:
+  pes15.cpp:294:        //Unknown I
+> pes15.cpp:295:        current_byte += 3; //Shortened by 3 compared to 16: 0x44 vs 0x48 block length
+  pes15.cpp:296:
+  pes15.cpp:297:        //Block length: 0x44
+  pes15.cpp:298:}
+  pes15.cpp:299:
+  pes15.cpp:300:
+  pes15.cpp:304:
+  pes15.cpp:305:        team.id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:306:
+> pes15.cpp:307:        current_byte += 0xE;
+  pes15.cpp:308:        team.b_edit_name = read_data15(0, 1, current_byte, pDescriptor15);
+  pes15.cpp:309:        team.b_edit_shortname = read_data15(1, 1, current_byte, pDescriptor15);
+  pes15.cpp:310:
+> pes15.cpp:311:        current_byte += 0x82;
+  pes15.cpp:312:
+  pes15.cpp:313:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR) & (pDescriptor15->data[current_byte]), -1, team.name, 0x46);
+> pes15.cpp:314:        current_byte += 0x46;
+  pes15.cpp:315:
+  pes15.cpp:316:        strncpy_s(team.short_name, 0x4, (const char*)&(pDescriptor15->data[current_byte]), 0x4 - 1);
+  pes15.cpp:317:
+  pes15.cpp:318:        //Remove non alphanumeric characters
+  pes15.cpp:319:        for (int ii = 0; ii < 4; ii++)
+  pes15.cpp:321:                if ((int)team.short_name[ii] < 33 || (int)team.short_name[ii]>95)
+  pes15.cpp:322:                        team.short_name[ii] = (char)0;
+  pes15.cpp:323:        }
+> pes15.cpp:324:        current_byte += 0x4;
+  pes15.cpp:325:
+> pes15.cpp:326:        current_byte += 0xEA;
+  pes15.cpp:327:
+  pes15.cpp:328:        //Block length: 0x1C8
+  pes15.cpp:329:}
+  pes15.cpp:330:
+  pes15.cpp:331:
+  pes15.cpp:377:        {
+  pes15.cpp:378:                if (team_id == gteams[t_ind].id) break;
+  pes15.cpp:379:        }
+> pes15.cpp:380:        current_byte += 0x1F6;
+  pes15.cpp:381:
+  pes15.cpp:382:        gteams[t_ind].captain_ind = (char)pDescriptor15->data[current_byte]; //0x1FA
+> pes15.cpp:383:        current_byte += 0xA;
+  pes15.cpp:384:
+  pes15.cpp:385:        //Block length: 0x204
+  pes15.cpp:386:}
+  pes15.cpp:387:
+  pes15.cpp:388:
+  pes15.cpp:395:
+  pes15.cpp:396:        if (!player.b_changed || !player.b_show)
+  pes15.cpp:397:        {
+> pes15.cpp:398:                current_byte += 0x70;
+  pes15.cpp:399:                return;
+  pes15.cpp:400:        }
+  pes15.cpp:401:
+  pes15.cpp:402:        write_data15(player.id, 0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:403:
+  pes15.cpp:404:        //Commentary Name
+  pes15.cpp:405:        //Unknown A
+> pes15.cpp:406:        current_byte += 0x6;
+  pes15.cpp:407:
+  pes15.cpp:408:        write_data15(player.nation, 0, 2 * 8, current_byte, pDescriptor15); //0xA
+  pes15.cpp:409:
+  pes15.cpp:410:        write_data15(player.height, 0, 1 * 8, current_byte, pDescriptor15); //0xC
+  pes15.cpp:411:
+  pes15.cpp:565:        memset(nameBuffer, 0, sizeof(nameBuffer));
+  pes15.cpp:566:        int len = WideCharToMultiByte(CP_UTF8, 0, player.name, -1, (LPSTR)nameBuffer, 45, NULL, NULL); //set
+byte limit to 45 to ensure null termination of truncated strings
+  pes15.cpp:567:        memcpy(&(pDescriptor15->data[current_byte]), nameBuffer, 46);
+> pes15.cpp:568:        current_byte += 46;
+  pes15.cpp:569:
+  pes15.cpp:570:        char tbuffer[18];
+  pes15.cpp:571:        memset(tbuffer, 0, 18);
+  pes15.cpp:572:        strncpy_s(tbuffer, 18, player.shirt_name, 18 - 1);
+  pes15.cpp:573:        memcpy(&(pDescriptor15->data[current_byte]), tbuffer, 18);
+> pes15.cpp:574:        current_byte += 18;
+  pes15.cpp:575:
+  pes15.cpp:576:        //Block length: 0x70
+  pes15.cpp:577:
+  pes15.cpp:578:        //=================================================================================
+  pes15.cpp:579:        //Appearance entries
+  pes15.cpp:671:
+  pes15.cpp:672:        if (!team.b_changed || !team.b_show)
+  pes15.cpp:673:        {
+> pes15.cpp:674:                current_byte += 0x1C8;
+  pes15.cpp:675:                return;
+  pes15.cpp:676:        }
+  pes15.cpp:677:
+  pes15.cpp:678:        //teams.id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+> pes15.cpp:679:        current_byte += 0x4; //Advance past team ID
+  pes15.cpp:680:
+> pes15.cpp:681:        current_byte += 0xE;
+  pes15.cpp:682:        write_data15(team.b_edit_name, 0, 1, current_byte, pDescriptor15);
+  pes15.cpp:683:        write_data15(team.b_edit_shortname, 1, 1, current_byte, pDescriptor15);
+  pes15.cpp:684:
+> pes15.cpp:685:        current_byte += 0x82;
+  pes15.cpp:686:
+  pes15.cpp:687:        WideCharToMultiByte(CP_UTF8, 0, team.name, -1, (LPSTR) & (pDescriptor15->data[current_byte]), 0x46,
+NULL, NULL);
+> pes15.cpp:688:        current_byte += 0x46;
+  pes15.cpp:689:
+  pes15.cpp:690:        strncpy_s((char*)&(pDescriptor15->data[current_byte]), 0x4, team.short_name, 0x4 - 1);
+  pes15.cpp:691:
+> pes15.cpp:692:        current_byte += 0x4;
+  pes15.cpp:693:
+> pes15.cpp:694:        current_byte += 0xEA;
+  pes15.cpp:695:
+  pes15.cpp:696:        //Block length: 0x1C8
+  pes15.cpp:697:}
+  pes15.cpp:698:
+  pes15.cpp:699:
+  pes15.cpp:703:
+  pes15.cpp:704:        if (!team.b_changed || !team.b_show)
+  pes15.cpp:705:        {
+> pes15.cpp:706:                current_byte += 0xA4;
+  pes15.cpp:707:                return;
+  pes15.cpp:708:        }
+  pes15.cpp:709:
+  pes15.cpp:710:        //write_data15(team_id, 0, 4 * 8, current_byte, pDescriptor15);
+> pes15.cpp:711:        current_byte += 0x4; //Advance past team ID
+  pes15.cpp:712:
+  pes15.cpp:713:        for (int ii = 0; ii < 32; ii++)
+  pes15.cpp:714:        {
+  pes15.cpp:715:                write_data15(team.players[ii], 0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:716:        }
+  pes15.cpp:730:
+  pes15.cpp:731:        if (!team.b_changed)
+  pes15.cpp:732:        {
+> pes15.cpp:733:                current_byte += 0x204;
+  pes15.cpp:734:                return;
+  pes15.cpp:735:        }
+  pes15.cpp:736:
+> pes15.cpp:737:        current_byte += 0x4; //Advance past team ID
+  pes15.cpp:738:
+> pes15.cpp:739:        current_byte += 0x1F6;
+  pes15.cpp:740:
+  pes15.cpp:741:        pDescriptor15->data[current_byte] = team.captain_ind; //0x1FA
+> pes15.cpp:742:        current_byte += 0xA;
+  pes15.cpp:743:
+  pes15.cpp:744:        //Block length: 0x204
+  pes15.cpp:745:}
+  pes16.cpp:11:         int d3=0;
+  pes16.cpp:12: }
+  pes16.cpp:13: */
+> pes16.cpp:14: current_byte += 0x6;
+  pes16.cpp:15:
+  pes16.cpp:16: players.nation = read_dataOld(0, 2 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:17:
+  pes16.cpp:18: players.height = pDescriptorOld->data[current_byte];
+  pes16.cpp:19: current_byte++;
+  pes16.cpp:185:        players.play_skill[27] = read_dataOld(7, 1, current_byte, pDescriptorOld);
+  pes16.cpp:186:
+  pes16.cpp:187:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorOld->data[current_byte]), -1, players.name, 46);
+> pes16.cpp:188:        current_byte+=46;
+  pes16.cpp:189:
+  pes16.cpp:190:        strncpy_s(players.shirt_name, 16, (const char*)&(pDescriptorOld->data[current_byte]), 16 - 1);
+> pes16.cpp:191:        current_byte+=16;
+  pes16.cpp:192:}
+  pes16.cpp:193:
+  pes16.cpp:194:
+  pes16.cpp:195:void fill_appearance_entry16(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes16.cpp:196:{
+  pes16.cpp:261:        current_byte++;
+  pes16.cpp:262:
+  pes16.cpp:263:        //Unknown E
+> pes16.cpp:264:        current_byte+=22;
+  pes16.cpp:265:
+  pes16.cpp:266:        players.skin_col = read_dataOld(0, 3, current_byte, pDescriptorOld);
+  pes16.cpp:267:        //Unknown F
+  pes16.cpp:268:        current_byte++;
+  pes16.cpp:269:
+  pes16.cpp:270:        //Unknown G
+> pes16.cpp:271:        current_byte+=18;
+  pes16.cpp:272:
+  pes16.cpp:273:        players.iris_col = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:274:        //Unknown H
+  pes16.cpp:275:        current_byte++;
+  pes16.cpp:276:
+  pes16.cpp:277:        //Unknown I
+> pes16.cpp:278:        current_byte+=7;
+  pes16.cpp:279:}
+  pes16.cpp:280:
+  pes16.cpp:281:
+  pes16.cpp:282:void fill_team_ids16(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes16.cpp:283:{
+  pes16.cpp:285:
+  pes16.cpp:286:        team.id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:287:
+> pes16.cpp:288:        current_byte+=0xE;
+  pes16.cpp:289:        team.b_edit_name = read_dataOld(0, 1, current_byte, pDescriptorOld);
+//(pDescriptorOld->data[current_byte]) & 1;
+  pes16.cpp:290:
+> pes16.cpp:291:        current_byte+=0x82;
+  pes16.cpp:292:
+  pes16.cpp:293:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorOld->data[current_byte]), -1, team.name, 0x46);
+> pes16.cpp:294:        current_byte+=0x46;
+  pes16.cpp:295:
+  pes16.cpp:296:        strncpy_s(team.short_name, 0x4, (const char*)&(pDescriptorOld->data[current_byte]), 0x4 - 1);
+  pes16.cpp:297:        //Remove non alphanumeric characters
+  pes16.cpp:298:        for(int ii=0;ii<4;ii++)
+  pes16.cpp:299:        {
+  pes16.cpp:300:                if((int)team.short_name[ii]<33 || (int)team.short_name[ii]>95)
+  pes16.cpp:301:                        team.short_name[ii]=(char)0;
+  pes16.cpp:302:        }
+> pes16.cpp:303:        current_byte+=0x4;
+  pes16.cpp:304:
+> pes16.cpp:305:        current_byte+=0xEA;
+  pes16.cpp:306:}
+  pes16.cpp:307:
+  pes16.cpp:308:
+  pes16.cpp:309:void fill_team_rosters16(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes16.cpp:310:{
+  pes16.cpp:352:        {
+  pes16.cpp:353:                if(team_id == gteams[t_ind].id) break;
+  pes16.cpp:354:        }
+> pes16.cpp:355:        current_byte+=0x1FA;
+  pes16.cpp:356:
+  pes16.cpp:357:        gteams[t_ind].captain_ind = (char)pDescriptorOld->data[current_byte];
+> pes16.cpp:358:        current_byte+=0xA;
+  pes16.cpp:359:}
+  pes16.cpp:360:
+  pes16.cpp:361://-------------------------------------------------------------------------------------
+  pes16.cpp:362:
+  pes16.cpp:363:
+  pes16.cpp:367:
+  pes16.cpp:368:        if(!player.b_changed || !player.b_show)
+  pes16.cpp:369:        {
+> pes16.cpp:370:                current_byte += 0x70;
+  pes16.cpp:371:                appear_byte += 0x48;
+  pes16.cpp:372:                return;
+  pes16.cpp:373:        }
+  pes16.cpp:374:
+  pes16.cpp:375://      unsigned char test[4];
+  pes16.cpp:377:
+  pes16.cpp:378:        write_dataOld(player.id, 0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:379:
+> pes16.cpp:380:        current_byte += 0x6;
+  pes16.cpp:381:
+  pes16.cpp:382:        write_dataOld(player.nation, 0, 2 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:383:
+  pes16.cpp:384:        pDescriptorOld->data[current_byte] = player.height;
+  pes16.cpp:385:        current_byte++;
+  pes16.cpp:550:        memset(nameBuffer, 0, sizeof(nameBuffer));
+  pes16.cpp:551:        int len = WideCharToMultiByte(CP_UTF8, 0, player.name, -1, (LPSTR)nameBuffer, 45, NULL, NULL); //set
+byte limit to 45 to ensure null termination of truncated strings
+  pes16.cpp:552:        memcpy(&(pDescriptorOld->data[current_byte]), nameBuffer, 46);
+> pes16.cpp:553:        current_byte+=46;
+  pes16.cpp:554:
+  pes16.cpp:555:        char tbuffer[16];
+  pes16.cpp:556:        memset(tbuffer, 0, 16);
+  pes16.cpp:557:        //strcpy_s(tbuffer, 16, player.shirt_name);
+  pes16.cpp:558:        strncpy_s(tbuffer, 16, player.shirt_name, 16-1);
+  pes16.cpp:559:        memcpy(&(pDescriptorOld->data[current_byte]), tbuffer, 16);
+  pes16.cpp:560:        //strcpy_s((char *)&(pDescriptorOld->data[current_byte]), 16, player.shirt_name); //FIX THIS
+> pes16.cpp:561:        current_byte+=16;
+  pes16.cpp:562:
+  pes16.cpp:563:        //Appearance entries
+  pes16.cpp:564:        //playerID
+  pes16.cpp:565:        appear_byte+=4;
+  pes16.cpp:566:
+  pes16.cpp:647:
+  pes16.cpp:648:        if(!team.b_changed || !team.b_show)
+  pes16.cpp:649:        {
+> pes16.cpp:650:                current_byte += 0x1C8;
+  pes16.cpp:651:                return;
+  pes16.cpp:652:        }
+  pes16.cpp:653:
+  pes16.cpp:654:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld); //0x0-0x4
+  pes16.cpp:655:
+> pes16.cpp:656:        current_byte+=0xE;
+  pes16.cpp:657:        write_dataOld(team.b_edit_name, 0, 1, current_byte, pDescriptorOld); //0x12:0
+  pes16.cpp:658:
+> pes16.cpp:659:        current_byte+=0x82;
+  pes16.cpp:660:        /*Check these before enabling:
+> pes16.cpp:661:        current_byte+=0x6; //0x18
+  pes16.cpp:662:        write_dataOld(teams.strip1Number, 0, 1 * 8, current_byte, pDescriptorOld); //0x18
+  pes16.cpp:663:        write_dataOld(teams.strip1TeamId, 0, 3 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:664:        write_dataOld(teams.strip2Number, 0, 1 * 8, current_byte, pDescriptorOld); //0x1C
+  pes16.cpp:665:        write_dataOld(teams.strip2TeamId, 0, 3 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:666:        write_dataOld(teams.strip3Number, 0, 1 * 8, current_byte, pDescriptorOld); //0x20
+  pes16.cpp:676:        write_dataOld(teams.strip8Number, 0, 1 * 8, current_byte, pDescriptorOld); //0x3C
+  pes16.cpp:677:        write_dataOld(teams.strip8TeamId, 0, 3 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:678:
+> pes16.cpp:679:        current_byte+=0x54; //0x94
+  pes16.cpp:680:        */
+  pes16.cpp:681:        WideCharToMultiByte(CP_UTF8, 0, team.name, -1, (LPSTR)&(pDescriptorOld->data[current_byte]), 0x46,
+NULL, NULL);
+> pes16.cpp:682:        current_byte+=0x46;
+  pes16.cpp:683:
+  pes16.cpp:684:        strncpy_s((char*)&(pDescriptorOld->data[current_byte]), 0x4, team.short_name, 0x4 - 1);
+> pes16.cpp:685:        current_byte+=0x4;
+  pes16.cpp:686:
+> pes16.cpp:687:        current_byte+=0xEA;
+  pes16.cpp:688:}
+  pes16.cpp:689:
+  pes16.cpp:690:
+  pes16.cpp:691:void extract_teamplayer_info16(team_entry team, int &current_byte, void* ghdescriptor)
+  pes16.cpp:692:{
+  pes16.cpp:694:
+  pes16.cpp:695:        if(!team.b_changed || !team.b_show)
+  pes16.cpp:696:        {
+> pes16.cpp:697:                current_byte += 0xA4;
+  pes16.cpp:698:                return;
+  pes16.cpp:699:        }
+  pes16.cpp:700:
+  pes16.cpp:701:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:702:
+  pes16.cpp:719:
+  pes16.cpp:720:        if(!team.b_changed)
+  pes16.cpp:721:        {
+> pes16.cpp:722:                current_byte += 0x208;
+  pes16.cpp:723:                return;
+  pes16.cpp:724:        }
+  pes16.cpp:725:
+  pes16.cpp:726:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:727:
+> pes16.cpp:728:        current_byte+=0x1FA;
+  pes16.cpp:729:        pDescriptorOld->data[current_byte] = team.captain_ind;
+  pes16.cpp:730:
+> pes16.cpp:731:        current_byte+=0xA;
+  pes16.cpp:732:}
+  pes17.cpp:6:
+  pes17.cpp:7:  players.id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:8:
+> pes17.cpp:9:  current_byte += 0x6;
+  pes17.cpp:10:
+  pes17.cpp:11: players.nation = read_dataOld(0, 2 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:12:
+  pes17.cpp:13: players.height = pDescriptorOld->data[current_byte];
+  pes17.cpp:14: current_byte++;
+  pes17.cpp:179:        current_byte++;
+  pes17.cpp:180:
+  pes17.cpp:181:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorOld->data[current_byte]), -1, players.name, 46);
+> pes17.cpp:182:        current_byte+=46;
+  pes17.cpp:183:
+  pes17.cpp:184:        strncpy_s(players.shirt_name, 18, (const char*)&(pDescriptorOld->data[current_byte]), 18 - 1);
+> pes17.cpp:185:        current_byte+=18;
+  pes17.cpp:186:
+  pes17.cpp:187:        //Appearance entries
+  pes17.cpp:188:        //playerID
+> pes17.cpp:189:        current_byte+=4;
+  pes17.cpp:190:
+  pes17.cpp:191:        players.b_edit_face = read_dataOld(0, 1, current_byte, pDescriptorOld);
+  pes17.cpp:192:        players.b_edit_hair = read_dataOld(1, 1, current_byte, pDescriptorOld);
+  pes17.cpp:193:        players.b_edit_phys = read_dataOld(2, 1, current_byte, pDescriptorOld);
+  pes17.cpp:194:        players.b_edit_strip = read_dataOld(3, 1, current_byte, pDescriptorOld);
+  pes17.cpp:247:        current_byte++;
+  pes17.cpp:248:
+  pes17.cpp:249:        //Unknown E
+> pes17.cpp:250:        current_byte+=22;
+  pes17.cpp:251:
+  pes17.cpp:252:        players.skin_col = read_dataOld(0, 3, current_byte, pDescriptorOld);
+  pes17.cpp:253:        //Unknown F
+  pes17.cpp:254:        current_byte++;
+  pes17.cpp:255:
+  pes17.cpp:256:        //Unknown G
+> pes17.cpp:257:        current_byte+=18;
+  pes17.cpp:258:
+  pes17.cpp:259:        players.iris_col = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:260:        //Unknown H
+  pes17.cpp:261:        current_byte++;
+  pes17.cpp:262:
+  pes17.cpp:263:        //Unknown I
+> pes17.cpp:264:        current_byte+=7;
+  pes17.cpp:265:}
+  pes17.cpp:266:
+  pes17.cpp:267:
+  pes17.cpp:268:void fill_team_ids17(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes17.cpp:269:{
+  pes17.cpp:271:
+  pes17.cpp:272:        team.id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:273:
+> pes17.cpp:274:        current_byte+=0xE; //0x12
+  pes17.cpp:275:        team.color1_red = read_dataOld(0, 6, current_byte, pDescriptorOld); //0x12:0 - 0x12:5
+  pes17.cpp:276:
+  pes17.cpp:277:        team.color1_green = read_dataOld(6, 6, current_byte, pDescriptorOld); //0x12:6 - 0x13:3
+  pes17.cpp:278:
+  pes17.cpp:279:        current_byte++; //0x14
+  pes17.cpp:285:
+  pes17.cpp:286:        team.color1_blue = read_dataOld(2, 6, current_byte, pDescriptorOld); //0x16:2 - 0x16:7
+  pes17.cpp:287:
+> pes17.cpp:288:        current_byte+=0x2; //0x19
+  pes17.cpp:289:        team.b_edit_name = read_dataOld(4, 1, current_byte, pDescriptorOld); //0x19:4
+  pes17.cpp:290:
+  pes17.cpp:291:        current_byte++; //0x1A
+  pes17.cpp:292:        team.b_edit_strip = read_dataOld(5, 1, current_byte, pDescriptorOld); //0x1A:5
+  pes17.cpp:293:
+> pes17.cpp:294:        current_byte += 2; //0x1C
+  pes17.cpp:295:        for (int ii = 0; ii < 10; ii++)
+  pes17.cpp:296:        {
+  pes17.cpp:297:                team.stripBlock[ii].stripNumber = read_dataOld(0, 1 * 8, current_byte, pDescriptorOld); //Loop from
+0x1C to 0x40
+  pes17.cpp:298:                team.stripBlock[ii].stripTeamId = read_dataOld(0, 3 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:299:        }
+  pes17.cpp:300:
+> pes17.cpp:301:        current_byte += 0x54;
+  pes17.cpp:302:
+  pes17.cpp:303:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorOld->data[current_byte]), -1, team.name, 0x46);
+//0x98
+> pes17.cpp:304:        current_byte+=0x46;
+  pes17.cpp:305:
+  pes17.cpp:306:        strncpy_s(team.short_name, 0x4, (const char*)&(pDescriptorOld->data[current_byte]), 0x4 - 1); //0xDE
+  pes17.cpp:307:        //Remove non alphanumeric characters
+  pes17.cpp:308:        for(int ii=0;ii<4;ii++)
+  pes17.cpp:309:        {
+  pes17.cpp:310:                if((int)team.short_name[ii]<33 || (int)team.short_name[ii]>95)
+  pes17.cpp:311:                        team.short_name[ii]=(char)0;
+  pes17.cpp:312:        }
+> pes17.cpp:313:        current_byte+=0x4; //48-90
+  pes17.cpp:314:
+> pes17.cpp:315:        current_byte+=0xFE;
+  pes17.cpp:316:}
+  pes17.cpp:317:
+  pes17.cpp:318:
+  pes17.cpp:319:void fill_team_rosters17(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes17.cpp:320:{
+  pes17.cpp:362:        {
+  pes17.cpp:363:                if(team_id == gteams[t_ind].id) break;
+  pes17.cpp:364:        }
+> pes17.cpp:365:        current_byte+=0x1E0;
+  pes17.cpp:366:
+  pes17.cpp:367:        //Starting lineup
+  pes17.cpp:368:        for(int ii=0; ii<11; ii++)
+  pes17.cpp:369:        {
+  pes17.cpp:370:                gteams[t_ind].starting11[ii] = pDescriptorOld->data[current_byte];
+  pes17.cpp:371:                current_byte++;
+  pes17.cpp:372:        }
+> pes17.cpp:373:        current_byte+=0x1E;
+  pes17.cpp:374:
+  pes17.cpp:375:        gteams[t_ind].captain_ind = (char)pDescriptorOld->data[current_byte];
+> pes17.cpp:376:        current_byte+=0x67;
+  pes17.cpp:377:}
+  pes17.cpp:378:
+  pes17.cpp:379://-----------------------------------------------------------------------------------------------------
+----
+  pes17.cpp:380:
+  pes17.cpp:381:
+  pes17.cpp:385:
+  pes17.cpp:386:        if(!player.b_changed)
+  pes17.cpp:387:        {
+> pes17.cpp:388:                current_byte += 0xBC;
+  pes17.cpp:389:                return;
+  pes17.cpp:390:        }
+  pes17.cpp:391:
+  pes17.cpp:392://      unsigned char test[4];
+  pes17.cpp:393:        int cb=0;
+  pes17.cpp:394:
+  pes17.cpp:395:        write_dataOld(player.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:396:
+> pes17.cpp:397:        current_byte += 0x6;
+  pes17.cpp:398:
+  pes17.cpp:399:        write_dataOld(player.nation, 0, 2 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:400:
+  pes17.cpp:401:        write_dataOld(player.height, 0, 8, current_byte, pDescriptorOld);
+  pes17.cpp:402:
+  pes17.cpp:566:        memset(nameBuffer, 0, sizeof(nameBuffer));
+  pes17.cpp:567:        int len = WideCharToMultiByte(CP_UTF8, 0, player.name, -1, (LPSTR)nameBuffer, 45, NULL, NULL); //set
+byte limit to 45 to ensure null termination of truncated strings
+  pes17.cpp:568:        memcpy(&(pDescriptorOld->data[current_byte]), nameBuffer, 46);
+> pes17.cpp:569:        current_byte += 46;
+  pes17.cpp:570:
+  pes17.cpp:571:        strncpy_s((char *)&(pDescriptorOld->data[current_byte]), 18, player.shirt_name, 18-1);
+> pes17.cpp:572:        current_byte+=18;
+  pes17.cpp:573:
+  pes17.cpp:574:        //Appearance entries
+  pes17.cpp:575:        //playerID
+> pes17.cpp:576:        current_byte+=4;
+  pes17.cpp:577:
+  pes17.cpp:578:        write_dataOld(player.b_edit_face, 0, 1, current_byte, pDescriptorOld);
+  pes17.cpp:579:        write_dataOld(player.b_edit_hair, 1, 1, current_byte, pDescriptorOld);
+  pes17.cpp:580:        write_dataOld(player.b_edit_phys, 2, 1, current_byte, pDescriptorOld);
+  pes17.cpp:581:        write_dataOld(player.b_edit_strip, 3, 1, current_byte, pDescriptorOld);
+  pes17.cpp:634:        current_byte++;
+  pes17.cpp:635:
+  pes17.cpp:636:        //Unknown E - 22 bytes
+> pes17.cpp:637:        current_byte+=22;
+  pes17.cpp:638:
+  pes17.cpp:639:        write_dataOld(player.skin_col, 0, 3, current_byte, pDescriptorOld);
+  pes17.cpp:640:        //Unknown F - 5/5
+  pes17.cpp:641:        current_byte++;
+  pes17.cpp:642:
+  pes17.cpp:643:        //Unknown G - 18 bytes
+> pes17.cpp:644:        current_byte+=18;
+  pes17.cpp:645:
+  pes17.cpp:646:        write_dataOld(player.iris_col, 0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:647:        //Unknown H - 4/4
+  pes17.cpp:648:        current_byte++;
+  pes17.cpp:649:
+  pes17.cpp:650:        //Unknown I - 7 bytes
+> pes17.cpp:651:        current_byte+=7;
+  pes17.cpp:652:}
+  pes17.cpp:653:
+  pes17.cpp:654:
+  pes17.cpp:655:void extract_team_info17(team_entry team, int &current_byte, void* ghdescriptor)
+  pes17.cpp:656:{
+  pes17.cpp:658:
+  pes17.cpp:659:        if(!team.b_changed)
+  pes17.cpp:660:        {
+> pes17.cpp:661:                current_byte += 0x1E0;
+  pes17.cpp:662:                return;
+  pes17.cpp:663:        }
+  pes17.cpp:664:
+  pes17.cpp:665:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld); //0 - 4
+  pes17.cpp:666:
+> pes17.cpp:667:        current_byte += 0xE; //0x12
+  pes17.cpp:668:        write_dataOld(team.color1_red, 0, 6, current_byte, pDescriptorOld); //0x12:0 - 0x12:5
+  pes17.cpp:669:
+  pes17.cpp:670:        write_dataOld(team.color1_green, 6, 6, current_byte, pDescriptorOld); //0x12:6 - 0x13:3
+  pes17.cpp:671:
+  pes17.cpp:672:        current_byte++; //0x14
+  pes17.cpp:678:
+  pes17.cpp:679:        write_dataOld(team.color1_blue, 2, 6, current_byte, pDescriptorOld); //0x16:2 - 0x16:7
+  pes17.cpp:680:
+> pes17.cpp:681:        current_byte+=0x2; //0x19:0
+  pes17.cpp:682:        write_dataOld(team.b_edit_name, 4, 1, current_byte, pDescriptorOld); //0x19:4
+  pes17.cpp:683:
+  pes17.cpp:684:        current_byte++; //0x1A
+  pes17.cpp:685:        write_dataOld(team.b_edit_strip, 5, 1, current_byte, pDescriptorOld); //0x1A:5
+> pes17.cpp:686:        current_byte += 2; //0x1C
+  pes17.cpp:687:
+  pes17.cpp:688:        for (int ii = 0; ii < 10; ii++)
+  pes17.cpp:689:        {
+  pes17.cpp:690:                write_dataOld(team.stripBlock[ii].stripNumber, 0, 1 * 8, current_byte, pDescriptorOld); //Loop from
+0x1C to 0x40
+  pes17.cpp:691:                write_dataOld(team.stripBlock[ii].stripTeamId, 0, 3 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:692:        }
+  pes17.cpp:693:
+> pes17.cpp:694:        current_byte += 0x54;
+  pes17.cpp:695:
+  pes17.cpp:696:        WideCharToMultiByte(CP_UTF8, 0, team.name, -1, (LPSTR)&(pDescriptorOld->data[current_byte]), 0x46,
+NULL, NULL); //0x98
+> pes17.cpp:697:        current_byte+=0x46;
+  pes17.cpp:698:
+  pes17.cpp:699:        strncpy_s((char*)&(pDescriptorOld->data[current_byte]), 0x4, team.short_name, 0x4 - 1); //0xDE
+> pes17.cpp:700:        current_byte+=0x4;
+  pes17.cpp:701:
+> pes17.cpp:702:        current_byte+=0xFE;
+  pes17.cpp:703:}
+  pes17.cpp:704:
+  pes17.cpp:705:void extract_teamplayer_info17(team_entry team, int &current_byte, void* ghdescriptor)
+  pes17.cpp:706:{
+  pes17.cpp:707:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:708:
+  pes17.cpp:709:        if(!team.b_changed)
+  pes17.cpp:710:        {
+> pes17.cpp:711:                current_byte += 0xA4;
+  pes17.cpp:712:                return;
+  pes17.cpp:713:        }
+  pes17.cpp:714:
+  pes17.cpp:715:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:716:
+  pes17.cpp:733:
+  pes17.cpp:734:        if(!team.b_changed)
+  pes17.cpp:735:        {
+> pes17.cpp:736:                current_byte += 0x274;
+  pes17.cpp:737:                return;
+  pes17.cpp:738:        }
+  pes17.cpp:739:
+  pes17.cpp:740:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:741:
+> pes17.cpp:742:        current_byte+=0x209;
+  pes17.cpp:743:        pDescriptorOld->data[current_byte] = team.captain_ind;
+  pes17.cpp:744:
+> pes17.cpp:745:        current_byte+=0x67;
+  pes17.cpp:746:}
+  pes18.cpp:13: players.id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:14: current_byte++;
+  pes18.cpp:15:
+> pes18.cpp:16: current_byte += 0x6;
+  pes18.cpp:17:
+  pes18.cpp:18: players.nation = pDescriptorNew->data[current_byte];
+  pes18.cpp:19: current_byte++;
+  pes18.cpp:20: players.nation += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:21: current_byte++;
+  pes18.cpp:144:
+  pes18.cpp:145:        players.mo_armr = (pDescriptorNew->data[current_byte] >> 2) & 7;
+  pes18.cpp:146:
+> pes18.cpp:147://      if(current_byte==138525 || current_byte==138526)
+  pes18.cpp:148://      {
+  pes18.cpp:149://              int test3=0;
+  pes18.cpp:150://      }
+  pes18.cpp:151:
+  pes18.cpp:152:        players.mo_ck = pDescriptorNew->data[current_byte] >> 5;
+  pes18.cpp:259:        current_byte++;
+  pes18.cpp:260:
+  pes18.cpp:261:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorNew->data[current_byte]), -1, players.name, 46);
+> pes18.cpp:262:        current_byte+=46;
+  pes18.cpp:263:
+  pes18.cpp:264:        strncpy_s(players.shirt_name, 18, (const char*)&(pDescriptorNew->data[current_byte]), 18 - 1);
+> pes18.cpp:265:        current_byte+=18;
+  pes18.cpp:266:
+  pes18.cpp:267:        //Appearance entries
+  pes18.cpp:268:        //playerID
+> pes18.cpp:269:        current_byte+=4;
+  pes18.cpp:270:
+  pes18.cpp:271:        players.b_edit_face = pDescriptorNew->data[current_byte] & 1;
+  pes18.cpp:272:        players.b_edit_hair = (pDescriptorNew->data[current_byte] >> 1) & 1;
+  pes18.cpp:273:        players.b_edit_phys = (pDescriptorNew->data[current_byte] >> 2) & 1;
+  pes18.cpp:274:        players.b_edit_strip = (pDescriptorNew->data[current_byte] >> 3) & 1;
+  pes18.cpp:354:        current_byte++;
+  pes18.cpp:355:
+  pes18.cpp:356:        //Unknown E
+> pes18.cpp:357:        current_byte+=22;
+  pes18.cpp:358:
+  pes18.cpp:359:        players.skin_col = pDescriptorNew->data[current_byte] & 7;
+  pes18.cpp:360:        //No custom skin in 18
+  pes18.cpp:361:        if(players.skin_col==7)
+  pes18.cpp:362:        {
+  pes18.cpp:367:        current_byte++;
+  pes18.cpp:368:
+  pes18.cpp:369:        //Unknown G
+> pes18.cpp:370:        current_byte+=18;
+  pes18.cpp:371:
+  pes18.cpp:372:        players.iris_col = pDescriptorNew->data[current_byte] & 15;
+  pes18.cpp:373:        //Unknown H
+  pes18.cpp:374:        current_byte++;
+  pes18.cpp:375:
+  pes18.cpp:376:        //Unknown I
+> pes18.cpp:377:        current_byte+=7;
+  pes18.cpp:378:}
+  pes18.cpp:379:
+  pes18.cpp:380:
+  pes18.cpp:381:void fill_team_ids18(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes18.cpp:382:{
+  pes18.cpp:391:        team.id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:392:        current_byte++; //4
+  pes18.cpp:393:
+> pes18.cpp:394:        current_byte+=0xE; //12
+  pes18.cpp:395:        team.color1_red = (pDescriptorNew->data[current_byte]) & 63;
+  pes18.cpp:396:
+  pes18.cpp:397:        team.color1_green = (pDescriptorNew->data[current_byte] >> 6);
+  pes18.cpp:398:        current_byte++; //13
+  pes18.cpp:399:        team.color1_green += (pDescriptorNew->data[current_byte] << 2) & 63;
+  pes18.cpp:412:        team.color1_blue = (pDescriptorNew->data[current_byte] >> 2);
+  pes18.cpp:413:
+  pes18.cpp:414:
+> pes18.cpp:415:        //current_byte+=0x94;
+> pes18.cpp:416:        current_byte+=0x3; //19
+  pes18.cpp:417:        team.b_edit_name = (pDescriptorNew->data[current_byte] >> 4) & 1;
+  pes18.cpp:418:
+> pes18.cpp:419:        current_byte+=0x7F;
+  pes18.cpp:420:
+  pes18.cpp:421:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorNew->data[current_byte]), -1, team.name, 0x46);
+> pes18.cpp:422:        current_byte+=0x46;
+  pes18.cpp:423:
+  pes18.cpp:424:        strncpy_s(team.short_name, 0x4, (const char*)&(pDescriptorNew->data[current_byte]), 0x4 - 1);
+  pes18.cpp:425:        //Remove non alphanumeric characters
+  pes18.cpp:426:        for(int ii=0;ii<4;ii++)
+  pes18.cpp:427:        {
+  pes18.cpp:428:                if((int)team.short_name[ii]<33 || (int)team.short_name[ii]>95)
+  pes18.cpp:429:                        team.short_name[ii]=(char)0;
+  pes18.cpp:430:        }
+> pes18.cpp:431:        current_byte+=0x4;
+  pes18.cpp:432:
+> pes18.cpp:433:        current_byte+=0xFE;
+  pes18.cpp:434:}
+  pes18.cpp:435:
+  pes18.cpp:436:
+  pes18.cpp:437:void fill_team_rosters18(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes18.cpp:438:{
+  pes18.cpp:501:        {
+  pes18.cpp:502:                if(team_id == gteams[t_ind].id) break;
+  pes18.cpp:503:        }
+> pes18.cpp:504:        //current_byte+=0x209;
+> pes18.cpp:505:        current_byte+=0x1E0;
+  pes18.cpp:506:
+  pes18.cpp:507:        //Starting lineup
+  pes18.cpp:508:        for(int ii=0; ii<11; ii++)
+  pes18.cpp:509:        {
+  pes18.cpp:510:                gteams[t_ind].starting11[ii] = pDescriptorNew->data[current_byte];
+  pes18.cpp:511:                current_byte++;
+  pes18.cpp:512:        }
+> pes18.cpp:513:        current_byte+=0x1E;
+  pes18.cpp:514:
+  pes18.cpp:515:        gteams[t_ind].captain_ind = (char)pDescriptorNew->data[current_byte];
+> pes18.cpp:516:        current_byte+=0x67;
+  pes18.cpp:517:}
+  pes18.cpp:518:
+  pes18.cpp:519://-----------------------------------------------------------------------------------------------------
+----
+  pes18.cpp:520:
+  pes18.cpp:521:
+  pes18.cpp:525:
+  pes18.cpp:526:        if(!player.b_changed)
+  pes18.cpp:527:        {
+> pes18.cpp:528:                current_byte += 0xBC;
+  pes18.cpp:529:                return;
+  pes18.cpp:530:        }
+  pes18.cpp:531:
+  pes18.cpp:532://      unsigned char test[4];
+  pes18.cpp:533:        int cb=0;
+  pes18.cpp:541:        pDescriptorNew->data[current_byte] = (player.id >> 24) & 255;
+  pes18.cpp:542:        current_byte++;
+  pes18.cpp:543:
+> pes18.cpp:544:        current_byte += 0x6;
+  pes18.cpp:545:
+  pes18.cpp:546:        pDescriptorNew->data[current_byte] = player.nation & 255;
+  pes18.cpp:547:        current_byte++;
+  pes18.cpp:548:        pDescriptorNew->data[current_byte] = (player.nation >> 8) & 255;
+  pes18.cpp:549:        current_byte++;
+  pes18.cpp:772:        memset(nameBuffer, 0, sizeof(nameBuffer));
+  pes18.cpp:773:        int len = WideCharToMultiByte(CP_UTF8, 0, player.name, -1, (LPSTR)nameBuffer, 45, NULL, NULL); //set
+byte limit to 45 to ensure null termination of truncated strings
+  pes18.cpp:774:        memcpy(&(pDescriptorNew->data[current_byte]), nameBuffer, 46);
+> pes18.cpp:775:        current_byte += 46;
+  pes18.cpp:776:
+  pes18.cpp:777:        //strcpy_s((char *)&(pDescriptorNew->data[current_byte]), 18, player.shirt_name); //FIX THIS
+  pes18.cpp:778:        strncpy_s((char *)&(pDescriptorNew->data[current_byte]), 18, player.shirt_name, 18-1);
+> pes18.cpp:779:        current_byte+=18;
+  pes18.cpp:780:
+  pes18.cpp:781:        //Appearance entries
+  pes18.cpp:782:        //playerID
+> pes18.cpp:783:        current_byte+=4;
+  pes18.cpp:784:
+  pes18.cpp:785:        pDescriptorNew->data[current_byte] = player.b_edit_face; //1/1
+  pes18.cpp:786:        pDescriptorNew->data[current_byte] += player.b_edit_hair << 1; //1/1
+  pes18.cpp:787:        pDescriptorNew->data[current_byte] += player.b_edit_phys << 2; //1/1
+  pes18.cpp:788:        pDescriptorNew->data[current_byte] += player.b_edit_strip << 3; //1/1
+  pes18.cpp:868:        current_byte++;
+  pes18.cpp:869:
+  pes18.cpp:870:        //Unknown E - 22 bytes
+> pes18.cpp:871:        current_byte+=22;
+  pes18.cpp:872:
+  pes18.cpp:873:        //No custom in 18
+  pes18.cpp:874:        if(player.skin_col==7) player.skin_col=0;
+  pes18.cpp:875:        pDescriptorNew->data[current_byte] = player.skin_col; //3/3
+  pes18.cpp:876:        //Unknown F - 5/5
+  pes18.cpp:877:        current_byte++;
+  pes18.cpp:878:
+  pes18.cpp:879:        //Unknown G - 18 bytes
+> pes18.cpp:880:        current_byte+=18;
+  pes18.cpp:881:
+  pes18.cpp:882:        pDescriptorNew->data[current_byte] = player.iris_col; //4/4
+  pes18.cpp:883:        //Unknown H - 4/4
+  pes18.cpp:884:        current_byte++;
+  pes18.cpp:885:
+  pes18.cpp:886:        //Unknown I - 7 bytes
+> pes18.cpp:887:        current_byte+=7;
+  pes18.cpp:888:}
+  pes18.cpp:889:
+  pes18.cpp:890:
+  pes18.cpp:891:void extract_team_info18(team_entry team, int &current_byte, void* ghdescriptor)
+  pes18.cpp:892:{
+  pes18.cpp:894:
+  pes18.cpp:895:        if(!team.b_changed)
+  pes18.cpp:896:        {
+> pes18.cpp:897:                current_byte += 0x1E0;
+  pes18.cpp:898:                return;
+  pes18.cpp:899:        }
+  pes18.cpp:900:
+  pes18.cpp:901:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes18.cpp:902:        current_byte++; //1
+  pes18.cpp:907:        pDescriptorNew->data[current_byte] = (team.id >> 24) & 255; //8/32
+  pes18.cpp:908:        current_byte++; //4
+  pes18.cpp:909:
+> pes18.cpp:910:        current_byte+=0xE; //12
+  pes18.cpp:911:        pDescriptorNew->data[current_byte] = team.color1_red;
+  pes18.cpp:912:
+  pes18.cpp:913:        pDescriptorNew->data[current_byte] += (team.color1_green << 6);
+  pes18.cpp:914:        current_byte++; //13
+  pes18.cpp:915:        pDescriptorNew->data[current_byte] = (pDescriptorNew->data[current_byte] & (~15)) |
+(team.color1_green >> 2);
+  pes18.cpp:927:
+  pes18.cpp:928:        pDescriptorNew->data[current_byte] += (team.color1_blue << 2) & 255;
+  pes18.cpp:929:
+> pes18.cpp:930:        current_byte+=0x3; //19
+  pes18.cpp:931:        pDescriptorNew->data[current_byte] = pDescriptorNew->data[current_byte] | (team.b_edit_name << 4);
+  pes18.cpp:932:
+> pes18.cpp:933:        current_byte+=0x7F;
+  pes18.cpp:934:
+  pes18.cpp:935:        WideCharToMultiByte(CP_UTF8, 0, team.name, -1, (LPSTR)&(pDescriptorNew->data[current_byte]), 0x46,
+NULL, NULL);
+> pes18.cpp:936:        current_byte+=0x46;
+  pes18.cpp:937:
+  pes18.cpp:938:        strncpy_s((char*)&(pDescriptorNew->data[current_byte]), 0x4, team.short_name, 0x4 - 1);
+> pes18.cpp:939:        current_byte+=0x4;
+  pes18.cpp:940:
+> pes18.cpp:941:        current_byte+=0xFE;
+  pes18.cpp:942:}
+  pes18.cpp:943:
+  pes18.cpp:944:void extract_teamplayer_info18(team_entry team, int &current_byte, void* ghdescriptor)
+  pes18.cpp:945:{
+  pes18.cpp:946:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:947:
+  pes18.cpp:948:        if(!team.b_changed)
+  pes18.cpp:949:        {
+> pes18.cpp:950:                current_byte += 0xA4;
+  pes18.cpp:951:                return;
+  pes18.cpp:952:        }
+  pes18.cpp:953:
+  pes18.cpp:954:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes18.cpp:955:        current_byte++;
+  pes18.cpp:987:
+  pes18.cpp:988:        if(!team.b_changed)
+  pes18.cpp:989:        {
+> pes18.cpp:990:                current_byte += 0x274;
+  pes18.cpp:991:                return;
+  pes18.cpp:992:        }
+  pes18.cpp:993:
+  pes18.cpp:994:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes18.cpp:995:        current_byte++;
+  pes18.cpp:1000:       pDescriptorNew->data[current_byte] = (team.id >> 24) & 255; //8/32
+  pes18.cpp:1001:       current_byte++;
+  pes18.cpp:1002:
+> pes18.cpp:1003:       current_byte+=0x209;
+  pes18.cpp:1004:       pDescriptorNew->data[current_byte] = team.captain_ind;
+  pes18.cpp:1005:
+> pes18.cpp:1006:       current_byte+=0x67;
+  pes18.cpp:1007:}
+  pes19.cpp:14: players.id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:15: current_byte++;*/
+  pes19.cpp:16:
+> pes19.cpp:17: current_byte += 0x4;
+  pes19.cpp:18:
+  pes19.cpp:19: players.nation = pDescriptorNew->data[current_byte];
+  pes19.cpp:20: current_byte++;
+  pes19.cpp:21: players.nation += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:22: current_byte++;
+  pes19.cpp:159:        current_byte++; //Unknown G - 8/8
+  pes19.cpp:160:
+  pes19.cpp:161:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorNew->data[current_byte]), -1, players.name, 46);
+> pes19.cpp:162:        current_byte+=46;
+  pes19.cpp:163:
+  pes19.cpp:164:        strncpy_s(players.shirt_name, 18, (const char*)&(pDescriptorNew->data[current_byte]), 18 - 1);
+> pes19.cpp:165:        current_byte+=18;
+  pes19.cpp:166:
+  pes19.cpp:167:        //Appearance entries
+  pes19.cpp:168:        //playerID
+> pes19.cpp:169:        current_byte+=4;
+  pes19.cpp:170:        //0x04:0
+  pes19.cpp:171:        players.b_edit_face = pDescriptorNew->data[current_byte] & 1;
+  pes19.cpp:172:        players.b_edit_hair = (pDescriptorNew->data[current_byte] >> 1) & 1;
+  pes19.cpp:173:        players.b_edit_phys = (pDescriptorNew->data[current_byte] >> 2) & 1;
+  pes19.cpp:174:        players.b_edit_strip = (pDescriptorNew->data[current_byte] >> 3) & 1;
+  pes19.cpp:253:        current_byte++;
+  pes19.cpp:254:
+  pes19.cpp:255:        //Unknown E
+> pes19.cpp:256:        current_byte+=22;
+  pes19.cpp:257:        //0x2D:0
+  pes19.cpp:258:        players.skin_col = pDescriptorNew->data[current_byte] & 7;
+  pes19.cpp:259:        //No custom skin in 18
+  pes19.cpp:260:        if(players.skin_col==7)
+  pes19.cpp:261:        {
+  pes19.cpp:266:        current_byte++;
+  pes19.cpp:267:
+  pes19.cpp:268:        //Unknown G
+> pes19.cpp:269:        current_byte+=18;
+  pes19.cpp:270:        //0x40:0
+  pes19.cpp:271:        players.iris_col = pDescriptorNew->data[current_byte] & 15;
+  pes19.cpp:272:        //Unknown H
+  pes19.cpp:273:        current_byte++;
+  pes19.cpp:274:
+  pes19.cpp:275:        //Unknown I
+> pes19.cpp:276:        current_byte+=7;
+  pes19.cpp:277:}
+  pes19.cpp:278:
+  pes19.cpp:279:
+  pes19.cpp:280:void fill_team_ids19(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes19.cpp:281:{
+  pes19.cpp:299:        team.manager_id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:300:        current_byte++; //4
+  pes19.cpp:301:
+> pes19.cpp:302:        current_byte+=2; //Team emblem
+  pes19.cpp:303:
+  pes19.cpp:304:        team.stadium_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:305:        current_byte++; //1
+  pes19.cpp:306:        team.stadium_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:307:        current_byte++; //2
+  pes19.cpp:308:
+> pes19.cpp:309:        current_byte+=0xA; //22
+  pes19.cpp:310:        team.color1_red = (pDescriptorNew->data[current_byte] >> 2);
+  pes19.cpp:311:
+  pes19.cpp:312:        current_byte++; //23
+  pes19.cpp:313:        team.color1_green = (pDescriptorNew->data[current_byte] & 63);
+  pes19.cpp:314:
+  pes19.cpp:321:        current_byte++; //25
+  pes19.cpp:322:        team.color2_blue += (pDescriptorNew->data[current_byte] << 2) & 63;
+  pes19.cpp:323:
+> pes19.cpp:324:        current_byte+=2; //27
+  pes19.cpp:325:        team.b_edit_stadium = (pDescriptorNew->data[current_byte] >> 6) & 64; //7th bit of byte 27
+  pes19.cpp:326:
+  pes19.cpp:327:        current_byte++; //28
+  pes19.cpp:328:        team.color1_blue = (pDescriptorNew->data[current_byte] & 63);
+  pes19.cpp:329:
+  pes19.cpp:331:        current_byte++; //29
+  pes19.cpp:332:        team.color2_red += (pDescriptorNew->data[current_byte] << 2) & 63;
+  pes19.cpp:333:
+> pes19.cpp:334:        current_byte+=0x3B;
+  pes19.cpp:335:
+  pes19.cpp:336:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorNew->data[current_byte]), -1, team.name, 0x46);
+> pes19.cpp:337:        current_byte+=0x46;
+  pes19.cpp:338:
+  pes19.cpp:339:        strncpy_s(team.short_name, 0x4, (const char*)&(pDescriptorNew->data[current_byte]), 0x4 - 1);
+> pes19.cpp:340:        current_byte+=0x4;
+  pes19.cpp:341:        //Remove non alphanumeric characters
+  pes19.cpp:342:        for(int ii=0;ii<4;ii++)
+  pes19.cpp:343:        {
+  pes19.cpp:344:                if((int)team.short_name[ii]<33 || (int)team.short_name[ii]>95)
+  pes19.cpp:345:                        team.short_name[ii]=(char)0;
+  pes19.cpp:346:        }
+  pes19.cpp:347:
+> pes19.cpp:348:        current_byte+=0xFE;
+  pes19.cpp:349:}
+  pes19.cpp:350:
+  pes19.cpp:351:
+  pes19.cpp:352:void fill_team_rosters19(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes19.cpp:353:{
+  pes19.cpp:422:        {
+  pes19.cpp:423:                if(team_id == gteams[t_ind].id) break;
+  pes19.cpp:424:        }
+> pes19.cpp:425:        //current_byte+=0x209;
+> pes19.cpp:426:        current_byte+=0x1E0;
+  pes19.cpp:427:
+  pes19.cpp:428:        //Starting lineup
+  pes19.cpp:429:        for(int ii=0; ii<11; ii++)
+  pes19.cpp:430:        {
+  pes19.cpp:431:                gteams[t_ind].starting11[ii] = pDescriptorNew->data[current_byte];
+  pes19.cpp:432:                current_byte++;
+  pes19.cpp:433:        }
+> pes19.cpp:434:        current_byte+=0x26;
+  pes19.cpp:435:        //Captain index at byte 0x215:
+  pes19.cpp:436:        gteams[t_ind].captain_ind = (char)pDescriptorNew->data[current_byte];
+> pes19.cpp:437:        current_byte+=0x5f;
+  pes19.cpp:438:}
+  pes19.cpp:439:
+  pes19.cpp:440://-----------------------------------------------------------------------------------------------------
+----
+  pes19.cpp:441:
+  pes19.cpp:442:
+  pes19.cpp:446:
+  pes19.cpp:447:        if(!player.b_changed)
+  pes19.cpp:448:        {
+> pes19.cpp:449:                current_byte += 0xBC;
+  pes19.cpp:450:                return;
+  pes19.cpp:451:        }
+  pes19.cpp:452:
+  pes19.cpp:453://      unsigned char test[4];
+  pes19.cpp:454:        int cb=0;
+  pes19.cpp:462:        pDescriptorNew->data[current_byte] = (player.id >> 24) & 255;
+  pes19.cpp:463:        current_byte++;
+  pes19.cpp:464:
+> pes19.cpp:465:        current_byte += 0x4;
+  pes19.cpp:466:
+  pes19.cpp:467:        pDescriptorNew->data[current_byte] = player.nation & 255;
+  pes19.cpp:468:        current_byte++;
+  pes19.cpp:469:        pDescriptorNew->data[current_byte] = (player.nation >> 8) & 255;
+  pes19.cpp:470:        current_byte++;
+  pes19.cpp:605:        memset(nameBuffer, 0, sizeof(nameBuffer));
+  pes19.cpp:606:        int len = WideCharToMultiByte(CP_UTF8, 0, player.name, -1, (LPSTR)nameBuffer, 45, NULL, NULL); //set
+byte limit to 45 to ensure null termination of truncated strings
+  pes19.cpp:607:        memcpy(&(pDescriptorNew->data[current_byte]), nameBuffer, 46);
+> pes19.cpp:608:        current_byte += 46;
+  pes19.cpp:609:
+  pes19.cpp:610:        //strcpy_s((char *)&(pDescriptorNew->data[current_byte]), 18, player.shirt_name); //FIX THIS
+  pes19.cpp:611:        //it is possible to get the truncating behavior by specifying count equal to the size of the
+destination array minus one:
+  pes19.cpp:612:        //it will copy the first count bytes and append the null terminator as always
+  pes19.cpp:613:        //strncpy_s(dst, sizeof dst, src, (sizeof dst)-1);
+  pes19.cpp:614:        strncpy_s((char *)&(pDescriptorNew->data[current_byte]), 18, player.shirt_name, 18-1);
+> pes19.cpp:615:        current_byte+=18;
+  pes19.cpp:616:
+  pes19.cpp:617:        //Appearance entries
+  pes19.cpp:618:        //playerID
+> pes19.cpp:619:        current_byte+=4;
+  pes19.cpp:620:
+  pes19.cpp:621:        pDescriptorNew->data[current_byte] = player.b_edit_face; //1/1
+  pes19.cpp:622:        pDescriptorNew->data[current_byte] += player.b_edit_hair << 1; //1/1
+  pes19.cpp:623:        pDescriptorNew->data[current_byte] += player.b_edit_phys << 2; //1/1
+  pes19.cpp:624:        pDescriptorNew->data[current_byte] += player.b_edit_strip << 3; //1/1
+  pes19.cpp:703:        current_byte++;
+  pes19.cpp:704:
+  pes19.cpp:705:        //Unknown E - 22 bytes
+> pes19.cpp:706:        current_byte+=22;
+  pes19.cpp:707:
+  pes19.cpp:708:        //No custom in 18
+  pes19.cpp:709:        if(player.skin_col==7) player.skin_col=0;
+  pes19.cpp:710:        write_data(player.skin_col,     0, 3, current_byte, pDescriptorNew);
+  pes19.cpp:711:        //Unknown F - 5/5
+  pes19.cpp:712:        current_byte++;
+  pes19.cpp:713:
+  pes19.cpp:714:        //Unknown G - 18 bytes
+> pes19.cpp:715:        current_byte+=18;
+  pes19.cpp:716:
+  pes19.cpp:717:        write_data(player.iris_col,     0, 4, current_byte, pDescriptorNew);
+  pes19.cpp:718:        //Unknown H - 4/4
+  pes19.cpp:719:        current_byte++;
+  pes19.cpp:720:
+  pes19.cpp:721:        //Unknown I - 7 bytes
+> pes19.cpp:722:        current_byte+=7;
+  pes19.cpp:723:}
+  pes19.cpp:724:
+  pes19.cpp:725:
+  pes19.cpp:726:void extract_team_info19(team_entry team, int &current_byte, void* ghdescriptor)
+  pes19.cpp:727:{
+  pes19.cpp:729:
+  pes19.cpp:730:        if(!team.b_changed)
+  pes19.cpp:731:        {
+> pes19.cpp:732:                current_byte += 0x1A0;
+  pes19.cpp:733:                return;
+  pes19.cpp:734:        }
+  pes19.cpp:735:
+  pes19.cpp:736:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes19.cpp:737:        current_byte++; //1
+  pes19.cpp:751:        pDescriptorNew->data[current_byte] = (team.manager_id >> 24) & 255; //8/32
+  pes19.cpp:752:        current_byte++; //4
+  pes19.cpp:753:
+> pes19.cpp:754:        current_byte+=2; //Team emblem
+  pes19.cpp:755:
+  pes19.cpp:756:        pDescriptorNew->data[current_byte] = team.stadium_id & 255; //8/32
+  pes19.cpp:757:        current_byte++; //1
+  pes19.cpp:758:        pDescriptorNew->data[current_byte] = (team.stadium_id >> 8) & 255; //8/32
+  pes19.cpp:759:        current_byte++; //2
+  pes19.cpp:760:
+> pes19.cpp:761:        current_byte+=0xA; //22
+  pes19.cpp:762:        pDescriptorNew->data[current_byte] = (pDescriptorNew->data[current_byte] & 3) | (team.color1_red <<
+2);
+  pes19.cpp:763:
+  pes19.cpp:764:        current_byte++; //23
+  pes19.cpp:765:        pDescriptorNew->data[current_byte] = pDescriptorNew->data[current_byte] & 128;
+  pes19.cpp:766:        pDescriptorNew->data[current_byte] += team.color1_green;
+  pes19.cpp:774:        current_byte++; //25
+  pes19.cpp:775:        pDescriptorNew->data[current_byte] = (pDescriptorNew->data[current_byte] & 240) | (team.color2_blue
+>> 2);
+  pes19.cpp:776:
+> pes19.cpp:777:        current_byte+=2; //27
+  pes19.cpp:778:        pDescriptorNew->data[current_byte] = (pDescriptorNew->data[current_byte] & 191) |
+(team.b_edit_stadium << 6); //7th bit of byte 27
+  pes19.cpp:779:
+  pes19.cpp:780:        current_byte++; //28
+  pes19.cpp:781:        pDescriptorNew->data[current_byte] = team.color1_blue;
+  pes19.cpp:782:        pDescriptorNew->data[current_byte] += (team.color2_red << 6) & 255;
+  pes19.cpp:784:        current_byte++; //29
+  pes19.cpp:785:        pDescriptorNew->data[current_byte] = (pDescriptorNew->data[current_byte] & 240) | (team.color2_red >>
+2);
+  pes19.cpp:786:
+> pes19.cpp:787:        current_byte+=0x3b; //0x58
+  pes19.cpp:788:        WideCharToMultiByte(CP_UTF8, 0, team.name, -1, (LPSTR)&(pDescriptorNew->data[current_byte]), 0x46,
+NULL, NULL);
+> pes19.cpp:789:        current_byte+=0x46;
+  pes19.cpp:790:
+  pes19.cpp:791:        strncpy_s((char*)&(pDescriptorNew->data[current_byte]), 0x4, team.short_name, 0x4 - 1);
+> pes19.cpp:792:        current_byte+=0x4;
+  pes19.cpp:793:
+> pes19.cpp:794:        current_byte+=0xFE;
+  pes19.cpp:795:}
+  pes19.cpp:796:
+  pes19.cpp:797:void extract_teamplayer_info19(team_entry team, int &current_byte, void* ghdescriptor)
+  pes19.cpp:798:{
+  pes19.cpp:799:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:800:
+  pes19.cpp:801:        if(!team.b_changed)
+  pes19.cpp:802:        {
+> pes19.cpp:803:                current_byte += 0xF4;
+  pes19.cpp:804:                return;
+  pes19.cpp:805:        }
+  pes19.cpp:806:
+  pes19.cpp:807:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes19.cpp:808:        current_byte++;
+  pes19.cpp:841:
+  pes19.cpp:842:        if(!team.b_changed)
+  pes19.cpp:843:        {
+> pes19.cpp:844:                current_byte += 0x274;
+  pes19.cpp:845:                return;
+  pes19.cpp:846:        }
+  pes19.cpp:847:
+  pes19.cpp:848:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes19.cpp:849:        current_byte++;
+  pes19.cpp:854:        pDescriptorNew->data[current_byte] = (team.id >> 24) & 255; //8/32
+  pes19.cpp:855:        current_byte++;
+  pes19.cpp:856:
+> pes19.cpp:857:        current_byte+=0x211;
+  pes19.cpp:858:        pDescriptorNew->data[current_byte] = team.captain_ind;
+  pes19.cpp:859:
+> pes19.cpp:860:        current_byte+=0x5f;
+  pes19.cpp:861:}
+  pes20.cpp:6:
+  pes20.cpp:7:  players.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:8:
+> pes20.cpp:9:  current_byte += 0x4;
+  pes20.cpp:10:
+  pes20.cpp:11: players.nation = read_data(0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:12: players.height = read_data(0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:13: players.weight = read_data(0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:14:
+  pes20.cpp:136:        current_byte++; //Unknown D 7/1
+  pes20.cpp:137:
+  pes20.cpp:138:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorNew->data[current_byte]), -1, players.name, 61);
+> pes20.cpp:139:        current_byte+=61;
+  pes20.cpp:140:
+  pes20.cpp:141:        strncpy_s(players.shirt_name, 21, (const char*)&(pDescriptorNew->data[current_byte]), 21 - 1);
+> pes20.cpp:142:        current_byte+=61;
+  pes20.cpp:143:
+> pes20.cpp:144:        current_byte+=64; //Print Name (National Team)
+  pes20.cpp:145:
+  pes20.cpp:146:        //Appearance entries
+  pes20.cpp:147:        //playerID
+> pes20.cpp:148:        current_byte+=4;
+  pes20.cpp:149:        //0x04:0
+  pes20.cpp:150:        players.b_edit_face     = read_data(0, 1, current_byte, pDescriptorNew);
+  pes20.cpp:151:        players.b_edit_hair     = read_data(1, 1, current_byte, pDescriptorNew);
+  pes20.cpp:152:        players.b_edit_phys     = read_data(2, 1, current_byte, pDescriptorNew);
+  pes20.cpp:153:        players.b_edit_strip = read_data(3, 1, current_byte, pDescriptorNew);
+  pes20.cpp:183:        players.gloves          = read_data(0, 1, current_byte, pDescriptorNew);
+  pes20.cpp:184:        players.gloves_col      = read_data(1, 3, current_byte, pDescriptorNew);
+  pes20.cpp:185:        //Skip face settings
+> pes20.cpp:186:        current_byte+=23;
+  pes20.cpp:187:        //0x2D:0
+  pes20.cpp:188:        players.skin_col = read_data(0, 3, current_byte, pDescriptorNew);
+  pes20.cpp:189:        //No custom skin in 18+
+  pes20.cpp:190:        if(players.skin_col==7)
+  pes20.cpp:191:        {
+  pes20.cpp:193:                players.b_changed=true;
+  pes20.cpp:194:        }
+  pes20.cpp:195:        //Skip additional face settings
+> pes20.cpp:196:        current_byte+=19;
+  pes20.cpp:197:        //0x40:0
+  pes20.cpp:198:        players.iris_col = read_data(0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:199:        //Skip hair settings
+> pes20.cpp:200:        current_byte+=8;
+  pes20.cpp:201:}
+  pes20.cpp:202:
+  pes20.cpp:203:
+  pes20.cpp:204:void fill_team_ids20(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes20.cpp:205:{
+  pes20.cpp:208:        team.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:209:        team.manager_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:210:
+> pes20.cpp:211:        current_byte+=2; //Team emblem
+  pes20.cpp:212:        //0xA
+  pes20.cpp:213:        team.stadium_id = read_data(0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:214:
+> pes20.cpp:215:        current_byte+=0xA; //Skip to 0x16
+  pes20.cpp:216:        team.color1_red = read_data(2, 6, current_byte, pDescriptorNew);
+  pes20.cpp:217:        team.color1_green       = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:218:        team.b_edit_name        = read_data(6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:219:        current_byte++; //Edited emblem: 1 bit
+  pes20.cpp:220:        team.color2_green       = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:221:        team.color2_blue        = read_data(6, 6, current_byte, pDescriptorNew);
+> pes20.cpp:222:        current_byte+=2; //Media backdrop colors
+  pes20.cpp:223:        team.b_edit_stadium = read_data(6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:224:        current_byte++; //Edited stadium name: 1 bit
+> pes20.cpp:225:        current_byte+=2; //Stadium settings
+  pes20.cpp:226:        team.color1_blue        = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:227:        team.color2_red = read_data(6, 6, current_byte, pDescriptorNew);
+  pes20.cpp:228:
+> pes20.cpp:229:        current_byte+=0x39;
+> pes20.cpp:230:        current_byte+=4; //Rival team ID 1
+> pes20.cpp:231:        current_byte+=4; //Rival team ID 2
+> pes20.cpp:232:        current_byte+=4; //Rival team ID 3
+> pes20.cpp:233:        current_byte+=4; //Banner Edited flags
+  pes20.cpp:234:
+  pes20.cpp:235:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)&(pDescriptorNew->data[current_byte]), -1, team.name, 0x46);
+> pes20.cpp:236:        current_byte+=0x46;
+  pes20.cpp:237:
+  pes20.cpp:238:        strncpy_s(team.short_name, 0x4, (const char*)&(pDescriptorNew->data[current_byte]), 0x4 - 1);
+> pes20.cpp:239:        current_byte+=0x4;
+  pes20.cpp:240:        //Remove non alphanumeric characters
+  pes20.cpp:241:        for(int ii=0;ii<4;ii++)
+  pes20.cpp:242:        {
+  pes20.cpp:243:                if((int)team.short_name[ii]<33 || (int)team.short_name[ii]>95)
+  pes20.cpp:244:                        team.short_name[ii]=(char)0;
+  pes20.cpp:245:        }
+  pes20.cpp:246:
+> pes20.cpp:247:        current_byte+=181; //Stadium name
+> pes20.cpp:248:        current_byte+=16; //Banner 1 text
+> pes20.cpp:249:        current_byte+=16; //Banner 2 text
+> pes20.cpp:250:        current_byte+=16; //Banner 3 text
+> pes20.cpp:251:        current_byte+=16; //Banner 4 text
+  pes20.cpp:252:
+> pes20.cpp:253:        current_byte+=105; //Unknown D
+  pes20.cpp:254:}
+  pes20.cpp:255:
+  pes20.cpp:256:
+  pes20.cpp:257:void fill_team_ids21(team_entry& team, int& current_byte, void* ghdescriptor)
+  pes20.cpp:258:{
+  pes20.cpp:261:        team.id = read_data(0, 4 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:262:        team.manager_id = read_data(0, 4 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:263:
+> pes20.cpp:264:        current_byte += 2; //Team emblem
+  pes20.cpp:265:        //0xA
+  pes20.cpp:266:        team.stadium_id = read_data(0, 2 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:267:
+> pes20.cpp:268:        current_byte += 0xA; //Skip to 0x16
+  pes20.cpp:269:        team.color1_red = read_data(2, 6, current_byte, pDescriptorNew);
+  pes20.cpp:270:        team.color1_green = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:271:        team.b_edit_name = read_data(6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:272:        current_byte++; //Edited emblem: 1 bit
+  pes20.cpp:273:        team.color2_green = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:274:        team.color2_blue = read_data(6, 6, current_byte, pDescriptorNew);
+> pes20.cpp:275:        current_byte += 2; //Media backdrop colors
+  pes20.cpp:276:        team.b_edit_stadium = read_data(6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:277:        current_byte++; //Edited stadium name: 1 bit
+> pes20.cpp:278:        current_byte += 2; //Stadium settings
+  pes20.cpp:279:        team.color1_blue = read_data(0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:280:        team.color2_red = read_data(6, 6, current_byte, pDescriptorNew);
+  pes20.cpp:281:
+> pes20.cpp:282:        current_byte += 0x39;
+> pes20.cpp:283:        current_byte += 4; //Rival team ID 1
+> pes20.cpp:284:        current_byte += 4; //Rival team ID 2
+> pes20.cpp:285:        current_byte += 4; //Rival team ID 3
+> pes20.cpp:286:        current_byte += 4; //Banner Edited flags
+  pes20.cpp:287:
+  pes20.cpp:288:        MultiByteToWideChar(CP_UTF8, 0, (LPCSTR) & (pDescriptorNew->data[current_byte]), -1, team.name, 0x46);
+> pes20.cpp:289:        current_byte += 0x46;
+  pes20.cpp:290:
+  pes20.cpp:291:        strncpy_s(team.short_name, 0x4, (const char*)&(pDescriptorNew->data[current_byte]), 0x4 - 1);
+> pes20.cpp:292:        current_byte += 0x4;
+  pes20.cpp:293:        //Remove non alphanumeric characters
+  pes20.cpp:294:        for (int ii = 0; ii < 4; ii++)
+  pes20.cpp:295:        {
+  pes20.cpp:296:                if ((int)team.short_name[ii] < 33 || (int)team.short_name[ii]>95)
+  pes20.cpp:297:                        team.short_name[ii] = (char)0;
+  pes20.cpp:298:        }
+  pes20.cpp:299:
+> pes20.cpp:300:        current_byte += 181; //Stadium name
+> pes20.cpp:301:        current_byte += 16; //Banner 1 text
+> pes20.cpp:302:        current_byte += 16; //Banner 2 text
+> pes20.cpp:303:        current_byte += 16; //Banner 3 text
+> pes20.cpp:304:        current_byte += 16; //Banner 4 text
+  pes20.cpp:305:
+> pes20.cpp:306:        current_byte += 165; //Unknown D
+  pes20.cpp:307:}
+  pes20.cpp:308:
+  pes20.cpp:309:
+  pes20.cpp:310:void fill_team_rosters20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes20.cpp:311:{
+  pes20.cpp:338:                gteams[t_ind].numbers[ii] = read_data(0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:339:        }
+  pes20.cpp:340:
+> pes20.cpp:341:        current_byte+=40; //Unknown A
+  pes20.cpp:342:}
+  pes20.cpp:343:
+  pes20.cpp:344:
+  pes20.cpp:345:void fill_team_tactics20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes20.cpp:346:{
+  pes20.cpp:357:        {
+  pes20.cpp:358:                if(team_id == gteams[t_ind].id) break;
+  pes20.cpp:359:        }
+> pes20.cpp:360:        current_byte+=0x1E0;
+  pes20.cpp:361:
+  pes20.cpp:362:        //Starting lineup
+  pes20.cpp:363:        for(int ii=0; ii<11; ii++)
+  pes20.cpp:364:        {
+  pes20.cpp:365:                gteams[t_ind].starting11[ii] = pDescriptorNew->data[current_byte];
+  pes20.cpp:366:                current_byte++;
+  pes20.cpp:367:        }
+> pes20.cpp:368:        current_byte+=0x26;
+  pes20.cpp:369:        //Captain index at byte 0x215:
+  pes20.cpp:370:        gteams[t_ind].captain_ind = (char)pDescriptorNew->data[current_byte];
+> pes20.cpp:371:        current_byte+=0x5f;
+  pes20.cpp:372:}
+  pes20.cpp:373:
+  pes20.cpp:374://-----------------------------------------------------------------------------------------------------
+----
+  pes20.cpp:375:
+  pes20.cpp:376:
+  pes20.cpp:380:
+  pes20.cpp:381:        if(!player.b_changed)
+  pes20.cpp:382:        {
+> pes20.cpp:383:                current_byte += 0xF0+0x48;
+  pes20.cpp:384:                return;
+  pes20.cpp:385:        }
+  pes20.cpp:386:
+  pes20.cpp:387:        write_data(player.id, 0, 4*8, current_byte, pDescriptorNew);
+> pes20.cpp:388:        current_byte += 0x4; //Commentary name
+  pes20.cpp:389:        write_data(player.nation, 0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:390:        write_data(player.height,               0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:391:        write_data(player.weight,               0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:392:        write_data(player.gc1,                  0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:393:        write_data(player.gc2,                  0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:515:        memset(nameBuffer, 0, sizeof(nameBuffer));
+  pes20.cpp:516:        int len = WideCharToMultiByte(CP_UTF8, 0, player.name, -1, (LPSTR)nameBuffer, 60, NULL, NULL); //set
+byte limit to 60 to ensure null termination of truncated strings
+  pes20.cpp:517:        memcpy(&(pDescriptorNew->data[current_byte]), nameBuffer, 61);
+> pes20.cpp:518:        current_byte += 61;
+  pes20.cpp:519:
+  pes20.cpp:520:        //strcpy_s((char *)&(pDescriptorNew->data[current_byte]), 21, player.shirt_name);
+  pes20.cpp:521:        strncpy_s((char *)&(pDescriptorNew->data[current_byte]), 21, player.shirt_name, 21-1);
+> pes20.cpp:522:        current_byte+=61;
+  pes20.cpp:523:
+> pes20.cpp:524:        current_byte+=64; //Print Name (National Team)
+  pes20.cpp:525:
+  pes20.cpp:526:        //Appearance entries
+  pes20.cpp:527:        //playerID
+> pes20.cpp:528:        current_byte+=4;
+  pes20.cpp:529:        //0x04:0
+  pes20.cpp:530:        write_data(player.b_edit_face,  0, 1, current_byte, pDescriptorNew);
+  pes20.cpp:531:        write_data(player.b_edit_hair,  1, 1, current_byte, pDescriptorNew);
+  pes20.cpp:532:        write_data(player.b_edit_phys,  2, 1, current_byte, pDescriptorNew);
+  pes20.cpp:533:        write_data(player.b_edit_strip,3, 1, current_byte, pDescriptorNew);
+  pes20.cpp:563:        write_data(player.gloves,               0, 1, current_byte, pDescriptorNew);
+  pes20.cpp:564:        write_data(player.gloves_col,   1, 3, current_byte, pDescriptorNew);
+  pes20.cpp:565:        //Skip face settings
+> pes20.cpp:566:        current_byte+=23;
+  pes20.cpp:567:
+  pes20.cpp:568:        //No custom in 18
+  pes20.cpp:569:        if(player.skin_col==7) player.skin_col=0;
+  pes20.cpp:570:        write_data(player.skin_col,     0, 3, current_byte, pDescriptorNew);
+  pes20.cpp:571:        //Skip additional face settings
+> pes20.cpp:572:        current_byte+=19;
+  pes20.cpp:573:        //0x40:0
+  pes20.cpp:574:        write_data(player.iris_col,     0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:575:        //Skip hair settings
+> pes20.cpp:576:        current_byte+=8;
+  pes20.cpp:577:}
+  pes20.cpp:578:
+  pes20.cpp:579:
+  pes20.cpp:580:void extract_team_info20(team_entry team, int &current_byte, void* ghdescriptor)
+  pes20.cpp:581:{
+  pes20.cpp:583:
+  pes20.cpp:584:        if(!team.b_changed)
+  pes20.cpp:585:        {
+> pes20.cpp:586:                current_byte += 0x210;
+  pes20.cpp:587:                return;
+  pes20.cpp:588:        }
+  pes20.cpp:589:
+  pes20.cpp:590:        write_data(team.id,             0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:591:        write_data(team.manager_id,0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:592:
+> pes20.cpp:593:        current_byte+=2; //Team emblem
+  pes20.cpp:594:
+  pes20.cpp:595:        write_data(team.stadium_id,     0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:596:
+> pes20.cpp:597:        current_byte+=0xA; //Skip to 0x16
+  pes20.cpp:598:        write_data(team.color1_red,             2, 6, current_byte, pDescriptorNew);
+  pes20.cpp:599:        write_data(team.color1_green,   0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:600:        write_data(team.b_edit_name,    6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:601:        current_byte++; //Edited emblem: 1 bit
+  pes20.cpp:602:        write_data(team.color2_green,   0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:603:        write_data(team.color2_blue,    6, 6, current_byte, pDescriptorNew);
+  pes20.cpp:604:
+> pes20.cpp:605:        current_byte+=2; //Media backdrop colors
+  pes20.cpp:606:        write_data(team.b_edit_stadium, 6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:607:        current_byte++; //Edited stadium name: 1 bit
+  pes20.cpp:608:
+> pes20.cpp:609:        current_byte+=2; //Stadium settings
+  pes20.cpp:610:        write_data(team.color1_blue,    0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:611:        write_data(team.color2_red,             6, 6, current_byte, pDescriptorNew);
+  pes20.cpp:612:
+> pes20.cpp:613:        current_byte+=0x39;
+> pes20.cpp:614:        current_byte+=4; //Rival team ID 1
+> pes20.cpp:615:        current_byte+=4; //Rival team ID 2
+> pes20.cpp:616:        current_byte+=4; //Rival team ID 3
+> pes20.cpp:617:        current_byte+=4; //Banner Edited flags
+  pes20.cpp:618:
+  pes20.cpp:619:        WideCharToMultiByte(CP_UTF8, 0, team.name, -1, (LPSTR)&(pDescriptorNew->data[current_byte]), 0x46,
+NULL, NULL);
+> pes20.cpp:620:        current_byte+=0x46;
+  pes20.cpp:621:
+  pes20.cpp:622:        strncpy_s((char*)&(pDescriptorNew->data[current_byte]), 0x4, team.short_name, 0x4 - 1);
+> pes20.cpp:623:        current_byte+=0x4;
+  pes20.cpp:624:
+> pes20.cpp:625:        current_byte+=181; //Stadium name
+> pes20.cpp:626:        current_byte+=16; //Banner 1 text
+> pes20.cpp:627:        current_byte+=16; //Banner 2 text
+> pes20.cpp:628:        current_byte+=16; //Banner 3 text
+> pes20.cpp:629:        current_byte+=16; //Banner 4 text
+  pes20.cpp:630:
+> pes20.cpp:631:        current_byte+=105; //Unknown D
+  pes20.cpp:632:}
+  pes20.cpp:633:
+  pes20.cpp:634:
+  pes20.cpp:635:void extract_team_info21(team_entry team, int& current_byte, void* ghdescriptor)
+  pes20.cpp:636:{
+  pes20.cpp:638:
+  pes20.cpp:639:        if (!team.b_changed)
+  pes20.cpp:640:        {
+> pes20.cpp:641:                current_byte += 0x24C;
+  pes20.cpp:642:                return;
+  pes20.cpp:643:        }
+  pes20.cpp:644:
+  pes20.cpp:645:        write_data(team.id, 0, 4 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:646:        write_data(team.manager_id, 0, 4 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:647:
+> pes20.cpp:648:        current_byte += 2; //Team emblem
+  pes20.cpp:649:
+  pes20.cpp:650:        write_data(team.stadium_id, 0, 2 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:651:
+> pes20.cpp:652:        current_byte += 0xA; //Skip to 0x16
+  pes20.cpp:653:        write_data(team.color1_red, 2, 6, current_byte, pDescriptorNew);
+  pes20.cpp:654:        write_data(team.color1_green, 0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:655:        write_data(team.b_edit_name, 6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:656:        current_byte++; //Edited emblem: 1 bit
+  pes20.cpp:657:        write_data(team.color2_green, 0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:658:        write_data(team.color2_blue, 6, 6, current_byte, pDescriptorNew);
+  pes20.cpp:659:
+> pes20.cpp:660:        current_byte += 2; //Media backdrop colors
+  pes20.cpp:661:        write_data(team.b_edit_stadium, 6, 1, current_byte, pDescriptorNew);
+  pes20.cpp:662:        current_byte++; //Edited stadium name: 1 bit
+  pes20.cpp:663:
+> pes20.cpp:664:        current_byte += 2; //Stadium settings
+  pes20.cpp:665:        write_data(team.color1_blue, 0, 6, current_byte, pDescriptorNew);
+  pes20.cpp:666:        write_data(team.color2_red, 6, 6, current_byte, pDescriptorNew);
+  pes20.cpp:667:
+> pes20.cpp:668:        current_byte += 0x39;
+> pes20.cpp:669:        current_byte += 4; //Rival team ID 1
+> pes20.cpp:670:        current_byte += 4; //Rival team ID 2
+> pes20.cpp:671:        current_byte += 4; //Rival team ID 3
+> pes20.cpp:672:        current_byte += 4; //Banner Edited flags
+  pes20.cpp:673:
+  pes20.cpp:674:        WideCharToMultiByte(CP_UTF8, 0, team.name, -1, (LPSTR) & (pDescriptorNew->data[current_byte]), 0x46,
+NULL, NULL);
+> pes20.cpp:675:        current_byte += 0x46;
+  pes20.cpp:676:
+  pes20.cpp:677:        strncpy_s((char*)&(pDescriptorNew->data[current_byte]), 0x4, team.short_name, 0x4 - 1);
+> pes20.cpp:678:        current_byte += 0x4;
+  pes20.cpp:679:
+> pes20.cpp:680:        current_byte += 181; //Stadium name
+> pes20.cpp:681:        current_byte += 16; //Banner 1 text
+> pes20.cpp:682:        current_byte += 16; //Banner 2 text
+> pes20.cpp:683:        current_byte += 16; //Banner 3 text
+> pes20.cpp:684:        current_byte += 16; //Banner 4 text
+  pes20.cpp:685:
+> pes20.cpp:686:        current_byte += 165; //Unknown D
+  pes20.cpp:687:}
+  pes20.cpp:688:
+  pes20.cpp:689:
+  pes20.cpp:690:void extract_teamplayer_info20(team_entry team, int &current_byte, void* ghdescriptor)
+  pes20.cpp:691:{
+  pes20.cpp:693:
+  pes20.cpp:694:        if(!team.b_changed)
+  pes20.cpp:695:        {
+> pes20.cpp:696:                current_byte += 0x11C;
+  pes20.cpp:697:                return;
+  pes20.cpp:698:        }
+  pes20.cpp:699:
+  pes20.cpp:700:        write_data(team.id, 0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:701:
+  pes20.cpp:710:                write_data(team.numbers[ii], 0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:711:        }
+  pes20.cpp:712:
+> pes20.cpp:713:        current_byte+=40; //Unknown A
+  pes20.cpp:714:}
+  pes20.cpp:715:
+  pes20.cpp:716:
+  pes20.cpp:717:void extract_team_tactics20(team_entry team, int &current_byte, void* ghdescriptor)
+  pes20.cpp:718:{
+  pes20.cpp:720:
+  pes20.cpp:721:        if(!team.b_changed)
+  pes20.cpp:722:        {
+> pes20.cpp:723:                current_byte += 0x274;
+  pes20.cpp:724:                return;
+  pes20.cpp:725:        }
+  pes20.cpp:726:
+  pes20.cpp:727:        write_data(team.id, 0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:728:
+> pes20.cpp:729:        current_byte+=0x211;
+  pes20.cpp:730:        pDescriptorNew->data[current_byte] = team.captain_ind;
+  pes20.cpp:731:
+> pes20.cpp:732:        current_byte+=0x5f;
+  pes20.cpp:733:}
