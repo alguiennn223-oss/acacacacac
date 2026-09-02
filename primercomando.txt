@@ -1,0 +1,821 @@
+PS D:\Games\pes patch mio\4ccEditoe\4ccEditor-master> Get-ChildItem -Recurse -File -Include *.cpp,*.h | Select-String -Pattern "b_base_copy|copy_id|COPY_BASE|Is a copy|Model ID" -Context 8,12
+
+  comparator.cpp:531:           {
+  comparator.cpp:532:                   if (playerA.clearing != playerB.clearing)
+  comparator.cpp:533:                           errorMsg << _T("\tclearing: ") << (int)playerA.clearing << _T(" / ") << (int)playerB.clearing << _T("\r\n");
+  comparator.cpp:534:                   if (playerA.reflex != playerB.reflex)
+  comparator.cpp:535:                           errorMsg << _T("\treflex: ") << (int)playerA.reflex << _T(" / ") << (int)playerB.reflex << _T("\r\n");
+  comparator.cpp:536:                   if (playerA.cover != playerB.cover)
+  comparator.cpp:537:                           errorMsg << _T("\tcover: ") << (int)playerA.cover << _T(" / ") << (int)playerB.cover << _T("\r\n");
+  comparator.cpp:538:           }
+> comparator.cpp:539://         (playerA.copy_id!=playerB.copy_id);
+  comparator.cpp:540:           if(playerA.def!=playerB.def)
+  comparator.cpp:541:                   errorMsg << _T("\tdef: ") << (int)playerA.def <<_T(" / ") << (int)playerB.def <<_T("\r\n");
+  comparator.cpp:542:           if(playerA.drib!=playerB.drib)
+  comparator.cpp:543:                   errorMsg << _T("\tdrib: ") << (int)playerA.drib <<_T(" / ") << (int)playerB.drib <<_T("\r\n");
+  comparator.cpp:544:           if(playerA.exp_pwr!=playerB.exp_pwr)
+  comparator.cpp:545:                   errorMsg << _T("\texp_pwr: ") << (int)playerA.exp_pwr <<_T(" / ") << (int)playerB.exp_pwr <<_T("\r\n");
+  comparator.cpp:546:           if(playerA.finish!=playerB.finish)
+  comparator.cpp:547:                   errorMsg << _T("\tfinish: ") << (int)playerA.finish <<_T(" / ") << (int)playerB.finish <<_T("\r\n");
+  comparator.cpp:548:           if(playerA.gk!=playerB.gk)
+  comparator.cpp:549:                   errorMsg << _T("\tgk: ") << (int)playerA.gk <<_T(" / ") << (int)playerB.gk <<_T("\r\n");
+  comparator.cpp:550:           if(playerA.header!=playerB.header)
+  comparator.cpp:551:                   errorMsg << _T("\theader: ") << (int)playerA.header <<_T(" / ") << (int)playerB.header <<_T("\r\n");
+  editor.h:91:  bool b_edit_playpos; //Playable Position edit
+  editor.h:92:  bool b_edit_ability; //Ability edit
+  editor.h:93:  bool b_edit_skill; //Player Skills edit
+  editor.h:94:  unsigned char stamina; //Stamina
+  editor.h:95:  unsigned char speed; //Speed
+  editor.h:96:  bool b_edit_style; //Playing Styles edit
+  editor.h:97:  bool b_edit_com; //COM Playing Styles edit
+  editor.h:98:  bool b_edit_motion; //Motion edit
+> editor.h:99:  bool b_base_copy; //Is Base Copy?
+  editor.h:100: unsigned char strong_foot; //Stronger Foot
+  editor.h:101: unsigned char strong_hand; //Stronger hand                              (20+)
+  editor.h:102: bool com_style[7]; //COM Playing Styles
+  editor.h:103: /*      Bit 0 - Trickster
+  editor.h:104:         Bit 1 - Mazing Run
+  editor.h:105:         Bit 2 - Speeding Bullet
+  editor.h:106:         Bit 3 - Incisive Run
+  editor.h:107:         Bit 4 - Long Ball Expert
+  editor.h:108:         Bit 5 - Early Cross
+  editor.h:109:         Bit 6 - Long Ranger
+  editor.h:110: */
+  editor.h:111: bool play_skill[41]; //Player Skills
+  editor.h:157:
+  editor.h:158: //Appearance
+  editor.h:159: bool b_edit_face; //Edited Face
+  editor.h:160: bool b_edit_hair; //Edited Hairstyle
+  editor.h:161: bool b_edit_phys; //Edited Physique
+  editor.h:162: bool b_edit_strip; //Edited Strip Style
+  editor.h:163: unsigned int boot_id; //Boots
+  editor.h:164: unsigned int glove_id; //Goalkeeper gloves
+> editor.h:165: unsigned long copy_id; //Base Copy Player
+  editor.h:166: int neck_len; //Neck Length
+  editor.h:167: int neck_size; //Neck Size
+  editor.h:168: int shldr_hi; //Shoulder Height
+  editor.h:169: int shldr_wid; //Shoulder Width
+  editor.h:170: int chest; //Chest Measurement
+  editor.h:171: int waist; //Waist Size
+  editor.h:172: int arm_size; //Arm Size
+  editor.h:173: int arm_len; //Arm Length
+  editor.h:174: int thigh; //Thigh Size
+  editor.h:175: int calf; //Calf Size
+  editor.h:176: int leg_len; //Leg Length
+  editor.h:177: int head_len; //Head Length
+  editor.h:228:         b_out = b_out && (strcmp(this->shirt_name, rhs.shirt_name)==0);
+  editor.h:229:         b_out = b_out && (this->id==rhs.id);
+  editor.h:230:         b_out = b_out &&(this->age==rhs.age);
+  editor.h:231:         b_out = b_out &&(this->ankle_tape==rhs.ankle_tape);
+  editor.h:232:         b_out = b_out &&(this->app_id==rhs.app_id);
+  editor.h:233:         b_out = b_out &&(this->arm_len==rhs.arm_len);
+  editor.h:234:         b_out = b_out &&(this->arm_size==rhs.arm_size);
+  editor.h:235:         b_out = b_out &&(this->atk==rhs.atk);
+> editor.h:236:         b_out = b_out &&(this->b_base_copy==rhs.b_base_copy);
+  editor.h:237:         b_out = b_out &&(this->b_edit_face==rhs.b_edit_face);
+  editor.h:238:         b_out = b_out &&(this->b_edit_hair==rhs.b_edit_hair);
+  editor.h:239:         b_out = b_out &&(this->b_edit_phys==rhs.b_edit_phys);
+  editor.h:240:         b_out = b_out &&(this->b_edit_player==rhs.b_edit_player);
+  editor.h:241:         b_out = b_out &&(this->b_edit_strip==rhs.b_edit_strip);
+  editor.h:242:         b_out = b_out &&(this->ball_ctrl==rhs.ball_ctrl);
+  editor.h:243:         b_out = b_out &&(this->ball_win==rhs.ball_win);
+  editor.h:244:         b_out = b_out &&(this->body_ctrl==rhs.body_ctrl);
+  editor.h:245:         b_out = b_out &&(this->boot_id==rhs.boot_id);
+  editor.h:246:         b_out = b_out &&(this->calf==rhs.calf);
+  editor.h:247:         b_out = b_out &&(this->catching==rhs.catching);
+  editor.h:248:         b_out = b_out &&(this->chest==rhs.chest);
+  editor.h:249:         b_out = b_out &&(this->clearing==rhs.clearing);
+> editor.h:250:         b_out = b_out &&(this->copy_id==rhs.copy_id);
+  editor.h:251:         b_out = b_out &&(this->cover==rhs.cover);
+  editor.h:252:         b_out = b_out &&(this->def==rhs.def);
+  editor.h:253:         b_out = b_out &&(this->drib==rhs.drib);
+  editor.h:254:         b_out = b_out &&(this->exp_pwr==rhs.exp_pwr);
+  editor.h:255:         b_out = b_out &&(this->finish==rhs.finish);
+  editor.h:256:         b_out = b_out &&(this->form==rhs.form);
+  editor.h:257:         b_out = b_out &&(this->gc1==rhs.gc1);
+  editor.h:258:         b_out = b_out &&(this->gc2==rhs.gc2);
+  editor.h:259:         b_out = b_out &&(this->gk==rhs.gk);
+  editor.h:260:         b_out = b_out &&(this->glove_id==rhs.glove_id);
+  editor.h:261:         b_out = b_out &&(this->gloves==rhs.gloves);
+  editor.h:262:         b_out = b_out &&(this->gloves_col==rhs.gloves_col);
+  editor.h:371:         pExport.b_edit_playpos = this->b_edit_playpos; //Playable Position edit
+  editor.h:372:         pExport.b_edit_ability = this->b_edit_ability; //Ability edit
+  editor.h:373:         pExport.b_edit_skill = this->b_edit_skill; //Player Skills edit
+  editor.h:374:         pExport.stamina = this->stamina; //Stamina
+  editor.h:375:         pExport.speed = this->speed; //Speed
+  editor.h:376:         pExport.b_edit_style = this->b_edit_style; //Playing Styles edit
+  editor.h:377:         pExport.b_edit_com = this->b_edit_com; //COM Playing Styles edit
+  editor.h:378:         pExport.b_edit_motion = this->b_edit_motion; //Motion edit
+> editor.h:379:         pExport.b_base_copy = this->b_base_copy; //Is Base Copy?
+  editor.h:380:         pExport.strong_foot = this->strong_foot; //Stronger Foot
+  editor.h:381:         memcpy(pExport.com_style, this->com_style, sizeof(this->com_style)); //COM Playing Styles
+  editor.h:382:         memcpy(pExport.play_skill, this->play_skill, sizeof(this->play_skill)); //Player Skills
+  editor.h:383:         memcpy(pExport.name, this->name, sizeof(this->name)); //Player Name
+  editor.h:384:         memcpy(pExport.shirt_name, this->shirt_name, sizeof(this->shirt_name)); //Shirt Name
+  editor.h:385:         pExport.b_edit_face = this->b_edit_face; //Edited Face
+  editor.h:386:         pExport.b_edit_hair = this->b_edit_hair; //Edited Hairstyle
+  editor.h:387:         pExport.b_edit_phys = this->b_edit_phys; //Edited Physique
+  editor.h:388:         pExport.b_edit_strip = this->b_edit_strip; //Edited Strip Style
+  editor.h:389:         pExport.boot_id = this->boot_id; //Boots
+  editor.h:390:         pExport.glove_id = this->glove_id; //Goalkeeper gloves
+> editor.h:391:         pExport.copy_id = this->copy_id; //Base Copy Player
+  editor.h:392:         pExport.neck_len = this->neck_len; //Neck Length
+  editor.h:393:         pExport.neck_size = this->neck_size; //Neck Size
+  editor.h:394:         pExport.shldr_hi = this->shldr_hi; //Shoulder Height
+  editor.h:395:         pExport.shldr_wid = this->shldr_wid; //Shoulder Width
+  editor.h:396:         pExport.chest = this->chest; //Chest Measurement
+  editor.h:397:         pExport.waist = this->waist; //Waist Size
+  editor.h:398:         pExport.arm_size = this->arm_size; //Arm Size
+  editor.h:399:         pExport.arm_len = this->arm_len; //Arm Length
+  editor.h:400:         pExport.thigh = this->thigh; //Thigh Size
+  editor.h:401:         pExport.calf = this->calf; //Calf Size
+  editor.h:402:         pExport.leg_len = this->leg_len; //Leg Length
+  editor.h:403:         pExport.head_len = this->head_len; //Head Length
+  editor.h:494:                 this->mo_armd = pImport.mo_armd; //Motion: Arm Movement (dribbling)
+  editor.h:495:                 this->mo_hunchd = pImport.mo_hunchd; //Motion: Hunching (dribbling)
+  editor.h:496:                 this->mo_hunchr = pImport.mo_hunchr; //Motion: Hunching (running)
+  editor.h:497:                 this->mo_pk = pImport.mo_pk; //Motion: Penalty Kick
+  editor.h:498:                 this->mo_armr = pImport.mo_armr; //Motion: Arm Movement (running)
+  editor.h:499:                 this->mo_ck = pImport.mo_ck; //Motion: Corner Kick
+  editor.h:500:                 this->age = pImport.age; //Age
+  editor.h:501:                 this->b_edit_motion = pImport.b_edit_motion; //Motion edit
+> editor.h:502:                 this->b_base_copy = pImport.b_base_copy; //Is Base Copy?
+  editor.h:503:                 memcpy(this->name, pImport.name, sizeof(pImport.name)); //Player Name
+  editor.h:504:                 memcpy(this->shirt_name, pImport.shirt_name, sizeof(pImport.shirt_name)); //Shirt Name
+  editor.h:505:                 this->b_edit_face = pImport.b_edit_face; //Edited Face
+  editor.h:506:                 this->b_edit_hair = pImport.b_edit_hair; //Edited Hairstyle
+  editor.h:507:                 this->b_edit_phys = pImport.b_edit_phys; //Edited Physique
+  editor.h:508:                 this->b_edit_strip = pImport.b_edit_strip; //Edited Strip Style
+  editor.h:509:                 this->boot_id = pImport.boot_id; //Boots
+  editor.h:510:                 this->glove_id = pImport.glove_id; //Goalkeeper gloves
+> editor.h:511:                 this->copy_id = pImport.copy_id; //Base Copy Player
+  editor.h:512:                 this->neck_len = pImport.neck_len; //Neck Length
+  editor.h:513:                 this->neck_size = pImport.neck_size; //Neck Size
+  editor.h:514:                 this->shldr_hi = pImport.shldr_hi; //Shoulder Height
+  editor.h:515:                 this->shldr_wid = pImport.shldr_wid; //Shoulder Width
+  editor.h:516:                 this->chest = pImport.chest; //Chest Measurement
+  editor.h:517:                 this->waist = pImport.waist; //Waist Size
+  editor.h:518:                 this->arm_size = pImport.arm_size; //Arm Size
+  editor.h:519:                 this->arm_len = pImport.arm_len; //Arm Length
+  editor.h:520:                 this->thigh = pImport.thigh; //Thigh Size
+  editor.h:521:                 this->calf = pImport.calf; //Calf Size
+  editor.h:522:                 this->leg_len = pImport.leg_len; //Leg Length
+  editor.h:523:                 this->head_len = pImport.head_len; //Head Length
+  main.cpp:558:                                                                 gplayers[gn_playind[gn_listsel]] = pe_current;
+  main.cpp:559:                                                         }
+  main.cpp:560:                                                         //export settings for current player into temp struct 1
+  main.cpp:561:                                                         player_export currPlyrExport = gplayers[gn_playind[gn_listsel]].PlayerExport();
+  main.cpp:562:                                                         //export settings for prev player into temp struct 2
+  main.cpp:563:                                                         player_export prevPlyrExport = gplayers[gn_playind[gn_listsel-1]].PlayerExport();
+  main.cpp:564:
+  main.cpp:565:                                                         //Have player copy ids match new slot
+> main.cpp:566:                                                         unsigned long tmp_id = currPlyrExport.copy_id;
+> main.cpp:567:                                                         currPlyrExport.copy_id = prevPlyrExport.copy_id;
+> main.cpp:568:                                                         prevPlyrExport.copy_id = tmp_id;
+  main.cpp:569:
+  main.cpp:570:                                                         //swap temp struct 2 into (old) current player, set b_changed flag
+  main.cpp:571:                                                         gplayers[gn_playind[gn_listsel]].PlayerImport(prevPlyrExport);
+  main.cpp:572:                                                         gplayers[gn_playind[gn_listsel]].b_changed = true;
+  main.cpp:573:                                                         //import temp struct 1 into (old) prev player, set b_changed flag
+  main.cpp:574:                                                         gplayers[gn_playind[gn_listsel-1]].PlayerImport(currPlyrExport);
+  main.cpp:575:                                                         gplayers[gn_playind[gn_listsel-1]].b_changed = true;
+  main.cpp:576:
+  main.cpp:577:                                                         show_player_info(gn_playind[gn_listsel]);
+  main.cpp:578:
+  main.cpp:579:                                                         //Update displayed names
+  main.cpp:580:                                                         LVITEM lvI;
+  main.cpp:609:                                                                 gplayers[gn_playind[gn_listsel]] = pe_current;
+  main.cpp:610:                                                         }
+  main.cpp:611:                                                         //export settings for current player into temp struct 1
+  main.cpp:612:                                                         player_export currPlyrExport = gplayers[gn_playind[gn_listsel]].PlayerExport();
+  main.cpp:613:                                                         //export settings for next player into temp struct 2
+  main.cpp:614:                                                         player_export nextPlyrExport = gplayers[gn_playind[gn_listsel+1]].PlayerExport();
+  main.cpp:615:
+  main.cpp:616:                                                         //Have player copy ids match new slot
+> main.cpp:617:                                                         unsigned long tmp_id = currPlyrExport.copy_id;
+> main.cpp:618:                                                         currPlyrExport.copy_id = nextPlyrExport.copy_id;
+> main.cpp:619:                                                         nextPlyrExport.copy_id = tmp_id;
+  main.cpp:620:
+  main.cpp:621:                                                         //swap temp struct 2 into (old) current player, set b_changed flag
+  main.cpp:622:                                                         gplayers[gn_playind[gn_listsel]].PlayerImport(nextPlyrExport);
+  main.cpp:623:                                                         gplayers[gn_playind[gn_listsel]].b_changed = true;
+  main.cpp:624:                                                         //import temp struct 1 into (old) next player, set b_changed flag
+  main.cpp:625:                                                         gplayers[gn_playind[gn_listsel+1]].PlayerImport(currPlyrExport);
+  main.cpp:626:                                                         gplayers[gn_playind[gn_listsel+1]].b_changed = true;
+  main.cpp:627:
+  main.cpp:628:                                                         show_player_info(gn_playind[gn_listsel]);
+  main.cpp:629:
+  main.cpp:630:                                                         //Update displayed names
+  main.cpp:631:                                                         LVITEM lvI;
+  main.cpp:2358:                        SendDlgItemMessage(ghw_tab2, IDT_PLAY_ATT, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2359:                }
+  main.cpp:2360:
+  main.cpp:2361:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_FACE),gplayers[p_ind].b_edit_face);
+  main.cpp:2362:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_HAIR),gplayers[p_ind].b_edit_hair);
+  main.cpp:2363:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_PHYS),gplayers[p_ind].b_edit_phys);
+  main.cpp:2364:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_STRP),gplayers[p_ind].b_edit_strip);
+  main.cpp:2365:
+> main.cpp:2366:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_COPY_BASE),gplayers[p_ind].b_base_copy);
+  main.cpp:2367:
+> main.cpp:2368:                _itow_s(gplayers[p_ind].copy_id, buffer, 18, 10);
+> main.cpp:2369:                SendDlgItemMessage(ghw_tab2, IDT_COPY_ID, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2370:
+  main.cpp:2371:                _itow_s(gplayers[p_ind].head_len - 7, buffer, 18, 10);
+  main.cpp:2372:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_HELE, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2373:                _itow_s(gplayers[p_ind].head_wid - 7, buffer, 18, 10);
+  main.cpp:2374:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEWI, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2375:                _itow_s(gplayers[p_ind].head_dep - 7, buffer, 18, 10);
+  main.cpp:2376:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEDE, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2377:                _itow_s(gplayers[p_ind].neck_len - 7, buffer, 18, 10);
+  main.cpp:2378:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_NELE, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2379:                _itow_s(gplayers[p_ind].neck_size - 7, buffer, 18, 10);
+  main.cpp:2380:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_NESI, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2381:                _itow_s(gplayers[p_ind].shldr_hi - 7, buffer, 18, 10);
+  main.cpp:2673:                        SendDlgItemMessage(ghw_tab2, IDT_PLAY_ATT, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2674:                //}
+  main.cpp:2675:
+  main.cpp:2676:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_FACE),0);
+  main.cpp:2677:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_HAIR),0);
+  main.cpp:2678:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_PHYS),0);
+  main.cpp:2679:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_STRP),0);
+  main.cpp:2680:
+> main.cpp:2681:                Button_SetCheck(GetDlgItem(ghw_tab2, IDB_COPY_BASE),0);
+  main.cpp:2682:
+  main.cpp:2683:                _itow_s(0, buffer, 18, 10);
+> main.cpp:2684:                SendDlgItemMessage(ghw_tab2, IDT_COPY_ID, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2685:
+  main.cpp:2686:                _itow_s(0, buffer, 18, 10);
+  main.cpp:2687:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_HELE, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2688:                _itow_s(0, buffer, 18, 10);
+  main.cpp:2689:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEWI, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2690:                _itow_s(0, buffer, 18, 10);
+  main.cpp:2691:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEDE, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2692:                _itow_s(0, buffer, 18, 10);
+  main.cpp:2693:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_NELE, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2694:                _itow_s(0, buffer, 18, 10);
+  main.cpp:2695:                SendDlgItemMessage(ghw_tab2, IDT_PHYS_NESI, WM_SETTEXT, 0, (LPARAM)buffer);
+  main.cpp:2696:                _itow_s(0, buffer, 18, 10);
+  main.cpp:3001:        else output.b_edit_face=false;
+  main.cpp:3002:        if(Button_GetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_HAIR))==BST_CHECKED) output.b_edit_hair=true;
+  main.cpp:3003:        else output.b_edit_hair=false;
+  main.cpp:3004:        if(Button_GetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_PHYS))==BST_CHECKED) output.b_edit_phys=true;
+  main.cpp:3005:        else output.b_edit_phys=false;
+  main.cpp:3006:        if(Button_GetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_STRP))==BST_CHECKED) output.b_edit_strip=true;
+  main.cpp:3007:        else output.b_edit_strip=false;
+  main.cpp:3008:
+> main.cpp:3009:        if(Button_GetCheck(GetDlgItem(ghw_tab2, IDB_COPY_BASE))==BST_CHECKED)
+  main.cpp:3010:        {
+> main.cpp:3011:                output.b_base_copy=true;
+  main.cpp:3012:                output.b_edit_ability=true;
+  main.cpp:3013:                output.b_edit_com=true;
+  main.cpp:3014:                output.b_edit_motion=true;
+  main.cpp:3015:                output.b_edit_playpos=true;
+  main.cpp:3016:                output.b_edit_regpos=true;
+  main.cpp:3017:                output.b_edit_skill=true;
+  main.cpp:3018:                output.b_edit_style=true;
+  main.cpp:3019:        }
+> main.cpp:3020:        else output.b_base_copy=false;
+  main.cpp:3021:
+> main.cpp:3022:        SendDlgItemMessage(ghw_tab2, IDT_COPY_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+> main.cpp:3023:        output.copy_id = _wtoi(buffer);
+  main.cpp:3024:
+  main.cpp:3025:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_HELE, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3026:        output.head_len = _wtoi(buffer) + 7;
+  main.cpp:3027:
+  main.cpp:3028:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEWI, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3029:        output.head_wid = _wtoi(buffer) + 7;;
+  main.cpp:3030:
+  main.cpp:3031:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEDE, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3032:        output.head_dep = _wtoi(buffer) + 7;
+  main.cpp:3033:
+  main.cpp:3034:        SendDlgItemMessage(ghw_tab2, IDT_PHYS_NELE, WM_GETTEXT, 18, (LPARAM)buffer);
+  main.cpp:3035:        output.neck_len = _wtoi(buffer) + 7;
+  main.cpp:4989:
+  main.cpp:4990:
+  main.cpp:4991:void fix_database()
+  main.cpp:4992:{
+  main.cpp:4993:        int ii;
+  main.cpp:4994:
+  main.cpp:4995:        for(ii=0;ii<gnum_players;ii++)
+  main.cpp:4996:        {
+> main.cpp:4997:                if(!gplayers[ii].b_base_copy && gplayers[ii].copy_id != gplayers[ii].id && gplayers[ii].copy_id != 0)
+  main.cpp:4998:                {
+> main.cpp:4999:                        gplayers[ii].copy_id = 0;
+  main.cpp:5000:                        gplayers[ii].b_changed=true;
+  main.cpp:5001:                }
+> main.cpp:5002:                else if(gplayers[ii].b_base_copy &&
+> main.cpp:5003:                            (gplayers[ii].copy_id == gplayers[ii].id || gplayers[ii].copy_id == 0)) //If it's not a base copy of another player but the base copy flag is set, unset it
+  main.cpp:5004:                {
+> main.cpp:5005:                        //gplayers[ii].copy_id = gplayers[ii].id;
+> main.cpp:5006:                        gplayers[ii].b_base_copy=false;
+  main.cpp:5007:                        gplayers[ii].b_changed=true;
+  main.cpp:5008:                }
+  main.cpp:5009:
+  main.cpp:5010:                if(gplayers[ii].b_edit_face)
+  main.cpp:5011:                {
+  main.cpp:5012:                        gplayers[ii].b_edit_face=false;
+  main.cpp:5013:                        gplayers[ii].b_changed=true;
+  main.cpp:5014:                }
+  main.cpp:5015:
+  main.cpp:5016:                if(gplayers[ii].b_edit_hair)
+  main.cpp:5017:                {
+  main.cpp:5018:                        gplayers[ii].b_edit_hair=false;
+  pes15.cpp:132:
+  pes15.cpp:133:        player.kick_pwr = read_data15(7, 7, current_byte, pDescriptor15); //0x29:7
+  pes15.cpp:134:
+  pes15.cpp:135:        //Unknown G - 2 bits 0x2A:6
+  pes15.cpp:136:        current_byte++;
+  pes15.cpp:137:        //Edited Age? //0x2B:0
+  pes15.cpp:138:        //Edited Footing? //0x2B:1
+  pes15.cpp:139:
+> pes15.cpp:140:        player.b_base_copy = read_data15(2, 1, current_byte, pDescriptor15); //0x2B:2
+  pes15.cpp:141:
+  pes15.cpp:142:        player.b_edit_basicset = read_data15(3, 1, current_byte, pDescriptor15); //Edited Player Settings? 0x2B:3
+  pes15.cpp:143:
+  pes15.cpp:144:        //Unknown H - 6 bits 0x2B:4
+  pes15.cpp:145:        current_byte++;
+  pes15.cpp:146:
+  pes15.cpp:147:        player.strong_foot = read_data15(2, 1, current_byte, pDescriptor15); //0x2C:2
+  pes15.cpp:148:
+  pes15.cpp:149:        player.com_style[0] = read_data15(3, 1, current_byte, pDescriptor15); //0x2C:3
+  pes15.cpp:150:        player.com_style[1] = read_data15(4, 1, current_byte, pDescriptor15);
+  pes15.cpp:151:        player.com_style[2] = read_data15(5, 1, current_byte, pDescriptor15);
+  pes15.cpp:152:        player.com_style[3] = read_data15(6, 1, current_byte, pDescriptor15);
+  pes15.cpp:223:        player.b_edit_hair = read_data15(1, 1, current_byte, pDescriptor15);
+  pes15.cpp:224:        player.b_edit_phys = read_data15(2, 1, current_byte, pDescriptor15);
+  pes15.cpp:225:        player.b_edit_strip = read_data15(3, 1, current_byte, pDescriptor15);
+  pes15.cpp:226:
+  pes15.cpp:227:        player.boot_id = read_data15(4, 14, current_byte, pDescriptor15);
+  pes15.cpp:228:
+  pes15.cpp:229:        player.glove_id = read_data15(2, 14, current_byte, pDescriptor15); //Extend to be 14 bits, using Unk B space
+  pes15.cpp:230:
+> pes15.cpp:231:        player.copy_id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:232:
+  pes15.cpp:233:        player.neck_len = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:234:
+  pes15.cpp:235:        player.neck_size = read_data15(4, 4, current_byte, pDescriptor15);
+  pes15.cpp:236:
+  pes15.cpp:237:        player.shldr_hi = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:238:
+  pes15.cpp:239:        player.shldr_wid = read_data15(4, 4, current_byte, pDescriptor15);
+  pes15.cpp:240:
+  pes15.cpp:241:        player.chest = read_data15(0, 4, current_byte, pDescriptor15);
+  pes15.cpp:242:
+  pes15.cpp:243:        player.waist = read_data15(4, 4, current_byte, pDescriptor15);
+  pes15.cpp:510:
+  pes15.cpp:511:        write_data15(player.kick_pwr, 7, 7, current_byte, pDescriptor15); //0x29:7
+  pes15.cpp:512:
+  pes15.cpp:513:        //Unknown G - 2 bits 0x2A:6
+  pes15.cpp:514:        current_byte++;
+  pes15.cpp:515:        //Edited Age? //0x2B:0
+  pes15.cpp:516:        //Edited Footing? //0x2B:1
+  pes15.cpp:517:
+> pes15.cpp:518:        write_data15(player.b_base_copy, 2, 1, current_byte, pDescriptor15); //0x2B:2
+  pes15.cpp:519:
+  pes15.cpp:520:        write_data15(player.b_edit_basicset, 3, 1, current_byte, pDescriptor15); //Edited Player Settings? 0x2B:3
+  pes15.cpp:521:
+  pes15.cpp:522:        //Unknown H - 6 bits 0x2B:4
+  pes15.cpp:523:        current_byte++;
+  pes15.cpp:524:
+  pes15.cpp:525:        write_data15(player.strong_foot, 2, 1, current_byte, pDescriptor15); //0x2C:2
+  pes15.cpp:526:
+  pes15.cpp:527:        write_data15(player.com_style[0], 3, 1, current_byte, pDescriptor15); //0x2C:3
+  pes15.cpp:528:        write_data15(player.com_style[1], 4, 1, current_byte, pDescriptor15);
+  pes15.cpp:529:        write_data15(player.com_style[2], 5, 1, current_byte, pDescriptor15);
+  pes15.cpp:530:        write_data15(player.com_style[3], 6, 1, current_byte, pDescriptor15);
+  pes15.cpp:590:        write_data15(player.b_edit_hair, 1, 1, appear_byte, pDescriptor15);
+  pes15.cpp:591:        write_data15(player.b_edit_phys, 2, 1, appear_byte, pDescriptor15);
+  pes15.cpp:592:        write_data15(player.b_edit_strip, 3, 1, appear_byte, pDescriptor15);
+  pes15.cpp:593:
+  pes15.cpp:594:        write_data15(player.boot_id, 4, 14, appear_byte, pDescriptor15);
+  pes15.cpp:595:
+  pes15.cpp:596:        write_data15(player.glove_id, 2, 14, appear_byte, pDescriptor15); //Extend to be 14 bits, using Unk B space
+  pes15.cpp:597:
+> pes15.cpp:598:        write_data15(player.copy_id, 0, 4 * 8, appear_byte, pDescriptor15);
+  pes15.cpp:599:
+  pes15.cpp:600:        write_data15(player.neck_len, 0, 4, appear_byte, pDescriptor15);
+  pes15.cpp:601:
+  pes15.cpp:602:        write_data15(player.neck_size, 4, 4, appear_byte, pDescriptor15);
+  pes15.cpp:603:
+  pes15.cpp:604:        write_data15(player.shldr_hi, 0, 4, appear_byte, pDescriptor15);
+  pes15.cpp:605:
+  pes15.cpp:606:        write_data15(player.shldr_wid, 4, 4, appear_byte, pDescriptor15);
+  pes15.cpp:607:
+  pes15.cpp:608:        write_data15(player.chest, 0, 4, appear_byte, pDescriptor15);
+  pes15.cpp:609:
+  pes15.cpp:610:        write_data15(player.waist, 4, 4, appear_byte, pDescriptor15);
+  pes16.cpp:138:        players.b_edit_style = read_dataOld(7, 1, current_byte, pDescriptorOld);
+  pes16.cpp:139:
+  pes16.cpp:140:        players.b_edit_com = read_dataOld(0, 1, current_byte, pDescriptorOld);
+  pes16.cpp:141:
+  pes16.cpp:142:        players.b_edit_motion = read_dataOld(1, 1, current_byte, pDescriptorOld);
+  pes16.cpp:143:
+  pes16.cpp:144:        //Unknown D - 1/1
+  pes16.cpp:145:
+> pes16.cpp:146:        players.b_base_copy = read_dataOld(3, 1, current_byte, pDescriptorOld);
+  pes16.cpp:147:
+  pes16.cpp:148:        players.strong_foot = read_dataOld(4, 1, current_byte, pDescriptorOld);
+  pes16.cpp:149:
+  pes16.cpp:150:        players.com_style[0] = read_dataOld(5, 1, current_byte, pDescriptorOld);
+  pes16.cpp:151:        players.com_style[1] = read_dataOld(6, 1, current_byte, pDescriptorOld);
+  pes16.cpp:152:        players.com_style[2] = read_dataOld(7, 1, current_byte, pDescriptorOld);
+  pes16.cpp:153:        players.com_style[3] = read_dataOld(0, 1, current_byte, pDescriptorOld);
+  pes16.cpp:154:        players.com_style[4] = read_dataOld(1, 1, current_byte, pDescriptorOld);
+  pes16.cpp:155:        players.com_style[5] = read_dataOld(2, 1, current_byte, pDescriptorOld);
+  pes16.cpp:156:        players.com_style[6] = read_dataOld(3, 1, current_byte, pDescriptorOld);
+  pes16.cpp:157:
+  pes16.cpp:158:        players.play_skill[0] = read_dataOld(4, 1, current_byte, pDescriptorOld);
+  pes16.cpp:206:        players.b_edit_hair = read_dataOld(1, 1, current_byte, pDescriptorOld);
+  pes16.cpp:207:        players.b_edit_phys = read_dataOld(2, 1, current_byte, pDescriptorOld);
+  pes16.cpp:208:        players.b_edit_strip = read_dataOld(3, 1, current_byte, pDescriptorOld);
+  pes16.cpp:209:
+  pes16.cpp:210:        players.boot_id = read_dataOld(4, 14, current_byte, pDescriptorOld);
+  pes16.cpp:211:
+  pes16.cpp:212:        players.glove_id = read_dataOld(2, 14, current_byte, pDescriptorOld); //Extend to be 14 bits, using Unk B space
+  pes16.cpp:213:
+> pes16.cpp:214:        players.copy_id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:215:
+  pes16.cpp:216:        players.neck_len = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:217:
+  pes16.cpp:218:        players.neck_size = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes16.cpp:219:
+  pes16.cpp:220:        players.shldr_hi = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:221:
+  pes16.cpp:222:        players.shldr_wid = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes16.cpp:223:
+  pes16.cpp:224:        players.chest = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes16.cpp:225:
+  pes16.cpp:226:        players.waist = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes16.cpp:500:        write_dataOld(player.b_edit_style, 7, 1, current_byte, pDescriptorOld);
+  pes16.cpp:501:
+  pes16.cpp:502:        write_dataOld(player.b_edit_com, 0, 1, current_byte, pDescriptorOld);
+  pes16.cpp:503:
+  pes16.cpp:504:        write_dataOld(player.b_edit_motion, 1, 1, current_byte, pDescriptorOld);
+  pes16.cpp:505:
+  pes16.cpp:506:        //Unknown D - 1/1
+  pes16.cpp:507:
+> pes16.cpp:508:        write_dataOld(player.b_base_copy, 3, 1, current_byte, pDescriptorOld);
+  pes16.cpp:509:
+  pes16.cpp:510:        write_dataOld(player.strong_foot, 4, 1, current_byte, pDescriptorOld);
+  pes16.cpp:511:
+  pes16.cpp:512:        write_dataOld(player.com_style[0], 5, 1, current_byte, pDescriptorOld);
+  pes16.cpp:513:        write_dataOld(player.com_style[1], 6, 1, current_byte, pDescriptorOld);
+  pes16.cpp:514:        write_dataOld(player.com_style[2], 7, 1, current_byte, pDescriptorOld);
+  pes16.cpp:515:        write_dataOld(player.com_style[3], 0, 1, current_byte, pDescriptorOld);
+  pes16.cpp:516:        write_dataOld(player.com_style[4], 1, 1, current_byte, pDescriptorOld);
+  pes16.cpp:517:        write_dataOld(player.com_style[5], 2, 1, current_byte, pDescriptorOld);
+  pes16.cpp:518:        write_dataOld(player.com_style[6], 3, 1, current_byte, pDescriptorOld);
+  pes16.cpp:519:
+  pes16.cpp:520:        write_dataOld(player.play_skill[0], 4, 1, current_byte, pDescriptorOld);
+  pes16.cpp:568:        write_dataOld(player.b_edit_hair, 1, 1, appear_byte, pDescriptorOld);
+  pes16.cpp:569:        write_dataOld(player.b_edit_phys, 2, 1, appear_byte, pDescriptorOld);
+  pes16.cpp:570:        write_dataOld(player.b_edit_strip, 3, 1, appear_byte, pDescriptorOld);
+  pes16.cpp:571:
+  pes16.cpp:572:        write_dataOld(player.boot_id, 4, 14, appear_byte, pDescriptorOld);
+  pes16.cpp:573:
+  pes16.cpp:574:        write_dataOld(player.glove_id, 2, 14, appear_byte, pDescriptorOld); //Extend to be 14 bits, using Unk B space
+  pes16.cpp:575:
+> pes16.cpp:576:        write_dataOld(player.copy_id, 0, 4 * 8, appear_byte, pDescriptorOld);
+  pes16.cpp:577:
+  pes16.cpp:578:        write_dataOld(player.neck_len, 0, 4, appear_byte, pDescriptorOld);
+  pes16.cpp:579:
+  pes16.cpp:580:        write_dataOld(player.neck_size, 4, 4, appear_byte, pDescriptorOld);
+  pes16.cpp:581:
+  pes16.cpp:582:        write_dataOld(player.shldr_hi, 0, 4, appear_byte, pDescriptorOld);
+  pes16.cpp:583:
+  pes16.cpp:584:        write_dataOld(player.shldr_wid, 4, 4, appear_byte, pDescriptorOld);
+  pes16.cpp:585:
+  pes16.cpp:586:        write_dataOld(player.chest, 0, 4, appear_byte, pDescriptorOld);
+  pes16.cpp:587:
+  pes16.cpp:588:        write_dataOld(player.waist, 4, 4, appear_byte, pDescriptorOld);
+  pes17.cpp:127:        players.speed = read_dataOld(7, 7, current_byte, pDescriptorOld);
+  pes17.cpp:128:
+  pes17.cpp:129:        players.b_edit_style = read_dataOld(6, 1, current_byte, pDescriptorOld);
+  pes17.cpp:130:
+  pes17.cpp:131:        players.b_edit_com = read_dataOld(7, 1, current_byte, pDescriptorOld);
+  pes17.cpp:132:
+  pes17.cpp:133:        players.b_edit_motion = read_dataOld(0, 1, current_byte, pDescriptorOld);
+  pes17.cpp:134:
+> pes17.cpp:135:        players.b_base_copy = read_dataOld(1, 1, current_byte, pDescriptorOld);
+  pes17.cpp:136:
+  pes17.cpp:137:        //Unknown D - 1/1
+  pes17.cpp:138:
+  pes17.cpp:139:        players.strong_foot = read_dataOld(3, 1, current_byte, pDescriptorOld);
+  pes17.cpp:140:        //Unknown E - 1/1
+  pes17.cpp:141:        players.com_style[0] = read_dataOld(5, 1, current_byte, pDescriptorOld);
+  pes17.cpp:142:        players.com_style[1] = read_dataOld(6, 1, current_byte, pDescriptorOld);
+  pes17.cpp:143:        players.com_style[2] = read_dataOld(7, 1, current_byte, pDescriptorOld);
+  pes17.cpp:144:        players.com_style[3] = read_dataOld(0, 1, current_byte, pDescriptorOld);
+  pes17.cpp:145:        players.com_style[4] = read_dataOld(1, 1, current_byte, pDescriptorOld);
+  pes17.cpp:146:        players.com_style[5] = read_dataOld(2, 1, current_byte, pDescriptorOld);
+  pes17.cpp:147:        players.com_style[6] = read_dataOld(3, 1, current_byte, pDescriptorOld);
+  pes17.cpp:192:        players.b_edit_hair = read_dataOld(1, 1, current_byte, pDescriptorOld);
+  pes17.cpp:193:        players.b_edit_phys = read_dataOld(2, 1, current_byte, pDescriptorOld);
+  pes17.cpp:194:        players.b_edit_strip = read_dataOld(3, 1, current_byte, pDescriptorOld);
+  pes17.cpp:195:
+  pes17.cpp:196:        players.boot_id = read_dataOld(4, 14, current_byte, pDescriptorOld);
+  pes17.cpp:197:
+  pes17.cpp:198:        players.glove_id = read_dataOld(2, 14, current_byte, pDescriptorOld); //Extend to be 14 bits, using Unk A space
+  pes17.cpp:199:
+> pes17.cpp:200:        players.copy_id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:201:
+  pes17.cpp:202:        players.neck_len = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:203:
+  pes17.cpp:204:        players.neck_size = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:205:
+  pes17.cpp:206:        players.shldr_hi = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:207:
+  pes17.cpp:208:        players.shldr_wid = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:209:
+  pes17.cpp:210:        players.chest = read_dataOld(0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:211:
+  pes17.cpp:212:        players.waist = read_dataOld(4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:511:        write_dataOld(player.speed, 7, 7, current_byte, pDescriptorOld);
+  pes17.cpp:512:
+  pes17.cpp:513:        write_dataOld(player.b_edit_style, 6, 1, current_byte, pDescriptorOld);
+  pes17.cpp:514:
+  pes17.cpp:515:        write_dataOld(player.b_edit_com, 7, 1, current_byte, pDescriptorOld);
+  pes17.cpp:516:
+  pes17.cpp:517:        write_dataOld(player.b_edit_motion, 0, 1, current_byte, pDescriptorOld);
+  pes17.cpp:518:
+> pes17.cpp:519:        write_dataOld(player.b_base_copy, 1, 1, current_byte, pDescriptorOld);
+  pes17.cpp:520:
+  pes17.cpp:521:        //Unknown D - 1/1
+  pes17.cpp:522:
+  pes17.cpp:523:        write_dataOld(player.strong_foot, 3, 1, current_byte, pDescriptorOld);
+  pes17.cpp:524:        //Unknown E - 1/1
+  pes17.cpp:525:        write_dataOld(player.com_style[0], 5, 1, current_byte, pDescriptorOld);
+  pes17.cpp:526:        write_dataOld(player.com_style[1], 6, 1, current_byte, pDescriptorOld);
+  pes17.cpp:527:        write_dataOld(player.com_style[2], 7, 1, current_byte, pDescriptorOld);
+  pes17.cpp:528:        write_dataOld(player.com_style[3], 0, 1, current_byte, pDescriptorOld);
+  pes17.cpp:529:        write_dataOld(player.com_style[4], 1, 1, current_byte, pDescriptorOld);
+  pes17.cpp:530:        write_dataOld(player.com_style[5], 2, 1, current_byte, pDescriptorOld);
+  pes17.cpp:531:        write_dataOld(player.com_style[6], 3, 1, current_byte, pDescriptorOld);
+  pes17.cpp:579:        write_dataOld(player.b_edit_hair, 1, 1, current_byte, pDescriptorOld);
+  pes17.cpp:580:        write_dataOld(player.b_edit_phys, 2, 1, current_byte, pDescriptorOld);
+  pes17.cpp:581:        write_dataOld(player.b_edit_strip, 3, 1, current_byte, pDescriptorOld);
+  pes17.cpp:582:
+  pes17.cpp:583:        write_dataOld(player.boot_id, 4, 14, current_byte, pDescriptorOld);
+  pes17.cpp:584:
+  pes17.cpp:585:        write_dataOld(player.glove_id, 2, 14, current_byte, pDescriptorOld); //Extend to be 14 bits, using Unk A space
+  pes17.cpp:586:
+> pes17.cpp:587:        write_dataOld(player.copy_id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:588:
+  pes17.cpp:589:        write_dataOld(player.neck_len, 0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:590:
+  pes17.cpp:591:        write_dataOld(player.neck_size, 4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:592:
+  pes17.cpp:593:        write_dataOld(player.shldr_hi, 0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:594:
+  pes17.cpp:595:        write_dataOld(player.shldr_wid, 4, 4, current_byte, pDescriptorOld);
+  pes17.cpp:596:
+  pes17.cpp:597:        write_dataOld(player.chest, 0, 4, current_byte, pDescriptorOld);
+  pes17.cpp:598:
+  pes17.cpp:599:        write_dataOld(player.waist, 4, 4, current_byte, pDescriptorOld);
+  pes18.cpp:202:        players.b_edit_skill = (pDescriptorNew->data[current_byte]) & 1;
+  pes18.cpp:203:
+  pes18.cpp:204:        players.b_edit_style = (pDescriptorNew->data[current_byte] >> 1) & 1;
+  pes18.cpp:205:
+  pes18.cpp:206:        players.b_edit_com = (pDescriptorNew->data[current_byte] >> 2) & 1;
+  pes18.cpp:207:
+  pes18.cpp:208:        players.b_edit_motion = (pDescriptorNew->data[current_byte] >> 3) & 1;
+  pes18.cpp:209:
+> pes18.cpp:210:        players.b_base_copy = (pDescriptorNew->data[current_byte] >> 4) & 1;
+  pes18.cpp:211:        //Unknown D - 1/1
+  pes18.cpp:212:
+  pes18.cpp:213:        players.strong_foot = (pDescriptorNew->data[current_byte] >> 6) & 1;
+  pes18.cpp:214:        //Unknown E - 1/1
+  pes18.cpp:215:        current_byte++;
+  pes18.cpp:216:
+  pes18.cpp:217:        players.com_style[0] = (pDescriptorNew->data[current_byte]) & 1;
+  pes18.cpp:218:        players.com_style[1] = (pDescriptorNew->data[current_byte] >> 1) & 1;
+  pes18.cpp:219:        players.com_style[2] = (pDescriptorNew->data[current_byte] >> 2) & 1;
+  pes18.cpp:220:        players.com_style[3] = (pDescriptorNew->data[current_byte] >> 3) & 1;
+  pes18.cpp:221:        players.com_style[4] = (pDescriptorNew->data[current_byte] >> 4) & 1;
+  pes18.cpp:222:        players.com_style[5] = (pDescriptorNew->data[current_byte] >> 5) & 1;
+  pes18.cpp:282:        players.glove_id = pDescriptorNew->data[current_byte] >> 2;
+  pes18.cpp:283:        current_byte++;
+  pes18.cpp:284:        //players.glove_id += (pDescriptorNew->data[current_byte] & 15) << 6;
+  pes18.cpp:285:        players.glove_id += (pDescriptorNew->data[current_byte]) << 6; //Extend to be 14 bits, using Unk B space
+  pes18.cpp:286:
+  pes18.cpp:287:        //Unknown B - 4/4
+  pes18.cpp:288:        current_byte++;
+  pes18.cpp:289:
+> pes18.cpp:290:        players.copy_id = pDescriptorNew->data[current_byte];
+  pes18.cpp:291:        current_byte++;
+> pes18.cpp:292:        players.copy_id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:293:        current_byte++;
+> pes18.cpp:294:        players.copy_id += pDescriptorNew->data[current_byte] << 16;
+  pes18.cpp:295:        current_byte++;
+> pes18.cpp:296:        players.copy_id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:297:        current_byte++;
+  pes18.cpp:298:
+  pes18.cpp:299:        players.neck_len = pDescriptorNew->data[current_byte] & 15;
+  pes18.cpp:300:
+  pes18.cpp:301:        players.neck_size = pDescriptorNew->data[current_byte] >> 4;
+  pes18.cpp:302:        current_byte++;
+  pes18.cpp:303:
+  pes18.cpp:304:        players.shldr_hi = pDescriptorNew->data[current_byte] & 15;
+  pes18.cpp:305:
+  pes18.cpp:306:        players.shldr_wid = pDescriptorNew->data[current_byte] >> 4;
+  pes18.cpp:307:        current_byte++;
+  pes18.cpp:308:
+  pes18.cpp:714:        pDescriptorNew->data[current_byte] = player.b_edit_skill; //1/1
+  pes18.cpp:715:
+  pes18.cpp:716:        pDescriptorNew->data[current_byte] += player.b_edit_style << 1; //1/1
+  pes18.cpp:717:
+  pes18.cpp:718:        pDescriptorNew->data[current_byte] += player.b_edit_com << 2; //1/1
+  pes18.cpp:719:
+  pes18.cpp:720:        pDescriptorNew->data[current_byte] += player.b_edit_motion << 3; //1/1
+  pes18.cpp:721:
+> pes18.cpp:722:        pDescriptorNew->data[current_byte] += player.b_base_copy << 4; //1/1
+  pes18.cpp:723:        //Unknown D - 1/1
+  pes18.cpp:724:        pDescriptorNew->data[current_byte] += player.strong_foot << 6; //1/1
+  pes18.cpp:725:        //Unknown E - 1/1
+  pes18.cpp:726:        current_byte++;
+  pes18.cpp:727:
+  pes18.cpp:728:        pDescriptorNew->data[current_byte] = player.com_style[0]; //1/1
+  pes18.cpp:729:        pDescriptorNew->data[current_byte] += player.com_style[1] << 1; //1/1
+  pes18.cpp:730:        pDescriptorNew->data[current_byte] += player.com_style[2] << 2; //1/1
+  pes18.cpp:731:        pDescriptorNew->data[current_byte] += player.com_style[3] << 3; //1/1
+  pes18.cpp:732:        pDescriptorNew->data[current_byte] += player.com_style[4] << 4; //1/1
+  pes18.cpp:733:        pDescriptorNew->data[current_byte] += player.com_style[5] << 5; //1/1
+  pes18.cpp:734:        pDescriptorNew->data[current_byte] += player.com_style[6] << 6; //1/1
+  pes18.cpp:796:        pDescriptorNew->data[current_byte] += (player.glove_id << 2) & 252; //6/10
+  pes18.cpp:797:        current_byte++;
+  pes18.cpp:798:        //pDescriptorNew->data[current_byte] = (player.glove_id >> 6) & 15; //4/10
+  pes18.cpp:799:        pDescriptorNew->data[current_byte] = (player.glove_id >> 6); //8/14 - extended to be 14 bits, using Unk B space
+  pes18.cpp:800:
+  pes18.cpp:801:        //Unknown B - 4/4
+  pes18.cpp:802:        current_byte++;
+  pes18.cpp:803:
+> pes18.cpp:804:        pDescriptorNew->data[current_byte] = player.copy_id & 255; //8/32
+  pes18.cpp:805:        current_byte++;
+> pes18.cpp:806:        pDescriptorNew->data[current_byte] = (player.copy_id >> 8) & 255; //8/32
+  pes18.cpp:807:        current_byte++;
+> pes18.cpp:808:        pDescriptorNew->data[current_byte] = (player.copy_id >> 16) & 255; //8/32
+  pes18.cpp:809:        current_byte++;
+> pes18.cpp:810:        pDescriptorNew->data[current_byte] = (player.copy_id >> 24) & 255; //8/32
+  pes18.cpp:811:        current_byte++;
+  pes18.cpp:812:
+  pes18.cpp:813:        pDescriptorNew->data[current_byte] = player.neck_len; //4/4
+  pes18.cpp:814:
+  pes18.cpp:815:        pDescriptorNew->data[current_byte] += player.neck_size << 4; //4/4
+  pes18.cpp:816:        current_byte++;
+  pes18.cpp:817:
+  pes18.cpp:818:        pDescriptorNew->data[current_byte] = player.shldr_hi; //4/4
+  pes18.cpp:819:
+  pes18.cpp:820:        pDescriptorNew->data[current_byte] += player.shldr_wid << 4; //4/4
+  pes18.cpp:821:        current_byte++;
+  pes18.cpp:822:
+  pes19.cpp:181:
+  pes19.cpp:182:        players.glove_id = pDescriptorNew->data[current_byte] >> 2;
+  pes19.cpp:183:        current_byte++;
+  pes19.cpp:184:        players.glove_id += (pDescriptorNew->data[current_byte]) << 6; //Extend to be 14 bits, using Unk B space //&15
+  pes19.cpp:185:
+  pes19.cpp:186:        //Unknown B - 4/4
+  pes19.cpp:187:        current_byte++;
+  pes19.cpp:188:        //0x08:0
+> pes19.cpp:189:        players.copy_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:190:        current_byte++;
+> pes19.cpp:191:        players.copy_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:192:        current_byte++;
+> pes19.cpp:193:        players.copy_id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:194:        current_byte++;
+> pes19.cpp:195:        players.copy_id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:196:        current_byte++;
+  pes19.cpp:197:        //0x0C:0
+  pes19.cpp:198:        players.neck_len = pDescriptorNew->data[current_byte] & 15;
+  pes19.cpp:199:
+  pes19.cpp:200:        players.neck_size = pDescriptorNew->data[current_byte] >> 4;
+  pes19.cpp:201:        current_byte++;
+  pes19.cpp:202:        //0x0D:0
+  pes19.cpp:203:        players.shldr_hi = pDescriptorNew->data[current_byte] & 15;
+  pes19.cpp:204:
+  pes19.cpp:205:        players.shldr_wid = pDescriptorNew->data[current_byte] >> 4;
+  pes19.cpp:206:        current_byte++;
+  pes19.cpp:207:        //0x0E:0
+  pes19.cpp:631:
+  pes19.cpp:632:        pDescriptorNew->data[current_byte] += (player.glove_id << 2) & 252; //6/10
+  pes19.cpp:633:        current_byte++;
+  pes19.cpp:634:        pDescriptorNew->data[current_byte] = (player.glove_id >> 6); //8/14 - extended to be 14 bits, using Unk B space //& 15
+  pes19.cpp:635:
+  pes19.cpp:636:        //Unknown B - 4/4
+  pes19.cpp:637:        current_byte++;
+  pes19.cpp:638:
+> pes19.cpp:639:        pDescriptorNew->data[current_byte] = player.copy_id & 255; //8/32
+  pes19.cpp:640:        current_byte++;
+> pes19.cpp:641:        pDescriptorNew->data[current_byte] = (player.copy_id >> 8) & 255; //8/32
+  pes19.cpp:642:        current_byte++;
+> pes19.cpp:643:        pDescriptorNew->data[current_byte] = (player.copy_id >> 16) & 255; //8/32
+  pes19.cpp:644:        current_byte++;
+> pes19.cpp:645:        pDescriptorNew->data[current_byte] = (player.copy_id >> 24) & 255; //8/32
+  pes19.cpp:646:        current_byte++;
+  pes19.cpp:647:
+  pes19.cpp:648:        pDescriptorNew->data[current_byte] = player.neck_len; //4/4
+  pes19.cpp:649:
+  pes19.cpp:650:        pDescriptorNew->data[current_byte] += player.neck_size << 4; //4/4
+  pes19.cpp:651:        current_byte++;
+  pes19.cpp:652:
+  pes19.cpp:653:        pDescriptorNew->data[current_byte] = player.shldr_hi; //4/4
+  pes19.cpp:654:
+  pes19.cpp:655:        pDescriptorNew->data[current_byte] += player.shldr_wid << 4; //4/4
+  pes19.cpp:656:        current_byte++;
+  pes19.cpp:657:
+  pes20.cpp:148:        current_byte+=4;
+  pes20.cpp:149:        //0x04:0
+  pes20.cpp:150:        players.b_edit_face     = read_data(0, 1, current_byte, pDescriptorNew);
+  pes20.cpp:151:        players.b_edit_hair     = read_data(1, 1, current_byte, pDescriptorNew);
+  pes20.cpp:152:        players.b_edit_phys     = read_data(2, 1, current_byte, pDescriptorNew);
+  pes20.cpp:153:        players.b_edit_strip = read_data(3, 1, current_byte, pDescriptorNew);
+  pes20.cpp:154:        players.boot_id         = read_data(4, 14, current_byte, pDescriptorNew);
+  pes20.cpp:155:        players.glove_id        = read_data(2, 14, current_byte, pDescriptorNew); //Extend to be 14 bits, using Unk A space
+> pes20.cpp:156:        players.copy_id         = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:157:        players.neck_len        = read_data(0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:158:        players.neck_size       = read_data(4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:159:        players.shldr_hi        = read_data(0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:160:        players.shldr_wid       = read_data(4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:161:        players.chest           = read_data(0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:162:        players.waist           = read_data(4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:163:        players.arm_size        = read_data(0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:164:        players.arm_len         = read_data(4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:165:        players.thigh           = read_data(0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:166:        players.calf            = read_data(4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:167:        players.leg_len         = read_data(0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:168:        players.head_len        = read_data(4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:528:        current_byte+=4;
+  pes20.cpp:529:        //0x04:0
+  pes20.cpp:530:        write_data(player.b_edit_face,  0, 1, current_byte, pDescriptorNew);
+  pes20.cpp:531:        write_data(player.b_edit_hair,  1, 1, current_byte, pDescriptorNew);
+  pes20.cpp:532:        write_data(player.b_edit_phys,  2, 1, current_byte, pDescriptorNew);
+  pes20.cpp:533:        write_data(player.b_edit_strip,3, 1, current_byte, pDescriptorNew);
+  pes20.cpp:534:        write_data(player.boot_id,              4, 14, current_byte, pDescriptorNew);
+  pes20.cpp:535:        write_data(player.glove_id,     2, 14, current_byte, pDescriptorNew); //Extended to use 14 bits, using Unk A space
+> pes20.cpp:536:        write_data(player.copy_id,              0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:537:        write_data(player.neck_len,     0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:538:        write_data(player.neck_size,    4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:539:        write_data(player.shldr_hi,     0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:540:        write_data(player.shldr_wid,    4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:541:        write_data(player.chest,                0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:542:        write_data(player.waist,                4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:543:        write_data(player.arm_size,     0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:544:        write_data(player.arm_len,              4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:545:        write_data(player.thigh,                0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:546:        write_data(player.calf,         4, 4, current_byte, pDescriptorNew);
+  pes20.cpp:547:        write_data(player.leg_len,              0, 4, current_byte, pDescriptorNew);
+  pes20.cpp:548:        write_data(player.head_len,     4, 4, current_byte, pDescriptorNew);
+  resource.h:271:#define IDT_PLAY_ATT   3004
+  resource.h:272:#define IDC_PLAY_ATT   3005
+  resource.h:273:
+  resource.h:274:#define IDD_TAB_TWO            1400
+  resource.h:275:#define IDB_EDIT_FACE  1401
+  resource.h:276:#define IDB_EDIT_HAIR  1402
+  resource.h:277:#define IDB_EDIT_PHYS  1403
+  resource.h:278:#define IDB_EDIT_STRP  1404
+> resource.h:279:#define IDB_COPY_BASE  1405
+> resource.h:280:#define IDT_COPY_ID            1406
+  resource.h:281:#define IDT_PHYS_HELE  1407
+  resource.h:282:#define IDC_PHYS_HELE  1408
+  resource.h:283:#define IDT_PHYS_HEWI  1409
+  resource.h:284:#define IDC_PHYS_HEWI  1410
+  resource.h:285:#define IDT_PHYS_HEDE  1411
+  resource.h:286:#define IDC_PHYS_HEDE  1412
+  resource.h:287:#define IDT_PHYS_NELE  1413
+  resource.h:288:#define IDC_PHYS_NELE  1414
+  resource.h:289:#define IDT_PHYS_NESI  1415
+  resource.h:290:#define IDC_PHYS_NESI  1416
+  resource.h:291:#define IDT_PHYS_SHHE  1417
+  resource.h:292:#define IDC_PHYS_SHHE  1418
+  window.cpp:1244:
+  window.cpp:1245:      hw_new = CreateWindowEx(0, _T("Button"), _T("Copy Settings"),
+  window.cpp:1246:              BS_GROUPBOX | WS_CHILD | WS_VISIBLE | WS_GROUP,
+  window.cpp:1247:              10, 118, 158, 94, ghw_tab2, (HMENU)IDC_STATIC_T49, GetModuleHandle(NULL), NULL);
+  window.cpp:1248:      setup_control(hw_new, ghFont, scale_cntl_proc);
+  window.cpp:1249:
+  window.cpp:1250:      x1=21, y1=137, ydiff=20, xc=140;
+  window.cpp:1251:
+> window.cpp:1252:      hw_new = CreateWindowEx(0, _T("Button"), _T("Is a copy?"),
+  window.cpp:1253:              BS_AUTOCHECKBOX | WS_TABSTOP | WS_CHILD | WS_VISIBLE,
+> window.cpp:1254:              x1, y1, xc, 17, ghw_tab2, (HMENU)IDB_COPY_BASE, GetModuleHandle(NULL), NULL);
+  window.cpp:1255:      setup_control(hw_new, ghFont, scale_cntl_proc);
+  window.cpp:1256:
+> window.cpp:1257:      hw_new = CreateWindowEx(0, _T("Static"), _T("Model ID:"),
+  window.cpp:1258:              SS_SIMPLE | SS_NOPREFIX | WS_CHILD | WS_VISIBLE,
+  window.cpp:1259:              x1, y1+ydiff, 114, 17, ghw_tab2, (HMENU)IDC_STATIC_T50, GetModuleHandle(NULL), NULL);
+  window.cpp:1260:      setup_control(hw_new, ghFont, scale_static_proc);
+  window.cpp:1261:
+  window.cpp:1262:      hw_new = CreateWindowEx(WS_EX_CLIENTEDGE, _T("EDIT"), _T(""),
+  window.cpp:1263:              ES_NUMBER | WS_TABSTOP | WS_CHILD | WS_VISIBLE,
+> window.cpp:1264:              x1, y1+ydiff*2, 114, 23, ghw_tab2, (HMENU)IDT_COPY_ID, GetModuleHandle(NULL), NULL);
+  window.cpp:1265:      setup_control(hw_new, ghFont, scale_cntl_proc);
+  window.cpp:1266:
+  window.cpp:1267:      hw_new = CreateWindowEx(0, _T("Button"), _T("Player Physique"),
+  window.cpp:1268:              BS_GROUPBOX | WS_CHILD | WS_VISIBLE | WS_GROUP,
+  window.cpp:1269:              10, 222, 158, 347, ghw_tab2, (HMENU)IDC_STATIC_T51, GetModuleHandle(NULL), NULL);
+  window.cpp:1270:      setup_control(hw_new, ghFont, scale_cntl_proc);
+  window.cpp:1271:
+  window.cpp:1272:      x1=21, y1=243, ydiff=22, xc=102, x2=112, y2=241;
+  window.cpp:1273:
+  window.cpp:1274:      hw_new = CreateWindowEx(0, _T("Static"), _T("Head length:"),
+  window.cpp:1275:              SS_SIMPLE | SS_NOPREFIX | WS_CHILD | WS_VISIBLE,
+  window.cpp:1276:              x1, y1+ydiff*0, xc, 17, ghw_tab2, (HMENU)IDC_STATIC_T52, GetModuleHandle(NULL), NULL);
