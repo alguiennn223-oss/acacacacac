@@ -1,0 +1,423 @@
+PS D:\Games\pes patch mio\4ccEditoe\4ccEditor-master> Get-ChildItem -Recurse -File -Include *.cpp,*.h,*.c,*.hpp | Select-String -Pattern "team_max|gnum_teams|gnum_players|b_changed|team_entry|fill_team|extract_team|IDM_TEAM" | Select-Object Path,LineNumber,Line
+
+Path                                                             LineNumber Line
+----                                                             ---------- ----
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\aatf.cpp              113 void aatf_single(HWND hAatfbox, int pesVersion, int teamSel, player_entry* gplayers, team_entry* gteams, int gnum_players)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\aatf.cpp              142             for (int jj = 0; jj < gnum_players; jj++)                                                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\aatf.cpp              163             for(int jj=0; jj<gnum_players; jj++)                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp         17 tstring do_comparison(int, player_entry*, int, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp         18 tstring compare_single_team(int, int, player_entry*, int, team_entry*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp         21 team_entry* c_teams = NULL;
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp         37 void save_comparator(HWND hCompareBox, int nPesVersion, player_entry* gplayers, int gnum_players, team_entry* gteams, int gnum_te...
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp         61             tstring result = do_comparison(nPesVersion, gplayers, gnum_players, gteams, gnum_teams);                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        153             c_teams = new team_entry[c_num_teams];                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        197             c_teams = new team_entry[c_num_teams];                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        200                     fill_team_ids16(c_teams[ii], current_byte, hc_descriptor);                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        206                     fill_team_rosters16(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        212                     fill_team_tactics16(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        239             c_teams = new team_entry[c_num_teams];                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        242                     fill_team_ids17(c_teams[ii], current_byte, hc_descriptor);                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        248                     fill_team_rosters17(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        254                     fill_team_tactics17(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        289             c_teams = new team_entry[c_num_teams];                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        292                     fill_team_ids18(c_teams[ii], current_byte, hc_descriptor);                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        298                     fill_team_rosters18(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        304                     fill_team_tactics18(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        339             c_teams = new team_entry[c_num_teams];                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        342                     fill_team_ids19(c_teams[ii], current_byte, hc_descriptor);                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        348                     fill_team_rosters19(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        354                     fill_team_tactics19(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        384             c_teams = new team_entry[c_num_teams];                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        387                     fill_team_ids20(c_teams[ii], current_byte, hc_descriptor);                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        393                     fill_team_rosters20(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        399                     fill_team_tactics20(current_byte, hc_descriptor, c_teams, c_num_teams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        436 tstring do_comparison(int nPesVersion, player_entry* gplayers, int gnum_players, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        442     if(gnum_teams!=c_num_teams)                                                                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        444             errorMsg << _T("WARNING: Number of teams differs, A: ") << gnum_teams <<_T(", B: ") << c_num_teams << _T("\r\n");        
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        445             num_teams = min(gnum_teams, c_num_teams);                                                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        449             num_teams = gnum_teams;                                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        453             msgOut += compare_single_team(nPesVersion, ii, gplayers, gnum_players, gteams);                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        460 tstring compare_single_team(int pesVersion, int teamSel, player_entry* gplayers, int gnum_players, team_entry* gteams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\comparator.cpp        487             for(int jj=0; jj<gnum_players; jj++)                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              203     bool b_changed;                                                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              211             b_changed = false;                                                                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              545             this->b_changed = true;                                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              555 struct team_entry
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              557     static const int team_max = 40; //Number of player entries per team                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              564     unsigned long players[team_max];                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              565     uint16_t numbers[team_max];                                                                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              586     bool b_changed;                                                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              590     team_entry()                                                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              592             b_changed = false;                                                                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              600             for (int ii = 0; ii < team_max; ii++)                                                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              624     bool operator==(const team_entry& rhs)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              634             for(ii=0;ii<this->team_max;ii++) b_out = b_out && (this->players[ii]==rhs.players[ii]);                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              635             for(ii=0;ii<this->team_max;ii++) b_out = b_out && (this->numbers[ii]==rhs.numbers[ii]);                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              684 void read_team_ids15(team_entry&, int&, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              685 void read_team_rosters15(int&, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              686 void read_team_tactics15(int&, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              688 void write_team_info15(team_entry, int&, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              689 void write_teamplayer_info15(team_entry, int&, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              690 void write_team_tactics15(team_entry, int&, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              694 void fill_team_ids16(team_entry &, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              695 void fill_team_rosters16(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              696 void fill_team_tactics16(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              698 void extract_team_info16(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              699 void extract_teamplayer_info16(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              700 void extract_team_tactics16(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              703 void fill_team_ids17(team_entry &, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              704 void fill_team_rosters17(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              705 void fill_team_tactics17(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              707 void extract_team_info17(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              708 void extract_teamplayer_info17(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              709 void extract_team_tactics17(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              712 void fill_team_ids18(team_entry &, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              713 void fill_team_rosters18(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              714 void fill_team_tactics18(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              716 void extract_team_info18(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              717 void extract_teamplayer_info18(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              718 void extract_team_tactics18(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              721 void fill_team_ids19(team_entry &, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              722 void fill_team_rosters19(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              723 void fill_team_tactics19(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              725 void extract_team_info19(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              726 void extract_teamplayer_info19(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              727 void extract_team_tactics19(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              730 void fill_team_ids20(team_entry &, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              731 void fill_team_ids21(team_entry&, int&, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              732 void fill_team_rosters20(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              733 void fill_team_tactics20(int &, void*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              735 void extract_team_info20(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              736 void extract_team_info21(team_entry, int&, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              737 void extract_teamplayer_info20(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              738 void extract_team_tactics20(team_entry, int &, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              740 void aatf_single(HWND, int, int, player_entry*, team_entry*, int);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\editor.h              742 void save_comparator(HWND, int, player_entry*, int, team_entry*, int, TCHAR*, void*);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp                97             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               102             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               107             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               112             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               117             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               122             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               127             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               132             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               137             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               142             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               147             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               157             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               162             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               167             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               172             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               177             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               182             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               187             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\fpc.cpp               192             player.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp               51 void extract_team_info(team_entry, int &);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp               52 void extract_teamplayer_info(team_entry, int &);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp               56 bool get_form_team_info(int, team_entry &);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp               99 team_entry* gteams = NULL;
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              102 int gnum_players, gnum_teams, gn_listsel=-1, gn_teamsel=-1, gn_forceupdate=-1;
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              477                                             team_entry te_current;                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              519                                                     team_entry te_current;                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              570                                                             //swap temp struct 2 into (old) current player, set b_changed flag       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              572                                                             gplayers[gn_playind[gn_listsel]].b_changed = true;                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              573                                                             //import temp struct 1 into (old) prev player, set b_changed flag        
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              575                                                             gplayers[gn_playind[gn_listsel-1]].b_changed = true;                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              621                                                             //swap temp struct 2 into (old) current player, set b_changed flag       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              623                                                             gplayers[gn_playind[gn_listsel]].b_changed = true;                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              624                                                             //import temp struct 1 into (old) next player, set b_changed flag        
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              626                                                             gplayers[gn_playind[gn_listsel+1]].b_changed = true;                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              759                             case IDM_TEAM_CLEAR:                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              762                             case IDM_TEAM_CREAT:                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              765                             case IDM_TEAM_FPCON:                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              768                             case IDM_TEAM_FPOFF:                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              771                             case IDM_TEAM_BOGLO:                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              774                             case IDM_TEAM_NAMEPOS:                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              778                             case IDM_TEAM_SAVES:                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              782                             case IDM_TEAM_LOADS:                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              811                                                             for(num_on_team=0;num_on_team < gteams->team_max; num_on_team++)         
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              825                                                             for(ii=0;ii<gnum_players;ii++)                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              882                                                             gteams[gplayers[gn_playind[gn_listsel]].team_ind].b_changed = true;      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp              977                                             aatf_single(ghAatfbox, giPesVersion, gn_teamsel, gplayers, gteams, gnum_players);        
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1038                                             //team_entry te_current = get_form_team_info();                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1433             gnum_players = ((FileDescriptor15*)ghdescriptor)->data[0x34];                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1434             gnum_players += (((FileDescriptor15*)ghdescriptor)->data[0x35]) * 256;                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1436             gnum_teams = ((FileDescriptor15*)ghdescriptor)->data[0x38];                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1437             gnum_teams += (((FileDescriptor15*)ghdescriptor)->data[0x39]) * 256;                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1443             for (int ii = 0; ii < gnum_players; ii++)                                                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1451             gplayers = new player_entry[gnum_players];                                                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1452             for (int ii = 0; ii < gnum_players; ii++)                                                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1461             gteams = new team_entry[gnum_teams];                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1462             for (ii = 0; ii < gnum_teams; ii++)                                                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1468             for (ii = 0; ii < gnum_teams; ii++)                                                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1470                     read_team_rosters15(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1474             for (ii = 0; ii < gnum_teams; ii++)                                                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1476                     read_team_tactics15(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1509             gnum_players = ((FileDescriptorOld*)ghdescriptor)->data[0x34];                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1510             gnum_players += (((FileDescriptorOld*)ghdescriptor)->data[0x35])*256;                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1512             gnum_teams = ((FileDescriptorOld*)ghdescriptor)->data[0x38];                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1513             gnum_teams += (((FileDescriptorOld*)ghdescriptor)->data[0x39])*256;                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1519             gplayers = new player_entry[gnum_players];                                                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1520             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1529             gteams = new team_entry[gnum_teams];                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1530             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1532                     fill_team_ids16(gteams[ii], current_byte, ghdescriptor);                                                         
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1536             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1538                     fill_team_rosters16(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1542             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1544                     fill_team_tactics16(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1567             gnum_players = ((FileDescriptorOld*)ghdescriptor)->data[0x5C];                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1568             gnum_players += (((FileDescriptorOld*)ghdescriptor)->data[0x5D])*256;                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1570             gnum_teams = ((FileDescriptorOld*)ghdescriptor)->data[0x60];                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1571             gnum_teams += (((FileDescriptorOld*)ghdescriptor)->data[0x61])*256;                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1576             gplayers = new player_entry[gnum_players];                                                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1577             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1585             gteams = new team_entry[gnum_teams];                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1586             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1588                     fill_team_ids17(gteams[ii], current_byte, ghdescriptor);                                                         
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1592             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1594                     fill_team_rosters17(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1598             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1600                     fill_team_tactics17(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1623             gnum_players = ((FileDescriptorNew*)ghdescriptor)->data[96];                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1624             gnum_players += (((FileDescriptorNew*)ghdescriptor)->data[97])*256;                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1626             gnum_teams = ((FileDescriptorNew*)ghdescriptor)->data[100];                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1627             gnum_teams += (((FileDescriptorNew*)ghdescriptor)->data[101])*256;                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1632             gplayers = new player_entry[gnum_players];                                                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1633             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1641             gteams = new team_entry[gnum_teams];                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1642             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1644                     fill_team_ids18(gteams[ii], current_byte, ghdescriptor);                                                         
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1648             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1650                     fill_team_rosters18(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1654             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1656                     fill_team_tactics18(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1685             gnum_players = ((FileDescriptorNew*)ghdescriptor)->data[96];                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1686             gnum_players += (((FileDescriptorNew*)ghdescriptor)->data[97])*256;                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1688             gnum_teams = ((FileDescriptorNew*)ghdescriptor)->data[100];                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1689             gnum_teams += (((FileDescriptorNew*)ghdescriptor)->data[101])*256;                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1694             gplayers = new player_entry[gnum_players];                                                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1695             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1703             gteams = new team_entry[gnum_teams];                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1704             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1706                     fill_team_ids19(gteams[ii], current_byte, ghdescriptor);                                                         
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1710             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1712                     fill_team_rosters19(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1716             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1718                     fill_team_tactics19(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1795             gnum_players = ((FileDescriptorNew*)ghdescriptor)->data[96];                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1796             gnum_players += (((FileDescriptorNew*)ghdescriptor)->data[97])*256;                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1798             gnum_teams = ((FileDescriptorNew*)ghdescriptor)->data[100];                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1799             gnum_teams += (((FileDescriptorNew*)ghdescriptor)->data[101])*256;                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1804             gplayers = new player_entry[gnum_players];                                                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1805             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1813             gteams = new team_entry[gnum_teams];                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1816                     for (ii = 0; ii < gnum_teams; ii++)                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1818                             fill_team_ids20(gteams[ii], current_byte, ghdescriptor);                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1823                     for (ii = 0; ii < gnum_teams; ii++)                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1825                             fill_team_ids21(gteams[ii], current_byte, ghdescriptor);                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1831             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1833                     fill_team_rosters20(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1838             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1840                     fill_team_tactics20(current_byte, ghdescriptor, gteams, gnum_teams);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1846     for(ii=0;ii<gnum_players;ii++)                                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1849             for(jj=0;jj<gnum_teams;jj++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1851                     for(kk=0;kk < gteams->team_max;kk++)                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1878     gn_teamCbIndToArray = new int[gnum_teams];                                                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1880     gn_teamArrayIndToCb = new int[gnum_teams];                                                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1882     for(ii=0;ii<gnum_teams;ii++)                                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1928             team_entry te_current;                                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1951             for (int ii = 0; ii < gnum_players; ii++)                                                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1958             for (int ii = 0; ii < gnum_teams; ii++)                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1963             for (int ii = 0; ii < gnum_teams; ii++)                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1968             for (int ii = 0; ii < gnum_teams; ii++)                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1984             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1993             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1995                     extract_team_info16(gteams[ii], current_byte, ghdescriptor);                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             1998             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2000                     extract_teamplayer_info16(gteams[ii], current_byte, ghdescriptor);                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2003             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2005                     extract_team_tactics16(gteams[ii], current_byte, ghdescriptor);                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2018             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2025             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2027                     extract_team_info17(gteams[ii], current_byte, ghdescriptor);                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2030             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2032                     extract_teamplayer_info17(gteams[ii], current_byte, ghdescriptor);                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2035             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2037                     extract_team_tactics17(gteams[ii], current_byte, ghdescriptor);                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2050             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2057             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2059                     extract_team_info18(gteams[ii], current_byte, ghdescriptor);                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2062             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2064                     extract_teamplayer_info18(gteams[ii], current_byte, ghdescriptor);                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2067             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2069                     extract_team_tactics18(gteams[ii], current_byte, ghdescriptor);                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2082             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2089             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2091                     extract_team_info19(gteams[ii], current_byte, ghdescriptor);                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2094             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2096                     extract_teamplayer_info19(gteams[ii], current_byte, ghdescriptor);                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2099             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2101                     extract_team_tactics19(gteams[ii], current_byte, ghdescriptor);                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2114             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2123                     for (ii = 0; ii < gnum_teams; ii++)                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2125                             extract_team_info20(gteams[ii], current_byte, ghdescriptor);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2130                     for (ii = 0; ii < gnum_teams; ii++)                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2132                             extract_team_info21(gteams[ii], current_byte, ghdescriptor);                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2138             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2140                     extract_teamplayer_info20(gteams[ii], current_byte, ghdescriptor);                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2145             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2147                     extract_team_tactics20(gteams[ii], current_byte, ghdescriptor);                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2166     gn_playind = new int[gnum_players];                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2172     for(ii=0;ii<gnum_players;ii++)                                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2403                     gplayers[p_ind].b_changed=true;                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2460             for(ii=0;ii<gnum_teams;ii++)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2462                     for(jj=0;jj < gteams->team_max;jj++)                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2826     //if(index<0 || index > gnum_players) return output; //DEBUG, fix                                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             2829     output.b_changed = true;                                                                                                         
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             3131 bool get_form_team_info(int player_index, team_entry &output)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             3147             output.b_changed = true;                                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             3310                             while(ii< gteams->team_max && gteams[gn_teamsel].players[ii]!=0)                                         
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             3315                             gteams[gn_teamsel].b_changed = true;                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             3978     for(num_on_team=0;num_on_team< gteams->team_max;num_on_team++)                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             3991     for(ii=0;ii<gnum_players;ii++)                                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4023             for(ii=0;ii< gteams->team_max;ii++)                                                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4027                             for(jj=0;jj<gnum_players;jj++)                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4034                                                     gplayers[jj].b_changed=true;                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4039                                                     gplayers[jj].b_changed=true;                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4044                                                     gplayers[jj].b_changed=true;                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4049                                                     gplayers[jj].b_changed=true;                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4068             for(ii=0;ii< gteams->team_max;ii++)                                                                                      
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4072                             for(jj=0;jj<gnum_players;jj++)                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4079                                                     gplayers[jj].b_changed=true;                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4115                     for(ii=0;ii< gteams->team_max;ii++)                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4119                                     for(jj=0;jj<gnum_players;jj++)                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4159                     for(ii=0;ii< gteams->team_max;ii++)                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4163                                     for(jj=0;jj<gnum_players;jj++)                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4651                                     for(int ii=0;ii<gnum_players;ii++)                                                               
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4666                                     //Overwrite stats of dest player (leave Aes alone), set b_changed flag                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4668                                     gplayers[destIndex].b_changed = true;                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4742                     for (int ii = 0; ii < gnum_players; ii++)                                                                        
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4758                     //Overwrite stats of dest player (leave Aes alone), set b_changed flag                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4760                     gplayers[destIndex].b_changed = true;                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4763                     gplayers[srcIndex].b_changed = true;                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4911     for(int iteam=0;iteam<gnum_teams;iteam++)                                                                                        
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4915             for(int ii=0;ii< gteams->team_max;ii++)                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4919                             for(int jj=0;jj<gnum_players;jj++)                                                                       
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             4995     for(ii=0;ii<gnum_players;ii++)                                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5000                     gplayers[ii].b_changed=true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5007                     gplayers[ii].b_changed=true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5013                     gplayers[ii].b_changed=true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5019                     gplayers[ii].b_changed=true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5025                     gplayers[ii].b_changed=true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5031                     gplayers[ii].b_changed=true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5038     for (ii=0; ii < gnum_teams; ii++)                                                                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5044                     gteams[ii].b_changed = true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5054                     gteams[ii].b_changed = true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5061                     gteams[ii].b_changed = true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5068                     gteams[ii].b_changed = true;                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5077                             gteams[ii].b_changed = true;                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5190     team_entry te_current;                                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5251             for(num_on_team=0;num_on_team< gteams->team_max;num_on_team++)                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5257             for(ii=0;ii<gnum_players;ii++)                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5354                     for(num_on_team=0; num_on_team < gteams->team_max; num_on_team++)                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5360                     for(ii=0;ii<gnum_players;ii++)                                                                                   
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5403                                     for(ii=0; ii<gteams[0].team_max; ii++)                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5499                                             for (int ii = 0; ii < gnum_players; ii++)                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5507                                                             gplayers[ii].b_changed = true;                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5523                                             for (int ii = 0; ii < gnum_players; ii++)                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5530                                                             gplayers[ii].b_changed = true;                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5540                                             for (int ii = 0; ii < gnum_players; ii++)                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5547                                                             gplayers[ii].b_changed = true;                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5562                                             for (int ii = 0; ii < gnum_players; ii++)                                                
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5569                                                             gplayers[ii].b_changed = true;                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5629                     aatf_single(hwnd, giPesVersion, lParam, gplayers, gteams, gnum_players);                                         
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5654                     for(int ii=0;ii<gnum_teams;ii++)                                                                                 
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5707                             save_comparator(hwnd, giPesVersion, gplayers, gnum_players, gteams, gnum_teams, cs_file_path, hc_descriptor);
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\main.cpp             5771     team_entry te_current;                                                                                                           
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             301 void read_team_ids15(team_entry& team, int& current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             332 void read_team_rosters15(int& current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             341     for (t_ind = 0; t_ind < gnum_teams; t_ind++)                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             367 void read_team_tactics15(int& current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             376     for (t_ind = 0; t_ind < gnum_teams; t_ind++)                                                                                     
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             396     if (!player.b_changed || !player.b_show)                                                                                         
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             668 void write_team_info15(team_entry team, int& current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             672     if (!team.b_changed || !team.b_show)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             700 void write_teamplayer_info15(team_entry team, int& current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             704     if (!team.b_changed || !team.b_show)                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             727 void write_team_tactics15(team_entry team, int& current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes15.cpp             731     if (!team.b_changed)                                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             282 void fill_team_ids16(team_entry &team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             309 void fill_team_rosters16(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             318     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             342 void fill_team_tactics16(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             351     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             368     if(!player.b_changed || !player.b_show)                                                                                          
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             644 void extract_team_info16(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             648     if(!team.b_changed || !team.b_show)                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             691 void extract_teamplayer_info16(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             695     if(!team.b_changed || !team.b_show)                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             716 void extract_team_tactics16(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes16.cpp             720     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             268 void fill_team_ids17(team_entry &team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             319 void fill_team_rosters17(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             328     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             352 void fill_team_tactics17(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             361     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             386     if(!player.b_changed)                                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             655 void extract_team_info17(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             659     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             705 void extract_teamplayer_info17(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             709     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             730 void extract_team_tactics17(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes17.cpp             734     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             364             players.b_changed=true;                                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             381 void fill_team_ids18(team_entry &team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             437 void fill_team_rosters18(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             453     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             484 void fill_team_tactics18(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             500     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             526     if(!player.b_changed)                                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             891 void extract_team_info18(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             895     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             944 void extract_teamplayer_info18(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             948     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             984 void extract_team_tactics18(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes18.cpp             988     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             263             players.b_changed=true;                                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             280 void fill_team_ids19(team_entry &team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             352 void fill_team_rosters19(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             368     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             404 void fill_team_tactics19(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             421     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             447     if(!player.b_changed)                                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             726 void extract_team_info19(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             730     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             797 void extract_teamplayer_info19(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             801     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             838 void extract_team_tactics19(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes19.cpp             842     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             193             players.b_changed=true;                                                                                                  
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             204 void fill_team_ids20(team_entry &team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             257 void fill_team_ids21(team_entry& team, int& current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             310 void fill_team_rosters20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             319     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             345 void fill_team_tactics20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             356     for(t_ind=0;t_ind<gnum_teams;t_ind++)                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             381     if(!player.b_changed)                                                                                                            
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             580 void extract_team_info20(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             584     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             635 void extract_team_info21(team_entry team, int& current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             639     if (!team.b_changed)                                                                                                             
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             690 void extract_teamplayer_info20(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             694     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             717 void extract_team_tactics20(team_entry team, int &current_byte, void* ghdescriptor)
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\pes20.cpp             721     if(!team.b_changed)                                                                                                              
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\resource.h             33 #define IDM_TEAM_CLEAR      40040                                                                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\resource.h             34 #define IDM_TEAM_CREAT      40041                                                                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\resource.h             35 #define IDM_TEAM_FPCON      40042                                                                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\resource.h             36 #define IDM_TEAM_FPOFF      40043                                                                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\resource.h             37 #define IDM_TEAM_SAVES      40044                                                                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\resource.h             38 #define IDM_TEAM_LOADS      40045                                                                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\resource.h             39 #define IDM_TEAM_BOGLO      40046                                                                                                    
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\resource.h             40 #define IDM_TEAM_NAMEPOS 40047
