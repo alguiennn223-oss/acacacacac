@@ -1,0 +1,772 @@
+decrypt_functions.txt:17:> comparator.cpp:24:extern HINSTANCE hPesDecryptDLL; //Handle to libpesXdecrypter.dll
+decrypt_functions.txt:24:  comparator.cpp:31:extern pf_decryptWithKeyOld decryptWithKeyOld;
+decrypt_functions.txt:25:> comparator.cpp:32:extern pf_decryptWithKeyNew decryptWithKeyNew;
+decrypt_functions.txt:26:  comparator.cpp:33:extern pf_decryptFile15 decryptFile15;
+decrypt_functions.txt:27:  comparator.cpp:34:extern pf_encryptWithKeyOld encryptWithKeyOld;
+decrypt_functions.txt:28:  comparator.cpp:35:extern pf_encryptFile15 encryptFile15;
+decrypt_functions.txt:37:  comparator.cpp:44:// _stprintf_s(cs_open_title, 40, _T("Select PES%d EDIT file for comparison"), nPesVersion);
+decrypt_functions.txt:67:> comparator.cpp:260:          pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes18");
+decrypt_functions.txt:71:> comparator.cpp:264:                  decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decrypt_functions.txt:113:  comparator.cpp:310:         pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes19");
+decrypt_functions.txt:117:> comparator.cpp:314:                 decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decrypt_functions.txt:160:  comparator.cpp:361:                 pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes20");
+decrypt_functions.txt:162:  comparator.cpp:363:                 pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes21");
+decrypt_functions.txt:164:> comparator.cpp:365:         decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decrypt_functions.txt:190:  crypt.h:54:    uint32_t dataSize;
+decrypt_functions.txt:191:  crypt.h:55:    unsigned char startByte;
+decrypt_functions.txt:192:  crypt.h:56:    uint32_t chunk0Size; //384
+decrypt_functions.txt:193:  crypt.h:57:    uint32_t chunk1Size;
+decrypt_functions.txt:194:  crypt.h:58:    uint32_t chunk2Size;
+decrypt_functions.txt:195:  crypt.h:59:
+decrypt_functions.txt:196:  crypt.h:60:    uint8_t* chunk0; //Fixed length "Edit file" string
+decrypt_functions.txt:197:  crypt.h:61:    uint8_t* chunk1lenBytes; //4 bytes that encode length of chunk 1
+decrypt_functions.txt:198:  crypt.h:62:    uint8_t* chunk1; //PNG
+decrypt_functions.txt:199:  crypt.h:63:    uint8_t* chunk2lenBytes; //4 bytes that encode length of chunk 2
+decrypt_functions.txt:200:  crypt.h:64:    uint8_t* data; //Main edit data (chunk 2)
+decrypt_functions.txt:201:  crypt.h:65:};
+decrypt_functions.txt:202:  crypt.h:66:
+decrypt_functions.txt:203:  crypt.h:67://struct FileDescriptor CRYPTER_EXPORT *createFileDescriptor();
+decrypt_functions.txt:204:  crypt.h:68:typedef struct FileDescriptorOld* (__cdecl *pf_createFileDescriptorOld)();
+decrypt_functions.txt:205:> crypt.h:69:typedef struct FileDescriptorNew* (__cdecl *pf_createFileDescriptorNew)();
+decrypt_functions.txt:206:  crypt.h:70:typedef struct FileDescriptor15* (__cdecl* pf_createFileDescriptor15)();
+decrypt_functions.txt:207:  crypt.h:71:
+decrypt_functions.txt:208:  crypt.h:72://void CRYPTER_EXPORT destroyFileDescriptor(struct FileDescriptor *desc);
+decrypt_functions.txt:209:  crypt.h:73:typedef void (__cdecl *pf_destroyFileDescriptorOld)(struct FileDescriptorOld*);
+decrypt_functions.txt:210:  crypt.h:74:typedef void (__cdecl *pf_destroyFileDescriptorNew)(struct FileDescriptorNew*);
+decrypt_functions.txt:211:  crypt.h:75:typedef void (__cdecl *pf_destroyFileDescriptor15)(struct FileDescriptor15*);
+decrypt_functions.txt:212:  crypt.h:76:
+decrypt_functions.txt:213:  crypt.h:77://void CRYPTER_EXPORT decryptWithKey(struct FileDescriptor *descriptor, const uint8_t *input, const char *masterKey);
+decrypt_functions.txt:214:  crypt.h:78:typedef void (__cdecl *pf_decryptWithKeyOld)(struct FileDescriptorOld*, const uint8_t*, const char*);
+decrypt_functions.txt:215:> crypt.h:79:typedef void (__cdecl *pf_decryptWithKeyNew)(struct FileDescriptorNew*, const uint8_t*, const char*);
+decrypt_functions.txt:216:  crypt.h:80:typedef void (__cdecl *pf_decryptFile15)(struct FileDescriptor15*, const uint8_t*);
+decrypt_functions.txt:217:  crypt.h:81:
+decrypt_functions.txt:218:  crypt.h:82://uint8_t CRYPTER_EXPORT *encryptWithKey(const struct FileDescriptor *descriptor, int *size, const char *masterKey);
+decrypt_functions.txt:219:  crypt.h:83:typedef uint8_t* (__cdecl *pf_encryptWithKeyOld)(const struct FileDescriptorOld*, int*, const char*);
+decrypt_functions.txt:220:  crypt.h:84:typedef uint8_t* (__cdecl *pf_encryptWithKeyNew)(const struct FileDescriptorNew*, int*, const char*);
+decrypt_functions.txt:221:  crypt.h:85:typedef uint8_t* (__cdecl *pf_encryptFile15)(const struct FileDescriptor15*, int*);
+decrypt_functions.txt:222:  crypt.h:86:
+decrypt_functions.txt:223:  crypt.h:87:uint8_t *readFile(const TCHAR *path, uint32_t *sizePtr);
+decrypt_functions.txt:224:  crypt.h:88:
+decrypt_functions.txt:225:  crypt.h:89:void writeFile(const TCHAR *path, const uint8_t *data, int size);
+decrypt_functions.txt:226:  crypt.h:90:
+decrypt_functions.txt:227:  crypt.h:91:#endif /* _CRYPT_H */
+decrypt_functions.txt:231:  main.cpp:110:const uint8_t* gpMasterKey;
+decrypt_functions.txt:246:  main.cpp:125:pf_decryptWithKeyOld decryptWithKeyOld;
+decrypt_functions.txt:247:> main.cpp:126:pf_decryptWithKeyNew decryptWithKeyNew;
+decrypt_functions.txt:248:  main.cpp:127:pf_encryptWithKeyOld encryptWithKeyOld;
+decrypt_functions.txt:249:  main.cpp:128:pf_encryptWithKeyNew encryptWithKeyNew;
+decrypt_functions.txt:253:  main.cpp:132:pf_decryptFile15 decryptFile15;
+decrypt_functions.txt:254:  main.cpp:133:pf_encryptFile15 encryptFile15;
+decrypt_functions.txt:277:  main.cpp:1076:              MessageBox(NULL, _T("Failed to load libpesXcrypter.dll"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_functions.txt:281:  main.cpp:1080:      createFileDescriptorOld = (pf_createFileDescriptorOld)GetProcAddress(hPesDecryptDLL, "createFileDescriptorOld");
+decrypt_functions.txt:285:  main.cpp:1084:              FreeLibrary(hPesDecryptDLL);
+decrypt_functions.txt:288:> main.cpp:1087:      createFileDescriptorNew = (pf_createFileDescriptorNew)GetProcAddress(hPesDecryptDLL, "createFileDescriptorNew");
+decrypt_functions.txt:292:  main.cpp:1091:              FreeLibrary(hPesDecryptDLL);
+decrypt_functions.txt:295:  main.cpp:1094:      destroyFileDescriptorOld = (pf_destroyFileDescriptorOld)GetProcAddress(hPesDecryptDLL, "destroyFileDescriptorOld");
+decrypt_functions.txt:299:  main.cpp:1098:              FreeLibrary(hPesDecryptDLL);
+decrypt_functions.txt:302:  main.cpp:1101:      destroyFileDescriptorNew = (pf_destroyFileDescriptorNew)GetProcAddress(hPesDecryptDLL, "destroyFileDescriptorNew");
+decrypt_functions.txt:306:  main.cpp:1105:              FreeLibrary(hPesDecryptDLL);
+decrypt_functions.txt:309:  main.cpp:1108:      decryptWithKeyOld = (pf_decryptWithKeyOld)GetProcAddress(hPesDecryptDLL, "decryptWithKeyOld");
+decrypt_functions.txt:310:  main.cpp:1109:      if(!decryptWithKeyOld)
+decrypt_functions.txt:312:  main.cpp:1111:              MessageBox(NULL, _T("Failed to load decryptWithKeyOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_functions.txt:313:  main.cpp:1112:              FreeLibrary(hPesDecryptDLL);
+decrypt_functions.txt:316:> main.cpp:1115:      decryptWithKeyNew = (pf_decryptWithKeyNew)GetProcAddress(hPesDecryptDLL, "decryptWithKeyNew");
+decrypt_functions.txt:317:> main.cpp:1116:      if(!decryptWithKeyNew)
+decrypt_functions.txt:319:> main.cpp:1118:              MessageBox(NULL, _T("Failed to load decryptWithKeyNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_functions.txt:320:  main.cpp:1119:              FreeLibrary(hPesDecryptDLL);
+decrypt_functions.txt:323:  main.cpp:1122:      encryptWithKeyOld = (pf_encryptWithKeyOld)GetProcAddress(hPesDecryptDLL, "encryptWithKeyOld");
+decrypt_functions.txt:324:  main.cpp:1123:      if(!encryptWithKeyOld)
+decrypt_functions.txt:326:  main.cpp:1125:              MessageBox(NULL, _T("Failed to load encryptWithKeyOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_functions.txt:327:  main.cpp:1126:              FreeLibrary(hPesDecryptDLL);
+decrypt_functions.txt:330:  main.cpp:1129:      encryptWithKeyNew = (pf_encryptWithKeyNew)GetProcAddress(hPesDecryptDLL, "encryptWithKeyNew");
+decrypt_functions.txt:331:  main.cpp:1130:      if(!encryptWithKeyNew)
+decrypt_functions.txt:333:  main.cpp:1132:              MessageBox(NULL, _T("Failed to load encryptWithKeyNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_functions.txt:334:  main.cpp:1133:              FreeLibrary(hPesDecryptDLL);
+decrypt_functions.txt:361:> main.cpp:1606:              gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes18");
+decrypt_functions.txt:363:> main.cpp:1608:              decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decrypt_functions.txt:405:  main.cpp:1662:              gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes19");
+decrypt_functions.txt:407:> main.cpp:1664:              decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decrypt_functions.txt:450:  main.cpp:1725:                      gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes20");
+decrypt_functions.txt:452:  main.cpp:1727:                      gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes21");
+decrypt_functions.txt:454:> main.cpp:1729:              decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decrypt_functions.txt:456:  main.cpp:1731:              //Enable extra ability editboxes
+decrypt_implementation.txt:20:  comparator.cpp:24:extern HINSTANCE hPesDecryptDLL; //Handle to libpesXdecrypter.dll
+decrypt_implementation.txt:27:  comparator.cpp:31:extern pf_decryptWithKeyOld decryptWithKeyOld;
+decrypt_implementation.txt:28:> comparator.cpp:32:extern pf_decryptWithKeyNew decryptWithKeyNew;
+decrypt_implementation.txt:29:  comparator.cpp:33:extern pf_decryptFile15 decryptFile15;
+decrypt_implementation.txt:30:  comparator.cpp:34:extern pf_encryptWithKeyOld encryptWithKeyOld;
+decrypt_implementation.txt:31:  comparator.cpp:35:extern pf_encryptFile15 encryptFile15;
+decrypt_implementation.txt:40:  comparator.cpp:44://    _stprintf_s(cs_open_title, 40, _T("Select PES%d EDIT file for comparison"), nPesVersion);
+decrypt_implementation.txt:80:  comparator.cpp:260:             pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes18");
+decrypt_implementation.txt:84:> comparator.cpp:264:                     decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decrypt_implementation.txt:130:  comparator.cpp:310:            pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes19");
+decrypt_implementation.txt:134:> comparator.cpp:314:                    decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decrypt_implementation.txt:181:> comparator.cpp:361:                    pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes20");
+decrypt_implementation.txt:183:> comparator.cpp:363:                    pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes21");
+decrypt_implementation.txt:185:> comparator.cpp:365:            decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decrypt_implementation.txt:216:  crypt.h:10:    uint32_t dataSize;
+decrypt_implementation.txt:217:  crypt.h:11:    uint32_t logoSize;
+decrypt_implementation.txt:218:  crypt.h:12:    uint32_t descSize;
+decrypt_implementation.txt:219:  crypt.h:13:    uint32_t serialLength;
+decrypt_implementation.txt:220:  crypt.h:14:    uint8_t hash[64];
+decrypt_implementation.txt:221:  crypt.h:15:    uint8_t fileTypeString[32];
+decrypt_implementation.txt:222:  crypt.h:16:    uint8_t gameVersionString[32];
+decrypt_implementation.txt:223:  crypt.h:17:};
+decrypt_implementation.txt:224:  crypt.h:18:
+decrypt_implementation.txt:225:  crypt.h:19:struct FileHeaderOld
+decrypt_implementation.txt:226:  crypt.h:20:{
+decrypt_implementation.txt:227:  crypt.h:21:    uint8_t mysteryData[64];
+decrypt_implementation.txt:228:  crypt.h:22:    uint32_t dataSize;
+decrypt_implementation.txt:229:  crypt.h:23:    uint32_t logoSize;
+decrypt_implementation.txt:230:  crypt.h:24:    uint32_t descSize;
+decrypt_implementation.txt:231:  crypt.h:25:    uint32_t serialLength;
+decrypt_implementation.txt:232:  crypt.h:26:    uint8_t hash[64];
+decrypt_implementation.txt:233:  crypt.h:27:    uint8_t fileTypeString[32];
+decrypt_implementation.txt:234:  crypt.h:28:};
+decrypt_implementation.txt:235:  crypt.h:29:
+decrypt_implementation.txt:236:> crypt.h:30:struct FileDescriptorNew
+decrypt_implementation.txt:237:  crypt.h:31:{
+decrypt_implementation.txt:238:  crypt.h:32:    uint8_t *encryptionHeader;
+decrypt_implementation.txt:239:  crypt.h:33:    struct FileHeaderNew *fileHeader;
+decrypt_implementation.txt:240:  crypt.h:34:
+decrypt_implementation.txt:241:  crypt.h:35:    uint8_t *description;
+decrypt_implementation.txt:242:  crypt.h:36:    uint8_t *logo;
+decrypt_implementation.txt:243:  crypt.h:37:    uint8_t *data;
+decrypt_implementation.txt:244:  crypt.h:38:    uint8_t *serial;
+decrypt_implementation.txt:245:  crypt.h:39:};
+decrypt_implementation.txt:246:  crypt.h:40:
+decrypt_implementation.txt:247:  crypt.h:41:struct FileDescriptorOld
+decrypt_implementation.txt:248:  crypt.h:42:{
+decrypt_implementation.txt:249:  crypt.h:43:    uint8_t *encryptionHeader;
+decrypt_implementation.txt:250:  crypt.h:44:    struct FileHeaderOld *fileHeader;
+decrypt_implementation.txt:251:  crypt.h:45:
+decrypt_implementation.txt:252:  crypt.h:46:    uint8_t *description;
+decrypt_implementation.txt:253:  crypt.h:47:    uint8_t *logo;
+decrypt_implementation.txt:254:  crypt.h:48:    uint8_t *data;
+decrypt_implementation.txt:255:  crypt.h:49:    uint8_t *serial;
+decrypt_implementation.txt:256:  crypt.h:50:};
+decrypt_implementation.txt:257:  crypt.h:51:
+decrypt_implementation.txt:258:  crypt.h:52:struct FileDescriptor15
+decrypt_implementation.txt:259:  crypt.h:53:{
+decrypt_implementation.txt:260:  crypt.h:54:    uint32_t dataSize;
+decrypt_implementation.txt:261:  crypt.h:55:    unsigned char startByte;
+decrypt_implementation.txt:262:  crypt.h:56:    uint32_t chunk0Size; //384
+decrypt_implementation.txt:263:  crypt.h:57:    uint32_t chunk1Size;
+decrypt_implementation.txt:264:  crypt.h:58:    uint32_t chunk2Size;
+decrypt_implementation.txt:265:  crypt.h:59:
+decrypt_implementation.txt:266:  crypt.h:60:    uint8_t* chunk0; //Fixed length "Edit file" string
+decrypt_implementation.txt:267:  crypt.h:61:    uint8_t* chunk1lenBytes; //4 bytes that encode length of chunk 1
+decrypt_implementation.txt:268:  crypt.h:62:    uint8_t* chunk1; //PNG
+decrypt_implementation.txt:269:  crypt.h:63:    uint8_t* chunk2lenBytes; //4 bytes that encode length of chunk 2
+decrypt_implementation.txt:270:  crypt.h:64:    uint8_t* data; //Main edit data (chunk 2)
+decrypt_implementation.txt:271:  crypt.h:65:};
+decrypt_implementation.txt:272:  crypt.h:66:
+decrypt_implementation.txt:273:  crypt.h:67://struct FileDescriptor CRYPTER_EXPORT *createFileDescriptor();
+decrypt_implementation.txt:274:  crypt.h:68:typedef struct FileDescriptorOld* (__cdecl *pf_createFileDescriptorOld)();
+decrypt_implementation.txt:275:> crypt.h:69:typedef struct FileDescriptorNew* (__cdecl *pf_createFileDescriptorNew)();
+decrypt_implementation.txt:276:  crypt.h:70:typedef struct FileDescriptor15* (__cdecl* pf_createFileDescriptor15)();
+decrypt_implementation.txt:277:  crypt.h:71:
+decrypt_implementation.txt:278:  crypt.h:72://void CRYPTER_EXPORT destroyFileDescriptor(struct FileDescriptor *desc);
+decrypt_implementation.txt:279:  crypt.h:73:typedef void (__cdecl *pf_destroyFileDescriptorOld)(struct FileDescriptorOld*);
+decrypt_implementation.txt:280:> crypt.h:74:typedef void (__cdecl *pf_destroyFileDescriptorNew)(struct FileDescriptorNew*);
+decrypt_implementation.txt:281:  crypt.h:75:typedef void (__cdecl *pf_destroyFileDescriptor15)(struct FileDescriptor15*);
+decrypt_implementation.txt:282:  crypt.h:76:
+decrypt_implementation.txt:283:  crypt.h:77://void CRYPTER_EXPORT decryptWithKey(struct FileDescriptor *descriptor, const uint8_t *input, const char *masterKey);
+decrypt_implementation.txt:284:  crypt.h:78:typedef void (__cdecl *pf_decryptWithKeyOld)(struct FileDescriptorOld*, const uint8_t*, const char*);
+decrypt_implementation.txt:285:> crypt.h:79:typedef void (__cdecl *pf_decryptWithKeyNew)(struct FileDescriptorNew*, const uint8_t*, const char*);
+decrypt_implementation.txt:286:  crypt.h:80:typedef void (__cdecl *pf_decryptFile15)(struct FileDescriptor15*, const uint8_t*);
+decrypt_implementation.txt:287:  crypt.h:81:
+decrypt_implementation.txt:288:  crypt.h:82://uint8_t CRYPTER_EXPORT *encryptWithKey(const struct FileDescriptor *descriptor, int *size, const char *masterKey);
+decrypt_implementation.txt:289:  crypt.h:83:typedef uint8_t* (__cdecl *pf_encryptWithKeyOld)(const struct FileDescriptorOld*, int*, const char*);
+decrypt_implementation.txt:290:> crypt.h:84:typedef uint8_t* (__cdecl *pf_encryptWithKeyNew)(const struct FileDescriptorNew*, int*, const char*);
+decrypt_implementation.txt:291:  crypt.h:85:typedef uint8_t* (__cdecl *pf_encryptFile15)(const struct FileDescriptor15*, int*);
+decrypt_implementation.txt:292:  crypt.h:86:
+decrypt_implementation.txt:293:  crypt.h:87:uint8_t *readFile(const TCHAR *path, uint32_t *sizePtr);
+decrypt_implementation.txt:294:  crypt.h:88:
+decrypt_implementation.txt:295:  crypt.h:89:void writeFile(const TCHAR *path, const uint8_t *data, int size);
+decrypt_implementation.txt:296:  crypt.h:90:
+decrypt_implementation.txt:297:  crypt.h:91:#endif /* _CRYPT_H */
+decrypt_implementation.txt:306:  main.cpp:110:const uint8_t* gpMasterKey;
+decrypt_implementation.txt:321:  main.cpp:125:pf_decryptWithKeyOld decryptWithKeyOld;
+decrypt_implementation.txt:322:> main.cpp:126:pf_decryptWithKeyNew decryptWithKeyNew;
+decrypt_implementation.txt:323:  main.cpp:127:pf_encryptWithKeyOld encryptWithKeyOld;
+decrypt_implementation.txt:324:> main.cpp:128:pf_encryptWithKeyNew encryptWithKeyNew;
+decrypt_implementation.txt:328:  main.cpp:132:pf_decryptFile15 decryptFile15;
+decrypt_implementation.txt:329:  main.cpp:133:pf_encryptFile15 encryptFile15;
+decrypt_implementation.txt:364:  main.cpp:1076:         MessageBox(NULL, _T("Failed to load libpesXcrypter.dll"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_implementation.txt:368:  main.cpp:1080: createFileDescriptorOld = (pf_createFileDescriptorOld)GetProcAddress(hPesDecryptDLL, "createFileDescriptorOld");
+decrypt_implementation.txt:372:  main.cpp:1084:         FreeLibrary(hPesDecryptDLL);
+decrypt_implementation.txt:375:> main.cpp:1087: createFileDescriptorNew = (pf_createFileDescriptorNew)GetProcAddress(hPesDecryptDLL, "createFileDescriptorNew");
+decrypt_implementation.txt:379:  main.cpp:1091:         FreeLibrary(hPesDecryptDLL);
+decrypt_implementation.txt:382:  main.cpp:1094: destroyFileDescriptorOld = (pf_destroyFileDescriptorOld)GetProcAddress(hPesDecryptDLL, "destroyFileDescriptorOld");
+decrypt_implementation.txt:386:  main.cpp:1098:         FreeLibrary(hPesDecryptDLL);
+decrypt_implementation.txt:389:  main.cpp:1101: destroyFileDescriptorNew = (pf_destroyFileDescriptorNew)GetProcAddress(hPesDecryptDLL, "destroyFileDescriptorNew");
+decrypt_implementation.txt:393:  main.cpp:1105:         FreeLibrary(hPesDecryptDLL);
+decrypt_implementation.txt:396:  main.cpp:1108: decryptWithKeyOld = (pf_decryptWithKeyOld)GetProcAddress(hPesDecryptDLL, "decryptWithKeyOld");
+decrypt_implementation.txt:397:  main.cpp:1109: if(!decryptWithKeyOld)
+decrypt_implementation.txt:399:  main.cpp:1111:         MessageBox(NULL, _T("Failed to load decryptWithKeyOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_implementation.txt:400:  main.cpp:1112:         FreeLibrary(hPesDecryptDLL);
+decrypt_implementation.txt:403:> main.cpp:1115: decryptWithKeyNew = (pf_decryptWithKeyNew)GetProcAddress(hPesDecryptDLL, "decryptWithKeyNew");
+decrypt_implementation.txt:404:> main.cpp:1116: if(!decryptWithKeyNew)
+decrypt_implementation.txt:406:> main.cpp:1118:         MessageBox(NULL, _T("Failed to load decryptWithKeyNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_implementation.txt:407:  main.cpp:1119:         FreeLibrary(hPesDecryptDLL);
+decrypt_implementation.txt:410:  main.cpp:1122: encryptWithKeyOld = (pf_encryptWithKeyOld)GetProcAddress(hPesDecryptDLL, "encryptWithKeyOld");
+decrypt_implementation.txt:411:  main.cpp:1123: if(!encryptWithKeyOld)
+decrypt_implementation.txt:413:  main.cpp:1125:         MessageBox(NULL, _T("Failed to load encryptWithKeyOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_implementation.txt:414:  main.cpp:1126:         FreeLibrary(hPesDecryptDLL);
+decrypt_implementation.txt:417:> main.cpp:1129: encryptWithKeyNew = (pf_encryptWithKeyNew)GetProcAddress(hPesDecryptDLL, "encryptWithKeyNew");
+decrypt_implementation.txt:418:> main.cpp:1130: if(!encryptWithKeyNew)
+decrypt_implementation.txt:420:> main.cpp:1132:         MessageBox(NULL, _T("Failed to load encryptWithKeyNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decrypt_implementation.txt:421:  main.cpp:1133:         FreeLibrary(hPesDecryptDLL);
+decrypt_implementation.txt:472:  main.cpp:1606:         gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes18");
+decrypt_implementation.txt:474:> main.cpp:1608:         decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decrypt_implementation.txt:526:  main.cpp:1662:         gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes19");
+decrypt_implementation.txt:528:> main.cpp:1664:         decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decrypt_implementation.txt:581:> main.cpp:1725:                 gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes20");
+decrypt_implementation.txt:583:> main.cpp:1727:                 gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes21");
+decrypt_implementation.txt:585:> main.cpp:1729:         decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decrypt_implementation.txt:587:  main.cpp:1731:         //Enable extra ability editboxes
+decrypt_implementation.txt:636:> main.cpp:2075:         output = encryptWithKeyNew((FileDescriptorNew*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+decrypt_implementation.txt:668:> main.cpp:2107:         output = encryptWithKeyNew((FileDescriptorNew*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+decrypt_implementation.txt:714:> main.cpp:2153:         output = encryptWithKeyNew((FileDescriptorNew*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+decrypt_implementation.txt:717:  main.cpp:2156:         //freeEncryptArray(output);
+decode_flow.txt:12:> comparator.cpp:24:extern HINSTANCE hPesDecryptDLL; //Handle to libpesXdecrypter.dll
+decode_flow.txt:19:> comparator.cpp:31:extern pf_decryptWithKeyOld decryptWithKeyOld;
+decode_flow.txt:20:> comparator.cpp:32:extern pf_decryptWithKeyNew decryptWithKeyNew;
+decode_flow.txt:21:> comparator.cpp:33:extern pf_decryptFile15 decryptFile15;
+decode_flow.txt:22:  comparator.cpp:34:extern pf_encryptWithKeyOld encryptWithKeyOld;
+decode_flow.txt:23:  comparator.cpp:35:extern pf_encryptFile15 encryptFile15;
+decode_flow.txt:32:  comparator.cpp:44://       _stprintf_s(cs_open_title, 40, _T("Select PES%d EDIT file for comparison"), nPesVersion);
+decode_flow.txt:75:  comparator.cpp:94: const uint8_t* pMasterKey;
+decode_flow.txt:104:> comparator.cpp:123:               decryptFile15((FileDescriptor15*)hc_descriptor, pfin);
+decode_flow.txt:135:> comparator.cpp:174:               pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes16");
+decode_flow.txt:137:> comparator.cpp:176:               decryptWithKeyOld((FileDescriptorOld*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decode_flow.txt:168:> comparator.cpp:218:               pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes17");
+decode_flow.txt:170:> comparator.cpp:220:               decryptWithKeyOld((FileDescriptorOld*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decode_flow.txt:202:> comparator.cpp:260:               pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes18");
+decode_flow.txt:206:> comparator.cpp:264:                       decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decode_flow.txt:251:> comparator.cpp:310:               pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes19");
+decode_flow.txt:255:> comparator.cpp:314:                       decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decode_flow.txt:301:> comparator.cpp:361:                       pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes20");
+decode_flow.txt:303:> comparator.cpp:363:                       pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes21");
+decode_flow.txt:305:> comparator.cpp:365:               decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+decode_flow.txt:333:  crypt.cpp:1:#include <string.h>
+decode_flow.txt:334:  crypt.cpp:2:#include <stdlib.h>
+decode_flow.txt:335:  crypt.cpp:3:#include <stdio.h>
+decode_flow.txt:336:  crypt.cpp:4:#include <sys/stat.h>
+decode_flow.txt:337:  crypt.cpp:5:
+decode_flow.txt:338:  crypt.cpp:6:#include "crypt.h"
+decode_flow.txt:339:  crypt.cpp:7:
+decode_flow.txt:340:> crypt.cpp:8://encrypter & decrypter helpers ...
+decode_flow.txt:341:> crypt.cpp:9:uint8_t *readFile(const TCHAR *path, uint32_t *sizePtr)
+decode_flow.txt:342:  crypt.cpp:10:{
+decode_flow.txt:343:  crypt.cpp:11:     struct _stat file;
+decode_flow.txt:344:  crypt.cpp:12:     uint8_t *input;
+decode_flow.txt:345:  crypt.cpp:13:     int size;
+decode_flow.txt:346:  crypt.cpp:14:    FILE *inStream = _tfopen(path, _T("rb"));
+decode_flow.txt:347:  crypt.cpp:15:    if (!inStream)
+decode_flow.txt:348:  crypt.cpp:16:        return NULL;
+decode_flow.txt:349:  crypt.cpp:17:
+decode_flow.txt:350:  crypt.cpp:18:    if (_tstat(path, &file))
+decode_flow.txt:351:  crypt.cpp:19:        return NULL;
+decode_flow.txt:352:  crypt.cpp:20:    size = file.st_size;
+decode_flow.txt:353:  crypt.cpp:21:
+decode_flow.txt:354:  crypt.cpp:22:    input = (uint8_t *)malloc(size);
+decode_flow.txt:355:  crypt.cpp:23:    fread(input, 1, size, inStream);
+decode_flow.txt:356:  crypt.cpp:24:    fclose(inStream);
+decode_flow.txt:357:  crypt.cpp:25:
+decode_flow.txt:358:  crypt.cpp:26:    if (sizePtr)
+decode_flow.txt:359:  crypt.cpp:27:        *sizePtr = size;
+decode_flow.txt:360:  crypt.cpp:28:
+decode_flow.txt:361:  crypt.cpp:29:    return input;
+decode_flow.txt:362:  crypt.h:20:{
+decode_flow.txt:363:  crypt.h:21:    uint8_t mysteryData[64];
+decode_flow.txt:364:  crypt.h:22:    uint32_t dataSize;
+decode_flow.txt:365:  crypt.h:23:    uint32_t logoSize;
+decode_flow.txt:366:  crypt.h:24:    uint32_t descSize;
+decode_flow.txt:367:  crypt.h:25:    uint32_t serialLength;
+decode_flow.txt:368:  crypt.h:26:    uint8_t hash[64];
+decode_flow.txt:369:  crypt.h:27:    uint8_t fileTypeString[32];
+decode_flow.txt:370:  crypt.h:28:};
+decode_flow.txt:371:  crypt.h:29:
+decode_flow.txt:372:> crypt.h:30:struct FileDescriptorNew
+decode_flow.txt:373:  crypt.h:31:{
+decode_flow.txt:374:  crypt.h:32:    uint8_t *encryptionHeader;
+decode_flow.txt:375:  crypt.h:33:    struct FileHeaderNew *fileHeader;
+decode_flow.txt:376:  crypt.h:34:
+decode_flow.txt:377:  crypt.h:35:    uint8_t *description;
+decode_flow.txt:378:  crypt.h:36:    uint8_t *logo;
+decode_flow.txt:379:  crypt.h:37:    uint8_t *data;
+decode_flow.txt:380:  crypt.h:38:    uint8_t *serial;
+decode_flow.txt:381:  crypt.h:39:};
+decode_flow.txt:382:  crypt.h:40:
+decode_flow.txt:383:  crypt.h:41:struct FileDescriptorOld
+decode_flow.txt:384:  crypt.h:42:{
+decode_flow.txt:385:  crypt.h:43:    uint8_t *encryptionHeader;
+decode_flow.txt:386:  crypt.h:44:    struct FileHeaderOld *fileHeader;
+decode_flow.txt:387:  crypt.h:45:
+decode_flow.txt:388:  crypt.h:46:    uint8_t *description;
+decode_flow.txt:389:  crypt.h:47:    uint8_t *logo;
+decode_flow.txt:390:  crypt.h:48:    uint8_t *data;
+decode_flow.txt:391:  crypt.h:49:    uint8_t *serial;
+decode_flow.txt:392:  crypt.h:50:};
+decode_flow.txt:393:  crypt.h:59:
+decode_flow.txt:394:  crypt.h:60:    uint8_t* chunk0; //Fixed length "Edit file" string
+decode_flow.txt:395:  crypt.h:61:    uint8_t* chunk1lenBytes; //4 bytes that encode length of chunk 1
+decode_flow.txt:396:  crypt.h:62:    uint8_t* chunk1; //PNG
+decode_flow.txt:397:  crypt.h:63:    uint8_t* chunk2lenBytes; //4 bytes that encode length of chunk 2
+decode_flow.txt:398:  crypt.h:64:    uint8_t* data; //Main edit data (chunk 2)
+decode_flow.txt:399:  crypt.h:65:};
+decode_flow.txt:400:  crypt.h:66:
+decode_flow.txt:401:  crypt.h:67://struct FileDescriptor CRYPTER_EXPORT *createFileDescriptor();
+decode_flow.txt:402:  crypt.h:68:typedef struct FileDescriptorOld* (__cdecl *pf_createFileDescriptorOld)();
+decode_flow.txt:403:> crypt.h:69:typedef struct FileDescriptorNew* (__cdecl *pf_createFileDescriptorNew)();
+decode_flow.txt:404:  crypt.h:70:typedef struct FileDescriptor15* (__cdecl* pf_createFileDescriptor15)();
+decode_flow.txt:405:  crypt.h:71:
+decode_flow.txt:406:  crypt.h:72://void CRYPTER_EXPORT destroyFileDescriptor(struct FileDescriptor *desc);
+decode_flow.txt:407:  crypt.h:73:typedef void (__cdecl *pf_destroyFileDescriptorOld)(struct FileDescriptorOld*);
+decode_flow.txt:408:> crypt.h:74:typedef void (__cdecl *pf_destroyFileDescriptorNew)(struct FileDescriptorNew*);
+decode_flow.txt:409:  crypt.h:75:typedef void (__cdecl *pf_destroyFileDescriptor15)(struct FileDescriptor15*);
+decode_flow.txt:410:  crypt.h:76:
+decode_flow.txt:411:> crypt.h:77://void CRYPTER_EXPORT decryptWithKey(struct FileDescriptor *descriptor, const uint8_t *input, const char *masterKey);
+decode_flow.txt:412:> crypt.h:78:typedef void (__cdecl *pf_decryptWithKeyOld)(struct FileDescriptorOld*, const uint8_t*, const char*);
+decode_flow.txt:413:> crypt.h:79:typedef void (__cdecl *pf_decryptWithKeyNew)(struct FileDescriptorNew*, const uint8_t*, const char*);
+decode_flow.txt:414:> crypt.h:80:typedef void (__cdecl *pf_decryptFile15)(struct FileDescriptor15*, const uint8_t*);
+decode_flow.txt:415:  crypt.h:81:
+decode_flow.txt:416:  crypt.h:82://uint8_t CRYPTER_EXPORT *encryptWithKey(const struct FileDescriptor *descriptor, int *size, const char *masterKey);
+decode_flow.txt:417:  crypt.h:83:typedef uint8_t* (__cdecl *pf_encryptWithKeyOld)(const struct FileDescriptorOld*, int*, const char*);
+decode_flow.txt:418:> crypt.h:84:typedef uint8_t* (__cdecl *pf_encryptWithKeyNew)(const struct FileDescriptorNew*, int*, const char*);
+decode_flow.txt:419:  crypt.h:85:typedef uint8_t* (__cdecl *pf_encryptFile15)(const struct FileDescriptor15*, int*);
+decode_flow.txt:420:  crypt.h:86:
+decode_flow.txt:421:> crypt.h:87:uint8_t *readFile(const TCHAR *path, uint32_t *sizePtr);
+decode_flow.txt:422:  crypt.h:88:
+decode_flow.txt:423:  crypt.h:89:void writeFile(const TCHAR *path, const uint8_t *data, int size);
+decode_flow.txt:424:  crypt.h:90:
+decode_flow.txt:425:  crypt.h:91:#endif /* _CRYPT_H */
+decode_flow.txt:426:  data_util.cpp:1:#include "editor.h"
+decode_flow.txt:482:  editor.h:735:void extract_team_info20(team_entry, int &, void*);
+decode_flow.txt:483:  editor.h:736:void extract_team_info21(team_entry, int&, void*);
+decode_flow.txt:484:  editor.h:737:void extract_teamplayer_info20(team_entry, int &, void*);
+decode_flow.txt:485:  editor.h:738:void extract_team_tactics20(team_entry, int &, void*);
+decode_flow.txt:486:  editor.h:739:
+decode_flow.txt:487:  editor.h:740:void aatf_single(HWND, int, int, player_entry*, team_entry*, int);
+decode_flow.txt:488:  editor.h:741:
+decode_flow.txt:489:  editor.h:742:void save_comparator(HWND, int, player_entry*, int, team_entry*, int, TCHAR*, void*);
+decode_flow.txt:490:  editor.h:743:
+decode_flow.txt:491:  editor.h:744://data_util.cpp functions
+decode_flow.txt:492:> editor.h:745:int read_data(int, int, int&, FileDescriptorNew*);
+decode_flow.txt:493:> editor.h:746:void write_data(int, int, int, int&, FileDescriptorNew*);
+decode_flow.txt:494:  editor.h:747:int read_dataOld(int, int, int&, FileDescriptorOld*);
+decode_flow.txt:495:  editor.h:748:void write_dataOld(int, int, int, int&, FileDescriptorOld*);
+decode_flow.txt:496:  editor.h:749:int read_data15(int, int, int&, FileDescriptor15*);
+decode_flow.txt:497:  editor.h:750:void write_data15(int, int, int, int&, FileDescriptor15*);
+decode_flow.txt:498:  editor.h:751:
+decode_flow.txt:499:  editor.h:752://fpc.cpp functions
+decode_flow.txt:500:  editor.h:753:void enable_fpc_invis_for_displayed_player(HWND, int);
+decode_flow.txt:501:  editor.h:754:void disable_fpc_invis_for_displayed_player(HWND, int);
+decode_flow.txt:502:  editor.h:755:void enable_fpc_invis_for_player(player_entry&, int);
+decode_flow.txt:503:  editor.h:756:void disable_fpc_invis_for_player(player_entry&, int);
+decode_flow.txt:545:> main.cpp:88:HINSTANCE hPesDecryptDLL;     //Handle to libpesXcrypter.dll
+decode_flow.txt:546:> main.cpp:89:HINSTANCE hPes15DecryptDLL;   //Handle to libpes15crypter.dll
+decode_flow.txt:567:  main.cpp:110:const uint8_t* gpMasterKey;
+decode_flow.txt:582:> main.cpp:125:pf_decryptWithKeyOld decryptWithKeyOld;
+decode_flow.txt:583:> main.cpp:126:pf_decryptWithKeyNew decryptWithKeyNew;
+decode_flow.txt:584:  main.cpp:127:pf_encryptWithKeyOld encryptWithKeyOld;
+decode_flow.txt:585:> main.cpp:128:pf_encryptWithKeyNew encryptWithKeyNew;
+decode_flow.txt:589:> main.cpp:132:pf_decryptFile15 decryptFile15;
+decode_flow.txt:590:  main.cpp:133:pf_encryptFile15 encryptFile15;
+decode_flow.txt:630:> main.cpp:173:     //Load libpesXcrypter.dll and its functions
+decode_flow.txt:637:  main.cpp:180:             _T("4ccEditor Spring 26 Edition (Version A)"),
+decode_flow.txt:722:> main.cpp:682:                     FreeLibrary(hPesDecryptDLL);
+decode_flow.txt:723:> main.cpp:683:                     FreeLibrary(hPes15DecryptDLL);
+decode_flow.txt:744:  main.cpp:729:                                     ret = DoFileOpen(H, 20, _T("Open PES20 EDIT file"));
+decode_flow.txt:750:  main.cpp:735:                                     ret = DoFileOpen(H, 21, _T("Open PES21 EDIT file"));
+decode_flow.txt:865:  main.cpp:1002:                                            _stprintf_s(cs_open_title, 40, _T("Select PES%d EDIT file for comparison"), giPesVersion);
+decode_flow.txt:887:> main.cpp:1053://Load libpesXcrypter.dll and the helper functions we need from it
+decode_flow.txt:891:> main.cpp:1057:    hPesDecryptDLL = LoadLibrary(L"lib\\libpesXcrypter.dll");
+decode_flow.txt:892:> main.cpp:1058:    if(!hPesDecryptDLL)
+decode_flow.txt:910:> main.cpp:1076:            MessageBox(NULL, _T("Failed to load libpesXcrypter.dll"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decode_flow.txt:914:> main.cpp:1080:    createFileDescriptorOld = (pf_createFileDescriptorOld)GetProcAddress(hPesDecryptDLL, "createFileDescriptorOld");
+decode_flow.txt:918:> main.cpp:1084:            FreeLibrary(hPesDecryptDLL);
+decode_flow.txt:921:> main.cpp:1087:    createFileDescriptorNew = (pf_createFileDescriptorNew)GetProcAddress(hPesDecryptDLL, "createFileDescriptorNew");
+decode_flow.txt:925:> main.cpp:1091:            FreeLibrary(hPesDecryptDLL);
+decode_flow.txt:928:> main.cpp:1094:    destroyFileDescriptorOld = (pf_destroyFileDescriptorOld)GetProcAddress(hPesDecryptDLL, "destroyFileDescriptorOld");
+decode_flow.txt:932:> main.cpp:1098:            FreeLibrary(hPesDecryptDLL);
+decode_flow.txt:935:> main.cpp:1101:    destroyFileDescriptorNew = (pf_destroyFileDescriptorNew)GetProcAddress(hPesDecryptDLL, "destroyFileDescriptorNew");
+decode_flow.txt:939:> main.cpp:1105:            FreeLibrary(hPesDecryptDLL);
+decode_flow.txt:942:> main.cpp:1108:    decryptWithKeyOld = (pf_decryptWithKeyOld)GetProcAddress(hPesDecryptDLL, "decryptWithKeyOld");
+decode_flow.txt:943:> main.cpp:1109:    if(!decryptWithKeyOld)
+decode_flow.txt:945:> main.cpp:1111:            MessageBox(NULL, _T("Failed to load decryptWithKeyOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decode_flow.txt:946:> main.cpp:1112:            FreeLibrary(hPesDecryptDLL);
+decode_flow.txt:949:> main.cpp:1115:    decryptWithKeyNew = (pf_decryptWithKeyNew)GetProcAddress(hPesDecryptDLL, "decryptWithKeyNew");
+decode_flow.txt:950:> main.cpp:1116:    if(!decryptWithKeyNew)
+decode_flow.txt:952:> main.cpp:1118:            MessageBox(NULL, _T("Failed to load decryptWithKeyNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decode_flow.txt:953:> main.cpp:1119:            FreeLibrary(hPesDecryptDLL);
+decode_flow.txt:956:> main.cpp:1122:    encryptWithKeyOld = (pf_encryptWithKeyOld)GetProcAddress(hPesDecryptDLL, "encryptWithKeyOld");
+decode_flow.txt:957:  main.cpp:1123:    if(!encryptWithKeyOld)
+decode_flow.txt:959:> main.cpp:1125:            MessageBox(NULL, _T("Failed to load encryptWithKeyOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decode_flow.txt:960:> main.cpp:1126:            FreeLibrary(hPesDecryptDLL);
+decode_flow.txt:963:> main.cpp:1129:    encryptWithKeyNew = (pf_encryptWithKeyNew)GetProcAddress(hPesDecryptDLL, "encryptWithKeyNew");
+decode_flow.txt:964:> main.cpp:1130:    if(!encryptWithKeyNew)
+decode_flow.txt:966:> main.cpp:1132:            MessageBox(NULL, _T("Failed to load encryptWithKeyNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+decode_flow.txt:967:> main.cpp:1133:            FreeLibrary(hPesDecryptDLL);
+decode_flow.txt:1002:> main.cpp:1172:                   _stprintf_s(errBuffer, MAX_PATH, _T("File loading failed with code %d.\nThe EDIT file may be from a different PES version or may be malformed."),
+decode_flow.txt:1027:  main.cpp:1197://Launch a Save File dialog box and save the PES EDIT data to the chosen location
+decode_flow.txt:1035:  main.cpp:1205:   _stprintf_s(cs_save_title, 30, _T("Save PES%d EDIT file"), giPesVersion);
+decode_flow.txt:1103:  main.cpp:1291:   //Disable extra ability editboxes
+decode_flow.txt:1121:> main.cpp:1378:           decryptFile15((FileDescriptor15*)ghdescriptor, pfin);
+decode_flow.txt:1201:> main.cpp:1482:           gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes16");
+decode_flow.txt:1203:> main.cpp:1484:           decryptWithKeyOld((FileDescriptorOld*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1269:> main.cpp:1550:           gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes17");
+decode_flow.txt:1271:> main.cpp:1552:           decryptWithKeyOld((FileDescriptorOld*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1325:> main.cpp:1606:           gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes18");
+decode_flow.txt:1327:> main.cpp:1608:           decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1381:> main.cpp:1662:           gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes19");
+decode_flow.txt:1383:> main.cpp:1664:           decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1444:> main.cpp:1725:                   gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes20");
+decode_flow.txt:1446:> main.cpp:1727:                   gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes21");
+decode_flow.txt:1448:> main.cpp:1729:           decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1450:  main.cpp:1731:           //Enable extra ability editboxes
+decode_flow.txt:1586:> main.cpp:1976:           output = encryptFile15((FileDescriptor15*)ghdescriptor, &outputSize);
+decode_flow.txt:1621:> main.cpp:2011:           output = encryptWithKeyOld((FileDescriptorOld*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1653:> main.cpp:2043:           output = encryptWithKeyOld((FileDescriptorOld*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1685:> main.cpp:2075:           output = encryptWithKeyNew((FileDescriptorNew*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1717:> main.cpp:2107:           output = encryptWithKeyNew((FileDescriptorNew*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1763:> main.cpp:2153:           output = encryptWithKeyNew((FileDescriptorNew*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+decode_flow.txt:1766:  main.cpp:2156:           //freeEncryptArray(output);
+decode_flow.txt:1907:  main.cpp:4731:                                   pe_current.b_edit_player = true;
+decode_flow.txt:1991:  main.cpp:5320:           //      MessageBox(ghw_main, _T("Invalid 4CCS file!\r\nPlease save a 4CCS for this team using a PES19-compatible version of 4ccEditor."),
+decode_flow.txt:2042:> main.cpp:5712:                           _stprintf_s(errBuffer, MAX_PATH, _T("File decryption failed with code %d.\nThe EDIT file is from a different PES version and cannot be used for comparison."),
+decode_flow.txt:2069:  pes15.cpp:1:#include "editor.h"
+decode_flow.txt:2122:  pes15.cpp:215:   auto checkKey = umap_pid_to_startByte.find(player.id);
+decode_flow.txt:2123:  pes15.cpp:216:   if (checkKey == umap_pid_to_startByte.end())
+decode_flow.txt:2126:  pes15.cpp:219:   int current_byte = checkKey->second; //Set current byte to PID start byte
+decode_flow.txt:2129:  pes15.cpp:222:   player.b_edit_face = read_data15(0, 1, current_byte, pDescriptor15);
+decode_flow.txt:2130:  pes15.cpp:223:   player.b_edit_hair = read_data15(1, 1, current_byte, pDescriptor15);
+decode_flow.txt:2131:  pes15.cpp:224:   player.b_edit_phys = read_data15(2, 1, current_byte, pDescriptor15);
+decode_flow.txt:2132:  pes15.cpp:225:   player.b_edit_strip = read_data15(3, 1, current_byte, pDescriptor15);
+decode_flow.txt:2157:  pes15.cpp:308:   team.b_edit_name = read_data15(0, 1, current_byte, pDescriptor15);
+decode_flow.txt:2158:  pes15.cpp:309:   team.b_edit_shortname = read_data15(1, 1, current_byte, pDescriptor15);
+decode_flow.txt:2286:  pes15.cpp:682:   write_data15(team.b_edit_name, 0, 1, current_byte, pDescriptor15);
+decode_flow.txt:2287:  pes15.cpp:683:   write_data15(team.b_edit_shortname, 1, 1, current_byte, pDescriptor15);
+decode_flow.txt:2350:  pes16.cpp:1:#include "editor.h"
+decode_flow.txt:2395:  pes16.cpp:205:   players.b_edit_face = read_dataOld(0, 1, current_byte, pDescriptorOld);
+decode_flow.txt:2396:  pes16.cpp:206:   players.b_edit_hair = read_dataOld(1, 1, current_byte, pDescriptorOld);
+decode_flow.txt:2397:  pes16.cpp:207:   players.b_edit_phys = read_dataOld(2, 1, current_byte, pDescriptorOld);
+decode_flow.txt:2398:  pes16.cpp:208:   players.b_edit_strip = read_dataOld(3, 1, current_byte, pDescriptorOld);
+decode_flow.txt:2425:  pes16.cpp:289:   team.b_edit_name = read_dataOld(0, 1, current_byte, pDescriptorOld); //(pDescriptorOld->data[current_byte]) & 1;
+decode_flow.txt:2546:  pes16.cpp:657:   write_dataOld(team.b_edit_name, 0, 1, current_byte, pDescriptorOld); //0x12:0
+decode_flow.txt:2608:  pes17.cpp:1:#include "editor.h"
+decode_flow.txt:2664:  pes17.cpp:289:   team.b_edit_name = read_dataOld(4, 1, current_byte, pDescriptorOld); //0x19:4
+decode_flow.txt:2847:  pes18.cpp:1:#include "editor.h"
+decode_flow.txt:3103:  pes19.cpp:1:#include "editor.h"
+decode_flow.txt:3360:  pes20.cpp:1:#include "editor.h"
+decode_flow.txt:3361:  pes20.cpp:2:
+decode_flow.txt:3362:> pes20.cpp:3:void fill_player_entry20(player_entry &players, int &current_byte, void* ghdescriptor)
+decode_flow.txt:3363:  pes20.cpp:4:{
+decode_flow.txt:3364:> pes20.cpp:5:     FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3365:  pes20.cpp:6:
+decode_flow.txt:3366:  pes20.cpp:7:     players.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3367:  pes20.cpp:8:
+decode_flow.txt:3368:  pes20.cpp:9:     current_byte += 0x4;
+decode_flow.txt:3369:  pes20.cpp:10:
+decode_flow.txt:3370:  pes20.cpp:11:    players.nation = read_data(0, 2*8, current_byte, pDescriptorNew);
+decode_flow.txt:3371:  pes20.cpp:12:    players.height = read_data(0, 8, current_byte, pDescriptorNew);
+decode_flow.txt:3372:  pes20.cpp:13:    players.weight = read_data(0, 8, current_byte, pDescriptorNew);
+decode_flow.txt:3373:  pes20.cpp:14:
+decode_flow.txt:3374:  pes20.cpp:15:    players.gc1 = read_data(0, 8, current_byte, pDescriptorNew);
+decode_flow.txt:3375:  pes20.cpp:16:    players.gc2 = read_data(0, 8, current_byte, pDescriptorNew);
+decode_flow.txt:3376:  pes20.cpp:17:
+decode_flow.txt:3377:  pes20.cpp:18:    players.atk = read_data(0, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3378:  pes20.cpp:19:    players.ball_ctrl = read_data(7, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3379:  pes20.cpp:20:    players.weak_use = read_data(6, 2, current_byte, pDescriptorNew);
+decode_flow.txt:3380:  pes20.cpp:21:    players.tight_pos = read_data(0, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3381:  pes20.cpp:22:    players.lowpass         = read_data(7, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3382:  pes20.cpp:23:    players.loftpass        = read_data(6, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3383:  pes20.cpp:24:    players.finish          = read_data(5, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3384:  pes20.cpp:25:    players.mo_armd         = read_data(4, 4, current_byte, pDescriptorNew);
+decode_flow.txt:3385:  pes20.cpp:194:   }
+decode_flow.txt:3386:  pes20.cpp:195:   //Skip additional face settings
+decode_flow.txt:3387:  pes20.cpp:196:   current_byte+=19;
+decode_flow.txt:3388:  pes20.cpp:197:   //0x40:0
+decode_flow.txt:3389:  pes20.cpp:198:   players.iris_col = read_data(0, 4, current_byte, pDescriptorNew);
+decode_flow.txt:3390:  pes20.cpp:199:   //Skip hair settings
+decode_flow.txt:3391:  pes20.cpp:200:   current_byte+=8;
+decode_flow.txt:3392:  pes20.cpp:201:}
+decode_flow.txt:3393:  pes20.cpp:202:
+decode_flow.txt:3394:  pes20.cpp:203:
+decode_flow.txt:3395:> pes20.cpp:204:void fill_team_ids20(team_entry &team, int &current_byte, void* ghdescriptor)
+decode_flow.txt:3396:  pes20.cpp:205:{
+decode_flow.txt:3397:> pes20.cpp:206:   FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3398:  pes20.cpp:207:
+decode_flow.txt:3399:  pes20.cpp:208:   team.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3400:  pes20.cpp:209:   team.manager_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3401:  pes20.cpp:210:
+decode_flow.txt:3402:  pes20.cpp:211:   current_byte+=2; //Team emblem
+decode_flow.txt:3403:  pes20.cpp:212:   //0xA
+decode_flow.txt:3404:  pes20.cpp:213:   team.stadium_id = read_data(0, 2*8, current_byte, pDescriptorNew);
+decode_flow.txt:3405:  pes20.cpp:214:
+decode_flow.txt:3406:  pes20.cpp:215:   current_byte+=0xA; //Skip to 0x16
+decode_flow.txt:3407:  pes20.cpp:216:   team.color1_red = read_data(2, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3408:  pes20.cpp:217:   team.color1_green       = read_data(0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3409:  pes20.cpp:218:   team.b_edit_name        = read_data(6, 1, current_byte, pDescriptorNew);
+decode_flow.txt:3410:  pes20.cpp:219:   current_byte++; //Edited emblem: 1 bit
+decode_flow.txt:3411:  pes20.cpp:220:   team.color2_green       = read_data(0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3412:  pes20.cpp:221:   team.color2_blue        = read_data(6, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3413:  pes20.cpp:222:   current_byte+=2; //Media backdrop colors
+decode_flow.txt:3414:  pes20.cpp:223:   team.b_edit_stadium = read_data(6, 1, current_byte, pDescriptorNew);
+decode_flow.txt:3415:  pes20.cpp:224:   current_byte++; //Edited stadium name: 1 bit
+decode_flow.txt:3416:  pes20.cpp:225:   current_byte+=2; //Stadium settings
+decode_flow.txt:3417:  pes20.cpp:226:   team.color1_blue        = read_data(0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3418:  pes20.cpp:247:   current_byte+=181; //Stadium name
+decode_flow.txt:3419:  pes20.cpp:248:   current_byte+=16; //Banner 1 text
+decode_flow.txt:3420:  pes20.cpp:249:   current_byte+=16; //Banner 2 text
+decode_flow.txt:3421:  pes20.cpp:250:   current_byte+=16; //Banner 3 text
+decode_flow.txt:3422:  pes20.cpp:251:   current_byte+=16; //Banner 4 text
+decode_flow.txt:3423:  pes20.cpp:252:
+decode_flow.txt:3424:  pes20.cpp:253:   current_byte+=105; //Unknown D
+decode_flow.txt:3425:  pes20.cpp:254:}
+decode_flow.txt:3426:  pes20.cpp:255:
+decode_flow.txt:3427:  pes20.cpp:256:
+decode_flow.txt:3428:> pes20.cpp:257:void fill_team_ids21(team_entry& team, int& current_byte, void* ghdescriptor)
+decode_flow.txt:3429:  pes20.cpp:258:{
+decode_flow.txt:3430:> pes20.cpp:259:   FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3431:  pes20.cpp:260:
+decode_flow.txt:3432:  pes20.cpp:261:   team.id = read_data(0, 4 * 8, current_byte, pDescriptorNew);
+decode_flow.txt:3433:  pes20.cpp:262:   team.manager_id = read_data(0, 4 * 8, current_byte, pDescriptorNew);
+decode_flow.txt:3434:  pes20.cpp:263:
+decode_flow.txt:3435:  pes20.cpp:264:   current_byte += 2; //Team emblem
+decode_flow.txt:3436:  pes20.cpp:265:   //0xA
+decode_flow.txt:3437:  pes20.cpp:266:   team.stadium_id = read_data(0, 2 * 8, current_byte, pDescriptorNew);
+decode_flow.txt:3438:  pes20.cpp:267:
+decode_flow.txt:3439:  pes20.cpp:268:   current_byte += 0xA; //Skip to 0x16
+decode_flow.txt:3440:  pes20.cpp:269:   team.color1_red = read_data(2, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3441:  pes20.cpp:270:   team.color1_green = read_data(0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3442:  pes20.cpp:271:   team.b_edit_name = read_data(6, 1, current_byte, pDescriptorNew);
+decode_flow.txt:3443:  pes20.cpp:272:   current_byte++; //Edited emblem: 1 bit
+decode_flow.txt:3444:  pes20.cpp:273:   team.color2_green = read_data(0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3445:  pes20.cpp:274:   team.color2_blue = read_data(6, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3446:  pes20.cpp:275:   current_byte += 2; //Media backdrop colors
+decode_flow.txt:3447:  pes20.cpp:276:   team.b_edit_stadium = read_data(6, 1, current_byte, pDescriptorNew);
+decode_flow.txt:3448:  pes20.cpp:277:   current_byte++; //Edited stadium name: 1 bit
+decode_flow.txt:3449:  pes20.cpp:278:   current_byte += 2; //Stadium settings
+decode_flow.txt:3450:  pes20.cpp:279:   team.color1_blue = read_data(0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3451:  pes20.cpp:300:   current_byte += 181; //Stadium name
+decode_flow.txt:3452:  pes20.cpp:301:   current_byte += 16; //Banner 1 text
+decode_flow.txt:3453:  pes20.cpp:302:   current_byte += 16; //Banner 2 text
+decode_flow.txt:3454:  pes20.cpp:303:   current_byte += 16; //Banner 3 text
+decode_flow.txt:3455:  pes20.cpp:304:   current_byte += 16; //Banner 4 text
+decode_flow.txt:3456:  pes20.cpp:305:
+decode_flow.txt:3457:  pes20.cpp:306:   current_byte += 165; //Unknown D
+decode_flow.txt:3458:  pes20.cpp:307:}
+decode_flow.txt:3459:  pes20.cpp:308:
+decode_flow.txt:3460:  pes20.cpp:309:
+decode_flow.txt:3461:> pes20.cpp:310:void fill_team_rosters20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+decode_flow.txt:3462:  pes20.cpp:311:{
+decode_flow.txt:3463:> pes20.cpp:312:   FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3464:  pes20.cpp:313:
+decode_flow.txt:3465:  pes20.cpp:314:   int ii, t_ind;
+decode_flow.txt:3466:  pes20.cpp:315:   unsigned long team_id, player_id;
+decode_flow.txt:3467:  pes20.cpp:316:
+decode_flow.txt:3468:  pes20.cpp:317:   team_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3469:  pes20.cpp:318:
+decode_flow.txt:3470:  pes20.cpp:319:   for(t_ind=0;t_ind<gnum_teams;t_ind++)
+decode_flow.txt:3471:  pes20.cpp:320:   {
+decode_flow.txt:3472:  pes20.cpp:321:           if(team_id == gteams[t_ind].id) break;
+decode_flow.txt:3473:  pes20.cpp:322:   }
+decode_flow.txt:3474:  pes20.cpp:323:
+decode_flow.txt:3475:  pes20.cpp:324:   for(ii=0;ii<40;ii++)
+decode_flow.txt:3476:  pes20.cpp:325:   {
+decode_flow.txt:3477:  pes20.cpp:326:           player_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3478:  pes20.cpp:327:
+decode_flow.txt:3479:  pes20.cpp:328:           gteams[t_ind].players[ii] = player_id;
+decode_flow.txt:3480:  pes20.cpp:329:           if(player_id) gteams[t_ind].num_on_team++; //Increment player count
+decode_flow.txt:3481:  pes20.cpp:330:   }
+decode_flow.txt:3482:  pes20.cpp:331:   //Hide team with no players
+decode_flow.txt:3483:  pes20.cpp:332:   if(gteams[t_ind].players[0] == 0)
+decode_flow.txt:3484:  pes20.cpp:335:   for(ii=0;ii<40;ii++)
+decode_flow.txt:3485:  pes20.cpp:336:   {
+decode_flow.txt:3486:  pes20.cpp:337:           //Player shirt numbers
+decode_flow.txt:3487:  pes20.cpp:338:           gteams[t_ind].numbers[ii] = read_data(0, 2*8, current_byte, pDescriptorNew);
+decode_flow.txt:3488:  pes20.cpp:339:   }
+decode_flow.txt:3489:  pes20.cpp:340:
+decode_flow.txt:3490:  pes20.cpp:341:   current_byte+=40; //Unknown A
+decode_flow.txt:3491:  pes20.cpp:342:}
+decode_flow.txt:3492:  pes20.cpp:343:
+decode_flow.txt:3493:  pes20.cpp:344:
+decode_flow.txt:3494:> pes20.cpp:345:void fill_team_tactics20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+decode_flow.txt:3495:  pes20.cpp:346:{
+decode_flow.txt:3496:  pes20.cpp:347:   //Total block length: 0x274 bytes
+decode_flow.txt:3497:> pes20.cpp:348:   FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3498:  pes20.cpp:349:
+decode_flow.txt:3499:  pes20.cpp:350:   int t_ind;
+decode_flow.txt:3500:  pes20.cpp:351:   unsigned long team_id;
+decode_flow.txt:3501:  pes20.cpp:352:
+decode_flow.txt:3502:  pes20.cpp:353:   team_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3503:  pes20.cpp:354:
+decode_flow.txt:3504:  pes20.cpp:355:   //Find team array entry that matches this ID
+decode_flow.txt:3505:  pes20.cpp:356:   for(t_ind=0;t_ind<gnum_teams;t_ind++)
+decode_flow.txt:3506:  pes20.cpp:357:   {
+decode_flow.txt:3507:  pes20.cpp:358:           if(team_id == gteams[t_ind].id) break;
+decode_flow.txt:3508:  pes20.cpp:359:   }
+decode_flow.txt:3509:  pes20.cpp:360:   current_byte+=0x1E0;
+decode_flow.txt:3510:  pes20.cpp:361:
+decode_flow.txt:3511:  pes20.cpp:362:   //Starting lineup
+decode_flow.txt:3512:  pes20.cpp:363:   for(int ii=0; ii<11; ii++)
+decode_flow.txt:3513:  pes20.cpp:364:   {
+decode_flow.txt:3514:  pes20.cpp:365:           gteams[t_ind].starting11[ii] = pDescriptorNew->data[current_byte];
+decode_flow.txt:3515:  pes20.cpp:366:           current_byte++;
+decode_flow.txt:3516:  pes20.cpp:367:   }
+decode_flow.txt:3517:  pes20.cpp:368:   current_byte+=0x26;
+decode_flow.txt:3518:  pes20.cpp:369:   //Captain index at byte 0x215:
+decode_flow.txt:3519:  pes20.cpp:370:   gteams[t_ind].captain_ind = (char)pDescriptorNew->data[current_byte];
+decode_flow.txt:3520:  pes20.cpp:371:   current_byte+=0x5f;
+decode_flow.txt:3521:  pes20.cpp:372:}
+decode_flow.txt:3522:  pes20.cpp:373:
+decode_flow.txt:3523:  pes20.cpp:374://---------------------------------------------------------------------------------------------------------
+decode_flow.txt:3524:  pes20.cpp:375:
+decode_flow.txt:3525:  pes20.cpp:376:
+decode_flow.txt:3526:> pes20.cpp:377:void extract_player_entry20(player_entry player, int &current_byte, void* ghdescriptor)
+decode_flow.txt:3527:  pes20.cpp:378:{
+decode_flow.txt:3528:> pes20.cpp:379:   FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3529:  pes20.cpp:380:
+decode_flow.txt:3530:  pes20.cpp:381:   if(!player.b_changed)
+decode_flow.txt:3531:  pes20.cpp:382:   {
+decode_flow.txt:3532:  pes20.cpp:383:           current_byte += 0xF0+0x48;
+decode_flow.txt:3533:  pes20.cpp:384:           return;
+decode_flow.txt:3534:  pes20.cpp:385:   }
+decode_flow.txt:3535:  pes20.cpp:386:
+decode_flow.txt:3536:  pes20.cpp:387:   write_data(player.id, 0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3537:  pes20.cpp:388:   current_byte += 0x4; //Commentary name
+decode_flow.txt:3538:  pes20.cpp:389:   write_data(player.nation, 0, 2*8, current_byte, pDescriptorNew);
+decode_flow.txt:3539:  pes20.cpp:390:   write_data(player.height,               0, 8, current_byte, pDescriptorNew);
+decode_flow.txt:3540:  pes20.cpp:391:   write_data(player.weight,               0, 8, current_byte, pDescriptorNew);
+decode_flow.txt:3541:  pes20.cpp:392:   write_data(player.gc1,                  0, 8, current_byte, pDescriptorNew);
+decode_flow.txt:3542:  pes20.cpp:393:   write_data(player.gc2,                  0, 8, current_byte, pDescriptorNew);
+decode_flow.txt:3543:  pes20.cpp:394:   write_data(player.atk,                  0, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3544:  pes20.cpp:395:   write_data(player.ball_ctrl,    7, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3545:  pes20.cpp:396:   write_data(player.weak_use,             6, 2, current_byte, pDescriptorNew);
+decode_flow.txt:3546:  pes20.cpp:397:   write_data(player.tight_pos,    0, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3547:  pes20.cpp:398:   write_data(player.lowpass,              7, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3548:  pes20.cpp:399:   write_data(player.loftpass,     6, 7, current_byte, pDescriptorNew);
+decode_flow.txt:3549:  pes20.cpp:570:   write_data(player.skin_col,     0, 3, current_byte, pDescriptorNew);
+decode_flow.txt:3550:  pes20.cpp:571:   //Skip additional face settings
+decode_flow.txt:3551:  pes20.cpp:572:   current_byte+=19;
+decode_flow.txt:3552:  pes20.cpp:573:   //0x40:0
+decode_flow.txt:3553:  pes20.cpp:574:   write_data(player.iris_col,     0, 4, current_byte, pDescriptorNew);
+decode_flow.txt:3554:  pes20.cpp:575:   //Skip hair settings
+decode_flow.txt:3555:  pes20.cpp:576:   current_byte+=8;
+decode_flow.txt:3556:  pes20.cpp:577:}
+decode_flow.txt:3557:  pes20.cpp:578:
+decode_flow.txt:3558:  pes20.cpp:579:
+decode_flow.txt:3559:> pes20.cpp:580:void extract_team_info20(team_entry team, int &current_byte, void* ghdescriptor)
+decode_flow.txt:3560:  pes20.cpp:581:{
+decode_flow.txt:3561:> pes20.cpp:582:   FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3562:  pes20.cpp:583:
+decode_flow.txt:3563:  pes20.cpp:584:   if(!team.b_changed)
+decode_flow.txt:3564:  pes20.cpp:585:   {
+decode_flow.txt:3565:  pes20.cpp:586:           current_byte += 0x210;
+decode_flow.txt:3566:  pes20.cpp:587:           return;
+decode_flow.txt:3567:  pes20.cpp:588:   }
+decode_flow.txt:3568:  pes20.cpp:589:
+decode_flow.txt:3569:  pes20.cpp:590:   write_data(team.id,             0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3570:  pes20.cpp:591:   write_data(team.manager_id,0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3571:  pes20.cpp:592:
+decode_flow.txt:3572:  pes20.cpp:593:   current_byte+=2; //Team emblem
+decode_flow.txt:3573:  pes20.cpp:594:
+decode_flow.txt:3574:  pes20.cpp:595:   write_data(team.stadium_id,     0, 2*8, current_byte, pDescriptorNew);
+decode_flow.txt:3575:  pes20.cpp:596:
+decode_flow.txt:3576:  pes20.cpp:597:   current_byte+=0xA; //Skip to 0x16
+decode_flow.txt:3577:  pes20.cpp:598:   write_data(team.color1_red,             2, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3578:  pes20.cpp:599:   write_data(team.color1_green,   0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3579:  pes20.cpp:600:   write_data(team.b_edit_name,    6, 1, current_byte, pDescriptorNew);
+decode_flow.txt:3580:  pes20.cpp:601:   current_byte++; //Edited emblem: 1 bit
+decode_flow.txt:3581:  pes20.cpp:602:   write_data(team.color2_green,   0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3582:  pes20.cpp:625:   current_byte+=181; //Stadium name
+decode_flow.txt:3583:  pes20.cpp:626:   current_byte+=16; //Banner 1 text
+decode_flow.txt:3584:  pes20.cpp:627:   current_byte+=16; //Banner 2 text
+decode_flow.txt:3585:  pes20.cpp:628:   current_byte+=16; //Banner 3 text
+decode_flow.txt:3586:  pes20.cpp:629:   current_byte+=16; //Banner 4 text
+decode_flow.txt:3587:  pes20.cpp:630:
+decode_flow.txt:3588:  pes20.cpp:631:   current_byte+=105; //Unknown D
+decode_flow.txt:3589:  pes20.cpp:632:}
+decode_flow.txt:3590:  pes20.cpp:633:
+decode_flow.txt:3591:  pes20.cpp:634:
+decode_flow.txt:3592:> pes20.cpp:635:void extract_team_info21(team_entry team, int& current_byte, void* ghdescriptor)
+decode_flow.txt:3593:  pes20.cpp:636:{
+decode_flow.txt:3594:> pes20.cpp:637:   FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3595:  pes20.cpp:638:
+decode_flow.txt:3596:  pes20.cpp:639:   if (!team.b_changed)
+decode_flow.txt:3597:  pes20.cpp:640:   {
+decode_flow.txt:3598:  pes20.cpp:641:           current_byte += 0x24C;
+decode_flow.txt:3599:  pes20.cpp:642:           return;
+decode_flow.txt:3600:  pes20.cpp:643:   }
+decode_flow.txt:3601:  pes20.cpp:644:
+decode_flow.txt:3602:  pes20.cpp:645:   write_data(team.id, 0, 4 * 8, current_byte, pDescriptorNew);
+decode_flow.txt:3603:  pes20.cpp:646:   write_data(team.manager_id, 0, 4 * 8, current_byte, pDescriptorNew);
+decode_flow.txt:3604:  pes20.cpp:647:
+decode_flow.txt:3605:  pes20.cpp:648:   current_byte += 2; //Team emblem
+decode_flow.txt:3606:  pes20.cpp:649:
+decode_flow.txt:3607:  pes20.cpp:650:   write_data(team.stadium_id, 0, 2 * 8, current_byte, pDescriptorNew);
+decode_flow.txt:3608:  pes20.cpp:651:
+decode_flow.txt:3609:  pes20.cpp:652:   current_byte += 0xA; //Skip to 0x16
+decode_flow.txt:3610:  pes20.cpp:653:   write_data(team.color1_red, 2, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3611:  pes20.cpp:654:   write_data(team.color1_green, 0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3612:  pes20.cpp:655:   write_data(team.b_edit_name, 6, 1, current_byte, pDescriptorNew);
+decode_flow.txt:3613:  pes20.cpp:656:   current_byte++; //Edited emblem: 1 bit
+decode_flow.txt:3614:  pes20.cpp:657:   write_data(team.color2_green, 0, 6, current_byte, pDescriptorNew);
+decode_flow.txt:3615:  pes20.cpp:680:   current_byte += 181; //Stadium name
+decode_flow.txt:3616:  pes20.cpp:681:   current_byte += 16; //Banner 1 text
+decode_flow.txt:3617:  pes20.cpp:682:   current_byte += 16; //Banner 2 text
+decode_flow.txt:3618:  pes20.cpp:683:   current_byte += 16; //Banner 3 text
+decode_flow.txt:3619:  pes20.cpp:684:   current_byte += 16; //Banner 4 text
+decode_flow.txt:3620:  pes20.cpp:685:
+decode_flow.txt:3621:  pes20.cpp:686:   current_byte += 165; //Unknown D
+decode_flow.txt:3622:  pes20.cpp:687:}
+decode_flow.txt:3623:  pes20.cpp:688:
+decode_flow.txt:3624:  pes20.cpp:689:
+decode_flow.txt:3625:> pes20.cpp:690:void extract_teamplayer_info20(team_entry team, int &current_byte, void* ghdescriptor)
+decode_flow.txt:3626:  pes20.cpp:691:{
+decode_flow.txt:3627:> pes20.cpp:692:   FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3628:  pes20.cpp:693:
+decode_flow.txt:3629:  pes20.cpp:694:   if(!team.b_changed)
+decode_flow.txt:3630:  pes20.cpp:695:   {
+decode_flow.txt:3631:  pes20.cpp:696:           current_byte += 0x11C;
+decode_flow.txt:3632:  pes20.cpp:697:           return;
+decode_flow.txt:3633:  pes20.cpp:698:   }
+decode_flow.txt:3634:  pes20.cpp:699:
+decode_flow.txt:3635:  pes20.cpp:700:   write_data(team.id, 0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3636:  pes20.cpp:701:
+decode_flow.txt:3637:  pes20.cpp:702:   for(int ii=0;ii<40;ii++)
+decode_flow.txt:3638:  pes20.cpp:703:   {
+decode_flow.txt:3639:  pes20.cpp:704:           write_data(team.players[ii], 0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3640:  pes20.cpp:705:   }
+decode_flow.txt:3641:  pes20.cpp:706:
+decode_flow.txt:3642:  pes20.cpp:707:   for(int ii=0;ii<40;ii++)
+decode_flow.txt:3643:  pes20.cpp:708:   {
+decode_flow.txt:3644:  pes20.cpp:709:           //Player shirt numbers
+decode_flow.txt:3645:  pes20.cpp:710:           write_data(team.numbers[ii], 0, 2*8, current_byte, pDescriptorNew);
+decode_flow.txt:3646:  pes20.cpp:711:   }
+decode_flow.txt:3647:  pes20.cpp:712:
+decode_flow.txt:3648:  pes20.cpp:713:   current_byte+=40; //Unknown A
+decode_flow.txt:3649:  pes20.cpp:714:}
+decode_flow.txt:3650:  pes20.cpp:715:
+decode_flow.txt:3651:  pes20.cpp:716:
+decode_flow.txt:3652:> pes20.cpp:717:void extract_team_tactics20(team_entry team, int &current_byte, void* ghdescriptor)
+decode_flow.txt:3653:  pes20.cpp:718:{
+decode_flow.txt:3654:> pes20.cpp:719:   FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+decode_flow.txt:3655:  pes20.cpp:720:
+decode_flow.txt:3656:  pes20.cpp:721:   if(!team.b_changed)
+decode_flow.txt:3657:  pes20.cpp:722:   {
+decode_flow.txt:3658:  pes20.cpp:723:           current_byte += 0x274;
+decode_flow.txt:3659:  pes20.cpp:724:           return;
+decode_flow.txt:3660:  pes20.cpp:725:   }
+decode_flow.txt:3661:  pes20.cpp:726:
+decode_flow.txt:3662:  pes20.cpp:727:   write_data(team.id, 0, 4*8, current_byte, pDescriptorNew);
+decode_flow.txt:3663:  pes20.cpp:728:
+decode_flow.txt:3664:  pes20.cpp:729:   current_byte+=0x211;
+decode_flow.txt:3665:  pes20.cpp:730:   pDescriptorNew->data[current_byte] = team.captain_ind;
+decode_flow.txt:3666:  pes20.cpp:731:
+decode_flow.txt:3667:  pes20.cpp:732:   current_byte+=0x5f;
+decode_flow.txt:3668:  pes20.cpp:733:}
+decode_flow.txt:3751:  window.h:20:processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
