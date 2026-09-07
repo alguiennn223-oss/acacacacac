@@ -1,0 +1,534 @@
+PS D:\Games\pes patch mio\4ccEditoe\4ccEditor-master\lib> Select-String -Path .\libpesXcrypter_disasm.txt -Pattern "\[.*40h\]|\[.*44h\]|\[.*48h\]|\[.*4Ch\]|0x40|0x44|0x48|0x4C|40h|44h|48h|4Ch"
+
+libpesXcrypter_disasm.txt:147:  10001179: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:150:  10001183: 68 40 01 00 00     push        140h
+libpesXcrypter_disasm.txt:170:  100011C1: 81 C1 40 01 00 00  add         ecx,140h
+libpesXcrypter_disasm.txt:172:  100011CA: 6A 40              push        40h
+libpesXcrypter_disasm.txt:192:  1000120A: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:201:  10001226: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:213:  1000124B: 8B 51 40           mov         edx,dword ptr [ecx+40h]
+libpesXcrypter_disasm.txt:221:  10001263: 8B 48 44           mov         ecx,dword ptr [eax+44h]
+libpesXcrypter_disasm.txt:229:  1000127B: 8B 51 48           mov         edx,dword ptr [ecx+48h]
+libpesXcrypter_disasm.txt:237:  10001293: 8B 48 4C           mov         ecx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:246:  100012AB: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:254:  100012C4: 8B 48 48           mov         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:258:  100012CC: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:268:  100012E8: 03 51 48           add         edx,dword ptr [ecx+48h]
+libpesXcrypter_disasm.txt:272:  100012F2: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:280:  1000130B: 8B 48 44           mov         ecx,dword ptr [eax+44h]
+libpesXcrypter_disasm.txt:284:  10001313: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:294:  1000132F: 03 51 44           add         edx,dword ptr [ecx+44h]
+libpesXcrypter_disasm.txt:298:  10001339: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:306:  10001352: 8B 48 40           mov         ecx,dword ptr [eax+40h]
+libpesXcrypter_disasm.txt:310:  1000135A: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:320:  10001376: 03 51 40           add         edx,dword ptr [ecx+40h]
+libpesXcrypter_disasm.txt:324:  10001380: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:332:  10001399: 8B 48 4C           mov         ecx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:337:  100013A3: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:365:  100013D9: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:370:  100013E9: 8B 51 40           mov         edx,dword ptr [ecx+40h]
+libpesXcrypter_disasm.txt:373:  100013F2: 8B 41 44           mov         eax,dword ptr [ecx+44h]
+libpesXcrypter_disasm.txt:378:  10001402: 03 48 48           add         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:381:  1000140B: 8B 50 4C           mov         edx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:408:  10001465: 05 40 01 00 00     add         eax,140h
+libpesXcrypter_disasm.txt:410:  10001470: 6A 40              push        40h
+libpesXcrypter_disasm.txt:430:  100014B0: 8D 4D BC           lea         ecx,[ebp-44h]
+libpesXcrypter_disasm.txt:440:  100014CF: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:451:  100014F8: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:459:  10001511: 8B 42 48           mov         eax,dword ptr [edx+48h]
+libpesXcrypter_disasm.txt:464:  1000151C: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:473:  1000153B: 03 48 48           add         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:477:  10001548: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:485:  10001561: 8B 42 44           mov         eax,dword ptr [edx+44h]
+libpesXcrypter_disasm.txt:490:  1000156C: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:499:  1000158B: 03 48 44           add         ecx,dword ptr [eax+44h]
+libpesXcrypter_disasm.txt:503:  10001598: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:511:  100015B1: 8B 42 40           mov         eax,dword ptr [edx+40h]
+libpesXcrypter_disasm.txt:516:  100015BC: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:525:  100015DB: 03 48 40           add         ecx,dword ptr [eax+40h]
+libpesXcrypter_disasm.txt:529:  100015E8: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:537:  10001601: 8B 42 4C           mov         eax,dword ptr [edx+4Ch]
+libpesXcrypter_disasm.txt:543:  1000160E: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:570:  10001649: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:573:  10001653: 68 40 01 00 00     push        140h
+libpesXcrypter_disasm.txt:593:  10001691: 81 C1 40 01 00 00  add         ecx,140h
+libpesXcrypter_disasm.txt:595:  1000169A: 6A 40              push        40h
+libpesXcrypter_disasm.txt:615:  100016DA: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:624:  100016F6: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:636:  1000171B: 8B 51 40           mov         edx,dword ptr [ecx+40h]
+libpesXcrypter_disasm.txt:644:  10001733: 8B 48 44           mov         ecx,dword ptr [eax+44h]
+libpesXcrypter_disasm.txt:652:  1000174B: 8B 51 48           mov         edx,dword ptr [ecx+48h]
+libpesXcrypter_disasm.txt:660:  10001763: 8B 48 4C           mov         ecx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:669:  1000177B: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:677:  10001794: 8B 48 48           mov         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:681:  1000179C: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:691:  100017B8: 03 51 48           add         edx,dword ptr [ecx+48h]
+libpesXcrypter_disasm.txt:695:  100017C2: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:703:  100017DB: 8B 48 44           mov         ecx,dword ptr [eax+44h]
+libpesXcrypter_disasm.txt:707:  100017E3: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:717:  100017FF: 03 51 44           add         edx,dword ptr [ecx+44h]
+libpesXcrypter_disasm.txt:721:  10001809: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:729:  10001822: 8B 48 40           mov         ecx,dword ptr [eax+40h]
+libpesXcrypter_disasm.txt:733:  1000182A: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:743:  10001846: 03 51 40           add         edx,dword ptr [ecx+40h]
+libpesXcrypter_disasm.txt:747:  10001850: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:755:  10001869: 8B 48 4C           mov         ecx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:760:  10001873: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:788:  100018A9: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:793:  100018B9: 8B 51 40           mov         edx,dword ptr [ecx+40h]
+libpesXcrypter_disasm.txt:796:  100018C2: 8B 41 44           mov         eax,dword ptr [ecx+44h]
+libpesXcrypter_disasm.txt:801:  100018D2: 03 48 48           add         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:804:  100018DB: 8B 50 4C           mov         edx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:831:  10001935: 05 40 01 00 00     add         eax,140h
+libpesXcrypter_disasm.txt:833:  10001940: 6A 40              push        40h
+libpesXcrypter_disasm.txt:853:  10001980: 8D 4D BC           lea         ecx,[ebp-44h]
+libpesXcrypter_disasm.txt:863:  1000199F: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:874:  100019C8: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:882:  100019E1: 8B 42 48           mov         eax,dword ptr [edx+48h]
+libpesXcrypter_disasm.txt:887:  100019EC: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:896:  10001A0B: 03 48 48           add         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:900:  10001A18: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:908:  10001A31: 8B 42 44           mov         eax,dword ptr [edx+44h]
+libpesXcrypter_disasm.txt:913:  10001A3C: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:922:  10001A5B: 03 48 44           add         ecx,dword ptr [eax+44h]
+libpesXcrypter_disasm.txt:926:  10001A68: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:934:  10001A81: 8B 42 40           mov         eax,dword ptr [edx+40h]
+libpesXcrypter_disasm.txt:939:  10001A8C: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:948:  10001AAB: 03 48 40           add         ecx,dword ptr [eax+40h]
+libpesXcrypter_disasm.txt:952:  10001AB8: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:960:  10001AD1: 8B 42 4C           mov         eax,dword ptr [edx+4Ch]
+libpesXcrypter_disasm.txt:966:  10001ADE: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:992:  10001B13: 83 EC 40           sub         esp,40h
+libpesXcrypter_disasm.txt:993:  10001B16: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:1022:  10001B68: 89 45 C0           mov         dword ptr [ebp-40h],eax
+libpesXcrypter_disasm.txt:1028:  10001B75: 8B 4D C0           mov         ecx,dword ptr [ebp-40h]
+libpesXcrypter_disasm.txt:1041:  10001B9B: 8B 45 C0           mov         eax,dword ptr [ebp-40h]
+libpesXcrypter_disasm.txt:1339:  10001E59: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:1342:  10001E63: 6A 40              push        40h
+libpesXcrypter_disasm.txt:1347:  10001E71: 8D 4D BC           lea         ecx,[ebp-44h]
+libpesXcrypter_disasm.txt:1357:  10001E90: 6A 40              push        40h
+libpesXcrypter_disasm.txt:1360:  10001E99: 8D 55 BC           lea         edx,[ebp-44h]
+libpesXcrypter_disasm.txt:1364:  10001EA5: 68 40 01 00 00     push        140h
+libpesXcrypter_disasm.txt:1367:  10001EAE: 8D 4D BC           lea         ecx,[ebp-44h]
+libpesXcrypter_disasm.txt:1373:  10001EBE: 6A 40              push        40h
+libpesXcrypter_disasm.txt:1512:  10001FF6: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:1725:  100021D7: 8B 0C 85 44 3B 02  mov         ecx,dword ptr [eax*4+10023B44h]
+libpesXcrypter_disasm.txt:1729:  100021E4: 33 0C 95 44 3B 02  xor         ecx,dword ptr [edx*4+10023B44h]
+libpesXcrypter_disasm.txt:1733:  100021F4: 33 04 8D 48 3B 02  xor         eax,dword ptr [ecx*4+10023B48h]
+libpesXcrypter_disasm.txt:1740:  1000220A: 89 04 95 48 3B 02  mov         dword ptr [edx*4+10023B48h],eax
+libpesXcrypter_disasm.txt:1744:  10002217: 8B 14 8D 48 3B 02  mov         edx,dword ptr [ecx*4+10023B48h]
+libpesXcrypter_disasm.txt:1746:  1000221E: 89 14 85 48 3B 02  mov         dword ptr [eax*4+10023B48h],edx
+libpesXcrypter_disasm.txt:1761:  10002253: 8B 80 48 3B 02 10  mov         eax,dword ptr [eax+10023B48h]
+libpesXcrypter_disasm.txt:1762:  10002259: 89 82 48 3B 02 10  mov         dword ptr [edx+10023B48h],eax
+libpesXcrypter_disasm.txt:1780:  10002299: 8B 0C 85 44 3B 02  mov         ecx,dword ptr [eax*4+10023B44h]
+libpesXcrypter_disasm.txt:1784:  100022A6: 33 0C 95 44 3B 02  xor         ecx,dword ptr [edx*4+10023B44h]
+libpesXcrypter_disasm.txt:1788:  100022B6: 33 04 8D 48 3B 02  xor         eax,dword ptr [ecx*4+10023B48h]
+libpesXcrypter_disasm.txt:1792:  100022C3: 89 04 95 48 3B 02  mov         dword ptr [edx*4+10023B48h],eax
+libpesXcrypter_disasm.txt:1796:  100022D0: 8B 14 8D 48 3B 02  mov         edx,dword ptr [ecx*4+10023B48h]
+libpesXcrypter_disasm.txt:1798:  100022D7: 89 14 85 48 3B 02  mov         dword ptr [eax*4+10023B48h],edx
+libpesXcrypter_disasm.txt:1810:  10002303: 8B 92 48 3B 02 10  mov         edx,dword ptr [edx+10023B48h]
+libpesXcrypter_disasm.txt:1811:  10002309: 89 91 48 3B 02 10  mov         dword ptr [ecx+10023B48h],edx
+libpesXcrypter_disasm.txt:1817:  10002323: C7 81 48 3B 02 10  mov         dword ptr [ecx+10023B48h],80000000h
+libpesXcrypter_disasm.txt:1859:  1000238D: 8B 14 8D 48 3B 02  mov         edx,dword ptr [ecx*4+10023B48h]
+libpesXcrypter_disasm.txt:1863:  1000239D: 8B 0C 85 4C 3B 02  mov         ecx,dword ptr [eax*4+10023B4Ch]
+libpesXcrypter_disasm.txt:1878:  100023CE: 89 14 85 48 3B 02  mov         dword ptr [eax*4+10023B48h],edx
+libpesXcrypter_disasm.txt:1889:  100023EE: 8B 04 95 48 3B 02  mov         eax,dword ptr [edx*4+10023B48h]
+libpesXcrypter_disasm.txt:1893:  100023FD: 8B 14 8D 4C 3B 02  mov         edx,dword ptr [ecx*4+10023B4Ch]
+libpesXcrypter_disasm.txt:1908:  1000242E: 89 04 8D 48 3B 02  mov         dword ptr [ecx*4+10023B48h],eax
+libpesXcrypter_disasm.txt:1913:  10002442: 8B 88 48 3B 02 10  mov         ecx,dword ptr [eax+10023B48h]
+libpesXcrypter_disasm.txt:1917:  10002456: 8B 90 48 3B 02 10  mov         edx,dword ptr [eax+10023B48h]
+libpesXcrypter_disasm.txt:1925:  10002477: 33 91 48 3B 02 10  xor         edx,dword ptr [ecx+10023B48h]
+libpesXcrypter_disasm.txt:1932:  10002495: 89 90 48 3B 02 10  mov         dword ptr [eax+10023B48h],edx
+libpesXcrypter_disasm.txt:1936:  100024AB: 8B 14 8D 48 3B 02  mov         edx,dword ptr [ecx*4+10023B48h]
+libpesXcrypter_disasm.txt:1981:  1000251E: 89 91 48 3B 02 10  mov         dword ptr [ecx+10023B48h],edx
+libpesXcrypter_disasm.txt:1992:  1000254F: 8B 14 8D 44 3B 02  mov         edx,dword ptr [ecx*4+10023B44h]
+libpesXcrypter_disasm.txt:1996:  1000255E: 33 14 85 44 3B 02  xor         edx,dword ptr [eax*4+10023B44h]
+libpesXcrypter_disasm.txt:2001:  10002577: 89 0C 95 48 3B 02  mov         dword ptr [edx*4+10023B48h],ecx
+libpesXcrypter_disasm.txt:2005:  10002589: 8B 14 8D 48 3B 02  mov         edx,dword ptr [ecx*4+10023B48h]
+libpesXcrypter_disasm.txt:2007:  10002590: 89 14 85 48 3B 02  mov         dword ptr [eax*4+10023B48h],edx
+libpesXcrypter_disasm.txt:2017:  100025A0: 3B 0D 40 30 02 10  cmp         ecx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:2076:  1000263C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:2140:  1000271A: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:2190:  1000278C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:2288:  1000288C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:2418:  100029D1: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:2463:  10002A23: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:2497:  10002A96: 89 0D 40 30 02 10  mov         dword ptr ds:[10023040h],ecx
+libpesXcrypter_disasm.txt:2509:  10002ABC: 89 0D 40 30 02 10  mov         dword ptr ds:[10023040h],ecx
+libpesXcrypter_disasm.txt:2685:  10002C59: C7 05 40 45 02 10  mov         dword ptr ds:[10024540h],0FFFFFFFFh
+libpesXcrypter_disasm.txt:2726:  10002CBC: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:2812:  10002D7C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:2951:  10002EB0: C7 05 44 45 02 10  mov         dword ptr ds:[10024544h],0
+libpesXcrypter_disasm.txt:2969:  10002ED8: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:2989:  10002F08: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:3018:  10002F3D: C7 05 48 45 02 10  mov         dword ptr ds:[10024548h],0
+libpesXcrypter_disasm.txt:3075:  10002FE6: 8B 3D 4C 45 02 10  mov         edi,dword ptr ds:[1002454Ch]
+libpesXcrypter_disasm.txt:3077:  10002FEF: 89 3D 4C 45 02 10  mov         dword ptr ds:[1002454Ch],edi
+libpesXcrypter_disasm.txt:3079:  10002FF7: 8B 3D 4C 45 02 10  mov         edi,dword ptr ds:[1002454Ch]
+libpesXcrypter_disasm.txt:3108:  1000304D: 89 3D 4C 45 02 10  mov         dword ptr ds:[1002454Ch],edi
+libpesXcrypter_disasm.txt:3152:  100030CD: C7 05 48 45 02 10  mov         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:3160:  100030F7: C7 05 48 45 02 10  mov         dword ptr ds:[10024548h],2
+libpesXcrypter_disasm.txt:3180:  1000314C: C7 05 48 45 02 10  mov         dword ptr ds:[10024548h],3
+libpesXcrypter_disasm.txt:3191:  1000317C: C7 05 48 45 02 10  mov         dword ptr ds:[10024548h],5
+libpesXcrypter_disasm.txt:3203:  100031B0: 83 0D 88 30 02 10  or          dword ptr ds:[10023088h],40h
+libpesXcrypter_disasm.txt:3207:  100031C0: C7 05 48 45 02 10  mov         dword ptr ds:[10024548h],6
+libpesXcrypter_disasm.txt:3292:  100032C4: 0F BA 25 4C 45 02  bt          dword ptr ds:[1002454Ch],1
+libpesXcrypter_disasm.txt:3307:  100032F0: 0F BA 25 4C 45 02  bt          dword ptr ds:[1002454Ch],0
+libpesXcrypter_disasm.txt:3565:  10003623: F3 0F 6F 66 40     movdqu      xmm4,xmmword ptr [esi+40h]
+libpesXcrypter_disasm.txt:3573:  1000364A: F3 0F 7F 67 40     movdqu      xmmword ptr [edi+40h],xmm4
+libpesXcrypter_disasm.txt:3635:  10003716: 66 0F 6F 66 40     movdqa      xmm4,xmmword ptr [esi+40h]
+libpesXcrypter_disasm.txt:3639:  1000372A: 66 0F 7F 67 40     movdqa      xmmword ptr [edi+40h],xmm4
+libpesXcrypter_disasm.txt:3739:  10003832: 0F BA 25 4C 45 02  bt          dword ptr ds:[1002454Ch],1
+libpesXcrypter_disasm.txt:3767:  10003893: 66 0F 7F 47 40     movdqa      xmmword ptr [edi+40h],xmm0
+libpesXcrypter_disasm.txt:3880:  100039C9: 33 05 40 30 02 10  xor         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:3932:  10003A5B: 68 40 30 02 10     push        10023040h
+libpesXcrypter_disasm.txt:3963:  10003AB5: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:3974:  10003AD8: 68 40 30 02 10     push        10023040h
+libpesXcrypter_disasm.txt:4134:  10003C0C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:4206:  10003CDB: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:4403:  10003E60: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:4557:  10003FB3: 81 3D 48 B1 01 10  cmp         dword ptr ds:[1001B148h],10002F20h
+libpesXcrypter_disasm.txt:4758:  100041D0: FF 15 40 B0 01 10  call        dword ptr ds:[1001B040h]
+libpesXcrypter_disasm.txt:4779:  100041FB: FF 15 40 B0 01 10  call        dword ptr ds:[1001B040h]
+libpesXcrypter_disasm.txt:4794:  10004225: FF 15 4C B0 01 10  call        dword ptr ds:[1001B04Ch]
+libpesXcrypter_disasm.txt:4951:  1000437C: 33 05 40 30 02 10  xor         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:5008:  10004412: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:5377:  1000475C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:5413:  100047C6: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:5575:  1000494C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:5766:  10004B98: 8D 45 B8           lea         eax,[ebp-48h]
+libpesXcrypter_disasm.txt:5769:  10004BA1: 8B 7D BC           mov         edi,dword ptr [ebp-44h]
+libpesXcrypter_disasm.txt:5771:  10004BA7: 8B 55 B8           mov         edx,dword ptr [ebp-48h]
+libpesXcrypter_disasm.txt:5873:  10004CC0: FF 75 B4           push        dword ptr [ebp-4Ch]
+libpesXcrypter_disasm.txt:5952:  10004D8D: 8D 4D BC           lea         ecx,[ebp-44h]
+libpesXcrypter_disasm.txt:5955:  10004D9A: 8D 45 BC           lea         eax,[ebp-44h]
+libpesXcrypter_disasm.txt:6083:  10004F04: F6 44 0A F0 40     test        byte ptr [edx+ecx-10h],40h
+libpesXcrypter_disasm.txt:6291:  100050F3: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:6443:  1000522C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:6459:  1000525F: 8D 45 B8           lea         eax,[ebp-48h]
+libpesXcrypter_disasm.txt:6477:  1000529E: C7 45 C0 01 00 00  mov         dword ptr [ebp-40h],1
+libpesXcrypter_disasm.txt:6550:  10005371: C7 45 C0 00 00 00  mov         dword ptr [ebp-40h],0
+libpesXcrypter_disasm.txt:6600:  10005403: 83 7D C0 00        cmp         dword ptr [ebp-40h],0
+libpesXcrypter_disasm.txt:6626:  10005435: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:6709:  1000550C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:6979:  1000578F: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:7115:  100058A1: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:7270:  10005A21: 68 48 15 02 10     push        10021548h
+libpesXcrypter_disasm.txt:7524:  10005C93: 6A 40              push        40h
+libpesXcrypter_disasm.txt:8140:  100062AB: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:8720:  10006860: 83 CF 40           or          edi,40h
+libpesXcrypter_disasm.txt:8876:  100069ED: 83 CF 40           or          edi,40h
+libpesXcrypter_disasm.txt:9032:  10006B7A: 83 CF 40           or          edi,40h
+libpesXcrypter_disasm.txt:9421:  10006F10: 89 8A 40 04 00 00  mov         dword ptr [edx+00000440h],ecx
+libpesXcrypter_disasm.txt:9432:  10006F34: 89 82 48 04 00 00  mov         dword ptr [edx+00000448h],eax
+libpesXcrypter_disasm.txt:9651:  10007120: 8D 8E 48 04 00 00  lea         ecx,[esi+00000448h]
+libpesXcrypter_disasm.txt:9723:  100071F3: 8D BE 48 04 00 00  lea         edi,[esi+00000448h]
+libpesXcrypter_disasm.txt:9932:  10007454: 3C 4C              cmp         al,4Ch
+libpesXcrypter_disasm.txt:10031:  10007554: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:10203:  1000771F: 8B BE 48 04 00 00  mov         edi,dword ptr [esi+00000448h]
+libpesXcrypter_disasm.txt:10217:  10007747: 8B 86 48 04 00 00  mov         eax,dword ptr [esi+00000448h]
+libpesXcrypter_disasm.txt:10220:  10007752: 8B 86 48 04 00 00  mov         eax,dword ptr [esi+00000448h]
+libpesXcrypter_disasm.txt:10234:  10007774: 8D 86 48 04 00 00  lea         eax,[esi+00000448h]
+libpesXcrypter_disasm.txt:10320:  10007865: 8D 8E 48 04 00 00  lea         ecx,[esi+00000448h]
+libpesXcrypter_disasm.txt:10359:  100078C8: 8D 8E 48 04 00 00  lea         ecx,[esi+00000448h]
+libpesXcrypter_disasm.txt:10370:  100078E8: 8D 8E 48 04 00 00  lea         ecx,[esi+00000448h]
+libpesXcrypter_disasm.txt:10385:  10007914: 8B 96 48 04 00 00  mov         edx,dword ptr [esi+00000448h]
+libpesXcrypter_disasm.txt:10400:  1000793C: 8B 86 48 04 00 00  mov         eax,dword ptr [esi+00000448h]
+libpesXcrypter_disasm.txt:10403:  10007947: 8B 86 48 04 00 00  mov         eax,dword ptr [esi+00000448h]
+libpesXcrypter_disasm.txt:10667:  10007BC5: 83 4B 1C 40        or          dword ptr [ebx+1Ch],40h
+libpesXcrypter_disasm.txt:10918:  10007E2A: 8B 50 4C           mov         edx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:10921:  10007E32: 8B 50 48           mov         edx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:11365:  10008266: 83 EC 40           sub         esp,40h
+libpesXcrypter_disasm.txt:11366:  10008269: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:11389:  100082A9: 8D 4D C0           lea         ecx,[ebp-40h]
+libpesXcrypter_disasm.txt:11390:  100082AC: 89 7D C0           mov         dword ptr [ebp-40h],edi
+libpesXcrypter_disasm.txt:11398:  100082C0: 8B 45 C0           mov         eax,dword ptr [ebp-40h]
+libpesXcrypter_disasm.txt:11445:  10008345: 83 C4 40           add         esp,40h
+libpesXcrypter_disasm.txt:11504:  100083D7: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:11609:  100084DA: 8B 48 4C           mov         ecx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:11611:  100084DF: 8B 48 48           mov         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:11784:  10008688: B8 40 41 00 00     mov         eax,4140h
+libpesXcrypter_disasm.txt:11831:  100086FA: 83 C8 40           or          eax,40h
+libpesXcrypter_disasm.txt:12020:  100088B8: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:12102:  10008987: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:12122:  100089AF: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:12249:  10008B02: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:12259:  10008B1B: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:12295:  10008B81: 8B 0D 40 30 02 10  mov         ecx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:12298:  10008B8D: 33 05 40 30 02 10  xor         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:12319:  10008BC9: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:12332:  10008BE9: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:12393:  10008C95: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:12501:  10008DC2: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:12522:  10008E05: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:13403:  10009611: 8B 15 40 30 02 10  mov         edx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:13432:  10009660: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:13435:  1000966B: 8B 15 40 30 02 10  mov         edx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:13459:  100096AA: 8B 15 40 30 02 10  mov         edx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:13513:  10009722: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:13539:  10009768: 8B 35 40 30 02 10  mov         esi,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:13658:  100098B6: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:14008:  10009CD4: B8 40 10 00 00     mov         eax,1040h
+libpesXcrypter_disasm.txt:14015:  10009CE9: 2D 40 10 00 00     sub         eax,1040h
+libpesXcrypter_disasm.txt:14180:  10009F00: B8 40 10 00 00     mov         eax,1040h
+libpesXcrypter_disasm.txt:14373:  1000A0CC: FF 25 48 B1 01 10  jmp         dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:14481:  1000A1B5: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:14610:  1000A35F: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:14620:  1000A378: 8B 0D 40 30 02 10  mov         ecx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:14626:  1000A38E: 33 35 40 30 02 10  xor         esi,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:14786:  1000A541: FF 15 44 B0 01 10  call        dword ptr ds:[1001B044h]
+libpesXcrypter_disasm.txt:14795:  1000A555: FF 15 48 B0 01 10  call        dword ptr ds:[1001B048h]
+libpesXcrypter_disasm.txt:15475:  1000ABD8: 8B 40 48           mov         eax,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:15505:  1000AC2A: 8B 48 48           mov         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:15615:  1000AD4D: C7 40 48 88 33 02  mov         dword ptr [eax+48h],10023388h
+libpesXcrypter_disasm.txt:15624:  1000AD6B: 83 A0 4C 03 00 00  and         dword ptr [eax+0000034Ch],0
+libpesXcrypter_disasm.txt:15699:  1000AE3D: FF 70 40           push        dword ptr [eax+40h]
+libpesXcrypter_disasm.txt:15702:  1000AE48: FF 70 44           push        dword ptr [eax+44h]
+libpesXcrypter_disasm.txt:15805:  1000AF5A: 83 7E 4C 00        cmp         dword ptr [esi+4Ch],0
+libpesXcrypter_disasm.txt:15807:  1000AF60: FF 76 4C           push        dword ptr [esi+4Ch]
+libpesXcrypter_disasm.txt:15809:  1000AF68: 8B 46 4C           mov         eax,dword ptr [esi+4Ch]
+libpesXcrypter_disasm.txt:15821:  1000AF8B: 89 46 4C           mov         dword ptr [esi+4Ch],eax
+libpesXcrypter_disasm.txt:16138:  1000B2C2: 8D 86 44 FF FF FF  lea         eax,[esi+FFFFFF44h]
+libpesXcrypter_disasm.txt:16181:  1000B323: B8 48 32 02 10     mov         eax,10023248h
+libpesXcrypter_disasm.txt:16188:  1000B338: B8 44 32 02 10     mov         eax,10023244h
+libpesXcrypter_disasm.txt:16207:  1000B35C: A1 48 4B 02 10     mov         eax,dword ptr ds:[10024B48h]
+libpesXcrypter_disasm.txt:16470:  1000B614: A8 40              test        al,40h
+libpesXcrypter_disasm.txt:16475:  1000B61C: 83 C8 40           or          eax,40h
+libpesXcrypter_disasm.txt:16681:  1000B804: F6 44 38 28 48     test        byte ptr [eax+edi+28h],48h
+libpesXcrypter_disasm.txt:16714:  1000B864: A8 40              test        al,40h
+libpesXcrypter_disasm.txt:16827:  1000B98E: F6 44 38 28 48     test        byte ptr [eax+edi+28h],48h
+libpesXcrypter_disasm.txt:16878:  1000BA1E: A8 40              test        al,40h
+libpesXcrypter_disasm.txt:16959:  1000BAEA: F6 44 38 28 48     test        byte ptr [eax+edi+28h],48h
+libpesXcrypter_disasm.txt:17291:  1000BEA8: F6 44 08 28 48     test        byte ptr [eax+ecx+28h],48h
+libpesXcrypter_disasm.txt:17638:  1000C261: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:17656:  1000C292: 89 55 BC           mov         dword ptr [ebp-44h],edx
+libpesXcrypter_disasm.txt:17659:  1000C29C: 89 4D B4           mov         dword ptr [ebp-4Ch],ecx
+libpesXcrypter_disasm.txt:17685:  1000C2E8: 8B 7D B4           mov         edi,dword ptr [ebp-4Ch]
+libpesXcrypter_disasm.txt:17690:  1000C2F5: 8B 45 BC           mov         eax,dword ptr [ebp-44h]
+libpesXcrypter_disasm.txt:17691:  1000C2F8: 89 5D C0           mov         dword ptr [ebp-40h],ebx
+libpesXcrypter_disasm.txt:17720:  1000C34E: 89 45 B8           mov         dword ptr [ebp-48h],eax
+libpesXcrypter_disasm.txt:17731:  1000C36A: 8B 75 B8           mov         esi,dword ptr [ebp-48h]
+libpesXcrypter_disasm.txt:17743:  1000C386: 8B 7D B4           mov         edi,dword ptr [ebp-4Ch]
+libpesXcrypter_disasm.txt:17745:  1000C38B: 8B 75 BC           mov         esi,dword ptr [ebp-44h]
+libpesXcrypter_disasm.txt:17769:  1000C3CA: 8D 45 C0           lea         eax,[ebp-40h]
+libpesXcrypter_disasm.txt:17780:  1000C3EC: 89 45 B8           mov         dword ptr [ebp-48h],eax
+libpesXcrypter_disasm.txt:17796:  1000C417: 8D 45 C0           lea         eax,[ebp-40h]
+libpesXcrypter_disasm.txt:17803:  1000C42F: 8B 7D B4           mov         edi,dword ptr [ebp-4Ch]
+libpesXcrypter_disasm.txt:17805:  1000C435: 03 45 B8           add         eax,dword ptr [ebp-48h]
+libpesXcrypter_disasm.txt:17810:  1000C445: 89 4D B8           mov         dword ptr [ebp-48h],ecx
+libpesXcrypter_disasm.txt:17836:  1000C492: 8D 45 C0           lea         eax,[ebp-40h]
+libpesXcrypter_disasm.txt:17849:  1000C4B5: 8D 45 C0           lea         eax,[ebp-40h]
+libpesXcrypter_disasm.txt:17864:  1000C4DC: 8D 45 C0           lea         eax,[ebp-40h]
+libpesXcrypter_disasm.txt:17922:  1000C588: 8B 4D BC           mov         ecx,dword ptr [ebp-44h]
+libpesXcrypter_disasm.txt:17925:  1000C592: 03 55 B4           add         edx,dword ptr [ebp-4Ch]
+libpesXcrypter_disasm.txt:17937:  1000C5AF: 8B 75 B4           mov         esi,dword ptr [ebp-4Ch]
+libpesXcrypter_disasm.txt:17938:  1000C5B2: 8B 45 BC           mov         eax,dword ptr [ebp-44h]
+libpesXcrypter_disasm.txt:17948:  1000C5CC: 8B 45 B8           mov         eax,dword ptr [ebp-48h]
+libpesXcrypter_disasm.txt:17951:  1000C5D5: 8B 45 BC           mov         eax,dword ptr [ebp-44h]
+libpesXcrypter_disasm.txt:18082:  1000C70A: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:18163:  1000C7E5: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:18246:  1000C8CE: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:18650:  1000CD23: F6 44 08 28 40     test        byte ptr [eax+ecx+28h],40h
+libpesXcrypter_disasm.txt:19056:  1000D0E5: A1 48 45 02 10     mov         eax,dword ptr ds:[10024548h]
+libpesXcrypter_disasm.txt:19202:  1000D245: A1 48 45 02 10     mov         eax,dword ptr ds:[10024548h]
+libpesXcrypter_disasm.txt:19544:  1000D584: 83 F8 40           cmp         eax,40h
+libpesXcrypter_disasm.txt:20965:  1000E2DD: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:21153:  1000E4E1: 83 C0 40           add         eax,40h
+libpesXcrypter_disasm.txt:21339:  1000E6BB: 8B 0D 40 30 02 10  mov         ecx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:21348:  1000E6D5: 83 EC 48           sub         esp,48h
+libpesXcrypter_disasm.txt:21349:  1000E6D8: 8D 45 B8           lea         eax,[ebp-48h]
+libpesXcrypter_disasm.txt:21457:  1000E7F3: 80 4E 28 40        or          byte ptr [esi+28h],40h
+libpesXcrypter_disasm.txt:21463:  1000E804: 80 4E 28 40        or          byte ptr [esi+28h],40h
+libpesXcrypter_disasm.txt:21546:  1000E8E1: 83 E8 40           sub         eax,40h
+libpesXcrypter_disasm.txt:21556:  1000E8F5: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:22192:  1000EED9: 8B 48 4C           mov         ecx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:22194:  1000EEDF: 8B 48 48           mov         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:22396:  1000F110: A1 48 50 02 10     mov         eax,dword ptr ds:[10025048h]
+libpesXcrypter_disasm.txt:22566:  1000F2D1: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:22580:  1000F2F5: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:22606:  1000F332: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:22631:  1000F373: FF 25 40 B0 01 10  jmp         dword ptr ds:[1001B040h]
+libpesXcrypter_disasm.txt:22652:  1000F3A4: FF 25 4C B0 01 10  jmp         dword ptr ds:[1001B04Ch]
+libpesXcrypter_disasm.txt:22671:  1000F3D8: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:22698:  1000F420: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:22822:  1000F544: 83 EC 44           sub         esp,44h
+libpesXcrypter_disasm.txt:22823:  1000F547: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:22932:  1000F68E: 89 45 C0           mov         dword ptr [ebp-40h],eax
+libpesXcrypter_disasm.txt:22935:  1000F698: 89 55 BC           mov         dword ptr [ebp-44h],edx
+libpesXcrypter_disasm.txt:22959:  1000F6DA: 8B 45 C0           mov         eax,dword ptr [ebp-40h]
+libpesXcrypter_disasm.txt:22960:  1000F6DD: 8B 55 BC           mov         edx,dword ptr [ebp-44h]
+libpesXcrypter_disasm.txt:23024:  1000F76A: 6A 40              push        40h
+libpesXcrypter_disasm.txt:23143:  1000F896: 83 C0 40           add         eax,40h
+libpesXcrypter_disasm.txt:23163:  1000F8C8: FF 15 44 B0 01 10  call        dword ptr ds:[1001B044h]
+libpesXcrypter_disasm.txt:23234:  1000F97D: FF 15 48 B0 01 10  call        dword ptr ds:[1001B048h]
+libpesXcrypter_disasm.txt:23260:  1000F9CD: 83 05 20 49 02 10  add         dword ptr ds:[10024920h],40h
+libpesXcrypter_disasm.txt:23297:  1000FA2D: FF 15 44 B0 01 10  call        dword ptr ds:[1001B044h]
+libpesXcrypter_disasm.txt:23301:  1000FA3A: FF 15 48 B0 01 10  call        dword ptr ds:[1001B048h]
+libpesXcrypter_disasm.txt:23456:  1000FBE3: FF 15 44 B0 01 10  call        dword ptr ds:[1001B044h]
+libpesXcrypter_disasm.txt:23483:  1000FC2B: FF 15 48 B0 01 10  call        dword ptr ds:[1001B048h]
+libpesXcrypter_disasm.txt:23903:  1000FFF7: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:24217:  10010376: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:24294:  10010468: 8B 40 48           mov         eax,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:24304:  10010485: 8B 40 48           mov         eax,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:24328:  100104CB: 8B 42 48           mov         eax,dword ptr [edx+48h]
+libpesXcrypter_disasm.txt:24332:  100104D4: 8B 40 48           mov         eax,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:24441:  100105F9: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:24506:  100106B7: 83 C4 40           add         esp,40h
+libpesXcrypter_disasm.txt:24608:  100107CE: 8B 49 48           mov         ecx,dword ptr [ecx+48h]
+libpesXcrypter_disasm.txt:24628:  1001080E: 8B 76 48           mov         esi,dword ptr [esi+48h]
+libpesXcrypter_disasm.txt:24654:  1001085E: 8B 40 48           mov         eax,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:24659:  1001086B: 81 78 48 88 33 02  cmp         dword ptr [eax+48h],10023388h
+libpesXcrypter_disasm.txt:24662:  10010874: FF 70 48           push        dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:24668:  10010889: 89 41 48           mov         dword ptr [ecx+48h],eax
+libpesXcrypter_disasm.txt:24714:  10010909: 39 77 4C           cmp         dword ptr [edi+4Ch],esi
+libpesXcrypter_disasm.txt:24716:  1001090E: 8B 77 48           mov         esi,dword ptr [edi+48h]
+libpesXcrypter_disasm.txt:24724:  10010922: 8B 77 48           mov         esi,dword ptr [edi+48h]
+libpesXcrypter_disasm.txt:24740:  1001094D: 89 77 48           mov         dword ptr [edi+48h],esi
+libpesXcrypter_disasm.txt:24795:  100109EB: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:25835:  100113E0: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:25854:  10011410: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:25882:  10011448: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:25904:  10011476: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:26045:  10011590: FF 35 40 30 02 10  push        dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26052:  100115A2: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26059:  100115B4: 33 05 40 30 02 10  xor         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26071:  100115DB: 8B 0D 40 30 02 10  mov         ecx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26074:  100115EA: 33 35 40 30 02 10  xor         esi,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26287:  10011813: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26302:  10011840: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:26320:  1001186E: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:26366:  100118D0: 8B 0D 40 30 02 10  mov         ecx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26369:  100118DF: 33 15 40 30 02 10  xor         edx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26388:  10011905: 8B 0D 40 30 02 10  mov         ecx,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26392:  10011915: 33 35 40 30 02 10  xor         esi,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:26402:  1001192B: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:26685:  10011C1D: 81 79 F8 40 32 02  cmp         dword ptr [ecx-8],10023240h
+libpesXcrypter_disasm.txt:26782:  10011D42: 81 7F F8 40 32 02  cmp         dword ptr [edi-8],10023240h
+libpesXcrypter_disasm.txt:26905:  10011E69: 81 79 F8 40 32 02  cmp         dword ptr [ecx-8],10023240h
+libpesXcrypter_disasm.txt:26932:  10011EB7: 8D 78 4C           lea         edi,[eax+4Ch]
+libpesXcrypter_disasm.txt:27016:  10011F7E: 8B 48 4C           mov         ecx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:27089:  1001204B: 8B 46 40           mov         eax,dword ptr [esi+40h]
+libpesXcrypter_disasm.txt:27095:  1001205D: 8B 46 44           mov         eax,dword ptr [esi+44h]
+libpesXcrypter_disasm.txt:27101:  1001206F: 8B 46 48           mov         eax,dword ptr [esi+48h]
+libpesXcrypter_disasm.txt:27107:  10012081: 8B 46 4C           mov         eax,dword ptr [esi+4Ch]
+libpesXcrypter_disasm.txt:27215:  100121A9: 83 C4 44           add         esp,44h
+libpesXcrypter_disasm.txt:27224:  100121C8: 8D 86 4C 01 00 00  lea         eax,[esi+0000014Ch]
+libpesXcrypter_disasm.txt:27404:  1001236B: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:27727:  1001265E: 8B 48 4C           mov         ecx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:27729:  10012664: 8B 48 48           mov         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:27928:  10012899: F6 45 0C 40        test        byte ptr [ebp+0Ch],40h
+libpesXcrypter_disasm.txt:28179:  10012B49: 83 E8 40           sub         eax,40h
+libpesXcrypter_disasm.txt:28230:  10012BD7: F6 C3 40           test        bl,40h
+libpesXcrypter_disasm.txt:28283:  10012C5A: A8 48              test        al,48h
+libpesXcrypter_disasm.txt:28398:  10012D73: 83 EC 48           sub         esp,48h
+libpesXcrypter_disasm.txt:28403:  10012D7C: 8D 45 B8           lea         eax,[ebp-48h]
+libpesXcrypter_disasm.txt:28527:  10012EEE: 0C 40              or          al,40h
+libpesXcrypter_disasm.txt:28611:  10012FD4: F6 45 F4 48        test        byte ptr [ebp-0Ch],48h
+libpesXcrypter_disasm.txt:28698:  100130D6: 83 E0 40           and         eax,40h
+libpesXcrypter_disasm.txt:28951:  10013368: 6A 40              push        40h
+libpesXcrypter_disasm.txt:29401:  1001379E: 89 55 C0           mov         dword ptr [ebp-40h],edx
+libpesXcrypter_disasm.txt:29404:  100137A7: 89 4D BC           mov         dword ptr [ebp-44h],ecx
+libpesXcrypter_disasm.txt:29422:  100137DC: 89 55 B8           mov         dword ptr [ebp-48h],edx
+libpesXcrypter_disasm.txt:29437:  10013804: 83 7D C0 03        cmp         dword ptr [ebp-40h],3
+libpesXcrypter_disasm.txt:29534:  10013904: 8B 5D BC           mov         ebx,dword ptr [ebp-44h]
+libpesXcrypter_disasm.txt:29573:  10013967: 39 7D B8           cmp         dword ptr [ebp-48h],edi
+libpesXcrypter_disasm.txt:29577:  10013970: 8B 55 BC           mov         edx,dword ptr [ebp-44h]
+libpesXcrypter_disasm.txt:29581:  1001397B: 66 0F 13 45 B4     movlpd      qword ptr [ebp-4Ch],xmm0
+libpesXcrypter_disasm.txt:29582:  10013980: 8B 5D B8           mov         ebx,dword ptr [ebp-48h]
+libpesXcrypter_disasm.txt:29583:  10013983: 8B 45 B4           mov         eax,dword ptr [ebp-4Ch]
+libpesXcrypter_disasm.txt:29584:  10013986: 89 45 B8           mov         dword ptr [ebp-48h],eax
+libpesXcrypter_disasm.txt:29593:  1001399F: 03 4D B8           add         ecx,dword ptr [ebp-48h]
+libpesXcrypter_disasm.txt:29597:  100139A9: 89 45 B8           mov         dword ptr [ebp-48h],eax
+libpesXcrypter_disasm.txt:29602:  100139B7: 8B 55 C0           mov         edx,dword ptr [ebp-40h]
+libpesXcrypter_disasm.txt:29606:  100139C2: 8B 55 C0           mov         edx,dword ptr [ebp-40h]
+libpesXcrypter_disasm.txt:29615:  100139DA: 83 6D BC 04        sub         dword ptr [ebp-44h],4
+libpesXcrypter_disasm.txt:29620:  100139E6: 89 55 C0           mov         dword ptr [ebp-40h],edx
+libpesXcrypter_disasm.txt:29668:  10013A4C: 81 EC 44 0B 00 00  sub         esp,0B44h
+libpesXcrypter_disasm.txt:29669:  10013A52: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:30580:  100146DA: 8B 04 95 44 DF 01  mov         eax,dword ptr [edx*4+1001DF44h]
+libpesXcrypter_disasm.txt:30888:  10014B57: 8B 04 95 44 DF 01  mov         eax,dword ptr [edx*4+1001DF44h]
+libpesXcrypter_disasm.txt:31298:  1001501B: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:31330:  10015081: 8D 46 40           lea         eax,[esi+40h]
+libpesXcrypter_disasm.txt:31419:  10015170: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:31440:  100151B2: 83 C0 40           add         eax,40h
+libpesXcrypter_disasm.txt:31601:  10015357: C7 05 4C 4B 02 10  mov         dword ptr ds:[10024B4Ch],7080h
+libpesXcrypter_disasm.txt:31617:  10015398: B8 4C 4B 02 10     mov         eax,10024B4Ch
+libpesXcrypter_disasm.txt:31672:  10015423: A1 4C 4B 02 10     mov         eax,dword ptr ds:[10024B4Ch]
+libpesXcrypter_disasm.txt:32061:  10015817: 6A 40              push        40h
+libpesXcrypter_disasm.txt:32194:  1001596F: 6A 40              push        40h
+libpesXcrypter_disasm.txt:32199:  1001597B: 6A 40              push        40h
+libpesXcrypter_disasm.txt:32209:  10015994: 83 C4 40           add         esp,40h
+libpesXcrypter_disasm.txt:32419:  10015BD0: 6A 40              push        40h
+libpesXcrypter_disasm.txt:32423:  10015BDA: 6A 40              push        40h
+libpesXcrypter_disasm.txt:32434:  10015BFB: 83 C4 40           add         esp,40h
+libpesXcrypter_disasm.txt:32466:  10015C4B: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:32510:  10015CBF: 6A 40              push        40h
+libpesXcrypter_disasm.txt:32518:  10015CD2: 6A 40              push        40h
+libpesXcrypter_disasm.txt:32609:  10015DBB: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:33159:  100163DB: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:33468:  100166E2: 8B 48 4C           mov         ecx,dword ptr [eax+4Ch]
+libpesXcrypter_disasm.txt:33470:  100166E8: 8B 48 48           mov         ecx,dword ptr [eax+48h]
+libpesXcrypter_disasm.txt:34280:  10016F05: 66 0F 28 0D 40 01  movapd      xmm1,xmmword ptr ds:[10020140h]
+libpesXcrypter_disasm.txt:34395:  100170C0: 83 3D 40 4C 02 10  cmp         dword ptr ds:[10024C40h],0
+libpesXcrypter_disasm.txt:34411:  10017100: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],2
+libpesXcrypter_disasm.txt:34579:  10017309: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:34589:  1001732A: 25 40 80 00 00     and         eax,8040h
+libpesXcrypter_disasm.txt:34594:  1001733B: 66 83 F8 40        cmp         ax,40h
+libpesXcrypter_disasm.txt:34598:  10017348: BE 40 80 00 00     mov         esi,8040h
+libpesXcrypter_disasm.txt:34705:  1001745B: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:34870:  10017624: BB 40 00 00 00     mov         ebx,40h
+libpesXcrypter_disasm.txt:34872:  1001762B: C7 45 F8 40 80 00  mov         dword ptr [ebp-8],8040h
+libpesXcrypter_disasm.txt:34874:  10017632: BB 40 80 00 00     mov         ebx,8040h
+libpesXcrypter_disasm.txt:34931:  100176D4: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:35048:  100177F5: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:35440:  10017B99: 83 C8 40           or          eax,40h
+libpesXcrypter_disasm.txt:35444:  10017B9F: 0D 40 80 00 00     or          eax,8040h
+libpesXcrypter_disasm.txt:35464:  10017BBE: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:35702:  10017E75: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:35749:  10017F1D: 81 E7 40 80 00 00  and         edi,8040h
+libpesXcrypter_disasm.txt:35750:  10017F23: 83 EF 40           sub         edi,40h
+libpesXcrypter_disasm.txt:35754:  10017F30: 83 EF 40           sub         edi,40h
+libpesXcrypter_disasm.txt:35817:  10018005: 81 E7 40 80 00 00  and         edi,8040h
+libpesXcrypter_disasm.txt:35818:  1001800B: 83 EF 40           sub         edi,40h
+libpesXcrypter_disasm.txt:35822:  10018018: 83 EF 40           sub         edi,40h
+libpesXcrypter_disasm.txt:35962:  10018172: FF 35 44 4C 02 10  push        dword ptr ds:[10024C44h]
+libpesXcrypter_disasm.txt:35963:  10018178: FF 15 40 B1 01 10  call        dword ptr ds:[1001B140h]
+libpesXcrypter_disasm.txt:36031:  10018262: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:36057:  100182B4: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:36096:  10018334: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:36203:  10018400: 83 3D 40 4C 02 10  cmp         dword ptr ds:[10024C40h],0
+libpesXcrypter_disasm.txt:36280:  10018518: A3 40 4C 02 10     mov         dword ptr ds:[10024C40h],eax
+libpesXcrypter_disasm.txt:36341:  100185D3: F6 C4 44           test        ah,44h
+libpesXcrypter_disasm.txt:36391:  1001863E: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:36398:  10018655: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:36402:  10018665: A8 40              test        al,40h
+libpesXcrypter_disasm.txt:36656:  10018905: 66 0F 28 15 40 0B  movapd      xmm2,xmmword ptr ds:[10020B40h]
+libpesXcrypter_disasm.txt:36773:  10018AA3: F6 C2 40           test        dl,40h
+libpesXcrypter_disasm.txt:36992:  10018CDA: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:37048:  10018D74: FF 15 48 B1 01 10  call        dword ptr ds:[1001B148h]
+libpesXcrypter_disasm.txt:37088:  10018DDC: F6 85 69 FF FF FF  test        byte ptr [ebp+FFFFFF69h],40h
+libpesXcrypter_disasm.txt:37109:  10018E1C: F6 85 69 FF FF FF  test        byte ptr [ebp+FFFFFF69h],40h
+libpesXcrypter_disasm.txt:37124:  10018E4C: F6 85 69 FF FF FF  test        byte ptr [ebp+FFFFFF69h],40h
+libpesXcrypter_disasm.txt:37130:  10018E63: F6 85 69 FF FF FF  test        byte ptr [ebp+FFFFFF69h],40h
+libpesXcrypter_disasm.txt:37395:  100190FE: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:37410:  10019122: 83 65 C0 FE        and         dword ptr [ebp-40h],0FFFFFFFEh
+libpesXcrypter_disasm.txt:37618:  100193A2: F6 C4 44           test        ah,44h
+libpesXcrypter_disasm.txt:38201:  10019A05: F6 C4 44           test        ah,44h
+libpesXcrypter_disasm.txt:38438:  10019CC7: F6 C4 44           test        ah,44h
+libpesXcrypter_disasm.txt:38452:  10019CFA: F6 C4 44           test        ah,44h
+libpesXcrypter_disasm.txt:38519:  10019D9E: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:38558:  10019E11: 83 65 C0 FE        and         dword ptr [ebp-40h],0FFFFFFFEh
+libpesXcrypter_disasm.txt:38560:  10019E17: 8B 45 C0           mov         eax,dword ptr [ebp-40h]
+libpesXcrypter_disasm.txt:38565:  10019E2A: 89 45 C0           mov         dword ptr [ebp-40h],eax
+libpesXcrypter_disasm.txt:38686:  10019F58: F6 C4 44           test        ah,44h
+libpesXcrypter_disasm.txt:38689:  10019F5F: B8 40 00 00 00     mov         eax,40h
+libpesXcrypter_disasm.txt:38790:  1001A00C: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:38933:  1001A14D: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:39060:  1001A257: A1 40 30 02 10     mov         eax,dword ptr ds:[10023040h]
+libpesXcrypter_disasm.txt:39439:  1001A5B0: 80 F9 40           cmp         cl,40h
+libpesXcrypter_disasm.txt:39477:  1001A600: 80 F9 40           cmp         cl,40h
+libpesXcrypter_disasm.txt:39566:  1001A6BB: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],2
+libpesXcrypter_disasm.txt:39654:  1001A794: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:39721:  1001A84B: 66 0F 3A 63 47 F0  pcmpistri   xmm0,xmmword ptr [edi-10h],40h
+libpesXcrypter_disasm.txt:39780:  1001A8D3: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
+libpesXcrypter_disasm.txt:39852:  1001A994: 83 3D 48 45 02 10  cmp         dword ptr ds:[10024548h],1
