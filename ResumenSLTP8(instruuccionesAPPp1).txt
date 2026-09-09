@@ -1,0 +1,1130 @@
+================================================================================
+PES 2021 SUPER LEGENDARY PATCH
+CONTINUIDAD DE REVERSE ENGINEERING
+OBJETIVO ACTUAL: CLONAR JUGADORES Y REGISTRARLOS EN OTROS EQUIPOS
+IMPORTANTE:
+Este documento es CONTEXTO INTERNO PARA CONTINUAR LA INVESTIGACIÓN.
+No está escrito para explicárselo al usuario, sino para que otro chat pueda
+retomar exactamente desde este punto sin repetir investigaciones ni confundir
+estructuras.
+USUARIO:
+* Habla español argentino.
+* Quiere avanzar una prueba por vez.
+* No dar listas enormes de pasos cuando no sean necesarias.
+* No usar Python/data analysis para esta investigación.
+* El usuario NO puede subir archivos directamente al chat.
+* Trabajar con código que el usuario pega, resultados de PowerShell,
+dumps hexadecimales, archivos de GitHub y experimentos controlados.
+* El usuario tiene backups y puede restaurar EDITs.
+* Ser directo. Evitar vueltas y teorías no demostradas.
+================================================================================
+1. OBJETIVO FINAL DE LA APP
+================================================================================
+La aplicación final será un EXE externo llamado conceptualmente:
+"Super Legendary Team Patch"
+Objetivo:
+Abrir app
+? crear equipo
+? elegir equipo base
+? elegir jugadores existentes
+? la app clona los jugadores seleccionados
+? asigna los clones al nuevo equipo
+? guarda/modifica EDIT00000000
+? los jugadores originales permanecen en sus equipos originales.
+CONCEPTO FUNDAMENTAL:
+No queremos "crear" jugadores futbolísticamente.
+Queremos:
+Jugador existente
+? COPIA EXACTA
+? NUEVO PLAYER ID
+? nuevo equipo.
+El jugador original permanece intacto.
+Ejemplo:
+Roberto Carlos original:
+ID 9087
+Equipo original
+?
+COPIA
+?
+Roberto Carlos clon
+ID nuevo 0x800000A0
+Nuevo equipo
+La única diferencia lógica que debe existir entre original y clon es el
+Player ID necesario para que PES los considere dos jugadores diferentes.
+Todo lo demás debe copiarse del original:
+* atributos
+* nacionalidad
+* altura
+* peso
+* habilidades
+* apariencia
+* face/hair settings
+* nombres
+* etc.
+No modificar al jugador original.
+================================================================================
+2. ESTRATEGIA FINAL DE EQUIPOS
+La app también debería permitir:
+Elegir un equipo base
+? clonar equipo
+? asignar NUEVO TEAM ID
+? conservar todo lo demás del equipo base.
+Esto permite usar automáticamente:
+* camiseta
+* colores
+* configuración visual
+* estadio/configuración relacionada
+* estructura del equipo
+* etc.
+Después el usuario modifica solamente:
+* nombre
+* short name
+* jugadores
+* eventualmente formación/capitán/etc.
+Conceptualmente:
+TEAM BASE
+ID X
+?
+CLON
+ID Y
+?
+nuevo equipo personalizado
+La clonación del equipo todavía NO está implementada.
+Primero terminar completamente la clonación/asignación de jugadores.
+================================================================================
+3. HERRAMIENTAS / ARCHIVOS PRINCIPALES
+Proyecto 4ccEditor:
+D:\Games\pes patch mio\4ccEditoe\4ccEditor-master
+Archivos importantes:
+* main.cpp
+* pes20.cpp
+* pes20.h
+* crypt.cpp/h
+* editor.h
+* data_util.cpp
+* lib\libpesXcrypter.dll
+* Debug\4ccEditor.exe
+GitHub del usuario:
+alguiennn223-oss/acacacacac
+Archivo relevante:
+26.txt
+Ese archivo fue confirmado por el usuario como el main.cpp original completo.
+================================================================================
+4. EDIT ACTIVO
+Ruta:
+C:\Users\facun\OneDrive\Documentos\KONAMI\eFootball PES 2021 SEASON UPDATE\292733975847239680\save
+Archivos:
+* BEDIT00000000
+* EDIT00000000
+* EDIT00000000.BACKUP
+* EDIT00000000 - 2 Master League
+EDIT limpio original:
+Size: 11,026,776
+SHA256:
+a3a5f837666a367c81f65903e02c21ab5af3a96f9475f9c425b1a5448e5ff304
+EDIT experimental después de crear ZZZ_TEST_CACA:
+Size: 11,026,774
+SHA256:
+913c56da50af096e369a93cf48b12d8df2cf82add2381d602d569138481fc5b5
+BEDIT:
+Size: 11,011,039
+SHA256:
+15a0cf8bb5a96a4f859e9740325b7495a4f1c8562a041b90a1f43116503d5921
+EDIT actual en uno de los experimentos:
+Size: 11,026,774
+SHA256:
+854063CA57EA8B33FC356A08155B1A422671A6D48576F10870B87E8E8869D374
+================================================================================
+5. CRIPTOGRAFÍA Y ESTRUCTURA GENERAL DEL EDIT
+EDIT está fuertemente cifrado.
+Buscar IDs directamente en el archivo cifrado no sirve.
+4ccEditor descifra mediante libpesXcrypter.dll.
+Exports relevantes:
+MasterKeyPes21
+createFileDescriptorNew
+createFileDescriptorOld
+decryptWithKeyNew
+decryptWithKeyOld
+encryptWithKeyNew
+encryptWithKeyOld
+destroyFileDescriptorNew
+destroyFileDescriptorOld
+FileHeaderNew:
+struct FileHeaderNew
+{
+uint8_t mysteryData[64];
+uint32_t dataSize;
+uint32_t logoSize;
+uint32_t descSize;
+uint32_t serialLength;
+uint8_t hash[64];
+uint8_t fileTypeString[32];
+uint8_t gameVersionString[32];
+};
+FileDescriptorNew:
+struct FileDescriptorNew
+{
+uint8_t *encryptionHeader;
+struct FileHeaderNew *fileHeader;
+uint8_t *description;
+uint8_t *logo;
+uint8_t *data;
+uint8_t *serial;
+};
+Toda investigación estructural relevante debe hacerse sobre:
+pDescriptorNew->data
+NO sobre el EDIT cifrado.
+================================================================================
+6. OFFSETS PRINCIPALES DEL EDIT DESCIFRADO
+Player table:
+0x7C
+Team table:
+0x8ED2FC
+Roster table:
+0x9D4648
+Tactics table:
+0xA09880
+Header:
+data[96..97] = número de jugadores, little endian
+data[100..101] = número de equipos, little endian
+Ejemplo:
+Players:
+FB 34 = 0x34FB = 13563
+Teams:
+9D 02 = 0x029D = 669
+================================================================================
+7. PLAYER RECORD PRINCIPAL
+El Player Record principal mide EXACTAMENTE:
+0x138 = 312 bytes.
+Comienza en:
+0x7C
+Fórmula:
+player_offset = 0x7C + (player_index * 0x138)
+Prueba:
+13566 * 0x138 + 0x7C = 0x0040960C
+Cuando había 13567 jugadores:
+Actual end:
+0x00409744
+Diferencia:
+0x138
+Por lo tanto se comprobó físicamente que agregar un record adicional de
+0x138 funciona.
+================================================================================
+8. PLAYER RECORD: CAMPOS DE ID CONFIRMADOS
+Dentro del Player Record principal:
++0x00:
+Player ID principal
++0xF0:
+Appearance Player ID
++0xF8:
+copy_id
+Para jugadores creados por PES se comprobó:
++0x00 = Player ID
++0xF0 = mismo Player ID
+Ejemplo TEST_PLAYER_A:
+ID:
+0x80000044
+Record:
+0x0040348C
+Main ID:
+0x80000044
+Appearance ID:
+0x80000044
+================================================================================
+9. extract_player_entry20()
+Función ubicada en pes20.cpp.
+Si el jugador no cambió:
+current_byte += 0xF0+0x48;
+Esto equivale exactamente a:
+0x138
+Si cambió, escribe los campos del Player Record.
+Fragmento importante:
+write_data(player.id, 0, 4*8, current_byte, pDescriptorNew);
+Luego avanza por los campos.
+Nombre:
+uint8_t nameBuffer[61];
+memset(nameBuffer, 0, sizeof(nameBuffer));
+int len = WideCharToMultiByte(
+CP_UTF8,
+0,
+player.name,
+-1,
+(LPSTR)nameBuffer,
+60,
+NULL,
+NULL
+);
+memcpy(
+&(pDescriptorNew->data[current_byte]),
+nameBuffer,
+61
+);
+current_byte += 61;
+Después:
+shirt_name ocupa la zona correspondiente.
+Luego:
+current_byte += 64; // Print Name (National Team)
+Appearance:
+// playerID
+current_byte += 4;
+Después escribe flags, copy_id, etc.
+copy_id se encuentra inmediatamente después de los primeros flags de
+appearance.
+NO asumir que copy_id es otro Player ID que deba cambiarse.
+En el clon actual se preservó el copy_id original de Roberto Carlos.
+================================================================================
+10. JUGADORES CREADOS DIRECTAMENTE DESDE PES
+Jugadores creados durante los experimentos:
+TEST_PLAYER_A
+ID:
+0x80000044
+decimal:
+-2147483580
+TEST_PLAYER_B
+ID:
+0x80000045
+decimal:
+-2147483579
+TEAM_PLAYER_C
+ID:
+0x80000046
+decimal:
+-2147483578
+TEST_PLAYER_D
+ID:
+0x80000047
+decimal:
+-2147483577
+ZZZ_PLAYERTEST_E
+ID:
+0x80000048
+decimal:
+-2147483576
+IMPORTANTE:
+Los IDs especiales son negativos cuando interpretados como signed int.
+Se encontraron 148 IDs negativos actualmente ocupados.
+Están al final de la Player Table, índices:
+13418..13565.
+Rango lógico:
+0x80000000..0x8000009F
+Son 160 posibles valores, de los cuales 148 estaban ocupados.
+Hay gaps.
+NO afirmar que PES usa "primer ID libre".
+Eso NO fue demostrado.
+Las cinco creaciones propias conocidas fueron consecutivas:
+0x80000044..0x80000048.
+El clon experimental usa:
+0x800000A0
+porque está inmediatamente después del último ID especial observado,
+0x8000009F.
+NO se demostró que ese sea el algoritmo real de asignación de PES.
+================================================================================
+11. PRUEBA DEL CLON FÍSICO
+Se implementó en data_handler() una ampliación temporal de la tabla de
+jugadores.
+Código conceptual:
+int original_num_players = gnum_players;
+gplayers = new player_entry[original_num_players + 1];
+for(ii=0;ii<original_num_players;ii++)
+{
+fill_player_entry20(gplayers[ii], current_byte, ghdescriptor);
+}
+Después se localizó Roberto Carlos:
+ID original:
+9087
+hex:
+0x0000237F
+Se copió su player_entry:
+gplayers[original_num_players] = gplayers[roberto_index];
+Se asignó:
+gplayers[original_num_players].id = 0x800000A0;
+b_changed = true.
+Después se calculó:
+roberto_offset =
+0x7C + (roberto_index * 0x138);
+new_player_offset =
+0x7C + (new_player_index * 0x138);
+Se copió físicamente el record completo:
+memcpy(
+&pDescriptorNew->data[new_player_offset],
+&pDescriptorNew->data[roberto_offset],
+0x138
+);
+Después se cambió:
+Main ID @ +0x00
+? 0x800000A0
+Appearance ID @ +0xF0
+? 0x800000A0
+También se actualizó:
+gnum_players = original_num_players + 1;
+y:
+data[96]
+data[97]
+para reflejar 13567 jugadores.
+================================================================================
+12. RESULTADO DE LA CLONACIÓN FÍSICA
+Después de guardar el EDIT y volver a abrirlo:
+Players:
+13567
+Player table expected end:
+0x0040960C para 13566
+Actual:
+0x00409744 para 13567
+La diferencia fue exactamente:
+0x138
+Por lo tanto el record adicional existe físicamente y fue serializado.
+Verificación del último record:
+Index:
+13566
+Offset:
+0x0040960C
+Parsed ID:
+0x800000A0
+Main ID:
+0x800000A0
+Appearance ID:
+0x800000A0
+Copy ID:
+0x00000658
+El copy_id 0x0658 corresponde al valor conservado de Roberto Carlos.
+CONCLUSIÓN:
+El clon físico de Roberto Carlos funciona y sobrevive al save/reload.
+================================================================================
+13. BÚSQUEDA DE TEST_PLAYER_A
+Se creó un buscador temporal de nombres sobre:
+pDescriptorNew->data
+Se buscó:
+TEST_PLAYER_A
+Resultado:
+FOUND #1:
+0x004034C2
+TOTAL:
+1
+Su Player Record empieza en:
+0x0040348C
+Diferencia:
+0x004034C2 - 0x0040348C = 0x36
+Por lo tanto el nombre está en:
+Player Record +0x36.
+NO apareció ninguna otra copia del texto.
+Esto es importante porque TEST_PLAYER_A fue creado directamente desde PES
+con solamente el nombre del jugador.
+================================================================================
+14. NOMBRES DE COMENTARISTA Y CAMISETA
+Existe otra estructura/zona de datos separada del Player Record principal
+que contiene información del tipo:
+ID jugador
+Nombre de jugador
+Nombre de comentarista
+Nombre de camiseta
+Ejemplo confirmado con Carlos Tévez:
+ID:
+3712
+Nombre:
+Carlos Tévez
+Shirt Name:
+CARLITOS
+Esta estructura NO debe confundirse con el Player Record principal.
+IMPORTANTE:
+No todos los jugadores tienen necesariamente una entrada en esta estructura.
+Los jugadores creados directamente desde PES con los campos mínimos pueden
+funcionar perfectamente sin una entrada adicional de nombres.
+Por eso:
+NO asumir que la ausencia de una entrada de nombres sea la causa de que
+PES rechace el clon.
+La idea para la APP, a futuro, es que los nombres se copien automáticamente
+del jugador original cuando corresponda.
+Ejemplo:
+Roberto Carlos original:
+Nombre = Roberto Carlos
+Comentarista = valor original
+Shirt Name = R. CARLOS
+Clon:
+Nombre = Roberto Carlos
+Comentarista = mismo valor
+Shirt Name = R. CARLOS
+Pero todavía NO está demostrado que esta estructura sea necesaria para que
+PES acepte un clon.
+================================================================================
+15. ERROR DE INTERPRETACIÓN IMPORTANTE: TEVEZ / KEPA
+Hubo una interpretación equivocada durante el análisis.
+Se buscó:
+0x800000A0
+y apareció:
+0x0006493D
+Luego el dump mostraba cerca:
+Carlos Tevez
+CARLITOS
+Se interpretó erróneamente que esa estructura podía ser una estructura
+secundaria del clon.
+ESO FUE INCORRECTO.
+Lo mismo ocurrió con:
+0x80000044
+y el dump terminó mostrando datos de Kepa Arrizabalaga.
+La explicación correcta es que se estaba leyendo una estructura/registro
+adyacente o siguiente y se confundió el contenido con una estructura
+perteneciente al jugador buscado.
+Por lo tanto:
+NO usar Tevez ni Kepa como prueba de que esas estructuras pertenecen a
+nuestros jugadores.
+La estructura de nombres existe, pero la relación exacta con cada Player ID
+debe investigarse correctamente.
+================================================================================
+16. ROSTER STRUCTURE
+Roster table:
+Base:
+0x9D4648
+Record size:
+0x11C = 284 bytes.
+Estructura confirmada:
++0x000:
+Team ID
+4 bytes
++0x004:
+40 Player IDs
+40 * 4 = 160 bytes
++0x0A4:
+40 shirt numbers
+40 * 2 = 80 bytes
++0x0F4:
+Unknown A
+40 bytes
+Total:
+0x11C
+================================================================================
+17. fill_team_rosters20()
+Función en pes20.cpp:
+void fill_team_rosters20(
+int &current_byte,
+void* ghdescriptor,
+team_entry* gteams,
+int gnum_teams
+)
+Lógica:
+team_id =
+read_data(0, 4*8, current_byte, pDescriptorNew);
+Busca ese Team ID dentro de gteams.
+Después:
+for(ii=0;ii<40;ii++)
+{
+player_id =
+read_data(0, 4*8, current_byte, pDescriptorNew);
+gteams[t_ind].players[ii] = player_id;
+
+if(player_id)
+    gteams[t_ind].num_on_team++;
+}
+Luego:
+if(gteams[t_ind].players[0] == 0)
+gteams[t_ind].b_show = false;
+Después lee:
+gteams[t_ind].numbers[ii]
+para los 40 shirt numbers.
+Finalmente:
+current_byte += 40;
+================================================================================
+18. ESCRITOR DEL ROSTER
+La función inversa es:
+extract_teamplayer_info20()
+La parte importante es:
+write_data(
+team.id,
+0,
+4*8,
+current_byte,
+pDescriptorNew
+);
+for(int ii=0;ii<40;ii++)
+{
+write_data(
+team.players[ii],
+0,
+4*8,
+current_byte,
+pDescriptorNew
+);
+}
+for(int ii=0;ii<40;ii++)
+{
+write_data(
+team.numbers[ii],
+0,
+2*8,
+current_byte,
+pDescriptorNew
+);
+}
+current_byte += 40;
+Por lo tanto:
+gteams[target].players[x]
+es efectivamente la fuente que se escribe de vuelta al EDIT.
+================================================================================
+19. TEAM RECORD
+Team table:
+Start:
+0x8ED2FC
+Hay exactamente:
+669 Team records
+Cada Team record mide:
+0x24C = 588 bytes.
+Demostración:
+Después de 669 records:
+current_byte =
+0x94D398
+Diferencia:
+0x94D398 - 0x8ED2FC =
+0x5FF9C
+0x5FF9C / 0x24C =
+669
+================================================================================
+20. TEAM STRUCTURE CONOCIDA
+team_entry contiene aproximadamente:
+static const int team_max = 40;
+unsigned long id;
+unsigned long manager_id;
+int stadium_id;
+wchar_t name[0x46];
+char short_name[0x4];
+unsigned long players[40];
+uint16_t numbers[40];
+bool b_edit_name;
+bool b_edit_shortname;
+bool b_edit_stadium;
+bool b_edit_strip;
+int num_on_team;
+int starting11[11];
+char captain_ind;
+colores;
+stripBlock[10];
+bool b_changed;
+bool b_show;
+etc.
+IMPORTANTE:
+team_max = 40 significa 40 jugadores por equipo.
+NO significa 40 equipos.
+b_show es estado interno de 4ccEditor.
+NO se demostró que sea un flag almacenado directamente en EDIT.
+================================================================================
+21. EQUIPOS VACÍOS ENCONTRADOS
+Al analizar los 669 equipos:
+EMPTY #563:
+ID 4971
+NAME THE OLD BOYS
+EMPTY #572:
+ID 5129
+NAME WORLD SELECTION
+Ambos tenían:
+* Team ID válido
+* manager
+* stadium
+* Player[0..39] = 0
+* num_on_team = 0
+Estos equipos fueron candidatos de prueba.
+PERO:
+NO asumir que son slots realmente libres o que PES los acepta como nuevos
+equipos permanentes.
+De hecho se decidió NO utilizarlos para la prueba final de clonación.
+================================================================================
+22. TEAM 368: ALL STAR BOCA JUNIORS
+Equipo válido y visible:
+Team ID:
+368
+Nombre original:
+All Star Boca Juniors
+Durante pruebas se modificó temporalmente su nombre a:
+ZZZ_TEST_BOCA
+Este equipo fue elegido porque sabemos que PES lo reconoce.
+IMPORTANTE:
+El usuario inicialmente olvidó que el nombre temporal era ZZZ_TEST_BOCA
+y pasó mucho tiempo buscando "All Star Boca Juniors". ??
+================================================================================
+23. PRUEBAS PREVIAS CON TEAM 368
+Se hicieron varias pruebas con Team 368.
+Resultados:
+A) Team writer + Roster writer + Tactics writer
+? PES rechazó EDIT.
+B) Skip Team writer + Roster writer + Tactics writer
+? PES rechazó EDIT.
+C) Skip Team writer + Skip Roster writer + Skip Tactics writer
+? PES aceptó EDIT.
+D) Team writer + Tactics writer + SKIP ROSTER WRITER
+? PES aceptó EDIT.
+? ZZZ_TEST_BOCA apareció correctamente.
+CONCLUSIÓN MUY IMPORTANTE:
+Para Team 368:
+* Team writing funciona.
+* Tactics writing funciona.
+* Roster writing es lo que provoca el rechazo de PES.
+Esto fue demostrado experimentalmente.
+================================================================================
+24. PRUEBA DE ROSTER CON JUGADORES EXISTENTES
+Antes se probó Team 4971:
+Nombre:
+ZZZ_TEST_TEAM
+Roster:
+Player[0] = Roberto Carlos 9087
+Player[1] = Adriano 25262
+Numbers:
+10 / 7
+El roster fue escrito correctamente por 4ccEditor y se podía verificar
+después de save/reload.
+PERO PES rechazó ese EDIT y pidió:
+"Para hacer cambios en el modo Editar, primero debes crear datos de edición..."
+Esto demostró:
+Roster serialization funciona técnicamente,
+pero PES tiene una validación adicional que el archivo modificado no está
+cumpliendo.
+================================================================================
+25. PRUEBA ACTUAL: CLON EN TEAM 368
+Después de demostrar que el clon físico sobrevivía al save/reload,
+se modificó temporalmente main.cpp para, después de cargar los rosters,
+buscar Team ID 368 y hacer:
+gteams[target].players[0] = 0x800000A0;
+gteams[target].numbers[0] = 10;
+gteams[target].num_on_team++;
+gteams[target].b_changed = true;
+El mensaje mostrado fue:
+ROSTER TEST
+CLON ASIGNADO
+Team ID: 368
+Player[0]: 0x800000A0
+Numero: 10
+================================================================================
+26. RESULTADO DE LA PRUEBA ACTUAL
+Después de guardar y volver a abrir con 4ccEditor:
+ZZZ_TEST_BOCA apareció con:
+Roberto Carlos
+ID negativo:
+0x800000A0
+Esto confirmó:
+* El clon existe.
+* El roster lo contiene.
+* El nuevo Player ID se escribió.
+* 4ccEditor vuelve a leerlo.
+* El clon está registrado dentro de Team 368 desde la perspectiva de
+4ccEditor.
+Visualmente era claro que Roberto Carlos estaba en ZZZ_TEST_BOCA y era el
+único jugador con ese ID negativo.
+PERO:
+Al abrir PES, PES pidió nuevamente:
+"Para hacer cambios en el modo Editar, primero debes crear datos de edición."
+Por lo tanto:
+4ccEditor acepta y muestra el clon.
+PES todavía rechaza el EDIT.
+================================================================================
+27. ESTADO ACTUAL EXACTO
+DEMOSTRADO:
+[PLAYER]
+Player Record:
+0x138 bytes
+?
+Nuevo Player ID:
+0x800000A0
+?
+Main ID:
++0x00 = 0x800000A0
+?
+Appearance ID:
++0xF0 = 0x800000A0
+?
+Record físico adicional:
+?
+Player count actualizado:
+?
+Save/reload:
+?
+4ccEditor reconoce el clon:
+?
+Roster:
+Team 368
+Player[0] = 0x800000A0
+?
+4ccEditor muestra al clon dentro del equipo:
+?
+PES acepta el EDIT:
+?
+Por lo tanto queda UNA pieza desconocida entre:
+"4ccEditor considera válido el roster"
+y
+"PES considera válido el EDIT."
+================================================================================
+28. LO QUE NO DEBEMOS ASUMIR
+NO asumir:
+* que falta Shirt Name.
+* que falta Commentator Name.
+* que falta una estructura secundaria.
+* que falta copy_id.
+* que falta una aparición adicional del Player ID.
+* que el problema sea simplemente el nuevo Player ID.
+* que el problema sea el roster por sí solo.
+* que b_show sea un flag del EDIT.
+* que 0x800000A0 sea el ID correcto según el algoritmo interno de PES.
+* que 4ccEditor valide completamente un EDIT.
+* que Team 4971 sea un slot libre real.
+* que Kepa/Tevez sean las estructuras secundarias de nuestros jugadores.
+================================================================================
+29. OBSERVACIÓN CRÍTICA SOBRE JUGADORES CREADOS DESDE PES
+PES permitió crear jugadores directamente desde su propio modo Edit.
+Los jugadores creados desde PES:
+* aparecen con IDs especiales negativos.
+* pueden existir sin nombre de camiseta/comentarista personalizado.
+* son reconocidos por PES.
+* pueden ser asignados a un equipo.
+* al ser asignados, salen de "Libres".
+El concepto "Libres" NO es necesariamente un Team record.
+4ccEditor encuentra/hace visibles los jugadores solamente cuando puede
+resolverlos/asignarlos a un equipo.
+Esto demuestra que PES puede aceptar un jugador creado con información mínima.
+Por eso la investigación debe comparar un jugador creado por PES que funciona
+contra nuestro clon que PES rechaza.
+================================================================================
+30. REGLA DE ASIGNACIÓN DE PLAYER IDS
+PES no permite que el mismo Player ID esté en dos equipos simultáneamente.
+Ejemplos observados:
+ZZZ_PLAYER_A:
+se movió de Team 1493
+a Inter 1950-99
+? dejó Team 1493.
+Matthäus:
+se movió de Inter 1950-99
+a Brasil 1958
+? dejó el equipo anterior.
+Por lo tanto:
+Un Player ID = una asignación de equipo.
+Consecuencia para la app:
+NO podemos simplemente poner Player ID 9087 en el nuevo equipo.
+Tenemos que clonar:
+9087
+? nuevo ID
+? nuevo equipo.
+Esto es fundamental para el diseño final.
+================================================================================
+31. MAIN.CPP: SAVE FLOW ORIGINAL
+El save_handler() original para PES 20/21 hace:
+int ii, current_byte = 0x7C;
+for(ii=0;ii<gnum_players;ii++)
+{
+extract_player_entry20(
+gplayers[ii],
+current_byte,
+ghdescriptor
+);
+}
+current_byte = 0x8ED2FC;
+for(ii=0;ii<gnum_teams;ii++)
+{
+extract_team_info21(
+gteams[ii],
+current_byte,
+ghdescriptor
+);
+}
+current_byte = 0x9D4648;
+for(ii=0;ii<gnum_teams;ii++)
+{
+extract_teamplayer_info20(
+gteams[ii],
+current_byte,
+ghdescriptor
+);
+}
+encryptWithKeyNew(...)
+writeFile(...)
+IMPORTANTE:
+El save original NO:
+* crea players automáticamente
+* actualiza data[96..97]
+* agrega records por sí solo
+* escribe tactics para PES21 en ese bloque original
+Cuando nosotros agregamos un Player Record, tuvimos que modificar la estructura
+en memoria y el contador.
+================================================================================
+32. PRÓXIMA LÍNEA DE INVESTIGACIÓN
+ESTADO ACTUAL:
+El usuario propuso comparar un jugador creado directamente por PES que sí
+funciona con nuestro clon.
+Esto es la próxima investigación recomendada.
+CONTROL:
+TEST_PLAYER_A
+ID:
+0x80000044
+CLON:
+Roberto Carlos
+ID:
+0x800000A0
+Objetivo:
+Encontrar TODAS las apariciones relevantes de:
+0x80000044
+en un EDIT que PES acepta y compararlas con:
+0x800000A0
+en nuestro EDIT rechazado.
+No asumir qué estructura es cuál.
+Primero localizar referencias.
+Después interpretar cada una según:
+* offset
+* alineación
+* contexto
+* nombre cercano
+* relación con Player Record
+* relación con roster
+* relación con otras tablas.
+El contraste entre:
+"jugador creado por PES que funciona"
+vs.
+"clon creado por nosotros que no funciona"
+es ahora la vía principal.
+================================================================================
+33. BUSCADOR DE IDS UTILIZADO
+Bloque temporal usado:
+{
+FileDescriptorNew* d =
+(FileDescriptorNew*)ghdescriptor;
+uint32_t target = 0x80000044;
+int found = 0;
+
+FILE* f = nullptr;
+
+fopen_s(
+    &f,
+    "roberto_id_search.txt",
+    "w"
+);
+
+if (f)
+{
+    fprintf(
+        f,
+        "SEARCHING FOR PLAYER ID 0x%08X\n\n",
+        target
+    );
+
+    for (uint32_t pos = 0;
+         pos + 4 <= d->fileHeader->dataSize;
+         pos++)
+    {
+        uint32_t value =
+            d->data[pos] |
+            (d->data[pos + 1] << 8) |
+            (d->data[pos + 2] << 16) |
+            (d->data[pos + 3] << 24);
+
+        if (value == target)
+        {
+            fprintf(
+                f,
+                "FOUND #%d : 0x%08X\n",
+                found + 1,
+                pos
+            );
+
+            found++;
+        }
+    }
+
+    fprintf(
+        f,
+        "\nTOTAL FOUND: %d\n",
+        found
+    );
+
+    fclose(f);
+}
+}
+El bloque también tuvo una versión que generaba dump de 128 bytes antes y
+1024 después de la primera aparición.
+Actualmente ese bloque fue reemplazado/borrado durante la investigación.
+No asumir que sigue presente.
+================================================================================
+34. BUSCADOR DE NOMBRES UTILIZADO
+Versión temporal:
+{
+FileDescriptorNew* d =
+(FileDescriptorNew*)ghdescriptor;
+const char* target = "TEST_PLAYER_A";
+int found = 0;
+
+FILE* f = nullptr;
+
+fopen_s(
+    &f,
+    "name_search.txt",
+    "w"
+);
+
+if (f)
+{
+    fprintf(
+        f,
+        "SEARCHING FOR NAME: %s\n\n",
+        target
+    );
+
+    int targetLen = (int)strlen(target);
+
+    for (uint32_t pos = 0;
+         pos + targetLen <= d->fileHeader->dataSize;
+         pos++)
+    {
+        if (memcmp(
+                &d->data[pos],
+                target,
+                targetLen) == 0)
+        {
+            fprintf(
+                f,
+                "FOUND #%d : 0x%08X\n",
+                found + 1,
+                pos
+            );
+
+            found++;
+        }
+    }
+
+    fprintf(
+        f,
+        "\nTOTAL FOUND: %d\n",
+        found
+    );
+
+    fclose(f);
+}
+}
+Resultado:
+TEST_PLAYER_A:
+0x004034C2
+TOTAL:
+1
+================================================================================
+35. ERRORES DE CONTINUIDAD QUE NO DEBEN REPETIRSE
+1. NO decir que Kepa fue creado por nosotros.
+Kepa ya existía.
+2. NO decir que la estructura alrededor de 0x0009DCAD pertenece a
+TEST_PLAYER_A solamente porque contiene 0x80000044.
+La interpretación fue errónea.
+3. NO decir que 0x0006493D es la estructura secundaria del clon.
+El dump mostró Carlos Tevez y fue una interpretación incorrecta.
+4. NO insistir con Shirt Name como causa del rechazo.
+Jugadores creados directamente desde PES funcionan sin completar esos
+campos.
+5. NO usar Team 4971 para la prueba principal.
+Era THE OLD BOYS, no sabemos si es un equipo activo/usable en PES.
+6. Team 368 = All Star Boca Juniors.
+Durante pruebas se llamó:
+ZZZ_TEST_BOCA.
+7. NO volver a afirmar que 4ccEditor "crea" equipos o jugadores.
+4ccEditor solamente manipula estructuras existentes.
+8. PES 2021 normal Edit puede crear jugadores, pero NO crear equipos.
+9. PES2020Editor New Team es una referencia para Team.bin/base database,
+no el escritor de EDIT00000000.
+10. El roster writer sí escribe:
+team.players[ii]
+pero PES puede validar referencias adicionales que 4ccEditor no valida.
+================================================================================
+36. HIPÓTESIS ACTUAL
+La hipótesis más razonable ahora:
+Nuestro clon principal está físicamente bien,
+pero PES espera alguna otra referencia/registro asociado al nuevo Player ID
+que no hemos generado.
+No sabemos todavía cuál.
+El hecho de que los jugadores creados por PES funcionen significa que PES,
+al crear un jugador, probablemente modifica más de una región del EDIT.
+La comparación de estructuras entre:
+TEST_PLAYER_A (creado por PES)
+y
+0x800000A0 (clon)
+debe revelar esa diferencia.
+NO adelantarse a una conclusión.
+Primero obtener datos.
+================================================================================
+37. DISEÑO DE LA APP DESPUÉS DE RESOLVER ESTO
+Cuando el mecanismo esté completamente entendido:
+ENTRADA:
+Equipo base:
+Team ID X
+Jugadores seleccionados:
+Player IDs A, B, C, D...
+PROCESO:
+1. Clonar Team X
+2. Asignar nuevo Team ID
+3. Copiar estructura completa del Team X
+4. Modificar nombre/short name
+5. Para cada jugador seleccionado:
+a. localizar Player Record original
+b. copiar 0x138 bytes
+c. generar nuevo Player ID
+d. actualizar +0x00
+e. actualizar +0xF0
+f. copiar nombres adicionales si corresponde
+g. registrar cualquier estructura adicional requerida por PES
+h. asignar nuevo Player ID al roster del nuevo Team
+6. actualizar cantidades/referencias necesarias
+7. guardar EDIT
+8. backup automático del EDIT original
+9. escribir nuevo EDIT.
+Resultado:
+Jugador original:
+permanece en equipo original.
+Clon:
+mismo jugador
+nuevo ID
+nuevo equipo.
+================================================================================
+38. MODELO CONCEPTUAL FINAL
+             JUGADOR ORIGINAL
+                   ?
+                   ? copiar
+                   ?
+            ????????????????
+            ? PLAYER CLON  ?
+            ?              ?
+            ? nuevo ID     ?
+            ? todo igual   ?
+            ????????????????
+                   ?
+                   ?
+                   ?
+             NUEVO EQUIPO
+                   ?
+                   ?
+                   ?
+          EDIT00000000
+                   ?
+                   ?
+                PES 2021
+El punto que todavía falta resolver es:
+"¿Qué registros/referencias adicionales necesita PES para considerar válido
+un Player ID nuevo creado por nuestra app?"
+================================================================================
+39. PUNTO EXACTO DONDE CONTINUAR
+ÚLTIMO RESULTADO:
+El clon:
+Roberto Carlos
+ID:
+0x800000A0
+fue insertado en:
+Team 368
+ZZZ_TEST_BOCA
+4ccEditor:
+LO RECONOCE.
+PES:
+LO RECHAZA Y PIDE CREAR DATOS DE EDICIÓN.
+ÚLTIMA IDEA ACORDADA:
+Comparar todas las apariciones de un Player creado directamente por PES,
+por ejemplo:
+TEST_PLAYER_A
+0x80000044
+contra las apariciones del clon:
+0x800000A0
+en los respectivos EDITs.
+NO modificar nada hasta tener esas referencias.
+PRÓXIMO EXPERIMENTO:
+buscar todas las apariciones de:
+0x80000044
+en el EDIT funcional.
+Luego comparar estructuralmente con:
+0x800000A0
+en el EDIT rechazado.
+================================================================================
+FIN DEL CONTEXTO
+
