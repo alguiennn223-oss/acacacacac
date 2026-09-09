@@ -1,0 +1,1007 @@
+  V U : offset=0x904d8056 file=0x906eb6b2 size=0x3850000 contains_NewTeam=False
+  V d : offset=0x905c8056 file=0x907db6b2 size=0x3850000 contains_NewTeam=False
+  V s : offset=0x906a8056 file=0x908bb6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x90798056 file=0x909ab6b2 size=0x3850000 contains_NewTeam=False
+  V ^: offset=0x908a8056 file=0x90abb6b2 size=0x3850000 contains_NewTeam=False
+  V "^: offset=0x5e2a8056 file=0x5e4bb6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x90968056 file=0x90b7b6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x90a58056 file=0x90c6b6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x90af8056 file=0x90d0b6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x90bb8056 file=0x90dcb6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x90c68056 file=0x90e7b6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x90d18056 file=0x90f2b6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x90e38056 file=0x9104b6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x56df8056 file=0x5700b6b2 size=0x3850000 contains_NewTeam=False
+  V  : offset=0x8eff8056 file=0x8f20b6b2 size=0x3850000 contains_NewTeam=False
+  V  : offset=0x91088056 file=0x9129b6b2 size=0x3850000 contains_NewTeam=False
+  V ' : offset=0x911b8056 file=0x913cb6b2 size=0x3850000 contains_NewTeam=False
+  V   : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V   : offset=0x91ba8056 file=0x91dbb6b2 size=0x3cb0000 contains_NewTeam=False
+  V   : offset=0x91cb8056 file=0x91ecb6b2 size=0x3cb0000 contains_NewTeam=False
+  V X : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V   : offset=0x92608056 file=0x9281b6b2 size=0x3d00000 contains_NewTeam=False
+  V )T: offset=0x5b858056 file=0x5ba6b6b2 size=0x3d00000 contains_NewTeam=False
+  V q : offset=0x926d8056 file=0x928eb6b2 size=0x3d00000 contains_NewTeam=False
+  V   : offset=0x927b8056 file=0x929cb6b2 size=0x3d00000 contains_NewTeam=False
+  V   : offset=0x92898056 file=0x92aab6b2 size=0x3d00000 contains_NewTeam=False
+  V   : offset=0x92988056 file=0x92b9b6b2 size=0x3d00000 contains_NewTeam=False
+  OQ: offset=0x92bb8056 file=0x92dcb6b2 size=0x3d00000 contains_NewTeam=False
+  V J : offset=0x93458056 file=0x9366b6b2 size=0x3d50000 contains_NewTeam=False
+  V W : offset=0x93528056 file=0x9373b6b2 size=0x3d50000 contains_NewTeam=False
+  V _ : offset=0x90648056 file=0x9085b6b2 size=0x3d50000 contains_NewTeam=False
+  V "^: offset=0x936b8056 file=0x938cb6b2 size=0x3d50000 contains_NewTeam=False
+  V | : offset=0x93738056 file=0x9394b6b2 size=0x3d50000 contains_NewTeam=False
+  V   : offset=0x93838056 file=0x93a4b6b2 size=0x3d50000 contains_NewTeam=False
+  V   : offset=0x938a8056 file=0x93abb6b2 size=0x3d50000 contains_NewTeam=False
+  V   : offset=0x5e198056 file=0x5e3ab6b2 size=0x3d50000 contains_NewTeam=False
+  V   : offset=0x93a18056 file=0x93c2b6b2 size=0x3d50000 contains_NewTeam=False
+  V   : offset=0x93b28056 file=0x93d3b6b2 size=0x3d50000 contains_NewTeam=False
+  V   : offset=0x93c28056 file=0x93e3b6b2 size=0x3d50000 contains_NewTeam=False
+  V   : offset=0x93d68056 file=0x93f7b6b2 size=0x3d50000 contains_NewTeam=False
+  V   : offset=0x93ea8056 file=0x940bb6b2 size=0x3d50000 contains_NewTeam=False
+  V  : offset=0x94028056 file=0x9423b6b2 size=0x3d50000 contains_NewTeam=False
+  V  : offset=0x5a2d8056 file=0x5a4eb6b2 size=0x3d50000 contains_NewTeam=False
+  V : offset=0x5ea58056 file=0x5ec6b6b2 size=0x3d50000 contains_NewTeam=False
+  V   : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V   : offset=0x94a38056 file=0x94c4b6b2 size=0x3da0000 contains_NewTeam=False
+  OQ: offset=0x94b38056 file=0x94d4b6b2 size=0x3da0000 contains_NewTeam=False
+  V < : offset=0x95398056 file=0x955ab6b2 size=0x3df0000 contains_NewTeam=False
+  V B : offset=0x953f8056 file=0x9560b6b2 size=0x3df0000 contains_NewTeam=False
+  V I : offset=0x95458056 file=0x9566b6b2 size=0x3df0000 contains_NewTeam=False
+  V Q : offset=0x954d8056 file=0x956eb6b2 size=0x3df0000 contains_NewTeam=False
+  V Y : offset=0x95558056 file=0x9576b6b2 size=0x3df0000 contains_NewTeam=False
+  V a : offset=0x955d8056 file=0x957eb6b2 size=0x3df0000 contains_NewTeam=False
+  OQ: offset=0x95648056 file=0x9585b6b2 size=0x3df0000 contains_NewTeam=False
+  V   : offset=0x8f178056 file=0x8f38b6b2 size=0x3e40000 contains_NewTeam=False
+  V   : offset=0x95eb8056 file=0x960cb6b2 size=0x3e40000 contains_NewTeam=False
+  V : offset=0x96008056 file=0x9621b6b2 size=0x3e40000 contains_NewTeam=False
+  V  : offset=0x96138056 file=0x9634b6b2 size=0x3e40000 contains_NewTeam=False
+  V & : offset=0x961c8056 file=0x963db6b2 size=0x3e40000 contains_NewTeam=False
+  V 1 : offset=0x962b8056 file=0x964cb6b2 size=0x3e40000 contains_NewTeam=False
+  V = : offset=0x96358056 file=0x9656b6b2 size=0x3e40000 contains_NewTeam=False
+  V   : offset=0x96428056 file=0x9663b6b2 size=0x3e40000 contains_NewTeam=False
+  V N : offset=0x8dda8056 file=0x8dfbb6b2 size=0x3e40000 contains_NewTeam=False
+  V [ : offset=0x96528056 file=0x9673b6b2 size=0x3e40000 contains_NewTeam=False
+  V c : offset=0x95398056 file=0x955ab6b2 size=0x3e40000 contains_NewTeam=False
+  V u : offset=0x966c8056 file=0x968db6b2 size=0x3e40000 contains_NewTeam=False
+  V   : offset=0x967e8056 file=0x969fb6b2 size=0x3e40000 contains_NewTeam=False
+  V   : offset=0x968c8056 file=0x96adb6b2 size=0x3e40000 contains_NewTeam=False
+  OQ: offset=0x96978056 file=0x96b8b6b2 size=0x3e40000 contains_NewTeam=False
+  V  : offset=0x97178056 file=0x9738b6b2 size=0x3e90000 contains_NewTeam=False
+  V . : offset=0x97248056 file=0x9745b6b2 size=0x3e90000 contains_NewTeam=False
+  V D : offset=0x97358056 file=0x9756b6b2 size=0x3e90000 contains_NewTeam=False
+  V Z : offset=0x974f8056 file=0x9770b6b2 size=0x3e90000 contains_NewTeam=False
+  V t : offset=0x97688056 file=0x9789b6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x977d8056 file=0x979eb6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x978f8056 file=0x97b0b6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x97a88056 file=0x97c9b6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x96178056 file=0x9638b6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x97d08056 file=0x97f1b6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x97ef8056 file=0x9810b6b2 size=0x3e90000 contains_NewTeam=False
+  V  : offset=0x98078056 file=0x9828b6b2 size=0x3e90000 contains_NewTeam=False
+  V ( : offset=0x981e8056 file=0x983fb6b2 size=0x3e90000 contains_NewTeam=False
+  V C : offset=0x98368056 file=0x9857b6b2 size=0x3e90000 contains_NewTeam=False
+  V _ : offset=0x98528056 file=0x9873b6b2 size=0x3e90000 contains_NewTeam=False
+  V ~ : offset=0x98708056 file=0x9891b6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x98858056 file=0x98a6b6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x989e8056 file=0x98bfb6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x98b38056 file=0x98d4b6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x98c98056 file=0x98eab6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x98e28056 file=0x9903b6b2 size=0x3e90000 contains_NewTeam=False
+  V  : offset=0x98fa8056 file=0x991bb6b2 size=0x3e90000 contains_NewTeam=False
+  V  : offset=0x99118056 file=0x9932b6b2 size=0x3e90000 contains_NewTeam=False
+  V 1 : offset=0x99288056 file=0x9949b6b2 size=0x3e90000 contains_NewTeam=False
+  V   : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V   : offset=0x99c18056 file=0x99e2b6b2 size=0x3f30000 contains_NewTeam=False
+  V   : offset=0x99d08056 file=0x99f1b6b2 size=0x3f30000 contains_NewTeam=False
+  V   : offset=0x99e58056 file=0x9a06b6b2 size=0x3f30000 contains_NewTeam=False
+  V  : offset=0x99fc8056 file=0x9a1db6b2 size=0x3f30000 contains_NewTeam=False
+  OQ: offset=0x9a138056 file=0x9a34b6b2 size=0x3f30000 contains_NewTeam=False
+  V   : offset=0x535d8056 file=0x537eb6b2 size=0x3f80000 contains_NewTeam=False
+  V   : offset=0x9aa68056 file=0x9ac7b6b2 size=0x3f80000 contains_NewTeam=False
+  V   : offset=0x9ab68056 file=0x9ad7b6b2 size=0x3f80000 contains_NewTeam=False
+  V   : offset=0x9acf8056 file=0x9af0b6b2 size=0x3f80000 contains_NewTeam=False
+  V   : offset=0x9ae18056 file=0x9b02b6b2 size=0x3f80000 contains_NewTeam=False
+  V  : offset=0x9af58056 file=0x9b16b6b2 size=0x3f80000 contains_NewTeam=False
+  V : offset=0x9b0f8056 file=0x9b30b6b2 size=0x3f80000 contains_NewTeam=False
+  V 7 : offset=0x9b258056 file=0x9b46b6b2 size=0x3f80000 contains_NewTeam=False
+  V E : offset=0x9b3f8056 file=0x9b60b6b2 size=0x3f80000 contains_NewTeam=False
+  V X : offset=0x9b4b8056 file=0x9b6cb6b2 size=0x3f80000 contains_NewTeam=False
+  V u : offset=0x9b688056 file=0x9b89b6b2 size=0x3f80000 contains_NewTeam=False
+  OQ: offset=0x9b868056 file=0x9ba7b6b2 size=0x3f80000 contains_NewTeam=False
+  V 4Z: offset=0x9c0e8056 file=0x9c2fb6b2 size=0x3fd0000 contains_NewTeam=False
+  V  : offset=0x9c138056 file=0x9c34b6b2 size=0x3fd0000 contains_NewTeam=False
+  V 3 : offset=0x9c298056 file=0x9c4ab6b2 size=0x3fd0000 contains_NewTeam=False
+  V D : offset=0x9c3a8056 file=0x9c5bb6b2 size=0x3fd0000 contains_NewTeam=False
+  V Z : offset=0x9c498056 file=0x9c6ab6b2 size=0x3fd0000 contains_NewTeam=False
+  V m : offset=0x9c5f8056 file=0x9c80b6b2 size=0x3fd0000 contains_NewTeam=False
+  V x : offset=0x9c728056 file=0x9c93b6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9c7f8056 file=0x9ca0b6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9c8b8056 file=0x9cacb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9c9e8056 file=0x9cbfb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9cac8056 file=0x9ccdb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9cc18056 file=0x9ce2b6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9cd68056 file=0x9cf7b6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9cea8056 file=0x9d0bb6b2 size=0x3fd0000 contains_NewTeam=False
+  V      : offset=0x9cff8056 file=0x9d20b6b2 size=0x3fd0000 contains_NewTeam=False
+  V : offset=0x9d118056 file=0x9d32b6b2 size=0x3fd0000 contains_NewTeam=False
+  V 7 : offset=0x9d298056 file=0x9d4ab6b2 size=0x3fd0000 contains_NewTeam=False
+  V S : offset=0x9d458056 file=0x9d66b6b2 size=0x3fd0000 contains_NewTeam=False
+  V j : offset=0x9d5e8056 file=0x9d7fb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9d768056 file=0x9d97b6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9d8b8056 file=0x9dacb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9d9d8056 file=0x9dbeb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9dbb8056 file=0x9ddcb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9dd88056 file=0x9df9b6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9df38056 file=0x9e14b6b2 size=0x3fd0000 contains_NewTeam=False
+  V  : offset=0x9e098056 file=0x9e2ab6b2 size=0x3fd0000 contains_NewTeam=False
+  V ( : offset=0x9e1f8056 file=0x9e40b6b2 size=0x3fd0000 contains_NewTeam=False
+  V = : offset=0x9e368056 file=0x9e57b6b2 size=0x3fd0000 contains_NewTeam=False
+  V M : offset=0x9e468056 file=0x9e67b6b2 size=0x3fd0000 contains_NewTeam=False
+  V d : offset=0x9e5a8056 file=0x9e7bb6b2 size=0x3fd0000 contains_NewTeam=False
+  V ~ : offset=0x9e718056 file=0x9e92b6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9e878056 file=0x9ea8b6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9e958056 file=0x9eb6b6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9eae8056 file=0x9ecfb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9ecb8056 file=0x9eecb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x9ee58056 file=0x9f06b6b2 size=0x3fd0000 contains_NewTeam=False
+  V  : offset=0x9efd8056 file=0x9f1eb6b2 size=0x3fd0000 contains_NewTeam=False
+  V  : offset=0x9f0b8056 file=0x9f2cb6b2 size=0x3fd0000 contains_NewTeam=False
+  V # : offset=0x9f198056 file=0x9f3ab6b2 size=0x3fd0000 contains_NewTeam=False
+  V 6 : offset=0x9f2d8056 file=0x9f4eb6b2 size=0x3fd0000 contains_NewTeam=False
+  V   : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V   : offset=0x9fc28056 file=0x9fe3b6b2 size=0x4a20000 contains_NewTeam=False
+  V   : offset=0x9fd18056 file=0x9ff2b6b2 size=0x4a20000 contains_NewTeam=False
+  V   : offset=0x9fde8056 file=0x9fffb6b2 size=0x4a20000 contains_NewTeam=False
+  V   : offset=0x9fec8056 file=0xa00db6b2 size=0x4a20000 contains_NewTeam=False
+  V  : offset=0xa0018056 file=0xa022b6b2 size=0x4a20000 contains_NewTeam=False
+  V  : offset=0xa00d8056 file=0xa02eb6b2 size=0x4a20000 contains_NewTeam=False
+  V 3 : offset=0xa0258056 file=0xa046b6b2 size=0x4a20000 contains_NewTeam=False
+  V Y : offset=0xa0448056 file=0xa065b6b2 size=0x4a20000 contains_NewTeam=False
+  V n : offset=0xa0638056 file=0xa084b6b2 size=0x4a20000 contains_NewTeam=False
+  V   : offset=0xa07b8056 file=0xa09cb6b2 size=0x4a20000 contains_NewTeam=False
+  V   : offset=0xa0988056 file=0xa0b9b6b2 size=0x4a20000 contains_NewTeam=False
+  V   : offset=0xa0b08056 file=0xa0d1b6b2 size=0x4a20000 contains_NewTeam=False
+  V D : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V X : offset=0xa14f8056 file=0xa170b6b2 size=0x4a70000 contains_NewTeam=False
+  V u : offset=0xa1678056 file=0xa188b6b2 size=0x4a70000 contains_NewTeam=False
+  V   : offset=0xa1868056 file=0xa1a7b6b2 size=0x4a70000 contains_NewTeam=False
+  V   : offset=0xa1988056 file=0xa1b9b6b2 size=0x4a70000 contains_NewTeam=False
+  V   : offset=0xa1ab8056 file=0xa1ccb6b2 size=0x4a70000 contains_NewTeam=False
+  V cT: offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V D : offset=0xa23b8056 file=0xa25cb6b2 size=0x4ac0000 contains_NewTeam=False
+  V ] : offset=0xa2508056 file=0xa271b6b2 size=0x4ac0000 contains_NewTeam=False
+  V r : offset=0xa2698056 file=0xa28ab6b2 size=0x4ac0000 contains_NewTeam=False
+  V   : offset=0xa27e8056 file=0xa29fb6b2 size=0x4ac0000 contains_NewTeam=False
+  V   : offset=0xa2928056 file=0xa2b3b6b2 size=0x4ac0000 contains_NewTeam=False
+  OQ: offset=0xa2a78056 file=0xa2c8b6b2 size=0x4ac0000 contains_NewTeam=False
+ : offset=0x8f118056 file=0x8f32b6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0x949d8056 file=0x94beb6b2 size=0x4b10000 contains_NewTeam=False
+  V : : offset=0xa3358056 file=0xa356b6b2 size=0x4b10000 contains_NewTeam=False
+  V G : offset=0xa3418056 file=0xa362b6b2 size=0x4b10000 contains_NewTeam=False
+  V S : offset=0xa34d8056 file=0xa36eb6b2 size=0x4b10000 contains_NewTeam=False
+  V k : offset=0xa35a8056 file=0xa37bb6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0xa37e8056 file=0xa39fb6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0xa3ab8056 file=0xa3ccb6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0xa3bb8056 file=0xa3dcb6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0xa3c28056 file=0xa3e3b6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0xa3c78056 file=0xa3e8b6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0xa3d48056 file=0xa3f5b6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0xa00d8056 file=0xa02eb6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0x9fe48056 file=0xa005b6b2 size=0x4b10000 contains_NewTeam=False
+  V w\: offset=0x9fc78056 file=0x9fe8b6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0x5c7a8056 file=0x5c9bb6b2 size=0x4b10000 contains_NewTeam=False
+  V   : offset=0x8f178056 file=0x8f38b6b2 size=0x4b10000 contains_NewTeam=False
+  V  : offset=0xa4008056 file=0xa421b6b2 size=0x4b10000 contains_NewTeam=False
+  V  : offset=0xa40d8056 file=0xa42eb6b2 size=0x4b10000 contains_NewTeam=False
+  V " : offset=0xa41b8056 file=0xa43cb6b2 size=0x4b10000 contains_NewTeam=False
+  V 2 : offset=0xa4278056 file=0xa448b6b2 size=0x4b10000 contains_NewTeam=False
+  OQ: offset=0xa43f8056 file=0xa460b6b2 size=0x4b10000 contains_NewTeam=False
+  V R : offset=0xa4c38056 file=0xa4e4b6b2 size=0x4b60000 contains_NewTeam=False
+  V W : offset=0xa4cb8056 file=0xa4ecb6b2 size=0x4b60000 contains_NewTeam=False
+  V   : offset=0x5e228056 file=0x5e43b6b2 size=0x4b60000 contains_NewTeam=False
+  V   : offset=0xa4dc8056 file=0xa4fdb6b2 size=0x4b60000 contains_NewTeam=False
+  V   : offset=0xa4f28056 file=0xa513b6b2 size=0x4b60000 contains_NewTeam=False
+  V  : offset=0xa5058056 file=0xa526b6b2 size=0x4b60000 contains_NewTeam=False
+  V   : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V   : offset=0x58de8056 file=0x58ffb6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa5ab8056 file=0xa5ccb6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa5bd8056 file=0xa5deb6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0x8e398056 file=0x8e5ab6b2 size=0x4bb0000 contains_NewTeam=False
+  V uZ: offset=0xa5d48056 file=0xa5f5b6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa5db8056 file=0xa5fcb6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0x93528056 file=0x9373b6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0x5e228056 file=0x5e43b6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa5f48056 file=0xa615b6b2 size=0x4bb0000 contains_NewTeam=False
+  V  : offset=0xa6048056 file=0xa625b6b2 size=0x4bb0000 contains_NewTeam=False
+  V % : offset=0xa61a8056 file=0xa63bb6b2 size=0x4bb0000 contains_NewTeam=False
+  V 6 : offset=0xa6308056 file=0xa651b6b2 size=0x4bb0000 contains_NewTeam=False
+  V E : offset=0xa63d8056 file=0xa65eb6b2 size=0x4bb0000 contains_NewTeam=False
+  V \ : offset=0xa6518056 file=0xa672b6b2 size=0x4bb0000 contains_NewTeam=False
+  V m : offset=0xa6608056 file=0xa681b6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa6798056 file=0xa69ab6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa6908056 file=0xa6b1b6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa6ad8056 file=0xa6ceb6b2 size=0x4bb0000 contains_NewTeam=False
+  V \Z: offset=0xa6c28056 file=0xa6e3b6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa6c78056 file=0xa6e8b6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa6db8056 file=0xa6fcb6b2 size=0x4bb0000 contains_NewTeam=False
+  V  : offset=0xa6fb8056 file=0xa71cb6b2 size=0x4bb0000 contains_NewTeam=False
+  V & : offset=0xa7168056 file=0xa737b6b2 size=0x4bb0000 contains_NewTeam=False
+  V = : offset=0xa7318056 file=0xa752b6b2 size=0x4bb0000 contains_NewTeam=False
+  V Q : offset=0xa7498056 file=0xa76ab6b2 size=0x4bb0000 contains_NewTeam=False
+  V f : offset=0xa75b8056 file=0xa77cb6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa7788056 file=0xa799b6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa7918056 file=0xa7b2b6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa7ba8056 file=0xa7dbb6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa7e48056 file=0xa805b6b2 size=0x4bb0000 contains_NewTeam=False
+  V : offset=0xa8038056 file=0xa824b6b2 size=0x4bb0000 contains_NewTeam=False
+  V  : offset=0xa8158056 file=0xa836b6b2 size=0x4bb0000 contains_NewTeam=False
+  V , : offset=0x8f148056 file=0x8f35b6b2 size=0x4bb0000 contains_NewTeam=False
+  V B : offset=0x9ff88056 file=0xa019b6b2 size=0x4bb0000 contains_NewTeam=False
+  V ]S: offset=0xa84b8056 file=0xa86cb6b2 size=0x4bb0000 contains_NewTeam=False
+  V c : offset=0xa8578056 file=0xa878b6b2 size=0x4bb0000 contains_NewTeam=False
+  V  : offset=0xa86e8056 file=0xa88fb6b2 size=0x4bb0000 contains_NewTeam=False
+  V   : offset=0xa88c8056 file=0xa8adb6b2 size=0x4bb0000 contains_NewTeam=False
+  V  : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V - : offset=0x55ce8056 file=0x55efb6b2 size=0x4c00000 contains_NewTeam=False
+  V  : offset=0xa9318056 file=0xa952b6b2 size=0x4c00000 contains_NewTeam=False
+  V C : offset=0xa9398056 file=0xa95ab6b2 size=0x4c00000 contains_NewTeam=False
+  V J : offset=0xa3bb8056 file=0xa3dcb6b2 size=0x4c00000 contains_NewTeam=False
+  V _ : offset=0xa9538056 file=0xa974b6b2 size=0x4c00000 contains_NewTeam=False
+  V ~ : offset=0xa9668056 file=0xa987b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xa98c8056 file=0xa9adb6b2 size=0x4c00000 contains_NewTeam=False
+  V     T: offset=0xa9a98056 file=0xa9cab6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0x926d8056 file=0x928eb6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0x93528056 file=0x9373b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xa9bf8056 file=0xa9e0b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xa9e18056 file=0xaa02b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xa9f18056 file=0xaa12b6b2 size=0x4c00000 contains_NewTeam=False
+  V  : offset=0xaa078056 file=0xaa28b6b2 size=0x4c00000 contains_NewTeam=False
+  V , : offset=0xaa228056 file=0xaa43b6b2 size=0x4c00000 contains_NewTeam=False
+  V G : offset=0xaa388056 file=0xaa59b6b2 size=0x4c00000 contains_NewTeam=False
+  V Q : offset=0x9b378056 file=0x9b58b6b2 size=0x4c00000 contains_NewTeam=False
+  V e : offset=0xaa598056 file=0xaa7ab6b2 size=0x4c00000 contains_NewTeam=False
+  V | : offset=0xaa728056 file=0xaa93b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xaa868056 file=0xaaa7b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xaaa18056 file=0xaac2b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xaab58056 file=0xaad6b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xaac38056 file=0xaae4b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xaad88056 file=0xaaf9b6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0xaaef8056 file=0xab10b6b2 size=0x4c00000 contains_NewTeam=False
+  V  : offset=0xaafe8056 file=0xab1fb6b2 size=0x4c00000 contains_NewTeam=False
+  V  : offset=0xab0a8056 file=0xab2bb6b2 size=0x4c00000 contains_NewTeam=False
+  V > : offset=0xab2a8056 file=0xab4bb6b2 size=0x4c00000 contains_NewTeam=False
+  V   : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V   : offset=0xabcd8056 file=0xabeeb6b2 size=0x4c50000 contains_NewTeam=False
+  V " : offset=0xabe18056 file=0xac02b6b2 size=0x4c50000 contains_NewTeam=False
+  V   : offset=0xabeb8056 file=0xac0cb6b2 size=0x4c50000 contains_NewTeam=False
+  V  : offset=0xabfe8056 file=0xac1fb6b2 size=0x4c50000 contains_NewTeam=False
+  V 
+     : offset=0x9fd78056 file=0x9ff8b6b2 size=0x4c50000 contains_NewTeam=False
+  V " : offset=0xac108056 file=0xac31b6b2 size=0x4c50000 contains_NewTeam=False
+  V 7 : offset=0xac308056 file=0xac51b6b2 size=0x4c50000 contains_NewTeam=False
+  V N : offset=0xac418056 file=0xac62b6b2 size=0x4c50000 contains_NewTeam=False
+  V  : offset=0xac558056 file=0xac76b6b2 size=0x4c50000 contains_NewTeam=False
+  V  : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V   : offset=0xacd88056 file=0xacf9b6b2 size=0x4ca0000 contains_NewTeam=False
+  V   : offset=0xacec8056 file=0xad0db6b2 size=0x4ca0000 contains_NewTeam=False
+  V  : offset=0xad088056 file=0xad29b6b2 size=0x4ca0000 contains_NewTeam=False
+  V / : offset=0xad1e8056 file=0xad3fb6b2 size=0x4ca0000 contains_NewTeam=False
+  V D : offset=0xad388056 file=0xad59b6b2 size=0x4ca0000 contains_NewTeam=False
+  V \ : offset=0xad4f8056 file=0xad70b6b2 size=0x4ca0000 contains_NewTeam=False
+  V i : offset=0xa9398056 file=0xa95ab6b2 size=0x4ca0000 contains_NewTeam=False
+  OQ: offset=0xad758056 file=0xad96b6b2 size=0x4ca0000 contains_NewTeam=False
+  V   : offset=0x90648056 file=0x9085b6b2 size=0x4cf0000 contains_NewTeam=False
+  V  : offset=0xae008056 file=0xae21b6b2 size=0x4cf0000 contains_NewTeam=False
+  V  : offset=0xae0b8056 file=0xae2cb6b2 size=0x4cf0000 contains_NewTeam=False
+  V % : offset=0xae1b8056 file=0xae3cb6b2 size=0x4cf0000 contains_NewTeam=False
+  V 7 : offset=0xae2e8056 file=0xae4fb6b2 size=0x4cf0000 contains_NewTeam=False
+  V B : offset=0x93528056 file=0x9373b6b2 size=0x4cf0000 contains_NewTeam=False
+  V Y : offset=0xae4d8056 file=0xae6eb6b2 size=0x4cf0000 contains_NewTeam=False
+  V n : offset=0xae638056 file=0xae84b6b2 size=0x4cf0000 contains_NewTeam=False
+  V   : offset=0xae758056 file=0xae96b6b2 size=0x4cf0000 contains_NewTeam=False
+  V   : offset=0xae878056 file=0xaea8b6b2 size=0x4cf0000 contains_NewTeam=False
+  V   : offset=0xae988056 file=0xaeb9b6b2 size=0x4cf0000 contains_NewTeam=False
+  V   : offset=0xaea98056 file=0xaecab6b2 size=0x4cf0000 contains_NewTeam=False
+  V   : offset=0xaec08056 file=0xaee1b6b2 size=0x4cf0000 contains_NewTeam=False
+  V   : offset=0xaedb8056 file=0xaefcb6b2 size=0x4cf0000 contains_NewTeam=False
+  V   : offset=0xaef18056 file=0xaf12b6b2 size=0x4cf0000 contains_NewTeam=False
+  V  : offset=0xaf018056 file=0xaf22b6b2 size=0x4cf0000 contains_NewTeam=False
+  V ! : offset=0xaf178056 file=0xaf38b6b2 size=0x4cf0000 contains_NewTeam=False
+  V / : offset=0xaf2b8056 file=0xaf4cb6b2 size=0x4cf0000 contains_NewTeam=False
+  V 5 : offset=0xa65c8056 file=0xa67db6b2 size=0x4cf0000 contains_NewTeam=False
+  V = : offset=0x55ac8056 file=0x55cdb6b2 size=0x4cf0000 contains_NewTeam=False
+  V S : offset=0xaf478056 file=0xaf68b6b2 size=0x4cf0000 contains_NewTeam=False
+  V k : offset=0xaf5f8056 file=0xaf80b6b2 size=0x4cf0000 contains_NewTeam=False
+  V v : offset=0x8f118056 file=0x8f32b6b2 size=0x4cf0000 contains_NewTeam=False
+  V   : offset=0xaf7c8056 file=0xaf9db6b2 size=0x4cf0000 contains_NewTeam=False
+  V   : offset=0x949d8056 file=0x94beb6b2 size=0x4cf0000 contains_NewTeam=False
+  V T: offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V 
+     : offset=0xaffe8056 file=0xb01fb6b2 size=0x4d40000 contains_NewTeam=False
+  V }^: offset=0xb0158056 file=0xb036b6b2 size=0x4d40000 contains_NewTeam=False
+  V a\: offset=0x5c558056 file=0x5c76b6b2 size=0x4d40000 contains_NewTeam=False
+  V ' : offset=0xb01f8056 file=0xb040b6b2 size=0x4d40000 contains_NewTeam=False
+  V   : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V R : offset=0xb0b98056 file=0xb0dab6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0x93578056 file=0x9378b6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0xb0c08056 file=0xb0e1b6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0xb0d58056 file=0xb0f6b6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0xb0eb8056 file=0xb10cb6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0xb1078056 file=0xb128b6b2 size=0x4d90000 contains_NewTeam=False
+  V $ : offset=0xb1128056 file=0xb133b6b2 size=0x4d90000 contains_NewTeam=False
+  V : : offset=0xb1308056 file=0xb151b6b2 size=0x4d90000 contains_NewTeam=False
+  V W : offset=0xb1478056 file=0xb168b6b2 size=0x4d90000 contains_NewTeam=False
+  V f : offset=0x8e438056 file=0x8e64b6b2 size=0x4d90000 contains_NewTeam=False
+  V ~ : offset=0xb1778056 file=0xb198b6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0xb1858056 file=0xb1a6b6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0xa6858056 file=0xa6a6b6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0xb1a78056 file=0xb1c8b6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0xb1b78056 file=0xb1d8b6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0xb1ca8056 file=0xb1ebb6b2 size=0x4d90000 contains_NewTeam=False
+  V   : offset=0x90bb8056 file=0x90dcb6b2 size=0x4d90000 contains_NewTeam=False
+  OQ: offset=0xb1e48056 file=0xb205b6b2 size=0x4d90000 contains_NewTeam=False
+  V n : offset=0xb2688056 file=0xb289b6b2 size=0x4de0000 contains_NewTeam=False
+  V } : offset=0xb2758056 file=0xb296b6b2 size=0x4de0000 contains_NewTeam=False
+  V   : offset=0x93528056 file=0x9373b6b2 size=0x4de0000 contains_NewTeam=False
+  V   : offset=0x93578056 file=0x9378b6b2 size=0x4de0000 contains_NewTeam=False
+  V   : offset=0x5e228056 file=0x5e43b6b2 size=0x4de0000 contains_NewTeam=False
+  V   : offset=0xb17e8056 file=0xb19fb6b2 size=0x4de0000 contains_NewTeam=False
+  V   : offset=0xae808056 file=0xaea1b6b2 size=0x4de0000 contains_NewTeam=False
+  V : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V  : offset=0xb3148056 file=0xb335b6b2 size=0x4e30000 contains_NewTeam=False
+  V % : offset=0xb31c8056 file=0xb33db6b2 size=0x4e30000 contains_NewTeam=False
+  V . : offset=0xb3298056 file=0xb34ab6b2 size=0x4e30000 contains_NewTeam=False
+  V 7 : offset=0xb3338056 file=0xb354b6b2 size=0x4e30000 contains_NewTeam=False
+  V A : offset=0xb33c8056 file=0xb35db6b2 size=0x4e30000 contains_NewTeam=False
+  V L : offset=0xb3468056 file=0xb367b6b2 size=0x4e30000 contains_NewTeam=False
+  V Z : offset=0xb3558056 file=0xb376b6b2 size=0x4e30000 contains_NewTeam=False
+  V d : offset=0xb3608056 file=0xb381b6b2 size=0x4e30000 contains_NewTeam=False
+  V q : offset=0xb36d8056 file=0xb38eb6b2 size=0x4e30000 contains_NewTeam=False
+  V | : offset=0xb3768056 file=0xb397b6b2 size=0x4e30000 contains_NewTeam=False
+  V   : offset=0xb3858056 file=0xb3a6b6b2 size=0x4e30000 contains_NewTeam=False
+  OQ: offset=0xb3988056 file=0xb3b9b6b2 size=0x4e30000 contains_NewTeam=False
+  V " : offset=0xb41a8056 file=0xb43bb6b2 size=0x4e80000 contains_NewTeam=False
+  V 1 : offset=0xb42b8056 file=0xb44cb6b2 size=0x4e80000 contains_NewTeam=False
+  V v : offset=0xb4388056 file=0xb459b6b2 size=0x4e80000 contains_NewTeam=False
+  V M : offset=0xb43d8056 file=0xb45eb6b2 size=0x4e80000 contains_NewTeam=False
+  V ] : offset=0xb4568056 file=0xb477b6b2 size=0x4e80000 contains_NewTeam=False
+  V i : offset=0xb4658056 file=0xb486b6b2 size=0x4e80000 contains_NewTeam=False
+  V } : offset=0xb4768056 file=0xb497b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb4848056 file=0xb4a5b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb4998056 file=0xb4bab6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb4ab8056 file=0xb4ccb6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb4bb8056 file=0xb4dcb6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb4cf8056 file=0xb4f0b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb4e38056 file=0xb504b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb4f48056 file=0xb515b6b2 size=0x4e80000 contains_NewTeam=False
+  V      : offset=0xb5028056 file=0xb523b6b2 size=0x4e80000 contains_NewTeam=False
+  V  : offset=0xb5108056 file=0xb531b6b2 size=0x4e80000 contains_NewTeam=False
+  V + : offset=0xb5218056 file=0xb542b6b2 size=0x4e80000 contains_NewTeam=False
+  V 9 : offset=0xb5328056 file=0xb553b6b2 size=0x4e80000 contains_NewTeam=False
+  V N : offset=0xb5438056 file=0xb564b6b2 size=0x4e80000 contains_NewTeam=False
+  V m : offset=0xb55e8056 file=0xb57fb6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb5798056 file=0xb59ab6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb58b8056 file=0xb5acb6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb59f8056 file=0xb5c0b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb5b38056 file=0xb5d4b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb5c78056 file=0xb5e8b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb5db8056 file=0xb5fcb6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb5e98056 file=0xb60ab6b2 size=0x4e80000 contains_NewTeam=False
+  V : offset=0xb5fc8056 file=0xb61db6b2 size=0x4e80000 contains_NewTeam=False
+  V ' : offset=0xb6148056 file=0xb635b6b2 size=0x4e80000 contains_NewTeam=False
+  V A : offset=0xb6358056 file=0xb656b6b2 size=0x4e80000 contains_NewTeam=False
+  V Q : offset=0xb6498056 file=0xb66ab6b2 size=0x4e80000 contains_NewTeam=False
+  V a : offset=0xb6598056 file=0xb67ab6b2 size=0x4e80000 contains_NewTeam=False
+  V x : offset=0xb6698056 file=0xb68ab6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb6848056 file=0xb6a5b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb6a08056 file=0xb6c1b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb6b88056 file=0xb6d9b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb6d08056 file=0xb6f1b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0xb6e88056 file=0xb709b6b2 size=0x4e80000 contains_NewTeam=False
+  V  : offset=0xb6fc8056 file=0xb71db6b2 size=0x4e80000 contains_NewTeam=False
+  V ␦ : offset=0xb7108056 file=0xb731b6b2 size=0x4e80000 contains_NewTeam=False
+  V / : offset=0xb7248056 file=0xb745b6b2 size=0x4e80000 contains_NewTeam=False
+  V E : offset=0xb7398056 file=0xb75ab6b2 size=0x4e80000 contains_NewTeam=False
+  OQ: offset=0xb7508056 file=0xb771b6b2 size=0x4e80000 contains_NewTeam=False
+  V   : offset=0x53888056 file=0x53a9b6b2 size=0x5060000 contains_NewTeam=False
+  V   : offset=0x8da88056 file=0x8dc9b6b2 size=0x5060000 contains_NewTeam=False
+  V   : offset=0x8dac8056 file=0x8dcdb6b2 size=0x5060000 contains_NewTeam=False
+  V   : offset=0xb7db8056 file=0xb7fcb6b2 size=0x5060000 contains_NewTeam=False
+  V   : offset=0x8dcc8056 file=0x8dedb6b2 size=0x5060000 contains_NewTeam=False
+  V   : offset=0x8dde8056 file=0x8dffb6b2 size=0x5060000 contains_NewTeam=False
+  V   : offset=0x8de78056 file=0x8e08b6b2 size=0x5060000 contains_NewTeam=False
+  V [ : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V h : offset=0xb8608056 file=0xb881b6b2 size=0x50b0000 contains_NewTeam=False
+  V v : offset=0xb86f8056 file=0xb890b6b2 size=0x50b0000 contains_NewTeam=False
+  V   : offset=0xb87c8056 file=0xb89db6b2 size=0x50b0000 contains_NewTeam=False
+  V   : offset=0xb8908056 file=0xb8b1b6b2 size=0x50b0000 contains_NewTeam=False
+  V   : offset=0xb8a28056 file=0xb8c3b6b2 size=0x50b0000 contains_NewTeam=False
+  V   : offset=0xb8b98056 file=0xb8dab6b2 size=0x50b0000 contains_NewTeam=False
+  OQ: offset=0xb8d38056 file=0xb8f4b6b2 size=0x50b0000 contains_NewTeam=False
+  V Y : offset=0x90108056 file=0x9031b6b2 size=0x5100000 contains_NewTeam=False
+  V   : offset=0x8ecb8056 file=0x8eecb6b2 size=0x5100000 contains_NewTeam=False
+  V Y: offset=0xb9608056 file=0xb981b6b2 size=0x5100000 contains_NewTeam=False
+  V m : offset=0xb9658056 file=0xb986b6b2 size=0x5100000 contains_NewTeam=False
+  V  : offset=0xb9748056 file=0xb995b6b2 size=0x5100000 contains_NewTeam=False
+  V   : offset=0xb98a8056 file=0xb9abb6b2 size=0x5100000 contains_NewTeam=False
+  V ` : offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V | : offset=0xb8688056 file=0xb889b6b2 size=0x5150000 contains_NewTeam=False
+  V  : offset=0xb8868056 file=0xb8a7b6b2 size=0x5150000 contains_NewTeam=False
+  OQ: offset=0xba1d8056 file=0xba3eb6b2 size=0x5150000 contains_NewTeam=False
+  V   : offset=0xbaa58056 file=0xbac6b6b2 size=0x51a0000 contains_NewTeam=False
+  V   : offset=0xbab88056 file=0xbad9b6b2 size=0x51a0000 contains_NewTeam=False
+  V   : offset=0xbad58056 file=0xbaf6b6b2 size=0x51a0000 contains_NewTeam=False
+  V   : offset=0xbaf08056 file=0xbb11b6b2 size=0x51a0000 contains_NewTeam=False
+  V  : offset=0xbb0a8056 file=0xbb2bb6b2 size=0x51a0000 contains_NewTeam=False
+  OQ: offset=0xbb248056 file=0xbb45b6b2 size=0x51a0000 contains_NewTeam=False
+  V   : offset=0xb7d38056 file=0xb7f4b6b2 size=0x51f0000 contains_NewTeam=False
+  V *^: offset=0xbbae8056 file=0xbbcfb6b2 size=0x51f0000 contains_NewTeam=False
+  V   : offset=0xbbb58056 file=0xbbd6b6b2 size=0x51f0000 contains_NewTeam=False
+  V   : offset=0xbbc18056 file=0xbbe2b6b2 size=0x51f0000 contains_NewTeam=False
+  V / : offset=0xbbce8056 file=0xbbefb6b2 size=0x51f0000 contains_NewTeam=False
+  V   : offset=0xb1d48056 file=0xb1f5b6b2 size=0x51f0000 contains_NewTeam=False
+  V   : offset=0x5e778056 file=0x5e98b6b2 size=0x51f0000 contains_NewTeam=False
+  V   : offset=0xbbde8056 file=0xbbffb6b2 size=0x51f0000 contains_NewTeam=False
+  : offset=0xbc6d0016 file=0xbc8e3672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xbd5f0016 contains_NewTeam=False
+  : offset=0xbde30016 file=0xbe043672 size=0x5280000 contains_NewTeam=False
+  : offset=0x52d0000 file=0x54e365c size=0xbedb0016 contains_NewTeam=False
+  : offset=0xbf570016 file=0xbf783672 size=0x5310000 contains_NewTeam=False
+  : offset=0x5310000 file=0x552365c size=0xc0630016 contains_NewTeam=False
+  6: offset=0xc0df0016 file=0xc1003672 size=0x1280000 contains_NewTeam=False
+  : offset=0x2c30000 file=0x2e4365c size=0xc1d70016 contains_NewTeam=False
+  6: offset=0xc2530036 file=0xc2743692 size=0x2c30000 contains_NewTeam=False
+  : offset=0x2c30000 file=0x2e4365c size=0xc34b0016 contains_NewTeam=False
+  : offset=0xc3c70016 file=0xc3e83672 size=0x1d90000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xc4bc8056 contains_NewTeam=False
+  V   : offset=0xc5388056 file=0xc559b6b2 size=0xf10000 contains_NewTeam=False
+  V   : offset=0xc6308056 file=0xc651b6b2 size=0xe30000 contains_NewTeam=False
+  : offset=0xc7280016 file=0xc7493672 size=0x2c30000 contains_NewTeam=False
+  : offset=0x53a0000 file=0x55b365c size=0xc8200016 contains_NewTeam=False
+  : offset=0xc89c0016 file=0xc8bd3672 size=0x1d90000 contains_NewTeam=False
+  : offset=0x1d90000 file=0x1fa365c size=0xc9940016 contains_NewTeam=False
+  V   : offset=0xca100016 file=0xca313672 size=0x1d90000 contains_NewTeam=False
+  : offset=0xcb088056 file=0xcb29b6b2 size=0x53e0000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xcc000016 contains_NewTeam=False
+  V   : offset=0xcc7c8056 file=0xcc9db6b2 size=0xf10000 contains_NewTeam=False
+  : offset=0xcd718056 file=0xcd92b6b2 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xce690016 contains_NewTeam=False
+  V a : offset=0xcee50016 file=0xcf063672 size=0xf10000 contains_NewTeam=False
+  : offset=0xcfdd8056 file=0xcffeb6b2 size=0xf10000 contains_NewTeam=False
+  : offset=0x1d90000 file=0x1fa365c size=0xd0d50016 contains_NewTeam=False
+  : offset=0xd1510016 file=0xd1723672 size=0x1d90000 contains_NewTeam=False
+  : offset=0x1d90000 file=0x1fa365c size=0xd2460016 contains_NewTeam=False
+  : offset=0xd2c20016 file=0xd2e33672 size=0x1d90000 contains_NewTeam=False
+  : offset=0x1d90000 file=0x1fa365c size=0xd3ba0016 contains_NewTeam=False
+  : offset=0xd4360016 file=0xd4573672 size=0x1d90000 contains_NewTeam=False
+  : offset=0x1d90000 file=0x1fa365c size=0xd52e0016 contains_NewTeam=False
+  : offset=0xd5aa0016 file=0xd5cb3672 size=0x1d90000 contains_NewTeam=False
+  : offset=0x1d90000 file=0x1fa365c size=0xd6a20016 contains_NewTeam=False
+  : offset=0xd71e0016 file=0xd73f3672 size=0x2a0000 contains_NewTeam=False
+  : offset=0x2a0000 file=0x4b365c size=0xd8160016 contains_NewTeam=False
+  : offset=0xd8920016 file=0xd8b33672 size=0x2a0000 contains_NewTeam=False
+  : offset=0x2a0000 file=0x4b365c size=0xd98a0016 contains_NewTeam=False
+  : offset=0xda060016 file=0xda273672 size=0x2a0000 contains_NewTeam=False
+  : offset=0x2a0000 file=0x4b365c size=0xdafe0016 contains_NewTeam=False
+  : offset=0xdb7a0016 file=0xdb9b3672 size=0x2a0000 contains_NewTeam=False
+  : offset=0x2a0000 file=0x4b365c size=0xdc720016 contains_NewTeam=False
+  : offset=0xdcee0016 file=0xdd0f3672 size=0x2a0000 contains_NewTeam=False
+  : offset=0x2a0000 file=0x4b365c size=0xdde60016 contains_NewTeam=False
+  : offset=0xde5f0016 file=0xde803672 size=0x2a0000 contains_NewTeam=False
+  : offset=0x2a0000 file=0x4b365c size=0xdf570016 contains_NewTeam=False
+  : offset=0xdfd30016 file=0xdff43672 size=0x2a0000 contains_NewTeam=False
+  : offset=0x2a0000 file=0x4b365c size=0xe0cb0016 contains_NewTeam=False
+  : offset=0xe1470016 file=0xe1683672 size=0x2a0000 contains_NewTeam=False
+  : offset=0x2a0000 file=0x4b365c size=0xe23c0016 contains_NewTeam=False
+  : offset=0xe2b80016 file=0xe2d93672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xe3b00016 contains_NewTeam=False
+  : offset=0xe42c0016 file=0xe44d3672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xe5240016 contains_NewTeam=False
+  : offset=0xe5a00016 file=0xe5c13672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xe6950016 contains_NewTeam=False
+  : offset=0xe7110016 file=0xe7323672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xe8060016 contains_NewTeam=False
+  : offset=0xe8820016 file=0xe8a33672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xe97a0016 contains_NewTeam=False
+  : offset=0xe9f60016 file=0xea173672 size=0xe30000 contains_NewTeam=False
+  : offset=0xe30000 file=0x104365c size=0xeaeb0016 contains_NewTeam=False
+  : offset=0xeb670016 file=0xeb883672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xec5f0016 contains_NewTeam=False
+  : offset=0xecd80016 file=0xecf93672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xedd00016 contains_NewTeam=False
+  : offset=0xee4c0016 file=0xee6d3672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xef440016 contains_NewTeam=False
+  : offset=0xefc00016 file=0xefe13672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xf0b80016 contains_NewTeam=False
+  : offset=0xf1340016 file=0xf1553672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xf22c0016 contains_NewTeam=False
+  : offset=0xf2a80016 file=0xf2c93672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xf3a00016 contains_NewTeam=False
+  : offset=0xf41c0016 file=0xf43d3672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xf5140016 contains_NewTeam=False
+  : offset=0xf5900016 file=0xf5b13672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xf6880016 contains_NewTeam=False
+  : offset=0xf7040016 file=0xf7253672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xf7fc0016 contains_NewTeam=False
+  : offset=0xf8780016 file=0xf8993672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xf9700016 contains_NewTeam=False
+  : offset=0xf9ec0016 file=0xfa0d3672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xfae10016 contains_NewTeam=False
+  : offset=0xfb5d0016 file=0xfb7e3672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xfc550016 contains_NewTeam=False
+  : offset=0xfcd10016 file=0xfcf23672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xfdc90016 contains_NewTeam=False
+  : offset=0xfe450016 file=0xfe663672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10000 file=0x112365c size=0xff3d0016 contains_NewTeam=False
+  : offset=0xffb90016 file=0xffda3672 size=0xf10000 contains_NewTeam=False
+  : offset=0xf10001 file=0x112365d size=0xae0016 contains_NewTeam=False
+  : offset=0x12a0016 file=0x14b3672 size=0xf10001 contains_NewTeam=False
+  : offset=0xf10001 file=0x112365d size=0x2220006 contains_NewTeam=False
+  : offset=0x29e0016 file=0x2bf3672 size=0xf10001 contains_NewTeam=False
+  : offset=0xf10001 file=0x112365d size=0x3960016 contains_NewTeam=False
+  : offset=0x4120016 file=0x4333672 size=0xf10001 contains_NewTeam=False
+  : offset=0xf10001 file=0x112365d size=0x50a0016 contains_NewTeam=False
+  : offset=0x5860016 file=0x5a73672 size=0xf10001 contains_NewTeam=False
+  : offset=0xf10001 file=0x112365d size=0x67e0016 contains_NewTeam=False
+  : offset=0x6fa0016 file=0x71b3672 size=0xf10001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x8040016 contains_NewTeam=False
+  : offset=0x8800016 file=0x8a13672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x9780016 contains_NewTeam=False
+  : offset=0x9f40016 file=0xa153672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0xaec0016 contains_NewTeam=False
+  : offset=0xb680016 file=0xb893672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0xc600016 contains_NewTeam=False
+  : offset=0xcdc0016 file=0xcfd3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0xdd40016 contains_NewTeam=False
+  : offset=0xe4d0016 file=0xe6e3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0xf420016 contains_NewTeam=False
+  : offset=0xfbe0016 file=0xfdf3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x10b60016 contains_NewTeam=False
+  : offset=0x11320016 file=0x11533672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x122a0016 contains_NewTeam=False
+  : offset=0x12a60016 file=0x12c73672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x139e0016 contains_NewTeam=False
+  : offset=0x141a0016 file=0x143b3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x15120016 contains_NewTeam=False
+  : offset=0x158e0016 file=0x15af3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x16860016 contains_NewTeam=False
+  : offset=0x17020016 file=0x17233672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x17fa0016 contains_NewTeam=False
+  : offset=0x18760016 file=0x18973672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x19680016 contains_NewTeam=False
+  : offset=0x19e40016 file=0x1a053672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x1adc0016 contains_NewTeam=False
+  : offset=0x1b580016 file=0x1b793672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x1c500016 contains_NewTeam=False
+  : offset=0x1ccc0016 file=0x1ced3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x1dbe0016 contains_NewTeam=False
+  : offset=0x1e370016 file=0x1e583672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x1f2f0016 contains_NewTeam=False
+  : offset=0x1fab0016 file=0x1fcc3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x20a30016 contains_NewTeam=False
+  : offset=0x211f0016 file=0x21403672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x22170016 contains_NewTeam=False
+  : offset=0x22930016 file=0x22b43672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x238b0016 contains_NewTeam=False
+  : offset=0x24040016 file=0x24253672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x24fc0016 contains_NewTeam=False
+  : offset=0x25780016 file=0x25993672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x26700016 contains_NewTeam=False
+  : offset=0x26ec0016 file=0x270d3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x27e40016 contains_NewTeam=False
+  : offset=0x28600016 file=0x28813672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x29580016 contains_NewTeam=False
+  : offset=0x29d40016 file=0x29f53672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x2acc0016 contains_NewTeam=False
+  : offset=0x2b480016 file=0x2b693672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x2c400016 contains_NewTeam=False
+  : offset=0x2cbc0016 file=0x2cdd3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x2db40016 contains_NewTeam=False
+  : offset=0x2e300016 file=0x2e513672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x2f280016 contains_NewTeam=False
+  : offset=0x2fa40016 file=0x2fc53672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x309c0016 contains_NewTeam=False
+  : offset=0x31150016 file=0x31363672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x320d0016 contains_NewTeam=False
+  : offset=0x32890016 file=0x32aa3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x337e0016 contains_NewTeam=False
+  : offset=0x33fa0016 file=0x341b3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x34f20016 contains_NewTeam=False
+  : offset=0x356e0016 file=0x358f3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x36660016 contains_NewTeam=False
+  : offset=0x36e20016 file=0x37033672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x37da0016 contains_NewTeam=False
+  : offset=0x38560016 file=0x38773672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x394e0016 contains_NewTeam=False
+  : offset=0x39ca0016 file=0x39eb3672 size=0x5580001 contains_NewTeam=False
+  : offset=0x5580001 file=0x579365d size=0x3ac20016 contains_NewTeam=False
+  : offset=0x3b3e0011 file=0x3b5f366d size=0x1d90001 contains_NewTeam=False
+  : offset=0x55c0001 file=0x57d365d size=0x3c3b0016 contains_NewTeam=False
+  : offset=0x3cb70016 file=0x3cd83672 size=0x55c0001 contains_NewTeam=False
+  : offset=0x55c0001 file=0x57d365d size=0x3daf0016 contains_NewTeam=False
+  : offset=0x3e2b0016 file=0x3e4c3672 size=0x55c0001 contains_NewTeam=False
+  : offset=0x55c0001 file=0x57d365d size=0x3f230016 contains_NewTeam=False
+  : offset=0x3f9c0016 file=0x3fbd3672 size=0x55c0001 contains_NewTeam=False
+  : offset=0x55c0001 file=0x57d365d size=0x40940016 contains_NewTeam=False
+  : offset=0x41100016 file=0x41313672 size=0x55c0001 contains_NewTeam=False
+  : offset=0x55c0001 file=0x57d365d size=0x42080016 contains_NewTeam=False
+  : offset=0x42840016 file=0x42a53672 size=0x55c0001 contains_NewTeam=False
+  : offset=0x5600001 file=0x581365d size=0x43820016 contains_NewTeam=False
+  : offset=0x43fe0016 file=0x441f3672 size=0x5600001 contains_NewTeam=False
+  : offset=0x5640001 file=0x585365d size=0x44f50016 contains_NewTeam=False
+  V  S: offset=0x514f0606 file=0x51703c62 size=0xf10000 contains_NewTeam=False
+  V   : offset=0x4a628056 file=0x4a83b6b2 size=0x5940001 contains_NewTeam=False
+  V   : offset=0xb7d78056 file=0xb7f8b6b2 size=0x5940000 contains_NewTeam=False
+  V   : offset=0x8db08056 file=0x8dd1b6b2 size=0x5940000 contains_NewTeam=False
+  V   : offset=0x8dbe8056 file=0x8ddfb6b2 size=0x5940000 contains_NewTeam=False
+  V   : offset=0x8dda8056 file=0x8dfbb6b2 size=0x5940000 contains_NewTeam=False
+  V   : offset=0x8de28056 file=0x8e03b6b2 size=0x5940000 contains_NewTeam=False
+  V   : offset=0x8deb8056 file=0x8e0cb6b2 size=0x5940000 contains_NewTeam=False
+  V Y : offset=0x90108056 file=0x9031b6b2 size=0x5940000 contains_NewTeam=False
+  V " : offset=0x8f1e8056 file=0x8f3fb6b2 size=0x5940000 contains_NewTeam=False
+  V Y: offset=0x8ee28056 file=0x8f03b6b2 size=0x5940000 contains_NewTeam=False
+  V  [: offset=0x8ee68056 file=0x8f07b6b2 size=0x5940000 contains_NewTeam=False
+  V eJ: offset=0x8ed08056 file=0x8ef1b6b2 size=0x5940000 contains_NewTeam=False
+  V   : offset=0xb9608056 file=0xb981b6b2 size=0x5940000 contains_NewTeam=False
+  V lJ: offset=0x8f668056 file=0x8f87b6b2 size=0x5940000 contains_NewTeam=False
+  V |J: offset=0x4a768056 file=0x4a97b6b2 size=0x5940001 contains_NewTeam=False
+  V  J: offset=0x90248056 file=0x9045b6b2 size=0x5940000 contains_NewTeam=False
+  V  J: offset=0x4a8a8056 file=0x4aabb6b2 size=0x5940001 contains_NewTeam=False
+  V   : offset=0x4a9e8056 file=0x4abfb6b2 size=0x5940001 contains_NewTeam=False
+  V  J: offset=0x4aa48056 file=0x4ac5b6b2 size=0x5940001 contains_NewTeam=False
+  V  J: offset=0x4abc8056 file=0x4addb6b2 size=0x5940001 contains_NewTeam=False
+  V  J: offset=0x4ad08056 file=0x4af1b6b2 size=0x5940001 contains_NewTeam=False
+  V  J: offset=0x4ae98056 file=0x4b0ab6b2 size=0x5940001 contains_NewTeam=False
+  V 
+    K: offset=0x4afe8056 file=0x4b1fb6b2 size=0x5940001 contains_NewTeam=False
+  V : offset=0x4b138056 file=0x4b34b6b2 size=0x5940001 contains_NewTeam=False
+  V K : offset=0x4b238056 file=0x4b44b6b2 size=0x5940001 contains_NewTeam=False
+  V +K: offset=0x8f508056 file=0x8f71b6b2 size=0x5940000 contains_NewTeam=False
+  : offset=0x8f5d8056 file=0x8f7eb6b2 size=0x5940000 contains_NewTeam=False
+  : offset=0x5990001 file=0x5ba365d size=0x4bec0011 contains_NewTeam=False
+  : offset=0x87690011 file=0x878a366d size=0x5e90001 contains_NewTeam=False
+  : offset=0x53e0001 file=0x55f365d size=0x8ac00001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x61d0001 file=0x63e365d size=0x8c530001 contains_NewTeam=False
+  : offset=0x8cd50001 file=0x8cf6365d size=0x6270001 contains_NewTeam=False
+  : offset=0x6180001 file=0x639365d size=0x8c530001 contains_NewTeam=False
+  : offset=0xaa080001 file=0xaa29365d size=0x7150001 contains_NewTeam=False
+  : offset=0x6270001 file=0x648365d size=0xb9bd0001 contains_NewTeam=False
+  : offset=0xba390006 file=0xba5a3662 size=0x7670001 contains_NewTeam=False
+  : offset=0xe30001 file=0x104365d size=0xbb310001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x61d0001 file=0x63e365d size=0xaa080001 contains_NewTeam=False
+  : offset=0xbb310001 file=0xbb52365d size=0x7700001 contains_NewTeam=False
+  : offset=0x6180001 file=0x639365d size=0x8c530001 contains_NewTeam=False
+  : offset=0x8cd50001 file=0x8cf6365d size=0x6270001 contains_NewTeam=False
+  : offset=0x7750001 file=0x796365d size=0xaa080001 contains_NewTeam=False
+  : offset=0xbb310001 file=0xbb52365d size=0x7700001 contains_NewTeam=False
+  : offset=0x6180001 file=0x639365d size=0x8c530001 contains_NewTeam=False
+  : offset=0xaa080001 file=0xaa29365d size=0x7150001 contains_NewTeam=False
+  : offset=0x2850001 file=0x2a6365d size=0xe17c0006 contains_NewTeam=False
+  : offset=0xe20d0006 file=0xe22e3662 size=0x6130001 contains_NewTeam=False
+  : offset=0x53e0001 file=0x55f365d size=0x8a440001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0xe3810001 contains_NewTeam=False
+  : offset=0xf3320001 file=0xf353365d size=0x1280001 contains_NewTeam=False
+  : offset=0x1280001 file=0x149365d size=0xe17c0006 contains_NewTeam=False
+  : offset=0xe20d0006 file=0xe22e3662 size=0x6130001 contains_NewTeam=False
+  : offset=0x2810001 file=0x2a2365d size=0xa9720001 contains_NewTeam=False
+  : offset=0xf42a0001 file=0xf44b365d size=0x1280001 contains_NewTeam=False
+  : offset=0x1280001 file=0x149365d size=0x8b490001 contains_NewTeam=False
+  : offset=0xf5220001 file=0xf543365d size=0x6220001 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0xb800001 contains_NewTeam=False
+  : offset=0xbfc0001 file=0xc1d365d size=0x1280002 contains_NewTeam=False
+  : offset=0x1280001 file=0x149365d size=0xf3ae0001 contains_NewTeam=False
+  : offset=0xcd6e0006 file=0xcd8f3662 size=0x7df0001 contains_NewTeam=False
+  : offset=0x6130001 file=0x634365d size=0xe20d0006 contains_NewTeam=False
+  : offset=0xe2890006 file=0xe2aa3662 size=0x53e0001 contains_NewTeam=False
+  : offset=0x53e0001 file=0x55f365d size=0x8b490001 contains_NewTeam=False
+  : offset=0xf59e0001 file=0xf5bf365d size=0x7750001 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0xf42a0001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x7750001 file=0x796365d size=0x256b0001 contains_NewTeam=False
+  : offset=0x8c530001 file=0x8c74365d size=0x6220001 contains_NewTeam=False
+  : offset=0x6270001 file=0x648365d size=0x8a440001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x7750001 file=0x796365d size=0x8c530001 contains_NewTeam=False
+  : offset=0x3cfe0001 file=0x3d1f365d size=0x7150002 contains_NewTeam=False
+  : offset=0x7150002 file=0x736365e size=0x4efe0001 contains_NewTeam=False
+  : offset=0x4f7a0006 file=0x4f9b3662 size=0x1280002 contains_NewTeam=False
+  : offset=0x6130002 file=0x634365e size=0x8b490001 contains_NewTeam=False
+  : offset=0x50720001 file=0x5093365d size=0x61d0002 contains_NewTeam=False
+  : offset=0x61d0002 file=0x63e365e size=0x516a0001 contains_NewTeam=False
+  : offset=0x51e60001 file=0x5207365d size=0x61d0002 contains_NewTeam=False
+  : offset=0x9790002 file=0x99a365e size=0x52eb0001 contains_NewTeam=False
+  : offset=0x6bc40001 file=0x6be5365d size=0xa4d0002 contains_NewTeam=False
+  : offset=0xa560002 file=0xa77365e size=0x8b490001 contains_NewTeam=False
+  : offset=0x6cbc0001 file=0x6cdd365d size=0xa5b0002 contains_NewTeam=False
+  : offset=0xa600001 file=0xa81365d size=0x6d480001 contains_NewTeam=False
+  : offset=0x6dc40001 file=0x6de5365d size=0xa5b0002 contains_NewTeam=False
+  : offset=0xa5b0002 file=0xa7c365e size=0x6ebc0001 contains_NewTeam=False
+  : offset=0x6f380001 file=0x6f59365d size=0xa5b0002 contains_NewTeam=False
+  : offset=0xa5b0002 file=0xa7c365e size=0x70300001 contains_NewTeam=False
+  : offset=0x70ac0001 file=0x70cd365d size=0xa5b0002 contains_NewTeam=False
+  : offset=0xa5b0002 file=0xa7c365e size=0x71a40001 contains_NewTeam=False
+  : offset=0x72200001 file=0x7241365d size=0xa5b0002 contains_NewTeam=False
+  : offset=0xa5b0002 file=0xa7c365e size=0x73180001 contains_NewTeam=False
+  : offset=0x73940001 file=0x73b5365d size=0xa5b0002 contains_NewTeam=False
+  : offset=0x6130002 file=0x634365e size=0x7f7e0001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0xa880002 file=0xaa9365e size=0x80810001 contains_NewTeam=False
+  : offset=0x8ac00001 file=0x8ae1365d size=0x6130001 contains_NewTeam=False
+  : offset=0x53e0001 file=0x55f365d size=0x8b490001 contains_NewTeam=False
+  : offset=0x8bbc0001 file=0x8bdd365d size=0x61d0002 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0x92980001 contains_NewTeam=False
+  : offset=0x8a440001 file=0x8a65365d size=0x53e0001 contains_NewTeam=False
+  : offset=0x1280002 file=0x149365e size=0x8b490001 contains_NewTeam=False
+  : offset=0x8cd50001 file=0x8cf6365d size=0x6270001 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0xf42a0001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x6270001 file=0x648365d size=0xf59e0001 contains_NewTeam=False
+  : offset=0x8c530001 file=0x8c74365d size=0x6220001 contains_NewTeam=False
+  : offset=0xf10002 file=0x112365e size=0x8b490001 contains_NewTeam=False
+  : offset=0xacfc0001 file=0xad1d365d size=0x6220002 contains_NewTeam=False
+  : offset=0x6220002 file=0x643365e size=0xadf40001 contains_NewTeam=False
+  : offset=0xae700001 file=0xae91365d size=0x7e40002 contains_NewTeam=False
+  : offset=0xaad0002 file=0xace365e size=0xaf760001 contains_NewTeam=False
+  : offset=0xaff20001 file=0xb013365d size=0xaad0002 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0xc9590001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x8b60002 file=0x8d7365e size=0x8c530001 contains_NewTeam=False
+  : offset=0xe38f0001 file=0xe3b0365d size=0xb3b0002 contains_NewTeam=False
+  : offset=0x1d90002 file=0x1fa365e size=0xe4900001 contains_NewTeam=False
+  Q   : offset=0xe50c0001 file=0xe52d365d size=0xb3b0002 contains_NewTeam=False
+  : offset=0xe6040001 file=0xe625365d size=0xb3b0002 contains_NewTeam=False
+  : offset=0x6180001 file=0x639365d size=0xe6800001 contains_NewTeam=False
+  : offset=0xe6fc0001 file=0xe71d365d size=0x61d0002 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0xf41e0001 contains_NewTeam=False
+  : offset=0xf49a0001 file=0xf4bb365d size=0x6130002 contains_NewTeam=False
+  : offset=0x53e0001 file=0x55f365d size=0xf5160001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x61d0002 file=0x63e365e size=0xf59e0001 contains_NewTeam=False
+  : offset=0x8c530001 file=0x8c74365d size=0x6220001 contains_NewTeam=False
+  : offset=0x61d0002 file=0x63e365e size=0xc1e0001 contains_NewTeam=False
+  : offset=0xc9a0001 file=0xcbb365d size=0xbae0003 contains_NewTeam=False
+  : offset=0x1280003 file=0x149365f size=0xda20001 contains_NewTeam=False
+  : offset=0xe1e0001 file=0xe3f365d size=0x1280003 contains_NewTeam=False
+  : offset=0x6180001 file=0x639365d size=0xca0a0001 contains_NewTeam=False
+  : offset=0xe6fc0001 file=0xe71d365d size=0x61d0002 contains_NewTeam=False
+  : offset=0x6130003 file=0x634365f size=0x20940001 contains_NewTeam=False
+  : offset=0xf49a0001 file=0xf4bb365d size=0x6130002 contains_NewTeam=False
+  : offset=0x1280003 file=0x149365f size=0xf5160001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x61d0002 file=0x63e365e size=0xf59e0001 contains_NewTeam=False
+  : offset=0x8c530001 file=0x8c74365d size=0x6220001 contains_NewTeam=False
+  : offset=0x61d0002 file=0x63e365e size=0x8cd50001 contains_NewTeam=False
+  : offset=0xc9590001 file=0xc97a365d size=0x6130002 contains_NewTeam=False
+  : offset=0x53e0001 file=0x55f365d size=0x8b490001 contains_NewTeam=False
+  : offset=0x36e40001 file=0x3705365d size=0xaad0003 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0xc9590001 contains_NewTeam=False
+  : offset=0x4ad70001 file=0x4af8365d size=0x53e0003 contains_NewTeam=False
+  : offset=0x53e0003 file=0x55f365f size=0x8b490001 contains_NewTeam=False
+  : offset=0x4bcf0001 file=0x4bf0365d size=0xaad0003 contains_NewTeam=False
+  : offset=0xaad0003 file=0xace365f size=0x8c530001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x7e40003 file=0x805365f size=0x67f20001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0xa600003 file=0xa81365f size=0x67f20001 contains_NewTeam=False
+  : offset=0x79bd0001 file=0x79de365d size=0xf10003 contains_NewTeam=False
+  : offset=0xe30003 file=0x104365f size=0x7ab50001 contains_NewTeam=False
+  : offset=0x7b310006 file=0x7b523662 size=0xe30003 contains_NewTeam=False
+  : offset=0xe30003 file=0x104365f size=0x7c290006 contains_NewTeam=False
+  : offset=0x7ca50006 file=0x7cc63662 size=0xf10003 contains_NewTeam=False
+  : offset=0x7670003 file=0x788365f size=0x7d9d0001 contains_NewTeam=False
+  : offset=0x7e190001 file=0x7e3a365d size=0x7670003 contains_NewTeam=False
+  : offset=0x7670003 file=0x788365f size=0x7f110001 contains_NewTeam=False
+  : offset=0x7f8d0001 file=0x7fae365d size=0xe30003 contains_NewTeam=False
+  : offset=0x29d0003 file=0x2be365f size=0x80820001 contains_NewTeam=False
+  : offset=0x80fe0001 file=0x811f365d size=0x1280003 contains_NewTeam=False
+  : offset=0x1d90003 file=0x1fa365f size=0x81f68051 contains_NewTeam=False
+  : offset=0x82720001 file=0x8293365d size=0x2a10003 contains_NewTeam=False
+  : offset=0x6130003 file=0x634365f size=0x836a0006 contains_NewTeam=False
+  : offset=0x83e60006 file=0x84073662 size=0x6130003 contains_NewTeam=False
+  : offset=0xc270003 file=0xc48365f size=0x84f00006 contains_NewTeam=False
+  : offset=0x857d0006 file=0x859e3662 size=0x6130003 contains_NewTeam=False
+  : offset=0x6180001 file=0x639365d size=0x85f90001 contains_NewTeam=False
+  : offset=0x86750001 file=0x8696365d size=0x61d0003 contains_NewTeam=False
+  : offset=0xc360003 file=0xc57365f size=0x87750001 contains_NewTeam=False
+  : offset=0x87f10001 file=0x8812365d size=0xc310003 contains_NewTeam=False
+  : offset=0x7e40002 file=0x805365e size=0x886d0001 contains_NewTeam=False
+  : offset=0x88e90001 file=0x890a365d size=0x7e40003 contains_NewTeam=False
+  : offset=0x7e40003 file=0x805365f size=0x89e10001 contains_NewTeam=False
+  : offset=0x8a690001 file=0x8a8a365d size=0xc3b0003 contains_NewTeam=False
+  : offset=0x7e40003 file=0x805365f size=0x8b610001 contains_NewTeam=False
+  : offset=0x8bdd0001 file=0x8bfe365d size=0x7150003 contains_NewTeam=False
+  : offset=0x7150003 file=0x736365f size=0x8cd50001 contains_NewTeam=False
+  : offset=0x8d510001 file=0x8d72365d size=0xc450003 contains_NewTeam=False
+  : offset=0xc450003 file=0xc66365f size=0x8e490001 contains_NewTeam=False
+  : offset=0x8ec50001 file=0x8ee6365d size=0xc450003 contains_NewTeam=False
+  : offset=0xc450003 file=0xc66365f size=0x8fbd0001 contains_NewTeam=False
+  : offset=0x90390001 file=0x905a365d size=0xc450003 contains_NewTeam=False
+  : offset=0xc450003 file=0xc66365f size=0x91310001 contains_NewTeam=False
+  : offset=0x91ad0001 file=0x91ce365d size=0x61d0003 contains_NewTeam=False
+  : offset=0x61d0002 file=0x63e365e size=0x92290001 contains_NewTeam=False
+  : offset=0x92a50001 file=0x92c6365d size=0x61d0003 contains_NewTeam=False
+  : offset=0x61d0003 file=0x63e365f size=0x939d0001 contains_NewTeam=False
+  : offset=0x94190001 file=0x943a365d size=0x7e40003 contains_NewTeam=False
+  : offset=0x61d0003 file=0x63e365f size=0x95110001 contains_NewTeam=False
+  : offset=0x958d0001 file=0x95ae365d size=0xc4f0003 contains_NewTeam=False
+  : offset=0xc540003 file=0xc75365f size=0x96850001 contains_NewTeam=False
+  : offset=0x97010001 file=0x9722365d size=0xc590003 contains_NewTeam=False
+  : offset=0xc310003 file=0xc52365f size=0xd03f0006 contains_NewTeam=False
+  Q 7 : offset=0xd0bb8051 file=0xd0dcb6ad size=0xf10003 contains_NewTeam=False
+  Q / : offset=0xd1b38051 file=0xd1d4b6ad size=0xf10003 contains_NewTeam=False
+  Q ' : offset=0xd2ab8051 file=0xd2ccb6ad size=0xf10003 contains_NewTeam=False
+  Q  : offset=0xd3a38051 file=0xd3c4b6ad size=0xf10003 contains_NewTeam=False
+  Q  : offset=0xd49b8051 file=0xd4bcb6ad size=0xf10003 contains_NewTeam=False
+  Q  : offset=0xd5938051 file=0xd5b4b6ad size=0xf10003 contains_NewTeam=False
+  Q  : offset=0xd6888051 file=0xd6a9b6ad size=0xf10003 contains_NewTeam=False
+  : offset=0xd7800001 file=0xd7a1365d size=0xf10003 contains_NewTeam=False
+  : offset=0xf10003 file=0x112365f size=0xd8750001 contains_NewTeam=False
+  : offset=0xd8f10006 file=0xd9123662 size=0xd340003 contains_NewTeam=False
+  : offset=0xd340003 file=0xd55365f size=0xd9e90006 contains_NewTeam=False
+  : offset=0xda650001 file=0xda86365d size=0xd390003 contains_NewTeam=False
+  : offset=0x33e0003 file=0x35f365f size=0xdb5d0001 contains_NewTeam=False
+  : offset=0xdbd90001 file=0xdbfa365d size=0xf10003 contains_NewTeam=False
+  : offset=0xf10003 file=0x112365f size=0xdcce0001 contains_NewTeam=False
+  : offset=0xdd4a0001 file=0xdd6b365d size=0x1280003 contains_NewTeam=False
+  : offset=0x6180001 file=0x639365d size=0xddc60001 contains_NewTeam=False
+  : offset=0xde420001 file=0xde63365d size=0x61d0003 contains_NewTeam=False
+  : offset=0x61d0003 file=0x63e365f size=0xdf3a0001 contains_NewTeam=False
+  : offset=0xdfb60001 file=0xdfd7365d size=0x61d0003 contains_NewTeam=False
+  : offset=0x7e40001 file=0x805365d size=0xe0320001 contains_NewTeam=False
+  : offset=0xe0ae0001 file=0xe0cf365d size=0x61d0003 contains_NewTeam=False
+  : offset=0x61d0003 file=0x63e365f size=0xe1a60001 contains_NewTeam=False
+  : offset=0xe2220001 file=0xe243365d size=0x61d0003 contains_NewTeam=False
+  : offset=0x61d0003 file=0x63e365f size=0xf78f0006 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0xa600003 file=0xa81365f size=0x8bbc0001 contains_NewTeam=False
+  : offset=0xf8870001 file=0xf8a8365d size=0x61d0003 contains_NewTeam=False
+  : offset=0x61d0003 file=0x63e365f size=0x93210001 contains_NewTeam=False
+  : offset=0x939d0001 file=0x93be365d size=0x61d0003 contains_NewTeam=False
+  : offset=0x61d0003 file=0x63e365f size=0x610001 contains_NewTeam=False
+  : offset=0xdd0001 file=0xfe365d size=0xdbc0004 contains_NewTeam=False
+  : offset=0xdc10004 file=0xde23660 size=0x1d50001 contains_NewTeam=False
+  : offset=0x2510001 file=0x272365d size=0x2a0004 contains_NewTeam=False
+  : offset=0x2a0004 file=0x4b3660 size=0x8b490001 contains_NewTeam=False
+  : offset=0xae700001 file=0xae91365d size=0x7e40002 contains_NewTeam=False
+  : offset=0xc360004 file=0xc573660 size=0x3c50001 contains_NewTeam=False
+  : offset=0x4410001 file=0x462365d size=0xc360004 contains_NewTeam=False
+  : offset=0x6220002 file=0x643365e size=0x4bd0001 contains_NewTeam=False
+  : offset=0x5390001 file=0x55a365d size=0xc360004 contains_NewTeam=False
+  : offset=0xc360004 file=0xc573660 size=0x6310001 contains_NewTeam=False
+  : offset=0x6ad0001 file=0x6ce365d size=0xc360004 contains_NewTeam=False
+  : offset=0xc360004 file=0xc573660 size=0xacfc0001 contains_NewTeam=False
+  : offset=0x7a50001 file=0x7c6365d size=0xdc60004 contains_NewTeam=False
+  : offset=0x6130001 file=0x634365d size=0x8a440001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0x1a7c0001 contains_NewTeam=False
+  : offset=0x92980001 file=0x92b9365d size=0x6130002 contains_NewTeam=False
+  : offset=0x53e0001 file=0x55f365d size=0x93140001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0xc3b0004 file=0xc5c3660 size=0x8c530001 contains_NewTeam=False
+  : offset=0xf3320001 file=0xf353365d size=0x1280001 contains_NewTeam=False
+  : offset=0x1280001 file=0x149365d size=0xe17c0006 contains_NewTeam=False
+  : offset=0xe20d0006 file=0xe22e3662 size=0x6130001 contains_NewTeam=False
+  : offset=0x2810001 file=0x2a2365d size=0xa9720001 contains_NewTeam=False
+  : offset=0xf42a0001 file=0xf44b365d size=0x1280001 contains_NewTeam=False
+  : offset=0x1280001 file=0x149365d size=0x8b490001 contains_NewTeam=False
+  : offset=0xf59e0001 file=0xf5bf365d size=0x7750001 contains_NewTeam=False
+  : offset=0x61d0004 file=0x63e3660 size=0x8c530001 contains_NewTeam=False
+  : offset=0xe6fc0001 file=0xe71d365d size=0x61d0002 contains_NewTeam=False
+  : offset=0x1280002 file=0x149365e size=0x8a440001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0x7750004 file=0x7963660 size=0x4c650001 contains_NewTeam=False
+  : offset=0x8c530001 file=0x8c74365d size=0x6220001 contains_NewTeam=False
+  : offset=0x53e0001 file=0x55f365d size=0x8b490001 contains_NewTeam=False
+  : offset=0xf59e0001 file=0xf5bf365d size=0x7750001 contains_NewTeam=False
+  : offset=0x6220001 file=0x643365d size=0x3cfe0001 contains_NewTeam=False
+  : offset=0x3d7a0001 file=0x3d9b365d size=0x8b60002 contains_NewTeam=False
+  : offset=0x1280004 file=0x1493660 size=0x8b490001 contains_NewTeam=False
+  : offset=0x62590001 file=0x627a365d size=0x61d0004 contains_NewTeam=False
+  : offset=0x61d0004 file=0x63e3660 size=0x63510001 contains_NewTeam=False
+  : offset=0x63cd0001 file=0x63ee365d size=0x6220004 contains_NewTeam=False
+  : offset=0x6220002 file=0x643365e size=0xad780001 contains_NewTeam=False
+  : offset=0x64490001 file=0x646a365d size=0x61d0004 contains_NewTeam=False
+  : offset=0x61d0004 file=0x63e3660 size=0x65410001 contains_NewTeam=False
+  : offset=0x65bd0001 file=0x65de365d size=0x61d0004 contains_NewTeam=False
+  : offset=0x61d0002 file=0x63e365e size=0x66390001 contains_NewTeam=False
+  : offset=0x66b50001 file=0x66d6365d size=0x61d0004 contains_NewTeam=False
+  : offset=0x61d0004 file=0x63e3660 size=0x67ad0001 contains_NewTeam=False
+  : offset=0x68290001 file=0x684a365d size=0x61d0004 contains_NewTeam=False
+  : offset=0x61d0004 file=0x63e3660 size=0x69210001 contains_NewTeam=False
+  : offset=0x699d0001 file=0x69be365d size=0x61d0004 contains_NewTeam=False
+  : offset=0x61d0004 file=0x63e3660 size=0x6a950001 contains_NewTeam=False
+  : offset=0x6b110001 file=0x6b32365d size=0x61d0004 contains_NewTeam=False
+  : offset=0x61d0004 file=0x63e3660 size=0x6c090001 contains_NewTeam=False
+  : offset=0x6c850001 file=0x6ca6365d size=0x61d0004 contains_NewTeam=False
+  : offset=0x61d0004 file=0x63e3660 size=0x6d7a0001 contains_NewTeam=False
+  !: offset=0x6df60001 file=0x6e17365d size=0x61d0004 contains_NewTeam=False
+  : offset=0x52d0004 file=0x54e3660 size=0x8b490001 contains_NewTeam=False
+  : offset=0x81ec0001 file=0x820d365d size=0x9790004 contains_NewTeam=False
+  : offset=0x61d0002 file=0x63e365e size=0xca0a0001 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0xf420004 file=0xf633660 size=0x94d70001 contains_NewTeam=False
+  : offset=0x95530001 file=0x9574365d size=0xf420004 contains_NewTeam=False
+  : offset=0x6220004 file=0x6433660 size=0xa0140006 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xa10c0001 contains_NewTeam=False
+  : offset=0xa1880001 file=0xa1a9365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xa2800001 contains_NewTeam=False
+  : offset=0xa2fc0001 file=0xa31d365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xa3f40001 contains_NewTeam=False
+  : offset=0xa4700001 file=0xa491365d size=0xf630004 contains_NewTeam=False
+  : offset=0xf630004 file=0xf843660 size=0xa5680001 contains_NewTeam=False
+  : offset=0xa5e40001 file=0xa605365d size=0xc4f0004 contains_NewTeam=False
+  : offset=0xf630004 file=0xf843660 size=0xa6dc0001 contains_NewTeam=False
+  : offset=0xa7580001 file=0xa779365d size=0xc4f0004 contains_NewTeam=False
+  : offset=0xc4f0004 file=0xc703660 size=0xa8500001 contains_NewTeam=False
+  : offset=0xa8cc0001 file=0xa8ed365d size=0xc4f0004 contains_NewTeam=False
+  : offset=0xdc60004 file=0xde73660 size=0xa9c10001 contains_NewTeam=False
+  : offset=0xaa3d0001 file=0xaa5e365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xab350001 contains_NewTeam=False
+  : offset=0xabb10001 file=0xabd2365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xaca90001 contains_NewTeam=False
+  : offset=0xad250001 file=0xad46365d size=0xdc60004 contains_NewTeam=False
+  : offset=0xdc60004 file=0xde73660 size=0xae1d0001 contains_NewTeam=False
+  : offset=0xae990001 file=0xaeba365d size=0xdc60004 contains_NewTeam=False
+  : offset=0xdc60004 file=0xde73660 size=0xaf910001 contains_NewTeam=False
+  : offset=0xb00d0001 file=0xb02e365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xb1050001 contains_NewTeam=False
+  : offset=0xb1810001 file=0xb1a2365d size=0xc400004 contains_NewTeam=False
+  : offset=0xc400004 file=0xc613660 size=0xb2790001 contains_NewTeam=False
+  : offset=0xb2f50001 file=0xb316365d size=0xf680004 contains_NewTeam=False
+  : offset=0xf680004 file=0xf893660 size=0xb3ed0001 contains_NewTeam=False
+  : offset=0xb4690001 file=0xb48a365d size=0xf680004 contains_NewTeam=False
+  : offset=0xf680004 file=0xf893660 size=0xb5610001 contains_NewTeam=False
+  : offset=0xb5dd0001 file=0xb5fe365d size=0xf680004 contains_NewTeam=False
+  : offset=0xf680004 file=0xf893660 size=0xb6d50001 contains_NewTeam=False
+  : offset=0xb7510001 file=0xb772365d size=0xf680004 contains_NewTeam=False
+  : offset=0xe30004 file=0x1043660 size=0xc3fd0006 contains_NewTeam=False
+  : offset=0x8b490001 file=0x8b6a365d size=0x6180001 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xc4f20001 contains_NewTeam=False
+  : offset=0xc56e0001 file=0xc58f365d size=0xdc60004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xc6660001 contains_NewTeam=False
+  : offset=0xc6e20001 file=0xc703365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xc7d70001 contains_NewTeam=False
+  : offset=0xc8530001 file=0xc874365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xc94b0001 contains_NewTeam=False
+  : offset=0xc9c40001 file=0xc9e5365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xcabc0001 contains_NewTeam=False
+  : offset=0xcb380001 file=0xcb59365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xcc300001 contains_NewTeam=False
+  : offset=0xcca90001 file=0xccca365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xcda10001 contains_NewTeam=False
+  : offset=0xce1d0001 file=0xce3e365d size=0xc4a0004 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xcf150001 contains_NewTeam=False
+  : offset=0xcf910001 file=0xcfb2365d size=0xdc60004 contains_NewTeam=False
+  : offset=0xdc60004 file=0xde73660 size=0x92a50001 contains_NewTeam=False
+  : offset=0xf8870001 file=0xf8a8365d size=0x61d0003 contains_NewTeam=False
+  : offset=0xc4a0004 file=0xc6b3660 size=0xd1050001 contains_NewTeam=False
+  : offset=0xd17e0001 file=0xd19f365d size=0xf840004 contains_NewTeam=False
+  : offset=0x7e40004 file=0x8053660 size=0xd2760001 contains_NewTeam=False
+  : offset=0xd2ef0001 file=0xd310365d size=0xdc60004 contains_NewTeam=False
+  : offset=0xc400004 file=0xc613660 size=0xd3e70001 contains_NewTeam=False
+  : offset=0xd4630001 file=0xd484365d size=0xc400004 contains_NewTeam=False
+  : offset=0xc400004 file=0xc613660 size=0xd55b0001 contains_NewTeam=False
+  : offset=0xd5d70001 file=0xd5f8365d size=0xf890004 contains_NewTeam=False
+  : offset=0xf890004 file=0xfaa3660 size=0xd6cf0001 contains_NewTeam=False
+  : offset=0xd74b0001 file=0xd76c365d size=0xf890004 contains_NewTeam=False
+  : offset=0xf890004 file=0xfaa3660 size=0xd8400001 contains_NewTeam=False
+  : offset=0xd8bc0001 file=0xd8dd365d size=0xf890004 contains_NewTeam=False
+  : offset=0xf890004 file=0xfaa3660 size=0xd9b40001 contains_NewTeam=False
+  : offset=0xda300001 file=0xda51365d size=0xf890004 contains_NewTeam=False
+  : offset=0xf890004 file=0xfaa3660 size=0xdb280001 contains_NewTeam=False
+  : offset=0xdba40001 file=0xdbc5365d size=0xc400004 contains_NewTeam=False
+  : offset=0xc400004 file=0xc613660 size=0xdc9c0001 contains_NewTeam=False
+  : offset=0xdd180001 file=0xdd39365d size=0xc400004 contains_NewTeam=False
+  : offset=0xf930004 file=0xfb43660 size=0xe7da0001 contains_NewTeam=False
+  : offset=0xe8560006 file=0xe8773662 size=0x6130004 contains_NewTeam=False
+  : offset=0x6130004 file=0x6343660 size=0x8b490001 contains_NewTeam=False
+  : offset=0xe94e0001 file=0xe96f365d size=0xc4f0004 contains_NewTeam=False
+  : offset=0xc4f0004 file=0xc703660 size=0xea460001 contains_NewTeam=False
+  : offset=0xeac20001 file=0xeae3365d size=0xc4f0004 contains_NewTeam=False
+  : offset=0xc4f0004 file=0xc703660 size=0xebba0001 contains_NewTeam=False
+  : offset=0xec360001 file=0xec57365d size=0xc4f0004 contains_NewTeam=False
