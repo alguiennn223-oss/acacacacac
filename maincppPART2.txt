@@ -1,0 +1,2656 @@
+bool get_form_team_info(int player_index, team_entry &output)
+{
+	bool result;
+	wchar_t buffer[71], wc;
+	memset(buffer, 0, sizeof(buffer));
+	char cbuff[4];
+	int ii, ti, tli;
+
+	ti = gplayers[player_index].team_ind;
+	tli = gplayers[player_index].team_lineup_ind;
+
+	result = (ti > -1) && (player_index > -1);
+
+	if(result)
+	{
+		output = gteams[ti];
+		output.b_changed = true;
+
+		SendDlgItemMessage(ghw_main, IDT_TEAM_NAME, WM_GETTEXT, 70, (LPARAM)buffer);
+		if( _tcscmp(buffer,output.name) )
+		{
+			_tcscpy(output.name, buffer);
+			output.b_edit_name = true;
+		}
+
+		SendDlgItemMessage(ghw_main, IDT_TEAM_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+		output.id = _wtoi(buffer);
+
+		//Manually send EN_CHANGE message to avoid edge cases
+		//SendMessage(ghw_main, WM_COMMAND, MAKEWPARAM(IDT_TEAM_SHORT, EN_CHANGE), LPARAM(GetDlgItem(ghw_main, IDT_TEAM_SHORT)));
+		SendDlgItemMessage(ghw_main, IDT_TEAM_SHORT, WM_GETTEXT, 4, (LPARAM)buffer);
+		buffer[4] = 0;
+		ii = 0;
+		while(buffer[ii]) 
+		{
+			wc = buffer[ii];
+			buffer[ii] = towupper(wc);
+			ii++;
+		}
+		wcstombs(cbuff,buffer,4);
+		if( strcmp(cbuff,output.short_name) )
+		{
+			strcpy(output.short_name, cbuff);
+			output.b_edit_name = true;
+			output.b_edit_shortname = true;
+		}
+		
+		SendDlgItemMessage(ghw_main, IDT_PLAY_NUM, WM_GETTEXT, 18, (LPARAM)buffer);
+		output.numbers[tli] = _wtoi(buffer);
+		if(giPesVersion < 19 && output.numbers[tli]>231) output.numbers[tli] = 231;
+
+		//Get info from Team tab
+		SendDlgItemMessage(ghw_tab3, IDT_TCOL_R1, WM_GETTEXT, 4, (LPARAM)buffer);
+		output.color1_red = _wtoi(buffer);
+
+		SendDlgItemMessage(ghw_tab3, IDT_TCOL_G1, WM_GETTEXT, 4, (LPARAM)buffer);
+		output.color1_green = _wtoi(buffer);
+
+		SendDlgItemMessage(ghw_tab3, IDT_TCOL_B1, WM_GETTEXT, 4, (LPARAM)buffer);
+		output.color1_blue = _wtoi(buffer);
+
+		SendDlgItemMessage(ghw_tab3, IDT_TCOL_R2, WM_GETTEXT, 4, (LPARAM)buffer);
+		output.color2_red = _wtoi(buffer);
+
+		SendDlgItemMessage(ghw_tab3, IDT_TCOL_G2, WM_GETTEXT, 4, (LPARAM)buffer);
+		output.color2_green = _wtoi(buffer);
+
+		SendDlgItemMessage(ghw_tab3, IDT_TCOL_B2, WM_GETTEXT, 4, (LPARAM)buffer);
+		output.color2_blue = _wtoi(buffer);
+
+		SendDlgItemMessage(ghw_tab3, IDT_MANAGER, WM_GETTEXT, 9, (LPARAM)buffer);
+		output.manager_id = _wtoi(buffer);
+
+		SendDlgItemMessage(ghw_tab3, IDT_STADIUM, WM_GETTEXT, 4, (LPARAM)buffer);
+		if( output.stadium_id != _wtoi(buffer) )
+		{
+			output.stadium_id = _wtoi(buffer);
+			output.b_edit_stadium = true;
+		}
+	}
+
+	return result;
+}
+
+//Subclassed control procedure for a listview control.  Used by the
+// IDC_PATH_LIST backup path list
+LRESULT CALLBACK lv_cntl_proc(HWND H, UINT M, WPARAM W, LPARAM L,
+					UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	switch(M)
+	{
+		case UM_SETCOLUMN:
+		{
+			//User-defined message to keep the columns of the backup 
+			// paths LV tidy.  Called when client area size changes
+			// (e.g. a scrollbar is added), it aligns the column widths
+			// with the client area width, unless they were already set
+			// to be wider than the client area.
+			RECT rc_lv;
+			GetClientRect(H, &rc_lv);
+
+			ListView_SetColumnWidth(H, 0, rc_lv.right);
+			
+			return true;
+		}
+
+		case UM_SCALE:
+		{
+			RECT winrect = *(RECT*)dwRefData;
+			//float scale = *(float*)L;
+			resize_info *pri = (resize_info*)L;
+			int X, Y, cx, cy;
+			//RECT parent_rect;
+
+			//GetClientRect(ghw_main, &parent_rect);
+			//MapWindowPoints(HWND_DESKTOP, GetParent(H), (LPPOINT)&winrect, 2);
+			//BringWindowToTop(H);
+			X = ceil(pri->scale*winrect.left);
+			Y = ceil(pri->scale*winrect.top);
+			cx = ceil(pri->scale*(winrect.right-winrect.left));
+			cy = ceil(pri->scale*(winrect.bottom-winrect.top));
+			SetWindowPos(H, HWND_TOP, X-g_prevx, Y, cx, cy, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE);
+			//pri->hdefer = DeferWindowPos(pri->hdefer, H, HWND_TOPMOST, X, Y, cx, cy, SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+
+			SendMessage(H, WM_SETFONT, (WPARAM)ghFont, MAKELPARAM(FALSE, 0));
+		}
+		break;
+
+		case WM_SIZE:
+		{
+			//ListView_SetColumnWidth(H, 1, LVSCW_AUTOSIZE_USEHEADER);
+			PostMessage(H,UM_SETCOLUMN,0,0);
+			return DefSubclassProc(H, M, W, L);
+		}
+
+		case WM_KEYDOWN:
+		{
+			if( W == 0x21 || W == 0x22 ) //We want ONLY default behavior for PGUP and PGDN
+				return DefSubclassProc(H, M, W, L);
+			common_shortcuts(W);
+		}
+		break;
+	}
+	return DefSubclassProc(H, M, W, L);
+}
+
+//Subclassed control procedure for a combobox control.  Used by the
+// IDC_TEAM_LIST combobox
+LRESULT CALLBACK cb_cntl_proc(HWND H, UINT M, WPARAM W, LPARAM L,
+					UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	switch(M)
+	{
+		case UM_SCALE:
+		{
+			RECT winrect = *(RECT*)dwRefData;
+			//float scale = *(float*)L;
+			resize_info *pri = (resize_info*)L;
+			int X, Y, cx, cy;
+
+			//GetWindowRect(H, &winrect);
+			//MapWindowPoints(HWND_DESKTOP, GetParent(H), (LPPOINT)&winrect, 2);
+			X = ceil(pri->scale*winrect.left);
+			Y = ceil(pri->scale*winrect.top);
+			cx = ceil(pri->scale*(winrect.right-winrect.left));
+			cy = ceil(pri->scale*(winrect.bottom-winrect.top));
+			SetWindowPos(H, HWND_TOP, X-g_prevx, Y, cx, cy, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE);
+			//pri->hdefer = DeferWindowPos(pri->hdefer, H, HWND_TOPMOST, X, Y, cx, cy, SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+
+			SendMessage(H, WM_SETFONT, (WPARAM)ghFont, MAKELPARAM(FALSE, 0));
+		}
+		break;
+
+		case WM_KEYDOWN:
+		{
+			//When T key is pressed - CTRL+SHIFT+T trims the team lists to max 23 players each
+			if( W == 0x54 && (GetKeyState(VK_CONTROL) & 0x8000) && (GetKeyState(VK_SHIFT) & 0x8000) )
+			{
+				int ii=0;
+				while(ii< gteams->team_max && gteams[gn_teamsel].players[ii]!=0)
+				{
+					if(ii>22) gteams[gn_teamsel].players[ii]=0;
+					ii++;
+				}
+				gteams[gn_teamsel].b_changed = true;
+				//SendMessage(ghw_main, WM_COMMAND, MAKEWPARAM(IDC_TEAM_LIST,CBN_SELCHANGE), 0);
+				trim_team();
+				return true;
+			}
+			else
+				common_shortcuts(W);
+		}
+		break;
+	}
+	return DefSubclassProc(H, M, W, L);
+}
+
+
+//Subclassed control procedure for a combobox control.  Used by the
+// non-IDC_TEAM_LIST comboboxes
+LRESULT CALLBACK cb2_cntl_proc(HWND H, UINT M, WPARAM W, LPARAM L,
+					UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	switch(M)
+	{
+		case UM_SCALE:
+		{
+			RECT winrect = *(RECT*)dwRefData;
+			//float scale = *(float*)L;
+			resize_info *pri = (resize_info*)L;
+			int X, Y, cx, cy;
+
+			//GetWindowRect(H, &winrect);
+			//MapWindowPoints(HWND_DESKTOP, GetParent(H), (LPPOINT)&winrect, 2);
+			X = ceil(pri->scale*winrect.left);
+			Y = ceil(pri->scale*winrect.top);
+			cx = ceil(pri->scale*(winrect.right-winrect.left));
+			cy = ceil(pri->scale*(winrect.bottom-winrect.top));
+			SetWindowPos(H, HWND_TOP, X-g_prevx, Y, cx, cy, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE);
+			//pri->hdefer = DeferWindowPos(pri->hdefer, H, HWND_TOPMOST, X, Y, cx, cy, SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+
+			SendMessage(H, WM_SETFONT, (WPARAM)ghFont, MAKELPARAM(FALSE, 0));
+		}
+		break;
+
+		case WM_KEYDOWN:
+		{
+			common_shortcuts(W);
+			if( W == 0x21 || W == 0x22 ) //We don't want default behavior for PGUP and PGDN
+				return true;
+		}
+		break;
+	}
+	return DefSubclassProc(H, M, W, L);
+}
+
+
+//Subclassed control procedure
+LRESULT CALLBACK scale_cntl_proc(HWND H, UINT M, WPARAM W, LPARAM L,
+					UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	switch(M)
+	{
+		case UM_SCALE:
+		{
+			RECT winrect = *(RECT*)dwRefData;
+			//float scale = *(float*)L;
+			resize_info *pri = (resize_info*)L;
+			int X, Y, cx, cy, offset=0;
+
+			//GetWindowRect(H, &winrect);
+			//MapWindowPoints(HWND_DESKTOP, GetParent(H), (LPPOINT)&winrect, 2);
+			X = ceil(pri->scale*winrect.left);
+			Y = ceil(pri->scale*winrect.top);
+			cx = ceil(pri->scale*(winrect.right-winrect.left));
+			cy = ceil(pri->scale*(winrect.bottom-winrect.top));
+			
+			if(GetParent(H)==ghw_main)
+				offset = g_prevx;
+			SetWindowPos(H, HWND_TOPMOST, X-offset, Y, cx, cy, SWP_NOREDRAW|SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+			//pri->hdefer = DeferWindowPos(pri->hdefer, H, HWND_TOPMOST, X, Y, cx, cy, SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+
+			SendMessage(H, WM_SETFONT, (WPARAM)ghFont, MAKELPARAM(FALSE, 0));
+		}
+		break;
+
+		case WM_KEYDOWN:
+		{
+			common_shortcuts(W);
+		}
+		break;
+
+		case WM_DESTROY:
+		{
+			delete (RECT*)dwRefData;
+		}
+		break;
+	}
+	return DefSubclassProc(H, M, W, L);
+}
+
+
+//Subclassed control procedure
+LRESULT CALLBACK scale_static_proc(HWND H, UINT M, WPARAM W, LPARAM L,
+					UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	switch(M)
+	{
+		case UM_SCALE:
+		{
+			RECT winrect = *(RECT*)dwRefData;
+			//float scale = *(float*)L;
+			resize_info *pri = (resize_info*)L;
+			int X, Y, cx, cy, offset=0;
+
+			//GetWindowRect(H, &winrect);
+			//MapWindowPoints(HWND_DESKTOP, GetParent(H), (LPPOINT)&winrect, 2);
+			X = ceil(pri->scale*winrect.left);
+			Y = ceil(pri->scale*winrect.top);
+			cx = ceil(pri->scale*(winrect.right-winrect.left));
+			cy = ceil(pri->scale*(winrect.bottom-winrect.top));
+			if(GetParent(H)==ghw_main)
+				offset = g_prevx;
+			SetWindowPos(H, HWND_NOTOPMOST, X-offset, Y, cx, cy, SWP_NOREDRAW|SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+			//pri->hdefer = DeferWindowPos(pri->hdefer, H, HWND_TOPMOST, X, Y, cx, cy, SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+			//SetWindowPos(H, HWND_TOP, X, Y, cx, cy, SWP_NOACTIVATE);
+			SendMessage(H, WM_SETFONT, (WPARAM)ghFont, MAKELPARAM(FALSE, 0));
+		}
+		break;
+
+		case WM_KEYDOWN:
+		{
+			common_shortcuts(W);
+		}
+		break;
+
+		case WM_DESTROY:
+		{
+			delete (RECT*)dwRefData;
+		}
+		break;
+	}
+	return DefSubclassProc(H, M, W, L);
+}
+
+
+//Subclassed control procedure for the last control in the main dialog
+// tab order.  I need this special proc to force the tab order to include
+// the tab control itself - the tab has the WS_EX_CONTROLPARENT style so
+// that its child controls will be appended to the main dialog tab order,
+// but as a result the tab control itself is invisible to the tab order.
+// This subproc overrides that behavior, forcing a TAB key press on the
+// item to transfer focus to the tab control itself.
+// The 'Cancel' button (IDB_CANCEL_BKUP) uses this proc
+LRESULT CALLBACK onto_tab_proc(HWND H, UINT M, WPARAM W, LPARAM L,
+					UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	switch(M)
+	{
+		case WM_CHAR:
+		{
+			//To prevent 'ding' sounding when TAB key is pressed with 
+			// this item selected, skip default handling of char 13 (TAB)
+			if( W==9 ) return true;
+			return DefSubclassProc(H, M, W, L);
+		}
+
+		case WM_KEYDOWN:
+		{
+			if( W==VK_TAB )
+			{
+				//When the TAB key is pressed, pass focus to the tab control
+				//SendMessage(ghw_main, WM_NEXTDLGCTL, (WPARAM)ghw_tabcon, (LPARAM)TRUE);
+				SetFocus(ghw_tabcon);
+
+				return true;
+			}
+			else
+			{
+				common_shortcuts(W);
+
+				if( W == 0x21 || W == 0x22 ) //We don't want default behavior for PGUP and PGDN
+					return true;
+			}
+			break;
+		}
+
+		case WM_GETDLGCODE:
+		{
+			//Request that this control handles the WM_KEYDOWN and the
+			// WM_CHAR messages for the TAB key itself
+			if( L && ((MSG *)L)->message == WM_KEYDOWN &&
+				((MSG *)L)->wParam == VK_TAB )
+				return DLGC_WANTMESSAGE;
+			else if( L && ((MSG *)L)->message == WM_CHAR &&
+				((MSG *)L)->wParam == 9 )
+				return DLGC_WANTMESSAGE;
+
+			break;
+		}
+
+		case UM_SCALE:
+		{
+			RECT winrect = *(RECT*)dwRefData;
+			//float scale = *(float*)L;
+			resize_info *pri = (resize_info*)L;
+			int X, Y, cx, cy;
+
+			//GetWindowRect(H, &winrect);
+			//MapWindowPoints(HWND_DESKTOP, GetParent(H), (LPPOINT)&winrect, 2);
+			X = ceil(pri->scale*winrect.left);
+			Y = ceil(pri->scale*winrect.top);
+			cx = ceil(pri->scale*(winrect.right-winrect.left));
+			cy = ceil(pri->scale*(winrect.bottom-winrect.top));
+			SetWindowPos(H, HWND_TOPMOST, X-g_prevx, Y, cx, cy, SWP_NOREDRAW|SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+			//pri->hdefer = DeferWindowPos(pri->hdefer, H, HWND_TOPMOST, X, Y, cx, cy, SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+
+			SendMessage(H, WM_SETFONT, (WPARAM)ghFont, MAKELPARAM(FALSE, 0));
+		}
+		break;
+
+		case WM_DESTROY:
+		{
+			delete (RECT*)dwRefData;
+		}
+		break;
+	}
+	return DefSubclassProc(H, M, W, L);
+}
+
+//Subclassed control procedure for the tab control to pass focus to the
+// first item of the currently displayed tab page when TAB is pressed,
+// resuming the regular tabbing order.
+LRESULT CALLBACK from_tab_proc(HWND H, UINT M, WPARAM W, LPARAM L,
+					UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	switch(M)
+	{
+		case WM_KEYDOWN:
+		{
+			if( W==VK_TAB )
+			{
+				HWND h_tab_to;
+				int i_tab = TabCtrl_GetCurSel(H);
+				
+				if( i_tab==0 ) h_tab_to = GetDlgItem(ghw_tab1,IDS_PLAY_CF);
+				else if(i_tab==1) h_tab_to = GetDlgItem(ghw_tab2,IDB_EDIT_FACE);
+				else h_tab_to = GetDlgItem(ghw_tab3,IDT_TCOL_R1);
+
+				//SendMessage(ghw_main, WM_NEXTDLGCTL, (WPARAM)h_tab_to, (LPARAM)TRUE);
+				SetFocus(h_tab_to);
+				return true;
+			}
+			else 
+				common_shortcuts(W);
+
+			break;
+		}
+
+		case WM_GETDLGCODE:
+		{
+			//Request that this control handles the WM_KEYDOWN message
+			// for the TAB key itself
+			if( L && ((MSG *)L)->message == WM_KEYDOWN &&
+				((MSG *)L)->wParam == VK_TAB )
+				return DLGC_WANTMESSAGE;
+
+			break;
+		}
+
+		case UM_SCALE:
+		{
+			RECT winrect = *(RECT*)dwRefData;
+			//float scale = *(float*)L;
+			resize_info *pri = (resize_info*)L;
+			int X, Y, cx, cy;
+
+			//GetWindowRect(H, &winrect);
+			//MapWindowPoints(HWND_DESKTOP, GetParent(H), (LPPOINT)&winrect, 2);
+			X = ceil(pri->scale*winrect.left);
+			Y = ceil(pri->scale*winrect.top);
+			cx = ceil(pri->scale*(winrect.right-winrect.left));
+			cy = ceil(pri->scale*(winrect.bottom-winrect.top));
+			SetWindowPos(H, HWND_TOPMOST, X-g_prevx, Y, cx, cy, SWP_NOREDRAW|SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+			//pri->hdefer = DeferWindowPos(pri->hdefer, H, HWND_TOPMOST, X, Y, cx, cy, SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+
+			SendMessage(H, WM_SETFONT, (WPARAM)ghFont, MAKELPARAM(FALSE, 0));
+		}
+		break;
+
+		case WM_DESTROY:
+		{
+			delete (RECT*)dwRefData;
+		}
+		break;
+	}
+	return DefSubclassProc(H, M, W, L);
+}
+
+LRESULT CALLBACK tab_two_dlg_proc(HWND H, UINT M, WPARAM W, LPARAM L,
+					UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	switch(M)
+	{
+		case UM_SCALE:
+		{
+			RECT winrect = *(RECT*)dwRefData;
+			//float scale = *(float*)L;
+			resize_info *pri = (resize_info*)L;
+			int X, Y, cx, cy, offset = 0;
+
+			//GetWindowRect(H, &winrect);
+			//MapWindowPoints(HWND_DESKTOP, GetParent(H), (LPPOINT)&winrect, 2);
+			X = ceil(pri->scale*winrect.left);
+			Y = ceil(pri->scale*winrect.top);
+			cx = ceil(pri->scale*(winrect.right-winrect.left));
+			cy = ceil(pri->scale*(winrect.bottom-winrect.top));
+			if(GetParent(H)==ghw_main)
+				offset = g_prevx;
+			SetWindowPos(H, HWND_TOP, X-offset, Y, cx, cy, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE);
+			//pri->hdefer = DeferWindowPos(pri->hdefer, H, HWND_TOPMOST, X, Y, cx, cy, SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+			
+			SendMessage(H, WM_SETFONT, (WPARAM)ghFont, MAKELPARAM(FALSE, 0));
+		}
+		break;
+
+		case WM_KEYDOWN:
+		{
+			common_shortcuts(W);
+		}
+		break;
+
+		case WM_COMMAND:
+		{
+			switch(LOWORD(W))
+			{
+				case IDB_MOTI_RAND:
+				{
+					if(HIWORD(W)==BN_CLICKED)
+					{
+						int val;
+						wchar_t buffer[4];
+
+						int hunchMax = 3;
+						int armMax = 8;
+						int ckMax = 6;
+						int fkMax = 16;
+						int pkMax = 4;
+						int gcMax = 122;
+						if(giPesVersion>=20)
+						{
+							hunchMax = 5;
+							armMax = 10;
+							ckMax = 10;
+							fkMax = 20;
+							pkMax = 7;
+							gcMax = 162;
+						}
+
+
+						val = rand() % hunchMax + 1;
+						_itow_s(val, buffer, 4, 10);
+						SendDlgItemMessage(H, IDT_MOTI_HUND, WM_SETTEXT, 0, (LPARAM)buffer);
+
+						val = rand() % armMax + 1;
+						_itow_s(val, buffer, 4, 10);
+						SendDlgItemMessage(H, IDT_MOTI_ARMD, WM_SETTEXT, 0, (LPARAM)buffer);
+
+						val = rand() % hunchMax + 1;
+						_itow_s(val, buffer, 4, 10);
+						SendDlgItemMessage(H, IDT_MOTI_HUNR, WM_SETTEXT, 0, (LPARAM)buffer);
+
+						val = rand() % armMax + 1;
+						_itow_s(val, buffer, 4, 10);
+						SendDlgItemMessage(H, IDT_MOTI_ARMR, WM_SETTEXT, 0, (LPARAM)buffer);
+
+						val = rand() % ckMax + 1;
+						_itow_s(val, buffer, 4, 10);
+						SendDlgItemMessage(H, IDT_MOTI_CK, WM_SETTEXT, 0, (LPARAM)buffer);
+
+						val = rand() % fkMax + 1;
+						_itow_s(val, buffer, 4, 10);
+						SendDlgItemMessage(H, IDT_MOTI_FK, WM_SETTEXT, 0, (LPARAM)buffer);
+
+						val = rand() % pkMax + 1;
+						_itow_s(val, buffer, 4, 10);
+						SendDlgItemMessage(H, IDT_MOTI_PK, WM_SETTEXT, 0, (LPARAM)buffer);
+
+						val = rand() % gcMax + 1;
+						_itow_s(val, buffer, 4, 10);
+						SendDlgItemMessage(H, IDT_MOTI_GC1, WM_SETTEXT, 0, (LPARAM)buffer);
+
+						val = rand() % gcMax + 1;
+						_itow_s(val, buffer, 4, 10);
+						SendDlgItemMessage(H, IDT_MOTI_GC2, WM_SETTEXT, 0, (LPARAM)buffer);
+					}
+				}
+				break;
+			}
+		}
+        break;
+    }
+    return DefSubclassProc(H, M, W, L);
+}
+
+
+LRESULT CALLBACK tab_three_dlg_proc(HWND H, UINT M, WPARAM W, LPARAM L,
+					UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	switch(M)
+	{
+		case UM_SCALE:
+		{
+			RECT winrect = *(RECT*)dwRefData;
+			resize_info *pri = (resize_info*)L;
+			int X, Y, cx, cy, offset = 0;
+
+			X = ceil(pri->scale*winrect.left);
+			Y = ceil(pri->scale*winrect.top);
+			cx = ceil(pri->scale*(winrect.right-winrect.left));
+			cy = ceil(pri->scale*(winrect.bottom-winrect.top));
+			if(GetParent(H)==ghw_main)
+				offset = g_prevx;
+			SetWindowPos(H, HWND_TOP, X-offset, Y, cx, cy, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE);
+			
+			SendMessage(H, WM_SETFONT, (WPARAM)ghFont, MAKELPARAM(FALSE, 0));
+		}
+		break;
+
+		case WM_KEYDOWN:
+		{
+			common_shortcuts(W);
+		}
+		break;
+
+		case WM_CTLCOLORBTN:
+		{
+			if(gplayers)
+			{
+				int red, green, blue;
+				wchar_t buffer[5];
+				if((HWND)L == GetDlgItem(H, IDB_TCOLOR1))
+				{
+					DeleteObject(gTeamColor1);
+
+					//p_ind = gn_playind[gn_listsel];
+					//t_ind = gplayers[p_ind].team_ind;
+					//red = floor(4.05*gteams[t_ind].color1_red);
+					//green = floor(4.05*gteams[t_ind].color1_green);
+					//blue = floor(4.05*gteams[t_ind].color1_blue);
+					SendDlgItemMessage(ghw_tab3, IDT_TCOL_R1, WM_GETTEXT, 4, (LPARAM)buffer);
+					red = floor(4.05*_wtoi(buffer));
+
+					SendDlgItemMessage(ghw_tab3, IDT_TCOL_G1, WM_GETTEXT, 4, (LPARAM)buffer);
+					green = floor(4.05*_wtoi(buffer));
+
+					SendDlgItemMessage(ghw_tab3, IDT_TCOL_B1, WM_GETTEXT, 4, (LPARAM)buffer);
+					blue = floor(4.05*_wtoi(buffer));
+					gTeamColor1 = CreateSolidBrush(RGB(red, green, blue));
+					return (INT_PTR)gTeamColor1;
+				}
+				else if((HWND)L == GetDlgItem(H, IDB_TCOLOR2))
+				{
+					DeleteObject(gTeamColor2);
+
+					SendDlgItemMessage(ghw_tab3, IDT_TCOL_R2, WM_GETTEXT, 4, (LPARAM)buffer);
+					red = floor(4.05*_wtoi(buffer));
+
+					SendDlgItemMessage(ghw_tab3, IDT_TCOL_G2, WM_GETTEXT, 4, (LPARAM)buffer);
+					green = floor(4.05*_wtoi(buffer));
+
+					SendDlgItemMessage(ghw_tab3, IDT_TCOL_B2, WM_GETTEXT, 4, (LPARAM)buffer);
+					blue = floor(4.05*_wtoi(buffer));
+					gTeamColor2 = CreateSolidBrush(RGB(red, green, blue));
+					return (INT_PTR)gTeamColor2;
+				}
+			}
+		}
+        break;
+
+		case WM_COMMAND:
+		{
+			switch(HIWORD(W))
+			{
+				case EN_CHANGE:
+				{
+					int test=0;
+					switch(LOWORD(W))
+					{
+						case IDT_TCOL_R1:
+						case IDT_TCOL_G1:
+						case IDT_TCOL_B1:
+						{
+							InvalidateRect(GetDlgItem(H, IDB_TCOLOR1), NULL, TRUE);
+						}
+						break;
+
+						case IDT_TCOL_R2:
+						case IDT_TCOL_G2:
+						case IDT_TCOL_B2:
+						{
+							InvalidateRect(GetDlgItem(H, IDB_TCOLOR2), NULL, TRUE);
+						}
+						break;
+					}
+				}
+				break;
+
+				case BN_CLICKED:
+				{
+					switch(LOWORD(W))
+					{
+						case IDB_TCOLOR1:
+						{
+							int red, green, blue;
+							wchar_t buffer[5];
+							COLORREF acrCustClr[16] = {RGB(0, 0, 0),
+													    RGB(255, 0, 0),
+														RGB(0, 255, 0),
+														RGB(0, 0, 255),
+														RGB(255, 255, 0),
+														RGB(0, 255, 255),
+														RGB(255, 255, 255),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0)};
+							CHOOSECOLOR cc;
+							ZeroMemory(&cc, sizeof(cc));
+
+							if(gplayers)
+							{
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_R1, WM_GETTEXT, 4, (LPARAM)buffer);
+								red = floor(4.05*_wtoi(buffer));
+
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_G1, WM_GETTEXT, 4, (LPARAM)buffer);
+								green = floor(4.05*_wtoi(buffer));
+
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_B1, WM_GETTEXT, 4, (LPARAM)buffer);
+								blue = floor(4.05*_wtoi(buffer));
+
+								cc.lStructSize = sizeof(cc);
+								cc.hwndOwner = ghw_main; //H;
+								cc.rgbResult = RGB(red, green, blue);
+								cc.lpCustColors = acrCustClr;
+								cc.Flags = CC_FULLOPEN | CC_RGBINIT;
+								if (ChooseColor(&cc)==TRUE) 
+								{
+									red = GetRValue(cc.rgbResult); 
+									green = GetGValue(cc.rgbResult); 
+									blue = GetBValue(cc.rgbResult); 
+								}
+
+								_itow_s(ceil(red/4.05), buffer, 4, 10);
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_R1, WM_SETTEXT, NULL, (LPARAM)buffer);
+								_itow_s(ceil(green/4.05), buffer, 4, 10);
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_G1, WM_SETTEXT, NULL, (LPARAM)buffer);
+								_itow_s(ceil(blue/4.05), buffer, 4, 10);
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_B1, WM_SETTEXT, NULL, (LPARAM)buffer);
+
+								InvalidateRect(GetDlgItem(H, IDB_TCOLOR1), NULL, TRUE);
+							}
+						}
+						break;
+
+						case IDB_TCOLOR2:
+						{
+							int red, green, blue;
+							wchar_t buffer[5];
+							COLORREF acrCustClr[16] = {RGB(0, 0, 0),
+													    RGB(255, 0, 0),
+														RGB(0, 255, 0),
+														RGB(0, 0, 255),
+														RGB(255, 255, 0),
+														RGB(0, 255, 255),
+														RGB(255, 255, 255),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0),
+														RGB(0, 0, 0)};
+							CHOOSECOLOR cc;
+							ZeroMemory(&cc, sizeof(cc));
+
+							if(gplayers)
+							{
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_R2, WM_GETTEXT, 4, (LPARAM)buffer);
+								red = floor(4.05*_wtoi(buffer));
+
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_G2, WM_GETTEXT, 4, (LPARAM)buffer);
+								green = floor(4.05*_wtoi(buffer));
+
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_B2, WM_GETTEXT, 4, (LPARAM)buffer);
+								blue = floor(4.05*_wtoi(buffer));
+
+								cc.lStructSize = sizeof(cc);
+								cc.hwndOwner = ghw_main; //H;
+								cc.rgbResult = RGB(red, green, blue);
+								cc.lpCustColors = acrCustClr;
+								cc.Flags = CC_FULLOPEN | CC_RGBINIT;
+								if (ChooseColor(&cc)==TRUE) 
+								{
+									red = GetRValue(cc.rgbResult); 
+									green = GetGValue(cc.rgbResult); 
+									blue = GetBValue(cc.rgbResult); 
+								}
+
+								_itow_s(ceil(red/4.05), buffer, 4, 10);
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_R2, WM_SETTEXT, NULL, (LPARAM)buffer);
+								_itow_s(ceil(green/4.05), buffer, 4, 10);
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_G2, WM_SETTEXT, NULL, (LPARAM)buffer);
+								_itow_s(ceil(blue/4.05), buffer, 4, 10);
+								SendDlgItemMessage(ghw_tab3, IDT_TCOL_B2, WM_SETTEXT, NULL, (LPARAM)buffer);
+
+								InvalidateRect(GetDlgItem(H, IDB_TCOLOR2), NULL, TRUE);
+							}
+						}
+						break;
+					}
+				}
+				break;
+			}
+		}
+		break;
+    }
+    return DefSubclassProc(H, M, W, L);
+}
+
+
+void make_pony_phys()
+{
+	SendDlgItemMessage(ghw_tab2, IDT_PHYS_HELE, WM_SETTEXT, 0, (LPARAM)_T("7"));
+	SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEWI, WM_SETTEXT, 0, (LPARAM)_T("7"));
+	SendDlgItemMessage(ghw_tab2, IDT_PHYS_HEDE, WM_SETTEXT, 0, (LPARAM)_T("7"));
+	SendDlgItemMessage(ghw_tab2, IDT_PHYS_SHWI, WM_SETTEXT, 0, (LPARAM)_T("-7"));
+	SendDlgItemMessage(ghw_tab2, IDT_PHYS_CHSI, WM_SETTEXT, 0, (LPARAM)_T("7"));
+	SendDlgItemMessage(ghw_tab2, IDT_PHYS_WASI, WM_SETTEXT, 0, (LPARAM)_T("-7"));
+	SendDlgItemMessage(ghw_tab2, IDT_PHYS_THSI, WM_SETTEXT, 0, (LPARAM)_T("7"));
+	SendDlgItemMessage(ghw_tab2, IDT_PHYS_CASI, WM_SETTEXT, 0, (LPARAM)_T("7"));
+	SendDlgItemMessage(ghw_tab2, IDT_PHYS_LELE, WM_SETTEXT, 0, (LPARAM)_T("7"));
+	SendDlgItemMessage(ghw_tab2, IDC_PHYS_SKIN, CB_SETCURSEL, (WPARAM)7, 0);
+	SendMessage(ghw_tab2, WM_COMMAND, MAKEWPARAM(IDB_MOTI_RAND,BN_CLICKED), 0);
+	Button_SetCheck(GetDlgItem(ghw_main, IDB_PLAY_EDIT),BST_CHECKED);
+	SendDlgItemMessage(ghw_tab2, IDC_STRP_TAIL, CB_SETCURSEL, (WPARAM)1, 0);
+}
+
+
+void trim_team()
+{
+	int csel, num_on_team, ii, jj;
+
+	csel = SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_GETCURSEL, 0, 0);
+	if(gn_listsel > -1)
+	{
+		gb_forceupdate = true;
+		gn_forceupdate = gn_playind[gn_listsel];
+	}
+
+	for(num_on_team=0;num_on_team< gteams->team_max;num_on_team++)
+	{
+		if(!gteams[csel].players[num_on_team]) break;
+	}
+
+	if(gn_playind != NULL) delete[] gn_playind;
+	gn_playind = new int[num_on_team];
+
+	SendDlgItemMessage(ghw_main, IDC_NAME_LIST, LVM_DELETEALLITEMS, 0, 0);
+	LVITEM lvI;
+	memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+	lvI.mask = LVIF_TEXT;
+	jj=0;
+	for(ii=0;ii<gnum_players;ii++)
+	{
+		if(gplayers[ii].id == gteams[csel].players[jj] && gplayers[ii].b_show)
+		{
+			gn_playind[jj] = ii;
+			lvI.pszText = gplayers[ii].name;
+			lvI.iItem = jj;
+			SendDlgItemMessage(ghw_main, IDC_NAME_LIST, LVM_INSERTITEM, 0, (LPARAM)&lvI);
+
+			jj++;
+		}
+		if(jj==num_on_team) break;
+	}
+	ListView_SetItemState(GetDlgItem(ghw_main, IDC_NAME_LIST), 0, LVIS_SELECTED, LVIS_SELECTED);
+	gn_listsel = 0;
+
+	SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_SETCURSEL, (WPARAM)csel, 0);
+}
+
+
+void team_vis_clear()
+{
+	int iteam, ii, jj;
+
+	Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_FACE),BST_UNCHECKED);
+	Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_HAIR),BST_UNCHECKED);
+	Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_PHYS),BST_UNCHECKED);
+	Button_SetCheck(GetDlgItem(ghw_tab2, IDB_EDIT_STRP),BST_UNCHECKED);
+
+	if((gn_listsel > -1) && gplayers[gn_playind[gn_listsel]].team_ind >= 0)
+	{
+		iteam = gplayers[gn_playind[gn_listsel]].team_ind;
+		for(ii=0;ii< gteams->team_max;ii++)
+		{
+			if( gteams[iteam].players[ii] && gteams[iteam].players[ii]!=gplayers[gn_playind[gn_listsel]].id )
+			{
+				for(jj=0;jj<gnum_players;jj++)
+				{
+					if( gteams[iteam].players[ii]==gplayers[jj].id )
+					{
+						if(gplayers[jj].b_edit_face) 
+						{
+							gplayers[jj].b_edit_face=false;
+							gplayers[jj].b_changed=true;
+						}
+						if(gplayers[jj].b_edit_hair)
+						{
+							gplayers[jj].b_edit_hair=false;
+							gplayers[jj].b_changed=true;
+						}
+						if(gplayers[jj].b_edit_phys)
+						{
+							gplayers[jj].b_edit_phys=false;
+							gplayers[jj].b_changed=true;
+						}
+						if(gplayers[jj].b_edit_strip)
+						{
+							gplayers[jj].b_edit_strip=false;
+							gplayers[jj].b_changed=true;
+						}
+						break;
+					}
+				}
+			}
+		}
+	}
+}
+
+void team_created_set()
+{
+	int iteam, ii, jj;
+
+	Button_SetCheck(GetDlgItem(ghw_main, IDB_PLAY_EDIT),BST_CHECKED);
+
+	if((gn_listsel > -1) && gplayers[gn_playind[gn_listsel]].team_ind >= 0)
+	{
+		iteam = gplayers[gn_playind[gn_listsel]].team_ind;
+		for(ii=0;ii< gteams->team_max;ii++)
+		{
+			if( gteams[iteam].players[ii] && gteams[iteam].players[ii]!=gplayers[gn_playind[gn_listsel]].id )
+			{
+				for(jj=0;jj<gnum_players;jj++)
+				{
+					if( gteams[iteam].players[ii]==gplayers[jj].id )
+					{
+						if(!gplayers[jj].b_edit_player) 
+						{
+							gplayers[jj].b_edit_player=true;
+							gplayers[jj].b_changed=true;
+						}
+						break;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+void team_fpc_on()
+{
+	int iteam, ii, jj;
+	TCHAR fpcBoot[3], fpcGkGlove[3], fpcBootZero[3], fpcGkGloveZero[3];
+	int i_fpcBoot, i_fpcGkGlove;
+	TCHAR buffer[20];
+
+	if(gn_listsel > -1)
+	{
+		//Hide currently selected player
+		enable_fpc_invis_for_displayed_player(ghw_tab2, giPesVersion);
+
+		//Update current player entry
+		player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+		if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+		{
+			if (wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name))
+				pe_current.b_edit_player = true;
+			gplayers[gn_playind[gn_listsel]] = pe_current;
+		}
+
+		//Loop through team and turn on FPC invis for each
+		if(gplayers[gn_playind[gn_listsel]].team_ind >= 0)
+		{
+			iteam = gplayers[gn_playind[gn_listsel]].team_ind;
+			for(ii=0;ii< gteams->team_max;ii++)
+			{
+				if( gteams[iteam].players[ii] && gteams[iteam].players[ii]!=gplayers[gn_playind[gn_listsel]].id )
+				{
+					for(jj=0;jj<gnum_players;jj++)
+					{
+						if( gteams[iteam].players[ii]==gplayers[jj].id )
+						{
+							enable_fpc_invis_for_player(gplayers[jj], giPesVersion);
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+void team_fpc_off()
+{
+	int iteam, ii, jj;
+	TCHAR buffer[20];
+	TCHAR fpcBoot[3], fpcGkGlove[3];
+	int i_fpcBoot, i_fpcGkGlove;
+	
+
+	if(gn_listsel > -1)
+	{
+		//Show currently selected player
+		disable_fpc_invis_for_displayed_player(ghw_tab2, giPesVersion);
+
+		//Update current player entry
+		player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+		if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+		{
+			if (wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name))
+				pe_current.b_edit_player = true;
+			gplayers[gn_playind[gn_listsel]] = pe_current;
+		}
+
+		if(gplayers[gn_playind[gn_listsel]].team_ind >= 0)
+		{
+			iteam = gplayers[gn_playind[gn_listsel]].team_ind;
+			for(ii=0;ii< gteams->team_max;ii++)
+			{
+				if( gteams[iteam].players[ii] && gteams[iteam].players[ii]!=gplayers[gn_playind[gn_listsel]].id )
+				{
+					for(jj=0;jj<gnum_players;jj++)
+					{
+						if( gteams[iteam].players[ii]==gplayers[jj].id )
+						{
+							disable_fpc_invis_for_player(gplayers[jj], giPesVersion);
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+void fpc_toggle()
+{
+	if(SendDlgItemMessage(ghw_tab2, IDC_STRP_SOCK, CB_GETCURSEL, 0, 0) == 2) //If short socks, assume FPC is set and remove FPC invisibility settings
+	{
+		disable_fpc_invis_for_displayed_player(ghw_tab2, giPesVersion);
+	}
+	else //Otherwise, assume FPC isn't set and turn on FPC invisibility settings
+	{
+		enable_fpc_invis_for_displayed_player(ghw_tab2, giPesVersion);
+	}
+}
+
+void toggle_hid()
+{
+	int value;
+	if (IsWindowVisible(ghw_tab1))
+	{
+		if (IsWindowVisible(GetDlgItem(ghw_tab1, IDT_STAR)))
+			value = SW_HIDE;
+		else
+			value = SW_SHOW;
+	}
+	else if (IsWindowVisible(ghw_tab2))
+	{
+		if (IsWindowVisible(GetDlgItem(ghw_tab2, IDT_MOTI_DRIB)))
+			value = SW_HIDE;
+		else
+			value = SW_SHOW;
+	}
+	else
+		return;
+
+	for(int ii=IDS_STAR; ii<=IDC_PLAY_ATT; ii++)
+		ShowWindow(GetDlgItem(ghw_tab1, ii), value);
+
+	ShowWindow(GetDlgItem(ghw_tab2, IDC_STATIC_T89), value);
+	ShowWindow(GetDlgItem(ghw_tab2, IDT_MOTI_DRIB), value);
+	ShowWindow(GetDlgItem(ghw_tab2, IDC_MOTI_DRIB), value);
+	ShowWindow(GetDlgItem(ghw_tab2, IDT_PLAY_HAND), value);
+	ShowWindow(GetDlgItem(ghw_tab2, IDC_PLAY_HAND), value);
+}
+
+void set_stats()
+{
+	if (!IsWindow(ghw_stat)) //If dialog isn't already open
+	{ 
+		ghw_stat = CreateDialog(ghinst, MAKEINTRESOURCE(IDD_STATS), ghw_main, statDlgProc); //Create the unit converter modeless dialog box
+		ShowWindow(ghw_stat, SW_SHOW); //Display it
+	}
+}
+
+void bump_stats()
+{
+	if (!IsWindow(ghw_bump)) //If dialog isn't already open
+	{ 
+		ghw_bump = CreateDialog(ghinst, MAKEINTRESOURCE(IDD_STAT_BUMP), ghw_main, bumpDlgProc); //Create the unit converter modeless dialog box
+		ShowWindow(ghw_bump, SW_SHOW); //Display it
+	}
+}
+
+void copy_stats()
+{
+	if (!IsWindow(ghw_copy) && gplayers) //If dialog isn't already open
+	{ 
+		ghw_copy = CreateDialog(ghinst, MAKEINTRESOURCE(IDD_STAT_COPY), ghw_main, copyDlgProc); //Create the unit converter modeless dialog box
+		ShowWindow(ghw_copy, SW_SHOW); //Display it
+	}
+}
+
+void set_boot_glove_ids()
+{
+	if (!IsWindow(ghw_boglo) && gplayers) //If dialog isn't already open
+	{
+		ghw_boglo = CreateDialog(ghinst, MAKEINTRESOURCE(IDD_BOGLO_SET), ghw_main, bogloDlgProc); //Create the unit converter modeless dialog box
+		ShowWindow(ghw_boglo, SW_SHOW); //Display it
+	}
+}
+
+void swap_stats()
+{
+	if (!IsWindow(ghw_swap) && gplayers) //If dialog isn't already open
+	{
+		ghw_swap = CreateDialog(ghinst, MAKEINTRESOURCE(IDD_STAT_SWAP), ghw_main, swapDlgProc); //Create the unit converter modeless dialog box
+		ShowWindow(ghw_swap, SW_SHOW); //Display it
+	}
+}
+
+BOOL CALLBACK scale_children(HWND hwnd, LPARAM lParam)
+{
+	SendMessage(hwnd, UM_SCALE, NULL, lParam);
+	return TRUE;
+}
+
+BOOL CALLBACK draw_children(HWND hwnd, LPARAM lParam)
+{
+	InvalidateRect(hwnd,NULL,true);
+	return TRUE;
+}
+
+void setup_control(HWND hw_new, HFONT hfont, SUBCLASSPROC cntl_proc)
+{
+	RECT* chd_rect;
+
+	SendMessage(hw_new, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(FALSE, 0));
+	chd_rect = new RECT;
+	GetWindowRect(hw_new, chd_rect);
+	MapWindowPoints(HWND_DESKTOP, GetParent(hw_new), (LPPOINT)chd_rect, 2);
+	SetWindowSubclass(hw_new, cntl_proc, 0, (DWORD_PTR)chd_rect);
+}
+
+
+void setup_combo(HWND hw_new, HFONT hfont, SUBCLASSPROC cntl_proc)
+{
+	RECT* chd_rect;
+
+	SendMessage(hw_new, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(FALSE, 0));
+	chd_rect = new RECT;
+	SendMessage(hw_new, CB_GETDROPPEDCONTROLRECT, 0, (LPARAM)chd_rect);
+	MapWindowPoints(HWND_DESKTOP, GetParent(hw_new), (LPPOINT)chd_rect, 2);
+	SetWindowSubclass(hw_new, cntl_proc, 0, (DWORD_PTR)chd_rect);
+}
+
+
+void SD_OnHVScroll(HWND hwnd, int bar, UINT code)
+{
+    const int scrollPos = SD_GetScrollPos(hwnd, bar, code);
+
+    if(scrollPos == -1)
+        return;
+
+    SetScrollPos(hwnd, bar, scrollPos, TRUE);
+    SD_ScrollClient(hwnd, bar, scrollPos);
+}
+
+void SD_ScrollClient(HWND hwnd, int bar, int pos)
+{
+    static int s_prevx = 1;
+    static int s_prevy = 1;
+
+    int cx = 0;
+    int cy = 0;
+
+    int& delta = cx;
+    int& prev = s_prevx;
+
+    delta = prev - pos;
+    prev = pos;
+
+	g_prevx = s_prevx;
+
+	if(cx)
+    {
+        ScrollWindow(ghw_main, cx, cy, NULL, NULL);
+		RECT rcClient;
+		GetClientRect(ghw_main, &rcClient);
+		SetWindowPos(hwnd,0,0,rcClient.bottom-18,rcClient.right,18,SWP_NOOWNERZORDER|SWP_NOACTIVATE|SWP_NOZORDER);
+    }
+}
+
+int SD_GetScrollPos(HWND hwnd, int bar, UINT code)
+{
+    SCROLLINFO si = {};
+    si.cbSize = sizeof(SCROLLINFO);
+    si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
+    GetScrollInfo(hwnd, bar, &si);
+
+    const int minPos = si.nMin;
+    const int maxPos = si.nMax - (si.nPage - 1);
+
+    int result = -1;
+
+    switch(code)
+    {
+    case SB_LINEUP /*SB_LINELEFT*/:
+        result = max(si.nPos - 1, minPos);
+        break;
+
+    case SB_LINEDOWN /*SB_LINERIGHT*/:
+        result = min(si.nPos + 1, maxPos);
+        break;
+
+    case SB_PAGEUP /*SB_PAGELEFT*/:
+        result = max(si.nPos - (int)si.nPage, minPos);
+        break;
+
+    case SB_PAGEDOWN /*SB_PAGERIGHT*/:
+        result = min(si.nPos + (int)si.nPage, maxPos);
+        break;
+
+    case SB_THUMBPOSITION:
+        // do nothing
+        break;
+
+    case SB_THUMBTRACK:
+        result = si.nTrackPos;
+        break;
+
+    case SB_TOP /*SB_LEFT*/:
+        result = minPos;
+        break;
+
+    case SB_BOTTOM /*SB_RIGHT*/:
+        result = maxPos;
+        break;
+
+    case SB_ENDSCROLL:
+        // do nothing
+        break;
+    }
+
+    return result;
+}
+
+
+void common_shortcuts(WPARAM W)
+{
+	//When ctrl+shft+P key is pressed
+	if( W == 0x50 && (GetKeyState(VK_CONTROL) & 0x8000) && (GetKeyState(VK_SHIFT) & 0x8000) )
+	{
+		make_pony_phys();
+	}
+	//When ctrl+shft+H key is pressed
+	else if( W == 0x48 && (GetKeyState(VK_CONTROL) & 0x8000) && (GetKeyState(VK_SHIFT) & 0x8000) )
+	{
+		toggle_hid();
+	}
+	//ctrl+I for toggle FPC invis
+	else if( W == 0x49 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		fpc_toggle();
+	}
+	//ctrl+O for Open dialog
+	else if( W == 0x4F && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(ID_FILE_OPEN_EN), 0);
+	}
+	//ctrl+5 for Open 15 dialog
+	else if (W == 0x35 && (GetKeyState(VK_CONTROL) & 0x8000))
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(ID_FILE_OPEN_15_EN), 0);
+	}
+	//ctrl+6 for Open 16 dialog
+	else if( W == 0x36 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(ID_FILE_OPEN_16_EN), 0);
+	}
+	//ctrl+7 for Open 17 dialog
+	else if( W == 0x37 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(ID_FILE_OPEN_17_EN), 0);
+	}
+	//ctrl+8 for Open 18 dialog
+	else if( W == 0x38 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(ID_FILE_OPEN_18_EN), 0);
+	}
+	//ctrl+9 for Open 19 dialog
+	else if( W == 0x39 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(ID_FILE_OPEN_19_EN), 0);
+	}
+	//ctrl+0 for Open 20 dialog
+	else if( W == 0x30 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(ID_FILE_OPEN_20_EN), 0);
+	}
+	//ctrl+1 for Open 21 dialog
+	else if( W == 0x31 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(ID_FILE_OPEN_21_EN), 0);
+	}
+	//ctrl+S for Save dialog
+	else if( W == 0x53 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(ID_FILE_SAVE_EN), 0);
+	}
+	//ctrl+F for clear visual flags
+	else if( W == 0x46 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		if(gplayers)
+			team_vis_clear();
+	}
+	//Page Up to scroll up player list
+	else if( W == 0x21 )
+	{
+		if(gplayers)
+			scroll_player_up();
+	}
+	//Page Down arrow to scroll down player list
+	else if( W == 0x22 )
+	{
+		if(gplayers)
+			scroll_player_down();
+	}
+	//ctrl+shift+B for an important message
+	else if( W == 0x42 && (GetKeyState(VK_CONTROL) & 0x8000) && (GetKeyState(VK_SHIFT) & 0x8000) )
+	{
+		PlaySound(TEXT("lib\\sound.wav"), NULL, SND_FILENAME | SND_ASYNC);
+	}
+	//ctrl+B for bump player stats dialog
+	else if( W == 0x42 && (GetKeyState(VK_CONTROL) & 0x8000) )
+	{
+		SendMessage(ghw_main, WM_COMMAND, LOWORD(IDM_PLAY_BUMP), 0);
+	}
+}
+
+BOOL CALLBACK statDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) //Set all player stats dialog box
+{
+	switch (Message) 
+	{ 
+		case WM_INITDIALOG: //when box first opens
+		{
+			TCHAR buffer[3];
+
+			SendDlgItemMessage(hwnd, IDC_STAT, UDM_SETRANGE, 0, MAKELPARAM(99, 40));
+
+			GetDlgItemText(ghw_tab1, IDT_ABIL_ATKP, buffer, 3);
+			SetDlgItemText(hwnd, IDT_STAT, buffer);
+
+			//SetFocus(GetDlgItem(hwnd, IDT_STAT));
+
+			SetClassLongPtr(hwnd, GCLP_HICONSM, (LONG)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_4CC), IMAGE_ICON, 16, 16, 0)); //set 4cc logo as dialog box icon
+		}
+		break; 
+		
+		case WM_COMMAND:	
+			switch(LOWORD(wParam))
+            {
+				case IDC_OK: //If the "OK" button is pressed,
+				{
+					int ii;
+					TCHAR buffer[3];
+
+					GetDlgItemText(hwnd, IDT_STAT, buffer, 3);
+					for(ii=IDT_ABIL_ATKP;ii<gi_lastAbility;ii+=2)
+					{
+						SetDlgItemText(ghw_tab1, ii, buffer);
+					}
+
+					SendMessage(hwnd, WM_CLOSE, 0, 0);
+				}
+				break;
+
+				case IDC_CANCEL: //If the "OK" button is pressed,
+				{
+					SendMessage(hwnd, WM_CLOSE, 0, 0);
+				}
+				break;
+			}
+		break;
+
+		case WM_CLOSE:
+			DestroyIcon((HICON)GetClassLongPtr(hwnd, GCLP_HICONSM)); //Destroy the allocated icon to free the GDI resource
+			SetClassLongPtr(hwnd, GCLP_HICONSM, NULL); //Set icon pointer to NULL
+			ghw_stat = NULL;
+			DestroyWindow(hwnd);
+		default:
+            return FALSE;
+    }
+    return TRUE;
+}
+
+
+BOOL CALLBACK bumpDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) //Bump player stats dialog box
+{
+	switch(Message)
+	{ 
+		case WM_INITDIALOG: //when box first opens
+		{
+			TCHAR buffer[3];
+
+			SendDlgItemMessage(hwnd, IDC_STAT, UDM_SETRANGE, 0, MAKELPARAM(10, -10));
+
+			//GetDlgItemText(ghw_tab1, IDT_ABIL_ATKP, buffer, 3);
+			_itow_s(g_bumpAmount, buffer, 3, 10);
+			SetDlgItemText(hwnd, IDT_STAT, buffer);
+
+			SetClassLongPtr(hwnd, GCLP_HICONSM, (LONG)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_4CC), IMAGE_ICON, 16, 16, 0)); //set 4cc logo as dialog box icon
+		}
+		break; 
+		
+		case WM_COMMAND:	
+			switch(LOWORD(wParam))
+            {
+				case IDC_OK: //If the "OK" button is pressed,
+				{
+					int ii, change, cur_stat, new_stat;
+					TCHAR buffer[3];
+
+					GetDlgItemText(hwnd, IDT_STAT, buffer, 3);
+					change = _wtoi(buffer);
+					for(ii=IDT_ABIL_ATKP;ii<gi_lastAbility;ii+=2)
+					{
+						GetDlgItemText(ghw_tab1, ii, buffer, 3);
+						cur_stat = _wtoi(buffer);
+						new_stat = cur_stat + change;
+						if(new_stat>99) new_stat = 99;
+						if(new_stat<40) new_stat = 40;
+						_itow_s(new_stat, buffer, 3, 10);
+						SetDlgItemText(ghw_tab1, ii, buffer);
+					}
+					g_bumpAmount = change; 
+					SendMessage(hwnd, WM_CLOSE, 0, 0);
+				}
+				break;
+
+				case IDC_CANCEL: //If the "Cancel" button is pressed,
+				{
+					SendMessage(hwnd, WM_CLOSE, 0, 0);
+				}
+				break;
+			}
+		break;
+
+		case WM_CLOSE:
+			DestroyIcon((HICON)GetClassLongPtr(hwnd, GCLP_HICONSM)); //Destroy the allocated icon to free the GDI resource
+			SetClassLongPtr(hwnd, GCLP_HICONSM, NULL); //Set icon pointer to NULL
+			ghw_stat = NULL;
+			DestroyWindow(hwnd);
+			SetFocus(GetDlgItem(ghw_main,IDC_NAME_LIST));
+		default:
+            return FALSE;
+    }
+    return TRUE;
+}
+
+
+BOOL CALLBACK copyDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) //Copy player from one ID to another
+{
+	switch (Message) 
+	{ 
+		case WM_INITDIALOG: //when box first opens
+		{
+			TCHAR buffer[7];
+
+			GetDlgItemText(ghw_main, IDT_PLAY_ID, buffer, 7);
+			SetDlgItemText(hwnd, IDT_STAT_SOUR, buffer);
+			SetDlgItemText(hwnd, IDT_STAT_DEST, buffer);
+
+			//SetFocus(GetDlgItem(hwnd, IDT_STAT));
+
+			SetClassLongPtr(hwnd, GCLP_HICONSM, (LONG)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_4CC), IMAGE_ICON, 16, 16, 0)); //set 4cc logo as dialog box icon
+		}
+		break; 
+		
+		case WM_COMMAND:	
+			switch(LOWORD(wParam))
+            {
+				case IDC_OK: //If the "OK" button is pressed,
+				{
+					int srcPID, destPID;
+					int srcIndex=-1, destIndex=-1;
+					player_export srcPlyrExport;
+					wchar_t buffer[21];
+
+					//Update current player entry
+					if(gn_listsel > -1)
+					{
+						player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+						if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+						{
+							if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+								pe_current.b_edit_player = true;
+							gplayers[gn_playind[gn_listsel]] = pe_current;
+						}
+					}
+
+					//Get source and destination PIDs:
+					SendDlgItemMessage(hwnd, IDT_STAT_SOUR, WM_GETTEXT, 18, (LPARAM)buffer);
+					srcPID = _wtoi(buffer);
+					SendDlgItemMessage(hwnd, IDT_STAT_DEST, WM_GETTEXT, 18, (LPARAM)buffer);
+					destPID = _wtoi(buffer);
+
+					//Find the source and destination players by PID
+					for(int ii=0;ii<gnum_players;ii++)
+					{
+						if(srcIndex > -1 && destIndex > -1) break;
+						if(gplayers[ii].id == srcPID)
+						{
+							srcIndex = ii;
+							srcPlyrExport = gplayers[srcIndex].PlayerExport();
+						}
+						if(gplayers[ii].id == destPID)
+						{
+							destIndex = ii;
+						}
+					}
+					if(srcIndex == -1 || destIndex == -1) break;
+
+					//Overwrite stats of dest player (leave Aes alone), set b_changed flag
+					gplayers[destIndex].PlayerImport(srcPlyrExport, true, false);
+					gplayers[destIndex].b_changed = true;
+
+					//Refresh display of currently selected player
+					if(gn_listsel > -1)
+						show_player_info(gn_playind[gn_listsel]);
+
+					//SendMessage(hwnd, WM_CLOSE, 0, 0);
+				}
+				break;
+
+				case IDC_CANCEL: //If the "OK" button is pressed,
+				{
+					SendMessage(hwnd, WM_CLOSE, 0, 0);
+				}
+				break;
+			}
+		break;
+
+		case WM_CLOSE:
+			DestroyIcon((HICON)GetClassLongPtr(hwnd, GCLP_HICONSM)); //Destroy the allocated icon to free the GDI resource
+			SetClassLongPtr(hwnd, GCLP_HICONSM, NULL); //Set icon pointer to NULL
+			ghw_stat = NULL;
+			DestroyWindow(hwnd);
+		default:
+            return FALSE;
+    }
+    return TRUE;
+}
+
+BOOL CALLBACK swapDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) //Swap all player stats dialog box
+{
+	switch (Message)
+	{
+	case WM_INITDIALOG: //when box first opens
+	{
+		TCHAR buffer[7];
+
+		GetDlgItemText(ghw_main, IDT_PLAY_ID, buffer, 7);
+		SetDlgItemText(hwnd, IDT_STAT_FPID, buffer);
+		SetDlgItemText(hwnd, IDT_STAT_SPID, buffer);
+
+		//SetFocus(GetDlgItem(hwnd, IDT_STAT));
+
+		SetClassLongPtr(hwnd, GCLP_HICONSM, (LONG)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_4CC), IMAGE_ICON, 16, 16, 0)); //set 4cc logo as dialog box icon
+	}
+	break;
+
+	case WM_COMMAND:
+		switch (LOWORD(wParam))
+		{
+		case IDC_OK: //If the "OK" button is pressed,
+		{
+			int srcPID, destPID;
+			int srcIndex = -1, destIndex = -1;
+			player_export srcPlyrExport;
+			player_export destPlyrExport;
+			wchar_t buffer[21];
+
+			//Update current player entry
+			player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+			if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+			{
+				if (wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name))
+					pe_current.b_edit_player = true;
+				gplayers[gn_playind[gn_listsel]] = pe_current;
+			}
+
+			//Get source and destination PIDs:
+			SendDlgItemMessage(hwnd, IDT_STAT_FPID, WM_GETTEXT, 18, (LPARAM)buffer);
+			srcPID = _wtoi(buffer);
+			SendDlgItemMessage(hwnd, IDT_STAT_SPID, WM_GETTEXT, 18, (LPARAM)buffer);
+			destPID = _wtoi(buffer);
+
+			//Find the source and destination players by PID
+			for (int ii = 0; ii < gnum_players; ii++)
+			{
+				if (srcIndex > -1 && destIndex > -1) break;
+				if (gplayers[ii].id == srcPID)
+				{
+					srcIndex = ii;
+					srcPlyrExport = gplayers[srcIndex].PlayerExport();
+				}
+				if (gplayers[ii].id == destPID)
+				{
+					destIndex = ii;
+					destPlyrExport = gplayers[destIndex].PlayerExport();
+				}
+			}
+			if (srcIndex == -1 || destIndex == -1) break;
+
+			//Overwrite stats of dest player (leave Aes alone), set b_changed flag
+			gplayers[destIndex].PlayerImport(srcPlyrExport, true, false);
+			gplayers[destIndex].b_changed = true;
+
+			gplayers[srcIndex].PlayerImport(destPlyrExport, true, false);
+			gplayers[srcIndex].b_changed = true;
+
+			//Refresh display of currently selected player
+			show_player_info(gn_playind[gn_listsel]);
+
+			//SendMessage(hwnd, WM_CLOSE, 0, 0);
+		}
+		break;
+
+		case IDC_CANCEL: //If the "OK" button is pressed,
+		{
+			SendMessage(hwnd, WM_CLOSE, 0, 0);
+		}
+		break;
+		}
+		break;
+
+	case WM_CLOSE:
+		DestroyIcon((HICON)GetClassLongPtr(hwnd, GCLP_HICONSM)); //Destroy the allocated icon to free the GDI resource
+		SetClassLongPtr(hwnd, GCLP_HICONSM, NULL); //Set icon pointer to NULL
+		ghw_stat = NULL;
+		DestroyWindow(hwnd);
+	default:
+		return FALSE;
+	}
+	return TRUE;
+}
+
+
+BOOL CALLBACK importDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) //import player stats dialog box
+{
+	switch(Message)
+	{ 
+		case WM_INITDIALOG: //when box first opens
+		{
+			if(gb_importStats) Button_SetCheck(GetDlgItem(hwnd, IDB_IMPO_STAT), BST_CHECKED);
+			else Button_SetCheck(GetDlgItem(hwnd, IDB_IMPO_STAT), BST_UNCHECKED);
+
+			if(gb_importAes) Button_SetCheck(GetDlgItem(hwnd, IDB_IMPO_AEST), BST_CHECKED);
+			else Button_SetCheck(GetDlgItem(hwnd, IDB_IMPO_AEST), BST_UNCHECKED);
+
+			//SetClassLongPtr(hwnd, GCLP_HICONSM, (LONG)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_4CC), IMAGE_ICON, 16, 16, 0)); //set 4cc logo as dialog box icon
+		}
+		break; 
+		
+		case WM_COMMAND:	
+			switch(LOWORD(wParam))
+            {
+				case IDC_OK: //If the "OK" button is pressed,
+				{
+					gb_importStats = IsDlgButtonChecked(hwnd, IDB_IMPO_STAT);
+					gb_importAes = IsDlgButtonChecked(hwnd, IDB_IMPO_AEST);
+					EndDialog(hwnd, IDC_OK);
+				}
+				break;
+
+				case IDC_CANCEL: //If the "Cancel" button is pressed, FIX THIS to properly seend cancelled message to parent window
+				{
+					EndDialog(hwnd, IDC_CANCEL);
+				}
+				break;
+			}
+		break;
+
+		default:
+            return FALSE;
+    }
+    return TRUE;
+}
+
+
+void roster_data_output()
+{
+//	char* buffer;
+//	wchar_t short_name[0x4];
+
+	TCHAR** playstyle; //pointer to playstyle lists for 18 (and under), 19, or 20 (and up)
+
+	if(giPesVersion>=20)
+	{
+		playstyle = gpc_playstyle20;
+	}
+	else if(giPesVersion==19)
+	{
+		playstyle = gpc_playstyle19;
+	}
+	else
+	{
+		playstyle = gpc_playstyle18;
+	}
+	TCHAR* playskills[] = {_T("Scissors Feint"),
+	_T("Flip Flap"),
+	_T("Marseille Turn"),
+	_T("Sombrero"),
+	_T("Cut Behind & Turn"),
+	_T("Scotch Move"),
+	_T("Heading"),
+	_T("Long Range Drive"),
+	_T("Knuckle Shot"),
+	_T("Acro Finishing"),
+	_T("Heel Trick"),
+	_T("First Time Shot"),
+	_T("One Touch Pass"),
+	_T("Weighted Pass"),
+	_T("Pinpoint Crossing"),
+	_T("Outside Curler"),
+	_T("Rabona"),
+	_T("Low Lofted Pass"),
+	_T("Low Punt Trajectory"),
+	_T("Long Throw"),
+	_T("GK Long Throw"),
+	_T("Malicia"),
+	_T("Man Marking"),
+	_T("Track Back"),
+	_T("Acro Clear"),
+	_T("Captaincy"),
+	_T("Super Sub"),
+	_T("Fighting Spirit"),
+	_T("Double Touch"),
+	_T("Crossover Turn"),
+	_T("Step on Skill"),
+	_T("Chip Shot"),
+	_T("Dipping Shots"),
+	_T("Rising Shots"),
+	_T("No Look Pass"),
+	_T("GK High Punt Trajectory"),
+	_T("Penalty Specialist"),
+	_T("GK Penalty Specialist"),
+	_T("Interception"),
+	_T("Long Range Shooting"),
+	_T("Through Passing")};
+
+	TCHAR* comstyles[] = {_T("Trickster"),
+	_T("Mazing Runner"),
+	_T("Speeding Bullet"),
+	_T("Incisive Run"),
+	_T("Long Ball Expert"),
+	_T("Early Cross"),
+	_T("Long Ranger")};
+
+	FILE *outStream = _tfopen(_T("EDIT.tsv"), _T("w, ccs=UTF-8")); //ccs=UNICODE
+
+	if(!outStream)
+	{
+		//buffer = strerror(errno);
+		return;
+	}
+	
+	for(int iteam=0;iteam<gnum_teams;iteam++)
+	{
+		_ftprintf(outStream, _T("%s\n"), gteams[iteam].name);
+//for Ved:		mbstowcs(short_name,gteams[iteam].short_name,4); 
+		for(int ii=0;ii< gteams->team_max;ii++)
+		{
+			if( gteams[iteam].players[ii] )
+			{
+				for(int jj=0;jj<gnum_players;jj++)
+				{
+					if( gteams[iteam].players[ii]==gplayers[jj].id )
+					{
+						TCHAR buffer[6];
+						std::wstring outstr = L"";
+						//memset(outstr,0,sizeof(outstr));
+						/*
+						//Label medal players
+						if(gplayers[jj].finish == 99) _tcscpy(buffer,_T("GOLD "));
+						else if(gplayers[jj].finish > 85) _tcscpy(buffer,_T("SILVER "));
+						else _tcscpy(buffer,_T(""));
+						//Label team captain
+						if(gteams[iteam].captain_ind == ii) _tcscat(buffer, _T("(C)"));
+						*/
+						//Print Ability score
+						_itot_s(gplayers[jj].finish, buffer, 6, 10);
+						outstr += buffer;
+						outstr += _T("\t");
+
+						//Label captain
+						if(gteams[iteam].captain_ind == ii) outstr += L"(C)\t";
+						else outstr += L"\t";
+
+						//Print height
+						_itot_s(gplayers[jj].height, buffer, 6, 10);
+						outstr += buffer;
+						outstr += _T("\t");
+
+						//Print play style
+						int ind = gplayers[jj].play_style;
+						if((giPesVersion == 15 || giPesVersion==16) && ind>16) ind--;
+						outstr += playstyle[ind];
+
+						//Print player skill(s)
+						int numSkill;
+						if(giPesVersion==19) numSkill=39;
+						else if(giPesVersion>=20) numSkill=41;
+						else numSkill=28;
+						for(int kk=0;kk<numSkill;kk++)
+						{
+							if(gplayers[jj].play_skill[kk])
+							{
+								outstr += _T("\t");
+								outstr += playskills[kk];
+							}
+						}
+						//Print COM style(s)
+						for(int kk=0;kk<7;kk++)
+						{
+							if(gplayers[jj].com_style[kk])
+							{
+								outstr += _T("\t");
+								outstr += comstyles[kk];
+							}
+						}
+
+						_ftprintf(outStream, _T("%d\t%s\t%s\t%s\n"), gteams[iteam].numbers[ii], gplayers[jj].name,
+							gpc_pos_short[gplayers[jj].reg_pos], outstr.c_str());
+//for Ved:					_ftprintf(outStream, _T("%s,%s,%s%d\n"), poss[gplayers[jj].reg_pos], gplayers[jj].name,
+//									short_name,ii+1);
+						break;
+					}
+				}
+			}
+		}
+		_fputts(_T("\n"),outStream);
+	}
+	fclose(outStream);
+}
+
+
+void fix_database()
+{
+	int ii;
+
+	for(ii=0;ii<gnum_players;ii++)
+	{
+		if(!gplayers[ii].b_base_copy && gplayers[ii].copy_id != gplayers[ii].id && gplayers[ii].copy_id != 0)
+		{
+			gplayers[ii].copy_id = 0;
+			gplayers[ii].b_changed=true;
+		}
+		else if(gplayers[ii].b_base_copy && 
+			    (gplayers[ii].copy_id == gplayers[ii].id || gplayers[ii].copy_id == 0)) //If it's not a base copy of another player but the base copy flag is set, unset it
+		{
+			//gplayers[ii].copy_id = gplayers[ii].id;
+			gplayers[ii].b_base_copy=false;
+			gplayers[ii].b_changed=true;
+		}
+
+		if(gplayers[ii].b_edit_face) 
+		{
+			gplayers[ii].b_edit_face=false;
+			gplayers[ii].b_changed=true;
+		}
+
+		if(gplayers[ii].b_edit_hair)
+		{
+			gplayers[ii].b_edit_hair=false;
+			gplayers[ii].b_changed=true;
+		}
+
+		if(gplayers[ii].b_edit_phys)
+		{
+			gplayers[ii].b_edit_phys=false;
+			gplayers[ii].b_changed=true;
+		}
+
+		if(gplayers[ii].b_edit_strip)
+		{
+			gplayers[ii].b_edit_strip=false;
+			gplayers[ii].b_changed=true;
+		}
+	}
+	if(gn_listsel > -1)
+		show_player_info(gn_playind[gn_listsel]);
+
+	//Clear the Team Strip Edited flag and reset strip values
+	for (ii=0; ii < gnum_teams; ii++)
+	{
+		//Set Edited Strip flag to false
+		if (gteams[ii].b_edit_strip)
+		{
+			gteams[ii].b_edit_strip = false;
+			gteams[ii].b_changed = true;
+		}
+		//Return strip settings to default configuration:
+		//Set first 3 strip entries to Kit 1 (0), Kit 2 (1), and GK kit (0x80), and IDs to Team Id * 0x40
+		//Set all subsequent strip entries to a non-existent team ID (0xFFFFC0)
+		if (gteams[ii].stripBlock[0].stripNumber != 0x0 || 
+			gteams[ii].stripBlock[0].stripTeamId != gteams[ii].id * 0x40)
+		{
+			gteams[ii].stripBlock[0].stripNumber = 0x0;
+			gteams[ii].stripBlock[0].stripTeamId = gteams[ii].id * 0x40;
+			gteams[ii].b_changed = true;
+		}
+		if (gteams[ii].stripBlock[1].stripNumber != 0x1 ||
+			gteams[ii].stripBlock[1].stripTeamId != gteams[ii].id * 0x40)
+		{
+			gteams[ii].stripBlock[1].stripNumber = 0x1;
+			gteams[ii].stripBlock[1].stripTeamId = gteams[ii].id * 0x40;
+			gteams[ii].b_changed = true;
+		}
+		if (gteams[ii].stripBlock[2].stripNumber != 0x80 ||
+			gteams[ii].stripBlock[2].stripTeamId != gteams[ii].id * 0x40)
+		{
+			gteams[ii].stripBlock[2].stripNumber = 0x80; //GK strip
+			gteams[ii].stripBlock[2].stripTeamId = gteams[ii].id * 0x40;
+			gteams[ii].b_changed = true;
+		}
+		for (int jj = 3; jj < 10; jj++)
+		{
+			if (gteams[ii].stripBlock[jj].stripNumber != 0x0 ||
+				gteams[ii].stripBlock[jj].stripTeamId != 0xFFFFC0)
+			{
+				gteams[ii].stripBlock[jj].stripNumber = 0x0;
+				gteams[ii].stripBlock[jj].stripTeamId = 0xFFFFC0; //Non-existent team ID
+				gteams[ii].b_changed = true;
+			}
+		}
+	}
+	if (giPesVersion == 17)
+	{	//Fix kit team IDs in Unknown section so kit preview colors 12 and 2 display properly
+		int current_byte = 0x425180;
+		FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+		for (int ii = 0; ii < 2500; ii++) //2500 entries
+		{
+			write_dataOld(0xFFFFC0, 0, 4 * 8, current_byte, pDescriptorOld);
+			current_byte += 0x80;
+		}
+	}
+}
+
+
+void scroll_player_up()
+{
+	if( gn_listsel != 0 )
+	{
+		ListView_EnsureVisible(GetDlgItem(ghw_main, IDC_NAME_LIST), gn_listsel-1, false);
+		ListView_SetItemState(GetDlgItem(ghw_main, IDC_NAME_LIST), gn_listsel-1, LVIS_SELECTED, LVIS_SELECTED);
+	}	
+}
+
+void scroll_player_down()
+{
+	if( gn_listsel != ListView_GetItemCount(GetDlgItem(ghw_main, IDC_NAME_LIST))-1 )
+	{
+		ListView_EnsureVisible(GetDlgItem(ghw_main, IDC_NAME_LIST), gn_listsel+1, false);
+		ListView_SetItemState(GetDlgItem(ghw_main, IDC_NAME_LIST), gn_listsel+1, LVIS_SELECTED, LVIS_SELECTED);
+	}	
+}
+
+void player_names_to_positions()
+{
+	int num_on_team, csel, current_listsel;
+	TCHAR buffer[61];
+	LVITEM lvI;
+
+	if (gn_listsel < 0)
+		return;
+
+	//Save current listbox selection index to restore at end
+	current_listsel = gn_listsel;
+
+	csel = SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_GETCURSEL, 0, 0) - 1;
+
+	//Update current player entry
+	player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+	if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+	{
+		gplayers[gn_playind[gn_listsel]] = pe_current;
+	}
+
+	//Loop over each entry in the player listview
+	//Access the entry in the gplayer array for each player listed in the listview
+	int maxNames = SendDlgItemMessage(ghw_main, IDC_NAME_LIST, LVM_GETITEMCOUNT, 0, 0);
+	for (int ii = 0; ii < maxNames; ii++)
+	{
+		//Update gn_listsel to each item in the list to avoid triggering the (iItem != gn_listsel) condition in LVN_ITEMCHANGED
+		//Will change back to actual selection at end
+		gn_listsel = ii;
+		//Update the name to the registered position
+		wcsncpy_s(gplayers[gn_playind[ii]].name, gpc_positions[gplayers[gn_playind[ii]].reg_pos], 61); //Could also use gpc_pos_short
+		gplayers[gn_playind[ii]].b_edit_player = true;
+		//if (!wcscmp(gplayers[ii].name, buffer))
+
+		//Update displayed name in name in the listview
+		memset(&lvI, 0, sizeof(lvI)); //Zero out struct members
+		lvI.mask = LVIF_TEXT;
+		lvI.pszText = gplayers[gn_playind[ii]].name;
+		lvI.iItem = ii;
+		SendDlgItemMessage(ghw_main, IDC_NAME_LIST, LVM_SETITEM, 0, (LPARAM)&lvI);
+	}
+
+	//Then refresh the displayed data for the selected player
+	gn_listsel = current_listsel;
+	TCHAR* tmp = gplayers[gn_playind[gn_listsel]].name;
+	show_player_info(gn_playind[gn_listsel]);
+}
+
+void export_squad(HWND hwnd)
+{
+	USES_CONVERSION; //required for A2W, W2A, A2T, T2A macros
+	int ii, jj, kk, num_on_team, csel;
+
+	if(gn_listsel < 0) 
+		return;
+
+	csel = SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_GETCURSEL, 0, 0) - 1;
+
+	//First update the data structure to reflect any changes the user has made to the current player/team
+	player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+	if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+	{
+		if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+			pe_current.b_edit_player = true;
+		gplayers[gn_playind[gn_listsel]] = pe_current;
+		
+		//Update displayed name
+		LVITEM lvI;
+		memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+		lvI.mask = LVIF_TEXT;
+		lvI.pszText = pe_current.name;
+		lvI.iItem = gn_listsel;
+		SendDlgItemMessage(ghw_main, IDC_NAME_LIST, LVM_SETITEM, 0, (LPARAM)&lvI);
+
+		show_player_info(gn_playind[gn_listsel]);
+	}
+
+	//Check and update team tables
+	team_entry te_current;
+	if( get_form_team_info(gn_playind[gn_listsel], te_current) )
+	{
+		int ti = gplayers[gn_playind[gn_listsel]].team_ind;
+		if( !(gteams[ti] == te_current) )
+		{
+			gteams[ti] = te_current;
+
+			//Update combobox
+			//int csel = SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_GETCURSEL, 0, 0);
+			SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_DELETESTRING, gn_teamArrayIndToCb[ti]+1, 0);
+			SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_INSERTSTRING, gn_teamArrayIndToCb[ti]+1, (LPARAM)te_current.name);
+			SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_SETCURSEL, csel+1, 0);								
+		}
+	}
+
+	//Dialog to get out_file path
+	OPENFILENAME ofn;
+	TCHAR outPath[MAX_PATH] = _T("");
+	char defName[10];
+	strcpy(defName, gteams[gn_teamCbIndToArray[csel]].short_name);
+	strcat(defName, ".4ccs");
+	_tcscpy(outPath, A2T(defName));
+
+	ii=0;
+	const char *invalid_characters = "<>:\"/\\|?*";
+	while((int)defName[ii]>0 && ii<10)
+	{
+		if((int)(defName[ii])<32 || strchr(invalid_characters, defName[ii]))
+		{
+			_tcscpy(outPath, _T("export.4ccs"));
+			break;
+		}
+		ii++;
+	}
+
+	ZeroMemory(&ofn, sizeof(ofn));
+
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = hwnd;
+	ofn.lpstrFile = (LPTSTR)outPath;
+	//ofn.lpstrFileTitle = (LPTSTR)outPath;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.Flags = OFN_EXPLORER | OFN_PATHMUSTEXIST | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
+	ofn.lpstrTitle = _T("Save squad settings");
+
+	if(GetSaveFileName(&ofn))
+	{
+		//strcpy(outPath, T2A(tOutPath));
+		//Open file stream
+		std::ofstream output_file(outPath, std::ios::binary);
+
+		//Write out 4CCS version number to allow compatibility checks
+		output_file.write(gc_ver4ccs, 3);
+
+		//Write out PES version we're exporting from
+		char cPesVersion[3];
+		_itoa_s(giPesVersion, cPesVersion, 3, 10);
+		output_file.write(cPesVersion, 2);
+
+		//Find number of players on this team
+		for(num_on_team=0;num_on_team< gteams->team_max;num_on_team++)
+		{
+			if(!gteams[gn_teamCbIndToArray[csel]].players[num_on_team]) break;
+		}
+		//Find the entry in the gplayer array matching each player ID on this team
+		kk=0;
+		for(ii=0;ii<gnum_players;ii++)
+		{
+			for(jj=0;jj<num_on_team;jj++)
+			{
+				if(gplayers[ii].id == gteams[gn_teamCbIndToArray[csel]].players[jj])
+				{
+					player_export pOut = gplayers[ii].PlayerExport();
+					if (giPesVersion <= 16) pOut.phys_cont = pOut.body_ctrl;
+					if (giPesVersion <= 15)
+					{
+						pOut.clearing = pOut.body_ctrl;
+						pOut.reflex = pOut.body_ctrl;
+						pOut.cover = pOut.body_ctrl;
+					}
+					output_file.write((char*)&pOut, sizeof(pOut));
+					kk++;
+					break;
+				}
+			}
+			//Stop when every player has been exported
+			if(kk==num_on_team) break;
+		}
+
+		//Write out team shirt numbers
+		output_file.write((char*)gteams[gn_teamCbIndToArray[csel]].numbers, sizeof(gteams[gn_teamCbIndToArray[csel]].numbers));
+
+		//Close filestream
+		output_file.close();
+	}
+}
+
+void import_squad(HWND hwnd)
+{
+	USES_CONVERSION; //required for A2W, W2A, A2T, T2A macros
+	int ii, jj, kk, num_on_team, csel;
+
+	if(gn_listsel < 0) 
+		return;
+
+	csel = SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_GETCURSEL, 0, 0) - 1;
+
+	//Dialog to get out_file path
+	OPENFILENAME ofn;
+	TCHAR inPath[MAX_PATH] = _T("");
+
+	ZeroMemory(&ofn, sizeof(ofn));
+
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = hwnd;
+	ofn.lpstrFile = (LPTSTR)inPath;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.Flags = OFN_EXPLORER | OFN_PATHMUSTEXIST | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
+	ofn.lpstrTitle = _T("Load squad settings");
+
+	if(GetOpenFileName(&ofn))
+	{
+		std::ifstream input_file;
+
+		//Initial, fixed size version check: this doesn't actually work in general use because team sizes can vary (!= 23 players)
+		//input_file.open(inPath, std::ifstream::ate | std::ios::binary);
+		////int byte_pos = 
+		//if( (int)(input_file.tellg()) < 7268)
+		//{
+		//	MessageBox(ghw_main, _T("Invalid 4CCS file!\r\nPlease save a 4CCS for this team using a PES19-compatible version of 4ccEditor."),
+		//		_T("Version Error!"), MB_ICONERROR | MB_OK); //wrong file version
+		//	input_file.close();
+		//	return;
+		//}
+		//input_file.close();
+
+		//Open file stream for reading
+		//std::ifstream input_file(inPath, std::ios::binary);
+		input_file.open(inPath, std::ios::binary);
+
+		//Check for squad export version compatibility
+		char c_ver[4];
+		input_file.read(c_ver, 3);
+		c_ver[3] = '\0';
+		if(strcmp(c_ver, gc_ver4ccs)!=0)
+		{
+			TCHAR message[200];
+			_stprintf(message, _T("Invalid 4CCS file!\r\nPlease save a 4CCS for this team using a %s-compatible version of 4ccEditor."), A2T(gc_ver4ccs));
+			MessageBox(ghw_main, message, _T("Version Error!"), MB_ICONERROR | MB_OK); //wrong file version
+			input_file.close();
+			return;
+		}
+
+		if(DialogBox(GetModuleHandle(NULL), MAKEINTRESOURCE(IDD_DATA_IMPORT), ghw_main, importDlgProc) == IDC_OK) //If OK is clicked
+		{ 
+			//Get version this was imported from
+			char c_pesVer[3];
+			int pesVer;
+			input_file.read(c_pesVer, 2);
+			c_pesVer[2] = '\0';
+			pesVer = atoi(c_pesVer);
+			
+			//Find number of players on this team
+			for(num_on_team=0; num_on_team < gteams->team_max; num_on_team++)
+			{
+				if(!gteams[gn_teamCbIndToArray[csel]].players[num_on_team]) break;
+			}
+			//Find the entry in the gplayer array matching each player ID on this team
+			kk=0;
+			for(ii=0;ii<gnum_players;ii++)
+			{
+				for(jj=0;jj<num_on_team;jj++)
+				{
+					if(gplayers[ii].id == gteams[gn_teamCbIndToArray[csel]].players[jj])
+					{
+						player_export pIn;
+						input_file.read((char *)&pIn, sizeof(pIn));
+						gplayers[ii].PlayerImport(pIn, gb_importStats, gb_importAes);
+						//No Custom skin in 18
+						if(gb_importAes && giPesVersion>=18 && gplayers[ii].skin_col==7) gplayers[ii].skin_col=0;
+						//Convert between 19+ and 18- play style nunmbers if needed
+						if(gb_importStats)
+						{
+							//Convert playstyle numbers between PES versions
+							if (pesVer <= 16 && (giPesVersion == 17 || giPesVersion == 18)) gplayers[ii].play_style = n_playstyle16to1718[gplayers[ii].play_style];
+							else if (pesVer <= 16 && giPesVersion == 19) gplayers[ii].play_style = n_playstyle16to19[gplayers[ii].play_style];
+							else if (pesVer <= 16 && giPesVersion >= 20) gplayers[ii].play_style = n_playstyle16to2021[gplayers[ii].play_style];
+							else if ((pesVer == 17 || pesVer == 18) && giPesVersion <= 16) gplayers[ii].play_style = n_playstyle1718to16[gplayers[ii].play_style];
+							else if ((pesVer == 17 || pesVer == 18) && giPesVersion == 19) gplayers[ii].play_style = n_playstyle1718to19[gplayers[ii].play_style];
+							else if ((pesVer == 17 || pesVer == 18) && giPesVersion >= 20) gplayers[ii].play_style = n_playstyle1718to2021[gplayers[ii].play_style];
+							else if (pesVer == 19 && giPesVersion <= 16) gplayers[ii].play_style = n_playstyle19to16[gplayers[ii].play_style];
+							else if (pesVer == 19 && (giPesVersion == 17 || giPesVersion == 18)) gplayers[ii].play_style = n_playstyle19to1718[gplayers[ii].play_style];
+							else if (pesVer == 19 && giPesVersion >= 20) gplayers[ii].play_style = n_playstyle19to2021[gplayers[ii].play_style];
+							else if (pesVer >= 20 && giPesVersion <= 16) gplayers[ii].play_style = n_playstyle2021to16[gplayers[ii].play_style];
+							else if (pesVer >= 20 && (giPesVersion == 17 || giPesVersion == 18)) gplayers[ii].play_style = n_playstyle2021to1718[gplayers[ii].play_style];
+							else if (pesVer >= 20 && giPesVersion == 19) gplayers[ii].play_style = n_playstyle2021to19[gplayers[ii].play_style];
+						}
+						kk++;
+						break;
+					}
+				}
+				//Stop when every player has been imported
+				if(kk==num_on_team) break;
+			}
+
+			//Read in team shirt numbers
+			if(gb_importAes)
+			{
+				input_file.read((char*)gteams[gn_teamCbIndToArray[csel]].numbers, sizeof(gteams[gn_teamCbIndToArray[csel]].numbers));
+				//Limit shirt numbers to single byte for versions earlier than 19
+				if(giPesVersion < 19)
+				{
+					for(ii=0; ii<gteams[0].team_max; ii++)
+					{
+						if(gteams[gn_teamCbIndToArray[csel]].numbers[ii] > 231)
+							gteams[gn_teamCbIndToArray[csel]].numbers[ii] = 231;
+					}
+				}
+			}
+
+			int num_lv_entries = ListView_GetItemCount(GetDlgItem(ghw_main, IDC_NAME_LIST));
+			for(ii=0;ii<num_lv_entries;ii++)
+			{
+				ListView_SetItemText(GetDlgItem(ghw_main, IDC_NAME_LIST), ii, 0, gplayers[gn_playind[ii]].name)
+				show_player_info(gn_playind[gn_listsel]);
+			}
+			ListView_EnsureVisible(GetDlgItem(ghw_main, IDC_NAME_LIST), 0, false);
+			ListView_SetItemState(GetDlgItem(ghw_main, IDC_NAME_LIST), 0, LVIS_SELECTED, LVIS_SELECTED);
+			//Fix this: update view to show info on first item in list, as it's been selected
+		}
+
+		//Close filestream
+		input_file.close();
+	}
+}
+
+BOOL CALLBACK bogloDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) //Set current team's player boots and gloves
+{
+	switch (Message)
+	{
+		case WM_INITDIALOG: //when box first opens
+		{
+			TCHAR buffer[20], bootIDChar[20];
+			INT bootID;
+			SendDlgItemMessage(hwnd, IDT_BOOT_END, EM_SETREADONLY, 1, 0);
+			GetDlgItemText(ghw_tab2, IDT_STRP_BOID, buffer, 20);
+			SetDlgItemText(hwnd, IDT_BOOT_START, buffer);
+			bootID = _tstoi(buffer)+22;
+			wsprintfW(buffer, L"%d", bootID);
+			SetDlgItemText(hwnd, IDT_BOOT_END, buffer);
+			GetDlgItemText(ghw_tab2, IDT_STRP_GLID, buffer, 20);
+			SetDlgItemText(hwnd, IDT_BOOT_ID, buffer);
+			SetDlgItemText(hwnd, IDT_GLOVE_ID, buffer);
+			SendDlgItemMessage(hwnd, IDT_BOOT_OPT1, BM_SETCHECK, (WPARAM)BST_CHECKED, 0);
+			SendDlgItemMessage(hwnd, IDT_GLOVE_OPT1, BM_SETCHECK, (WPARAM)BST_CHECKED, 0);		
+
+			SetClassLongPtr(hwnd, GCLP_HICONSM, (LONG)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_4CC), IMAGE_ICON, 16, 16, 0)); //set 4cc logo as dialog box icon
+		}
+		break;
+
+		case WM_COMMAND:
+		{
+			switch (HIWORD(wParam))
+			{
+				case EN_CHANGE:
+					if (LOWORD(wParam) == IDT_BOOT_START)
+					{
+						TCHAR buffer[20];
+						INT bootID;
+						GetDlgItemText(hwnd, IDT_BOOT_START, buffer,20);
+						bootID = _tstoi(buffer) + 22;
+						wsprintfW(buffer, L"%d", bootID);
+						SetDlgItemText(hwnd, IDT_BOOT_END, buffer);
+					}
+					break;
+
+			}
+
+			switch (LOWORD(wParam))
+			{
+				case IDC_OK: //If the "OK" button is pressed,
+				{
+					int bootID, gloveID, team, playerCounter;
+					player_export srcPlyrExport;
+					wchar_t buffer[18];
+
+					//Update current player entry
+					player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+					if (!(gplayers[gn_playind[gn_listsel]] == pe_current))
+					{
+						if (wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name))
+							pe_current.b_edit_player = true;
+						gplayers[gn_playind[gn_listsel]] = pe_current;
+					}
+
+					//Get current team ID:						
+					SendDlgItemMessage(ghw_main, IDT_TEAM_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+					team = _wtoi(buffer);
+
+					//If "Boot: set incremental value" is set
+					if (SendDlgItemMessage(hwnd, IDT_BOOT_OPT2, BM_GETCHECK, 0, 0)) {
+
+						//Get starting boot:
+						SendDlgItemMessage(hwnd, IDT_BOOT_START, WM_GETTEXT, 18, (LPARAM)buffer);
+						bootID = _wtoi(buffer);
+
+						//Loop through each player
+						playerCounter = 1;
+						for (int ii = 0; ii < gnum_players; ii++)
+						{
+							//Stop if we updated 23 players
+							if (playerCounter >= 24) break;
+							if (gplayers[ii].id == team * 100 + playerCounter)
+							{
+								//Set boot ID
+								gplayers[ii].boot_id = bootID;
+								gplayers[ii].b_changed = true;
+								playerCounter++;
+								bootID++;
+							}
+						}
+					}
+
+					//If "Boot: set all to the same ID" is set
+					if (SendDlgItemMessage(hwnd, IDT_BOOT_OPT3, BM_GETCHECK, 0, 0)) {
+
+						//Get boot ID:
+						SendDlgItemMessage(hwnd, IDT_BOOT_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+						bootID = _wtoi(buffer);
+
+						//Loop through each player
+						playerCounter = 1;
+						for (int ii = 0; ii < gnum_players; ii++)
+						{
+							if (playerCounter >= 24) break;
+							if (gplayers[ii].id == team * 100 + playerCounter)
+							{
+								//Set glove ID
+								gplayers[ii].boot_id = bootID;
+								gplayers[ii].b_changed = true;
+								playerCounter++;
+							}
+						}
+					}
+
+					//If "Glove: set like boot IDs" is set
+					if (SendDlgItemMessage(hwnd, IDT_GLOVE_OPT2, BM_GETCHECK, 0, 0)) {
+						//Loop through each player
+						playerCounter = 1;
+						for (int ii = 0; ii < gnum_players; ii++)
+						{
+							if (playerCounter >= 24) break;
+							if (gplayers[ii].id == team * 100 + playerCounter)
+							{
+								//Set glove ID as boot ID
+								gplayers[ii].glove_id = gplayers[ii].boot_id;
+								gplayers[ii].b_changed = true;
+								playerCounter++;
+							}
+						}
+					}
+
+					//If "Glove: set all to the same ID" is set
+					if (SendDlgItemMessage(hwnd, IDT_GLOVE_OPT3, BM_GETCHECK, 0, 0)) {
+
+						//Get glove ID:
+						SendDlgItemMessage(hwnd, IDT_GLOVE_ID, WM_GETTEXT, 18, (LPARAM)buffer);
+						gloveID = _wtoi(buffer);
+
+						//Loop through each player
+						playerCounter = 1;
+						for (int ii = 0; ii < gnum_players; ii++)
+						{
+							if (playerCounter >= 24) break;
+							if (gplayers[ii].id == team * 100 + playerCounter)
+							{
+								//Set glove ID
+								gplayers[ii].glove_id = gloveID;
+								gplayers[ii].b_changed = true;
+								playerCounter++;
+							}
+						}
+					}
+
+					//Refresh display of currently selected player
+					show_player_info(gn_playind[gn_listsel]);
+
+					SendMessage(hwnd, WM_CLOSE, 0, 0);
+				}
+				break;
+
+				case IDC_CANCEL: //If the "Close" button is pressed,
+				{
+					SendMessage(hwnd, WM_CLOSE, 0, 0);
+				}
+				break;
+			}
+		}
+		break;
+
+		case WM_CLOSE:
+			DestroyIcon((HICON)GetClassLongPtr(hwnd, GCLP_HICONSM)); //Destroy the allocated icon to free the GDI resource
+			SetClassLongPtr(hwnd, GCLP_HICONSM, NULL); //Set icon pointer to NULL
+			ghw_stat = NULL;
+			DestroyWindow(hwnd);
+		break;
+
+		default:
+			return FALSE;
+	}
+	return TRUE;
+}
+
+BOOL CALLBACK aatf_sing_dlg_proc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+{
+    switch(Message)
+    {
+        case WM_COMMAND:
+            switch(LOWORD(wParam))
+            {
+                case IDB_AATFOK:
+                    ShowWindow(hwnd, SW_HIDE);
+                break;
+            }
+        break;
+        default:
+            return FALSE;
+    }
+    return TRUE;
+}
+
+
+BOOL CALLBACK aatf_mult_dlg_proc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+{
+    switch(Message)
+    {
+		case WM_INITDIALOG:
+		{
+			aatf_single(hwnd, giPesVersion, lParam, gplayers, gteams, gnum_players);
+			SetFocus(GetDlgItem(hwnd,IDB_AATFOK));
+		}
+		break;
+        case WM_COMMAND:
+            switch(LOWORD(wParam))
+            {
+				case IDB_AATFOK:
+                    EndDialog(hwnd, IDB_AATFOK);
+                break;
+            }
+        break;
+        default:
+            return FALSE;
+    }
+    return TRUE;
+}
+
+
+BOOL CALLBACK aatf_sel_dlg_proc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+{
+    switch(Message)
+    {
+		case WM_INITDIALOG:
+		{
+			for(int ii=0;ii<gnum_teams;ii++)
+			{
+				if(gteams[ii].b_show)
+				{
+					SendDlgItemMessage(hwnd, IDC_AATF_SEL, LB_ADDSTRING, 0, (LPARAM)gteams[ii].name);
+				}
+			}
+		}
+		break;
+        case WM_COMMAND:
+            switch(LOWORD(wParam))
+            {
+                case IDC_OK:
+					{
+						ShowWindow(hwnd, SW_HIDE);
+						int selCount = SendDlgItemMessage(hwnd, IDC_AATF_SEL, LB_GETSELCOUNT, 0, 0);
+						int *selIndices = new int[selCount];
+						//int *teamIndices = new int[selCount];
+						int teamInd;
+						SendDlgItemMessage(hwnd, IDC_AATF_SEL, LB_GETSELITEMS, (WPARAM)selCount, (LPARAM)selIndices);
+						for(int ii=0; ii<selCount; ii++)
+						{
+							teamInd = gn_teamCbIndToArray[selIndices[ii]];
+							DialogBoxParam(GetModuleHandle(NULL), MAKEINTRESOURCE(IDD_AATF), hwnd, aatf_mult_dlg_proc, teamInd);
+						}
+
+						delete [] selIndices;
+						//delete [] teamIndices;
+						EndDialog(hwnd, IDC_OK);
+					}
+                break;
+				case IDC_CANCEL:
+                    EndDialog(hwnd, IDC_CANCEL);
+                break;
+            }
+        break;
+        default:
+            return FALSE;
+    }
+    return TRUE;
+}
+
+
+BOOL CALLBACK aatf_comp_dlg_proc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+{
+    switch(Message)
+    {
+		case WM_INITDIALOG:
+		{
+			TCHAR* cs_file_path = (TCHAR*)lParam;
+			void *hc_descriptor = NULL;
+			__try
+			{
+				save_comparator(hwnd, giPesVersion, gplayers, gnum_players, gteams, gnum_teams, cs_file_path, hc_descriptor);
+			}
+			__except(EXCEPTION_EXECUTE_HANDLER)
+			{
+				TCHAR errBuffer[MAX_PATH] = _T("");
+				_stprintf_s(errBuffer, MAX_PATH, _T("File decryption failed with code %d.\nThe EDIT file is from a different PES version and cannot be used for comparison."),
+					GetExceptionCode());
+				MessageBox(ghw_main, errBuffer, _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+				if(hc_descriptor) 
+				{
+					if (giPesVersion >= 18)
+						destroyFileDescriptorNew((FileDescriptorNew*)hc_descriptor);
+					else if (giPesVersion >= 16)
+						destroyFileDescriptorOld((FileDescriptorOld*)hc_descriptor);
+					else
+						destroyFileDescriptor15((FileDescriptor15*)hc_descriptor);
+					hc_descriptor = NULL;
+				}
+				EndDialog(hwnd, IDB_AATFOK);
+			}
+		}
+		break;
+        case WM_COMMAND:
+            switch(LOWORD(wParam))
+            {
+                case IDB_AATFOK:
+				{
+					EndDialog(hwnd, IDB_AATFOK);
+				}
+                break;
+            }
+        break;
+        default:
+            return FALSE;
+    }
+    return TRUE;
+}
+
+
+void update_tables()
+{
+	if(gn_listsel < 0) 
+		return;
+
+	//First update the data structure to reflect any changes the user has made to the current player/team
+	player_entry pe_current = get_form_player_info(gn_playind[gn_listsel]);
+	if( !(gplayers[gn_playind[gn_listsel]] == pe_current) )
+	{
+		if( wcscmp(gplayers[gn_playind[gn_listsel]].name, pe_current.name) )
+			pe_current.b_edit_player = true;
+		gplayers[gn_playind[gn_listsel]] = pe_current;
+		
+		//Update displayed name
+		LVITEM lvI;
+		memset(&lvI,0,sizeof(lvI)); //Zero out struct members
+		lvI.mask = LVIF_TEXT;
+		lvI.pszText = pe_current.name;
+		lvI.iItem = gn_listsel;
+		SendDlgItemMessage(ghw_main, IDC_NAME_LIST, LVM_SETITEM, 0, (LPARAM)&lvI);
+
+		show_player_info(gn_playind[gn_listsel]);
+	}
+
+	//Check and update team tables
+	team_entry te_current;
+	if( get_form_team_info(gn_playind[gn_listsel], te_current) )
+	{
+		int ti = gplayers[gn_playind[gn_listsel]].team_ind;
+		if( !(gteams[ti] == te_current) )
+		{
+			gteams[ti] = te_current;
+
+			//Update combobox
+			int csel = SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_GETCURSEL, 0, 0);
+			SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_DELETESTRING, gn_teamArrayIndToCb[ti]+1, 0);
+			SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_INSERTSTRING, gn_teamArrayIndToCb[ti]+1, (LPARAM)te_current.name);
+			SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_SETCURSEL, csel, 0);								
+		}
+	}
+}
