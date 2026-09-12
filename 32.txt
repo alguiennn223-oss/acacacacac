@@ -1,0 +1,2398 @@
+  comparator.cpp:21:team_entry* c_teams = NULL;
+  comparator.cpp:22:int c_num_players, c_num_teams;
+  comparator.cpp:23:
+> comparator.cpp:24:extern HINSTANCE hPesDecryptDLL; //Handle to libpesXdecrypter.dll
+  comparator.cpp:25:extern pf_createFileDescriptorOld createFileDescriptorOld;
+> comparator.cpp:26:extern pf_createFileDescriptorNew createFileDescriptorNew;
+  comparator.cpp:27:extern pf_createFileDescriptor15 createFileDescriptor15;
+  comparator.cpp:28:extern pf_destroyFileDescriptorOld destroyFileDescriptorOld;
+> comparator.cpp:29:extern pf_destroyFileDescriptorNew destroyFileDescriptorNew;
+  comparator.cpp:30:extern pf_destroyFileDescriptor15 destroyFileDescriptor15;
+> comparator.cpp:31:extern pf_decryptWithKeyOld decryptWithKeyOld;
+> comparator.cpp:32:extern pf_decryptWithKeyNew decryptWithKeyNew;
+> comparator.cpp:33:extern pf_decryptFile15 decryptFile15;
+  comparator.cpp:34:extern pf_encryptWithKeyOld encryptWithKeyOld;
+  comparator.cpp:35:extern pf_encryptFile15 encryptFile15;
+  comparator.cpp:36:
+  comparator.cpp:37:void save_comparator(HWND hCompareBox, int nPesVersion, player_entry* gplayers, int gnum_players, team_entry* gteams, int gnum_teams, TCHAR
+*cs_file_name, void *hc_descriptor)
+  comparator.cpp:38:{
+  comparator.cpp:39://  //Open dialog box to get file path
+  comparator.cpp:40://  OPENFILENAME ofn;
+  comparator.cpp:41://  TCHAR cs_file_name[MAX_PATH];
+  comparator.cpp:68:            if(hc_descriptor)
+  comparator.cpp:69:            {
+  comparator.cpp:70:                    if (nPesVersion >= 18)
+> comparator.cpp:71:                            destroyFileDescriptorNew((FileDescriptorNew*)hc_descriptor);
+  comparator.cpp:72:                    else if (nPesVersion >= 16)
+  comparator.cpp:73:                            destroyFileDescriptorOld((FileDescriptorOld*)hc_descriptor);
+  comparator.cpp:74:                    else
+  comparator.cpp:75:                            destroyFileDescriptor15((FileDescriptor15*)hc_descriptor);
+  comparator.cpp:76:                    hc_descriptor = NULL;
+  comparator.cpp:77:            }
+  comparator.cpp:78:            if(c_players)
+  comparator.cpp:79:            {
+  comparator.cpp:96:    if(hc_descriptor)
+  comparator.cpp:97:    {
+  comparator.cpp:98:            if (nPesVersion >= 18)
+> comparator.cpp:99:                    destroyFileDescriptorNew((FileDescriptorNew*)hc_descriptor);
+  comparator.cpp:100:           else if (nPesVersion >= 16)
+  comparator.cpp:101:                   destroyFileDescriptorOld((FileDescriptorOld*)hc_descriptor);
+  comparator.cpp:102:           else
+  comparator.cpp:103:                   destroyFileDescriptor15((FileDescriptor15*)hc_descriptor);
+  comparator.cpp:104:           hc_descriptor = NULL;
+  comparator.cpp:105:   }
+  comparator.cpp:106:   if(c_players)
+  comparator.cpp:107:   {
+  comparator.cpp:120:           uint32_t inputLen = 0;
+  comparator.cpp:121:           uint8_t* pfin = readFile(pcs_file_name, &inputLen);
+  comparator.cpp:122:           ((FileDescriptor15*)hc_descriptor)->dataSize = inputLen;
+> comparator.cpp:123:           decryptFile15((FileDescriptor15*)hc_descriptor, pfin);
+  comparator.cpp:124:
+  comparator.cpp:125:           //get number of player, team entries
+  comparator.cpp:126:           c_num_players = ((FileDescriptor15*)hc_descriptor)->data[0x34];
+  comparator.cpp:127:           c_num_players += (((FileDescriptor15*)hc_descriptor)->data[0x35]) * 256;
+  comparator.cpp:128:
+  comparator.cpp:129:           c_num_teams = ((FileDescriptor15*)hc_descriptor)->data[0x38];
+  comparator.cpp:130:           c_num_teams += (((FileDescriptor15*)hc_descriptor)->data[0x39]) * 256;
+  comparator.cpp:131:
+  comparator.cpp:171:   else if(nPesVersion==16)
+  comparator.cpp:172:   {
+  comparator.cpp:173:           hc_descriptor = (void*)createFileDescriptorOld();
+> comparator.cpp:174:           pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes16");
+  comparator.cpp:175:           uint8_t *pfin = readFile(pcs_file_name, NULL);
+> comparator.cpp:176:           decryptWithKeyOld((FileDescriptorOld*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+  comparator.cpp:177:
+  comparator.cpp:178:           //get number of player, team entries
+  comparator.cpp:179:           c_num_players = ((FileDescriptorOld*)hc_descriptor)->data[0x34];
+  comparator.cpp:180:           c_num_players += (((FileDescriptorOld*)hc_descriptor)->data[0x35])*256;
+  comparator.cpp:181:
+  comparator.cpp:182:           c_num_teams = ((FileDescriptorOld*)hc_descriptor)->data[0x38];
+  comparator.cpp:183:           c_num_teams += (((FileDescriptorOld*)hc_descriptor)->data[0x39])*256;
+  comparator.cpp:184:
+  comparator.cpp:215:   else if(nPesVersion==17)
+  comparator.cpp:216:   {
+  comparator.cpp:217:           hc_descriptor = (void*)createFileDescriptorOld();
+> comparator.cpp:218:           pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes17");
+  comparator.cpp:219:           uint8_t *pfin = readFile(pcs_file_name, NULL);
+> comparator.cpp:220:           decryptWithKeyOld((FileDescriptorOld*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+  comparator.cpp:221:
+  comparator.cpp:222:           //get number of player, team entries
+  comparator.cpp:223:           c_num_players = ((FileDescriptorOld*)hc_descriptor)->data[0x5C];
+  comparator.cpp:224:           c_num_players += (((FileDescriptorOld*)hc_descriptor)->data[0x5D])*256;
+  comparator.cpp:225:
+  comparator.cpp:226:           c_num_teams = ((FileDescriptorOld*)hc_descriptor)->data[0x60];
+  comparator.cpp:227:           c_num_teams += (((FileDescriptorOld*)hc_descriptor)->data[0x61])*256;
+  comparator.cpp:228:
+  comparator.cpp:256:   }
+  comparator.cpp:257:   else if(nPesVersion==18)
+  comparator.cpp:258:   {
+> comparator.cpp:259:           hc_descriptor = (void*)createFileDescriptorNew();
+> comparator.cpp:260:           pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes18");
+  comparator.cpp:261:           uint8_t *pfin = readFile(pcs_file_name, NULL);
+  comparator.cpp:262:           //try
+  comparator.cpp:263:           //{
+> comparator.cpp:264:                   decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+  comparator.cpp:265:           //}
+  comparator.cpp:266:           //catch(...)
+  comparator.cpp:267:           //{
+  comparator.cpp:268:           //      MessageBox(ghw_main, _T("Bad file, cannot load."), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+  comparator.cpp:269:           //      return;
+  comparator.cpp:270:           //}
+  comparator.cpp:271:
+  comparator.cpp:272:           //get number of player, team entries
+> comparator.cpp:273:           c_num_players = ((FileDescriptorNew*)hc_descriptor)->data[96];
+> comparator.cpp:274:           c_num_players += (((FileDescriptorNew*)hc_descriptor)->data[97])*256;
+  comparator.cpp:275:
+> comparator.cpp:276:           c_num_teams = ((FileDescriptorNew*)hc_descriptor)->data[100];
+> comparator.cpp:277:           c_num_teams += (((FileDescriptorNew*)hc_descriptor)->data[101])*256;
+  comparator.cpp:278:
+  comparator.cpp:279:           //place player info+appearance entries into array of structs
+  comparator.cpp:280:           current_byte = 0x7C;
+  comparator.cpp:281:           c_players = new player_entry[c_num_players];
+  comparator.cpp:282:           for(ii=0;ii<c_num_players;ii++)
+  comparator.cpp:283:           {
+  comparator.cpp:284:                   fill_player_entry18(c_players[ii], current_byte, hc_descriptor);
+  comparator.cpp:285:           }
+  comparator.cpp:306:   }
+  comparator.cpp:307:   else if(nPesVersion==19)
+  comparator.cpp:308:   {
+> comparator.cpp:309:           hc_descriptor = (void*)createFileDescriptorNew();
+> comparator.cpp:310:           pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes19");
+  comparator.cpp:311:           uint8_t *pfin = readFile(pcs_file_name, NULL);
+  comparator.cpp:312:           //try
+  comparator.cpp:313:           //{
+> comparator.cpp:314:                   decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+  comparator.cpp:315:           //}
+  comparator.cpp:316:           //catch(...)
+  comparator.cpp:317:           //{
+  comparator.cpp:318:           //      MessageBox(ghw_main, _T("Bad file, cannot load."), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+  comparator.cpp:319:           //      return;
+  comparator.cpp:320:           //}
+  comparator.cpp:321:
+  comparator.cpp:322:           //get number of player, team entries
+> comparator.cpp:323:           c_num_players = ((FileDescriptorNew*)hc_descriptor)->data[96];
+> comparator.cpp:324:           c_num_players += (((FileDescriptorNew*)hc_descriptor)->data[97])*256;
+  comparator.cpp:325:
+> comparator.cpp:326:           c_num_teams = ((FileDescriptorNew*)hc_descriptor)->data[100];
+> comparator.cpp:327:           c_num_teams += (((FileDescriptorNew*)hc_descriptor)->data[101])*256;
+  comparator.cpp:328:
+  comparator.cpp:329:           //place player info+appearance entries into array of structs
+  comparator.cpp:330:           current_byte = 0x7C;
+  comparator.cpp:331:           c_players = new player_entry[c_num_players];
+  comparator.cpp:332:           for(int ii=0;ii<c_num_players;ii++)
+  comparator.cpp:333:           {
+  comparator.cpp:334:                   fill_player_entry19(c_players[ii], current_byte, hc_descriptor);
+  comparator.cpp:335:           }
+  comparator.cpp:356:   }
+  comparator.cpp:357:   else // PES 20/21
+  comparator.cpp:358:   {
+> comparator.cpp:359:           hc_descriptor = (void*)createFileDescriptorNew();
+  comparator.cpp:360:           if(nPesVersion==20)
+> comparator.cpp:361:                   pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes20");
+  comparator.cpp:362:           else
+> comparator.cpp:363:                   pMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes21");
+  comparator.cpp:364:           uint8_t *pfin = readFile(pcs_file_name, NULL);
+> comparator.cpp:365:           decryptWithKeyNew((FileDescriptorNew*)hc_descriptor, pfin, reinterpret_cast<const char*>(pMasterKey));
+  comparator.cpp:366:
+  comparator.cpp:367:           //get number of player, team entries
+> comparator.cpp:368:           c_num_players = ((FileDescriptorNew*)hc_descriptor)->data[96];
+> comparator.cpp:369:           c_num_players += (((FileDescriptorNew*)hc_descriptor)->data[97])*256;
+  comparator.cpp:370:
+> comparator.cpp:371:           c_num_teams = ((FileDescriptorNew*)hc_descriptor)->data[100];
+> comparator.cpp:372:           c_num_teams += (((FileDescriptorNew*)hc_descriptor)->data[101])*256;
+  comparator.cpp:373:
+  comparator.cpp:374:           //place player info+appearance entries into array of structs
+  comparator.cpp:375:           current_byte = 0x7C;
+  comparator.cpp:376:           c_players = new player_entry[c_num_players];
+  comparator.cpp:377:           for(int ii=0;ii<c_num_players;ii++)
+  comparator.cpp:378:           {
+  comparator.cpp:379:                   fill_player_entry20(c_players[ii], current_byte, hc_descriptor);
+  comparator.cpp:380:           }
+  crypt.cpp:5:
+  crypt.cpp:6:#include "crypt.h"
+  crypt.cpp:7:
+> crypt.cpp:8://encrypter & decrypter helpers ...
+  crypt.cpp:9:uint8_t *readFile(const TCHAR *path, uint32_t *sizePtr)
+  crypt.cpp:10:{
+  crypt.cpp:11: struct _stat file;
+  crypt.cpp:12: uint8_t *input;
+  crypt.cpp:13: int size;
+  crypt.cpp:14:    FILE *inStream = _tfopen(path, _T("rb"));
+  crypt.cpp:15:    if (!inStream)
+  crypt.cpp:16:        return NULL;
+  data_util.cpp:1:#include "editor.h"
+  data_util.cpp:2:
+> data_util.cpp:3:// Read the data stored in 'FileDescriptorNew* pDescriptorNew', starting at 'start_bit' of 'current_byte'
+  data_util.cpp:4:// and continuing for 'bits_to_write'.  If end of current byte is reached, advance 'current_byte' to next
+  data_util.cpp:5:// byte.
+> data_util.cpp:6:int read_data(int start_bit, int bits_to_read, int& current_byte, FileDescriptorNew* pDescriptorNew)
+  data_util.cpp:7:{
+  data_util.cpp:8:      int shift;
+  data_util.cpp:9:      int pow_of_two[] = {1,2,4,8,16,32,64,128};
+  data_util.cpp:10:
+  data_util.cpp:11:     int bytes_advanced = 0;
+  data_util.cpp:12:     int output = 0;
+  data_util.cpp:13:     int bit = start_bit;
+  data_util.cpp:14:     for(int ii=0; ii<bits_to_read; ii++)
+  data_util.cpp:31:     return output;
+  data_util.cpp:32:}
+  data_util.cpp:33:
+> data_util.cpp:34:// Write the data stored in 'input' to 'FileDescriptorNew* pDescriptorNew', starting at 'start_bit' of 'current_byte'
+  data_util.cpp:35:// and continuing for 'bits_to_write'. If end of current byte is reached, advance 'current_byte' to next byte.
+> data_util.cpp:36:void write_data(int input, int start_bit, int bits_to_write, int& current_byte, FileDescriptorNew* pDescriptorNew)
+  data_util.cpp:37:{
+  data_util.cpp:38:     int shift;
+  data_util.cpp:39:     uint8_t pow_of_two[] = {1,2,4,8,16,32,64,128};
+  data_util.cpp:40:
+  data_util.cpp:41:     int bytes_advanced = 0;
+  data_util.cpp:42:     int bit = start_bit;
+  data_util.cpp:43:     uint8_t byte_val = pDescriptorNew->data[current_byte];
+  data_util.cpp:44:     for(int ii=0; ii<bits_to_write; ii++)
+  main.cpp:85:/*Global variables*/
+  main.cpp:86:char gc_ver4ccs[] = "20a";
+  main.cpp:87:HINSTANCE ghinst;                 //Main window instance
+> main.cpp:88:HINSTANCE hPesDecryptDLL; //Handle to libpesXcrypter.dll
+> main.cpp:89:HINSTANCE hPes15DecryptDLL;       //Handle to libpes15crypter.dll
+  main.cpp:90:HWND ghw_main;                            //Handle to main window
+  main.cpp:91:HWND ghw_tabcon, ghw_tab1, ghw_tab2, ghw_tab3;
+  main.cpp:92:HFONT ghFont;
+  main.cpp:93:HWND ghw_stat=NULL, ghw_bump=NULL, ghw_copy=NULL, ghw_import=NULL, ghw_swap = NULL, ghw_boglo=NULL;
+  main.cpp:94:HWND ghw_DlgCurrent = NULL;
+  main.cpp:95:HWND ghAatfbox=NULL;
+> main.cpp:96:void* ghdescriptor = NULL; //void, cast as FileDescriptorOld, FileDescriptorNew, or FileDescriptor15 depending on version
+  main.cpp:97:player_entry* gplayers = NULL;
+  main.cpp:98:int* gn_playind = NULL; //positions in gplayers array of each item in player listbox
+  main.cpp:99:team_entry* gteams = NULL;
+  main.cpp:100:int* gn_teamCbIndToArray = NULL; //positions in gteams array of each item in team combobox
+  main.cpp:101:int* gn_teamArrayIndToCb = NULL; //vice versa
+  main.cpp:102:int gnum_players, gnum_teams, gn_listsel=-1, gn_teamsel=-1, gn_forceupdate=-1;
+  main.cpp:103:bool gb_forceupdate = false;
+  main.cpp:104:bool gb_firstsave = true;
+  main.cpp:119:HBRUSH g_hbr = NULL;
+  main.cpp:120:
+  main.cpp:121:pf_createFileDescriptorOld createFileDescriptorOld;
+> main.cpp:122:pf_createFileDescriptorNew createFileDescriptorNew;
+  main.cpp:123:pf_destroyFileDescriptorOld destroyFileDescriptorOld;
+> main.cpp:124:pf_destroyFileDescriptorNew destroyFileDescriptorNew;
+> main.cpp:125:pf_decryptWithKeyOld decryptWithKeyOld;
+> main.cpp:126:pf_decryptWithKeyNew decryptWithKeyNew;
+  main.cpp:127:pf_encryptWithKeyOld encryptWithKeyOld;
+  main.cpp:128:pf_encryptWithKeyNew encryptWithKeyNew;
+  main.cpp:129:
+  main.cpp:130:pf_createFileDescriptor15 createFileDescriptor15;
+  main.cpp:131:pf_destroyFileDescriptor15 destroyFileDescriptor15;
+> main.cpp:132:pf_decryptFile15 decryptFile15;
+  main.cpp:133:pf_encryptFile15 encryptFile15;
+  main.cpp:134:
+  main.cpp:135://The TCHAR-version of a user-provided entry point for a graphical
+  main.cpp:136://  Windows-based application.
+  main.cpp:137:// I     [in] A handle to the current instance of the application
+  main.cpp:138:// PI    [in] A handle to the previous instance of the application. This
+  main.cpp:139://                               parameter is always NULL
+  main.cpp:140:// CL    [in] The command line for the program, excluding the program name
+  main.cpp:651:         }
+  main.cpp:652:         break;
+  main.cpp:653:         case WM_CLOSE:
+> main.cpp:654:                 if(ghdescriptor)
+  main.cpp:655:                 {
+  main.cpp:656:                         if(giPesVersion >= 18)
+> main.cpp:657:                                 destroyFileDescriptorNew((FileDescriptorNew*)ghdescriptor);
+  main.cpp:658:                         else if(giPesVersion >= 16)
+> main.cpp:659:                                 destroyFileDescriptorOld((FileDescriptorOld*)ghdescriptor);
+  main.cpp:660:                         else
+> main.cpp:661:                                 destroyFileDescriptor15((FileDescriptor15*)ghdescriptor);
+> main.cpp:662:                         ghdescriptor = NULL;
+  main.cpp:663:                 }
+  main.cpp:664:                 if(gplayers)
+  main.cpp:665:                 {
+  main.cpp:666:                         delete[] gplayers;
+  main.cpp:667:                         gplayers = NULL;
+  main.cpp:668:                 }
+  main.cpp:669:                 if(gn_playind)
+  main.cpp:670:                 {
+  main.cpp:679:
+  main.cpp:680:                 //Delete icons, fonts and bitmaps
+  main.cpp:681:                 DeleteObject((HGDIOBJ)ghFont);
+> main.cpp:682:                 FreeLibrary(hPesDecryptDLL);
+> main.cpp:683:                 FreeLibrary(hPes15DecryptDLL);
+  main.cpp:684:                 DeleteObject(g_hbr);
+  main.cpp:685:
+  main.cpp:686:                 DestroyWindow(H);
+  main.cpp:687:         break;
+  main.cpp:688:         case WM_DESTROY:
+  main.cpp:689:                 DestroyWindow(ghAatfbox);
+  main.cpp:690:                 PostQuitMessage(0);
+  main.cpp:691:         break;
+  main.cpp:736:                                 if (ret) giPesVersion = prevPesVersion;
+  main.cpp:737:                         break;
+  main.cpp:738:                         case ID_FILE_SAVE_EN:
+> main.cpp:739:                                 if(ghdescriptor)
+  main.cpp:740:                                 {
+  main.cpp:741:                                         DoFileSave(H);
+  main.cpp:742:                                 }
+  main.cpp:743:                         break;
+  main.cpp:744:                         case IDM_PLAY_STAT:
+  main.cpp:745:                                 set_stats();
+  main.cpp:746:                         break;
+  main.cpp:747:                         case IDM_PLAY_BUMP:
+  main.cpp:871:                         {
+  main.cpp:872:                                 if(HIWORD(W)==BN_CLICKED)
+  main.cpp:873:                                 {
+> main.cpp:874:                                         if(ghdescriptor && (gn_listsel > -1))
+  main.cpp:875:                                         {
+  main.cpp:876:                                                 SendDlgItemMessage(H, IDB_CAPTAIN, BM_SETCHECK, (WPARAM)BST_CHECKED, 0);
+  main.cpp:877:                                                 if(gteams[gplayers[gn_playind[gn_listsel]].team_ind].captain_ind !=
+  main.cpp:878:                                                         gplayers[gn_playind[gn_listsel]].team_lineup_ind)
+  main.cpp:879:                                                 {
+  main.cpp:880:                                                         gteams[gplayers[gn_playind[gn_listsel]].team_ind].captain_ind =
+  main.cpp:881:                                                                 gplayers[gn_playind[gn_listsel]].team_lineup_ind;
+  main.cpp:882:                                                         gteams[gplayers[gn_playind[gn_listsel]].team_ind].b_changed = true;
+  main.cpp:981:                         break;
+  main.cpp:982:                         case IDM_DATA_AATFS: //Run AATF on teams selected from a list
+  main.cpp:983:                         {
+> main.cpp:984:                                 if(ghdescriptor)
+  main.cpp:985:                                 {
+  main.cpp:986:                                         update_tables();
+  main.cpp:987:                                         DialogBox(GetModuleHandle(NULL), MAKEINTRESOURCE(IDD_AATF_SEL), H, aatf_sel_dlg_proc);
+  main.cpp:988:                                 }
+  main.cpp:989:                         }
+  main.cpp:990:                         break;
+  main.cpp:991:                         case IDM_DATA_COMPE: //Compare this save to another and report any changes
+  main.cpp:992:                         {
+> main.cpp:993:                                 if(ghdescriptor)
+  main.cpp:994:                                 {
+  main.cpp:995:                                         update_tables();
+  main.cpp:996:
+  main.cpp:997:                                         //Open dialog box to get file path
+  main.cpp:998:                                         OPENFILENAME ofn;
+  main.cpp:999:                                         TCHAR cs_file_name[MAX_PATH] = _T("");
+  main.cpp:1000:                                                TCHAR cs_open_title[40];
+  main.cpp:1001:
+  main.cpp:1054:int loadDLL()
+  main.cpp:1055:{
+  main.cpp:1056:        //Load DLL
+> main.cpp:1057:        hPesDecryptDLL = LoadLibrary(L"lib\\libpesXcrypter.dll");
+> main.cpp:1058:        if(!hPesDecryptDLL)
+  main.cpp:1059:        {
+  main.cpp:1060:                DWORD dw = GetLastError();
+  main.cpp:1061:                LPVOID lpMsgBuf;
+  main.cpp:1062:                if (FormatMessage(
+  main.cpp:1063:                        FORMAT_MESSAGE_ALLOCATE_BUFFER |
+  main.cpp:1064:                        FORMAT_MESSAGE_FROM_SYSTEM |
+  main.cpp:1065:                        FORMAT_MESSAGE_IGNORE_INSERTS,
+  main.cpp:1066:                        NULL,
+  main.cpp:1077:                return EXIT_FAILURE;
+  main.cpp:1078:        }
+  main.cpp:1079:        //Load functions from DLL
+> main.cpp:1080:        createFileDescriptorOld = (pf_createFileDescriptorOld)GetProcAddress(hPesDecryptDLL, "createFileDescriptorOld");
+  main.cpp:1081:        if(!createFileDescriptorOld)
+  main.cpp:1082:        {
+  main.cpp:1083:                MessageBox(NULL, _T("Failed to load createFileDescriptorOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+> main.cpp:1084:                FreeLibrary(hPesDecryptDLL);
+  main.cpp:1085:                return EXIT_FAILURE;
+  main.cpp:1086:        }
+> main.cpp:1087:        createFileDescriptorNew = (pf_createFileDescriptorNew)GetProcAddress(hPesDecryptDLL, "createFileDescriptorNew");
+> main.cpp:1088:        if(!createFileDescriptorNew)
+  main.cpp:1089:        {
+> main.cpp:1090:                MessageBox(NULL, _T("Failed to load createFileDescriptorNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+> main.cpp:1091:                FreeLibrary(hPesDecryptDLL);
+  main.cpp:1092:                return EXIT_FAILURE;
+  main.cpp:1093:        }
+> main.cpp:1094:        destroyFileDescriptorOld = (pf_destroyFileDescriptorOld)GetProcAddress(hPesDecryptDLL, "destroyFileDescriptorOld");
+  main.cpp:1095:        if(!destroyFileDescriptorOld)
+  main.cpp:1096:        {
+  main.cpp:1097:                MessageBox(NULL, _T("Failed to load destroyFileDescriptorOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+> main.cpp:1098:                FreeLibrary(hPesDecryptDLL);
+  main.cpp:1099:                return EXIT_FAILURE;
+  main.cpp:1100:        }
+> main.cpp:1101:        destroyFileDescriptorNew = (pf_destroyFileDescriptorNew)GetProcAddress(hPesDecryptDLL, "destroyFileDescriptorNew");
+> main.cpp:1102:        if(!destroyFileDescriptorNew)
+  main.cpp:1103:        {
+> main.cpp:1104:                MessageBox(NULL, _T("Failed to load destroyFileDescriptorNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+> main.cpp:1105:                FreeLibrary(hPesDecryptDLL);
+  main.cpp:1106:                return EXIT_FAILURE;
+  main.cpp:1107:        }
+> main.cpp:1108:        decryptWithKeyOld = (pf_decryptWithKeyOld)GetProcAddress(hPesDecryptDLL, "decryptWithKeyOld");
+> main.cpp:1109:        if(!decryptWithKeyOld)
+  main.cpp:1110:        {
+> main.cpp:1111:                MessageBox(NULL, _T("Failed to load decryptWithKeyOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+> main.cpp:1112:                FreeLibrary(hPesDecryptDLL);
+  main.cpp:1113:                return EXIT_FAILURE;
+  main.cpp:1114:        }
+> main.cpp:1115:        decryptWithKeyNew = (pf_decryptWithKeyNew)GetProcAddress(hPesDecryptDLL, "decryptWithKeyNew");
+> main.cpp:1116:        if(!decryptWithKeyNew)
+  main.cpp:1117:        {
+> main.cpp:1118:                MessageBox(NULL, _T("Failed to load decryptWithKeyNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+> main.cpp:1119:                FreeLibrary(hPesDecryptDLL);
+  main.cpp:1120:                return EXIT_FAILURE;
+  main.cpp:1121:        }
+> main.cpp:1122:        encryptWithKeyOld = (pf_encryptWithKeyOld)GetProcAddress(hPesDecryptDLL, "encryptWithKeyOld");
+  main.cpp:1123:        if(!encryptWithKeyOld)
+  main.cpp:1124:        {
+  main.cpp:1125:                MessageBox(NULL, _T("Failed to load encryptWithKeyOld"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+> main.cpp:1126:                FreeLibrary(hPesDecryptDLL);
+  main.cpp:1127:                return EXIT_FAILURE;
+  main.cpp:1128:        }
+> main.cpp:1129:        encryptWithKeyNew = (pf_encryptWithKeyNew)GetProcAddress(hPesDecryptDLL, "encryptWithKeyNew");
+  main.cpp:1130:        if(!encryptWithKeyNew)
+  main.cpp:1131:        {
+  main.cpp:1132:                MessageBox(NULL, _T("Failed to load encryptWithKeyNew"), _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+> main.cpp:1133:                FreeLibrary(hPesDecryptDLL);
+  main.cpp:1134:                return EXIT_FAILURE;
+  main.cpp:1135:        }
+  main.cpp:1136:
+  main.cpp:1137:        return 0;
+  main.cpp:1138:}
+  main.cpp:1139:
+  main.cpp:1140://Launch an Open File dialog box and attempt to open the selected file
+  main.cpp:1141:int DoFileOpen(HWND hwnd, int pesVersion, TCHAR* pcs_title)
+  main.cpp:1175:                        //bool checkthis;
+  main.cpp:1176:                        //checkthis = (code == EXCEPTION_ACCESS_VIOLATION);
+  main.cpp:1177:                        //Clear all entries, as no save has been loaded
+> main.cpp:1178:                        if(ghdescriptor)
+  main.cpp:1179:                        {
+  main.cpp:1180:                                if(giPesVersion>=18)
+> main.cpp:1181:                                        destroyFileDescriptorNew((FileDescriptorNew*)ghdescriptor);
+  main.cpp:1182:                                else if(giPesVersion >= 16)
+> main.cpp:1183:                                        destroyFileDescriptorOld((FileDescriptorOld*)ghdescriptor);
+  main.cpp:1184:                                else
+> main.cpp:1185:                                        destroyFileDescriptor15((FileDescriptor15*)ghdescriptor);
+> main.cpp:1186:                                ghdescriptor = NULL;
+  main.cpp:1187:                        }
+  main.cpp:1188:                        SendDlgItemMessage(ghw_main, IDC_NAME_LIST, LVM_DELETEALLITEMS, 0, 0);
+  main.cpp:1189:                        SendDlgItemMessage(ghw_main, IDC_TEAM_LIST, CB_RESETCONTENT, 0, 0);
+  main.cpp:1190:                        return 1;
+  main.cpp:1191:                }
+  main.cpp:1192:                return 0;
+  main.cpp:1193:        }
+  main.cpp:1194:        return 2;
+  main.cpp:1233:{
+  main.cpp:1234:        int ii, current_byte, appearance_byte;
+  main.cpp:1235:
+> main.cpp:1236:        if(ghdescriptor)
+  main.cpp:1237:        {
+  main.cpp:1238:                if(giPesVersion>=18)
+> main.cpp:1239:                        destroyFileDescriptorNew((FileDescriptorNew*)ghdescriptor);
+  main.cpp:1240:                else if(giPesVersion >= 16)
+> main.cpp:1241:                        destroyFileDescriptorOld((FileDescriptorOld*)ghdescriptor);
+  main.cpp:1242:                else
+> main.cpp:1243:                        destroyFileDescriptor15((FileDescriptor15*)ghdescriptor);
+> main.cpp:1244:                ghdescriptor = NULL;
+  main.cpp:1245:        }
+  main.cpp:1246:        giPesVersion = pesVersion;
+  main.cpp:1247:
+  main.cpp:1248:        if(gplayers)
+  main.cpp:1249:        {
+  main.cpp:1250:                delete[] gplayers;
+  main.cpp:1251:                gplayers = NULL;
+  main.cpp:1252:        }
+  main.cpp:1372:
+  main.cpp:1373:        if (giPesVersion == 15)
+  main.cpp:1374:        {
+> main.cpp:1375:                ghdescriptor = (void*)createFileDescriptor15();
+  main.cpp:1376:                uint32_t inputLen = 0;
+  main.cpp:1377:                uint8_t* pfin = readFile(pcs_file_name, &inputLen);
+> main.cpp:1378:                ((FileDescriptor15*)ghdescriptor)->dataSize = inputLen; //IMPORTANT: need to set the dataSize here
+> main.cpp:1379:                decryptFile15((FileDescriptor15*)ghdescriptor, pfin);
+  main.cpp:1380:
+  main.cpp:1381:                //Ensure Custom Skin option is available
+  main.cpp:1382:                if (SendDlgItemMessage(ghw_tab2, IDC_PHYS_SKIN, CB_GETCOUNT, 0, 0) < 8)
+  main.cpp:1383:                        SendDlgItemMessage(ghw_tab2, IDC_PHYS_SKIN, CB_ADDSTRING, 0, (LPARAM)_T("Custom"));
+  main.cpp:1384:
+  main.cpp:1385:                //Disable Physical Contact skill box in 15, as this stat doesn't exist
+  main.cpp:1386:                EnableWindow(GetDlgItem(ghw_tab1, IDT_ABIL_PHCO), FALSE);
+  main.cpp:1387:                UpdateWindow(GetDlgItem(ghw_tab1, IDT_ABIL_PHCO));
+  main.cpp:1431:                }
+  main.cpp:1432:
+  main.cpp:1433:                //get number of player, team entries
+> main.cpp:1434:                gnum_players = ((FileDescriptor15*)ghdescriptor)->data[0x34];
+> main.cpp:1435:                gnum_players += (((FileDescriptor15*)ghdescriptor)->data[0x35]) * 256;
+  main.cpp:1436:
+> main.cpp:1437:                gnum_teams = ((FileDescriptor15*)ghdescriptor)->data[0x38];
+> main.cpp:1438:                gnum_teams += (((FileDescriptor15*)ghdescriptor)->data[0x39]) * 256;
+  main.cpp:1439:
+  main.cpp:1440:                //First, generate map b/w player ID and Appearance Entry start byte so we can access the correct start byte position
+  main.cpp:1441:                // for each player ID when we loop over the Player Entry, even if they're in different orders
+  main.cpp:1442:                appearance_byte = 0x2AB9CC;
+  main.cpp:1443:                int pid = 0;
+  main.cpp:1444:                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:1445:                {
+> main.cpp:1446:                        build_appearance_map15(g_umap_pid_to_startByte, appearance_byte, ghdescriptor);
+  main.cpp:1447:                }
+  main.cpp:1448:
+  main.cpp:1449:                //place player info+appearance entries into array of structs
+  main.cpp:1450:                current_byte = 0x4C;
+  main.cpp:1451:                if (gplayers != NULL) delete[] gplayers;
+  main.cpp:1452:                gplayers = new player_entry[gnum_players];
+  main.cpp:1453:                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:1454:                {
+> main.cpp:1455:                        read_player_entry15(gplayers[ii], current_byte, ghdescriptor);
+> main.cpp:1456:                        read_appearance_entry15(gplayers[ii], g_umap_pid_to_startByte, ghdescriptor);
+  main.cpp:1457:                }
+  main.cpp:1458:
+  main.cpp:1459:                //Place team entries into array of structs
+  main.cpp:1460:                current_byte = 0x44AA6C;
+  main.cpp:1461:                if (gteams != NULL) delete[] gteams;
+  main.cpp:1462:                gteams = new team_entry[gnum_teams];
+  main.cpp:1463:                for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1464:                {
+> main.cpp:1465:                        read_team_ids15(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1466:                }
+  main.cpp:1467:
+  main.cpp:1468:                current_byte = 0x4E45CC;
+  main.cpp:1469:                for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1470:                {
+> main.cpp:1471:                        read_team_rosters15(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1472:                }
+  main.cpp:1473:
+  main.cpp:1474:                current_byte = 0x507194;
+  main.cpp:1475:                for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:1476:                {
+> main.cpp:1477:                        read_team_tactics15(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1478:                }
+  main.cpp:1479:        }
+  main.cpp:1480:        else if(giPesVersion==16)
+  main.cpp:1481:        {
+> main.cpp:1482:                ghdescriptor = (void*)createFileDescriptorOld();
+> main.cpp:1483:                gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes16");
+  main.cpp:1484:                uint8_t *pfin = readFile(pcs_file_name, NULL);
+> main.cpp:1485:                decryptWithKeyOld((FileDescriptorOld*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:1486:
+  main.cpp:1487:                //Ensure Custom Skin option is available
+  main.cpp:1488:                if(SendDlgItemMessage(ghw_tab2, IDC_PHYS_SKIN, CB_GETCOUNT, 0, 0) < 8)
+  main.cpp:1489:                        SendDlgItemMessage(ghw_tab2, IDC_PHYS_SKIN, CB_ADDSTRING, 0, (LPARAM)_T("Custom"));
+  main.cpp:1490:
+  main.cpp:1491:                //Disable Physical Contact skill box in 16, as this stat doesn't exist
+  main.cpp:1492:                EnableWindow(GetDlgItem(ghw_tab1, IDT_ABIL_PHCO), FALSE);
+  main.cpp:1493:                UpdateWindow(GetDlgItem(ghw_tab1, IDT_ABIL_PHCO));
+  main.cpp:1507:                }
+  main.cpp:1508:
+  main.cpp:1509:                //get number of player, team entries
+> main.cpp:1510:                gnum_players = ((FileDescriptorOld*)ghdescriptor)->data[0x34];
+> main.cpp:1511:                gnum_players += (((FileDescriptorOld*)ghdescriptor)->data[0x35])*256;
+  main.cpp:1512:
+> main.cpp:1513:                gnum_teams = ((FileDescriptorOld*)ghdescriptor)->data[0x38];
+> main.cpp:1514:                gnum_teams += (((FileDescriptorOld*)ghdescriptor)->data[0x39])*256;
+  main.cpp:1515:
+  main.cpp:1516:                //place player info+appearance entries into array of structs
+  main.cpp:1517:                current_byte = 0x4C;
+  main.cpp:1518:                appearance_byte = 0x2AB9CC;
+  main.cpp:1519:                if(gplayers != NULL) delete[] gplayers;
+  main.cpp:1520:                gplayers = new player_entry[gnum_players];
+  main.cpp:1521:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1522:                {
+> main.cpp:1523:                        fill_player_entry16(gplayers[ii], current_byte, ghdescriptor);
+> main.cpp:1524:                        fill_appearance_entry16(gplayers[ii], appearance_byte, ghdescriptor);
+  main.cpp:1525:                }
+  main.cpp:1526:
+  main.cpp:1527:                //place team entries into array of structs
+  main.cpp:1528:                current_byte = 0x46310C;
+  main.cpp:1529:                if(gteams != NULL) delete[] gteams;
+  main.cpp:1530:                gteams = new team_entry[gnum_teams];
+  main.cpp:1531:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1532:                {
+> main.cpp:1533:                        fill_team_ids16(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1534:                }
+  main.cpp:1535:
+  main.cpp:1536:                current_byte = 0x4FCC6C;
+  main.cpp:1537:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1538:                {
+> main.cpp:1539:                        fill_team_rosters16(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1540:                }
+  main.cpp:1541:
+  main.cpp:1542:                current_byte = 0x51F814;
+  main.cpp:1543:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1544:                {
+> main.cpp:1545:                        fill_team_tactics16(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1546:                }
+  main.cpp:1547:        }
+  main.cpp:1548:        else if(giPesVersion==17)
+  main.cpp:1549:        {
+> main.cpp:1550:                ghdescriptor = (void*)createFileDescriptorOld();
+> main.cpp:1551:                gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes17");
+  main.cpp:1552:                uint8_t *pfin = readFile(pcs_file_name, NULL);
+> main.cpp:1553:                decryptWithKeyOld((FileDescriptorOld*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:1554:
+  main.cpp:1555:                //Ensure Custom Skin option is available
+  main.cpp:1556:                if(SendDlgItemMessage(ghw_tab2, IDC_PHYS_SKIN, CB_GETCOUNT, 0, 0) < 8)
+  main.cpp:1557:                        SendDlgItemMessage(ghw_tab2, IDC_PHYS_SKIN, CB_ADDSTRING, 0, (LPARAM)_T("Custom"));
+  main.cpp:1558:
+  main.cpp:1559:                //Fill Play Style combobox:
+  main.cpp:1560:                int numPlayStyles = 18;
+  main.cpp:1561:                SendDlgItemMessage(ghw_main, IDC_PLAY_STYL, CB_RESETCONTENT, 0, 0);
+  main.cpp:1565:                }
+  main.cpp:1566:
+  main.cpp:1567:                //get number of player, team entries
+> main.cpp:1568:                gnum_players = ((FileDescriptorOld*)ghdescriptor)->data[0x5C];
+> main.cpp:1569:                gnum_players += (((FileDescriptorOld*)ghdescriptor)->data[0x5D])*256;
+  main.cpp:1570:
+> main.cpp:1571:                gnum_teams = ((FileDescriptorOld*)ghdescriptor)->data[0x60];
+> main.cpp:1572:                gnum_teams += (((FileDescriptorOld*)ghdescriptor)->data[0x61])*256;
+  main.cpp:1573:
+  main.cpp:1574:                //place player info+appearance entries into array of structs
+  main.cpp:1575:                current_byte = 0x78;
+  main.cpp:1576:                if(gplayers != NULL) delete[] gplayers;
+  main.cpp:1577:                gplayers = new player_entry[gnum_players];
+  main.cpp:1578:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1579:                {
+> main.cpp:1580:                        fill_player_entry17(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:1581:                }
+  main.cpp:1582:
+  main.cpp:1583:                //place team entries into array of structs
+  main.cpp:1584:                current_byte = 0x3C3E58;
+  main.cpp:1585:                if(gteams != NULL) delete[] gteams;
+  main.cpp:1586:                gteams = new team_entry[gnum_teams];
+  main.cpp:1587:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1588:                {
+> main.cpp:1589:                        fill_team_ids17(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1590:                }
+  main.cpp:1591:
+  main.cpp:1592:                current_byte = 0x475A90;
+  main.cpp:1593:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1594:                {
+> main.cpp:1595:                        fill_team_rosters17(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1596:                }
+  main.cpp:1597:
+  main.cpp:1598:                current_byte = 0x490640;
+  main.cpp:1599:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1600:                {
+> main.cpp:1601:                        fill_team_tactics17(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1602:                }
+  main.cpp:1603:        }
+  main.cpp:1604:        else if(giPesVersion==18)
+  main.cpp:1605:        {
+> main.cpp:1606:                ghdescriptor = (void*)createFileDescriptorNew();
+> main.cpp:1607:                gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes18");
+  main.cpp:1608:                uint8_t *pfin = readFile(pcs_file_name, NULL);
+> main.cpp:1609:                decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:1610:
+  main.cpp:1611:                //Change Body Control label to "Strength on the Ball"
+  main.cpp:1612:                SetWindowText(GetDlgItem(ghw_tab1, IDC_STATIC_T35), _T("Strength on Ball:"));
+  main.cpp:1613:                UpdateWindow(GetDlgItem(ghw_tab1, IDC_STATIC_T35)); //RedrawWindow(static_label, NULL, NULL, RDW_ERASE);
+  main.cpp:1614:
+  main.cpp:1615:                //Fill Play Style combobox:
+  main.cpp:1616:                int numPlayStyles = 18;
+  main.cpp:1617:                SendDlgItemMessage(ghw_main, IDC_PLAY_STYL, CB_RESETCONTENT, 0, 0);
+  main.cpp:1621:                }
+  main.cpp:1622:
+  main.cpp:1623:                //get number of player, team entries
+> main.cpp:1624:                gnum_players = ((FileDescriptorNew*)ghdescriptor)->data[96];
+> main.cpp:1625:                gnum_players += (((FileDescriptorNew*)ghdescriptor)->data[97])*256;
+  main.cpp:1626:
+> main.cpp:1627:                gnum_teams = ((FileDescriptorNew*)ghdescriptor)->data[100];
+> main.cpp:1628:                gnum_teams += (((FileDescriptorNew*)ghdescriptor)->data[101])*256;
+  main.cpp:1629:
+  main.cpp:1630:                //place player info+appearance entries into array of structs
+  main.cpp:1631:                current_byte = 0x7C;
+  main.cpp:1632:                if(gplayers != NULL) delete[] gplayers;
+  main.cpp:1633:                gplayers = new player_entry[gnum_players];
+  main.cpp:1634:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1635:                {
+> main.cpp:1636:                        fill_player_entry18(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:1637:                }
+  main.cpp:1638:
+  main.cpp:1639:                //place team entries into array of structs
+  main.cpp:1640:                current_byte = 0x3C3E5C;
+  main.cpp:1641:                if(gteams != NULL) delete[] gteams;
+  main.cpp:1642:                gteams = new team_entry[gnum_teams];
+  main.cpp:1643:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1644:                {
+> main.cpp:1645:                        fill_team_ids18(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1646:                }
+  main.cpp:1647:
+  main.cpp:1648:                current_byte = 0x46FF54;
+  main.cpp:1649:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1650:                {
+> main.cpp:1651:                        fill_team_rosters18(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1652:                }
+  main.cpp:1653:
+  main.cpp:1654:                current_byte = 0x488B74;
+  main.cpp:1655:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1656:                {
+> main.cpp:1657:                        fill_team_tactics18(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1658:                }
+  main.cpp:1659:        }
+  main.cpp:1660:        else if(giPesVersion==19) // PES 19
+  main.cpp:1661:        {
+> main.cpp:1662:                ghdescriptor = (void*)createFileDescriptorNew();
+> main.cpp:1663:                gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes19");
+  main.cpp:1664:                uint8_t *pfin = readFile(pcs_file_name, NULL);
+> main.cpp:1665:                decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:1666:
+  main.cpp:1667:                //Change Body Control label to "Unwavering Balance"
+  main.cpp:1668:                SetWindowText(GetDlgItem(ghw_tab1, IDC_STATIC_T35), _T("Unwavering Balance:"));
+  main.cpp:1669:                UpdateWindow(GetDlgItem(ghw_tab1, IDC_STATIC_T35)); //RedrawWindow(static_label, NULL, NULL, RDW_ERASE);
+  main.cpp:1670:
+  main.cpp:1671:                //Fill Play Style combobox:
+  main.cpp:1672:                int numPlayStyles = 22;
+  main.cpp:1673:                SendDlgItemMessage(ghw_main, IDC_PLAY_STYL, CB_RESETCONTENT, 0, 0);
+  main.cpp:1683:                }
+  main.cpp:1684:
+  main.cpp:1685:                //get number of player, team entries
+> main.cpp:1686:                gnum_players = ((FileDescriptorNew*)ghdescriptor)->data[96];
+> main.cpp:1687:                gnum_players += (((FileDescriptorNew*)ghdescriptor)->data[97])*256;
+  main.cpp:1688:
+> main.cpp:1689:                gnum_teams = ((FileDescriptorNew*)ghdescriptor)->data[100];
+> main.cpp:1690:                gnum_teams += (((FileDescriptorNew*)ghdescriptor)->data[101])*256;
+  main.cpp:1691:
+  main.cpp:1692:                //place player info+appearance entries into array of structs
+  main.cpp:1693:                current_byte = 0x7C;
+  main.cpp:1694:                if(gplayers != NULL) delete[] gplayers;
+  main.cpp:1695:                gplayers = new player_entry[gnum_players];
+  main.cpp:1696:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:1697:                {
+> main.cpp:1698:                        fill_player_entry19(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:1699:                }
+  main.cpp:1700:
+  main.cpp:1701:                //place team entries into array of structs
+  main.cpp:1702:                current_byte = 0x5BCC7C;
+  main.cpp:1703:                if(gteams != NULL) delete[] gteams;
+  main.cpp:1704:                gteams = new team_entry[gnum_teams];
+  main.cpp:1705:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1706:                {
+> main.cpp:1707:                        fill_team_ids19(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:1708:                }
+  main.cpp:1709:
+  main.cpp:1710:                current_byte = 0x6773C4;
+  main.cpp:1711:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1712:                {
+> main.cpp:1713:                        fill_team_rosters19(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1714:                }
+  main.cpp:1715:
+  main.cpp:1716:                current_byte = 0x69EC8C;
+  main.cpp:1717:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:1718:                {
+> main.cpp:1719:                        fill_team_tactics19(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:1720:                }
+  main.cpp:1721:        }
+  main.cpp:1722:        else // PES 20/21
+  main.cpp:1723:        {
+> main.cpp:1724:                ghdescriptor = (void*)createFileDescriptorNew();
+  main.cpp:1725:                if(giPesVersion==20)
+> main.cpp:1726:                        gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes20");
+  main.cpp:1727:                else
+> main.cpp:1728:                        gpMasterKey = (const uint8_t*)GetProcAddress(hPesDecryptDLL, "MasterKeyPes21");
+  main.cpp:1729:                uint8_t *pfin = readFile(pcs_file_name, NULL);
+> main.cpp:1730:                decryptWithKeyNew((FileDescriptorNew*)ghdescriptor, pfin, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:1731:
+  main.cpp:1732:                //Enable extra ability editboxes
+  main.cpp:1733:                EnableWindow(GetDlgItem(ghw_tab1, IDT_ABIL_TIPO), TRUE);
+  main.cpp:1734:                UpdateWindow(GetDlgItem(ghw_tab1, IDT_ABIL_TIPO));
+  main.cpp:1735:                EnableWindow(GetDlgItem(ghw_tab1, IDC_STATIC_T44), TRUE);
+  main.cpp:1736:                UpdateWindow(GetDlgItem(ghw_tab1, IDC_STATIC_T44));
+  main.cpp:1737:                EnableWindow(GetDlgItem(ghw_tab1, IDT_ABIL_AGGR), TRUE);
+  main.cpp:1738:                UpdateWindow(GetDlgItem(ghw_tab1, IDT_ABIL_AGGR));
+  main.cpp:1793:                }
+  main.cpp:1794:
+  main.cpp:1795:                //get number of player, team entries
+> main.cpp:1796:        gnum_players = ((FileDescriptorNew*)ghdescriptor)->data[96];
+> main.cpp:1797:        gnum_players += (((FileDescriptorNew*)ghdescriptor)->data[97])*256;
+  main.cpp:1798:
+> main.cpp:1799:                gnum_teams = ((FileDescriptorNew*)ghdescriptor)->data[100];
+> main.cpp:1800:                gnum_teams += (((FileDescriptorNew*)ghdescriptor)->data[101])*256;
+  main.cpp:1801:
+  main.cpp:1802:                gnum_teams = 670;
+  main.cpp:1803:
+  main.cpp:1804:
+  main.cpp:1805:{
+> main.cpp:1806:    FileDescriptorNew* d =
+> main.cpp:1807:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:1808:
+  main.cpp:1809:    int firstFreeTeamOffset = 0x8ED2FC + (gnum_teams * 0x24C);
+  main.cpp:1810:
+  main.cpp:1811:    wchar_t msg[1024];
+  main.cpp:1812:
+  main.cpp:1813:    swprintf_s(
+  main.cpp:1814:        msg,
+  main.cpp:1815:        1024,
+  main.cpp:1855:}
+  main.cpp:1856:
+  main.cpp:1857:{
+> main.cpp:1858:    FileDescriptorNew* d =
+> main.cpp:1859:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:1860:
+  main.cpp:1861:    int firstFreeTeamOffset =
+  main.cpp:1862:        0x8ED2FC + (gnum_teams * 0x24C);
+  main.cpp:1863:
+  main.cpp:1864:    int zeroCount = 0;
+  main.cpp:1865:    int ffCount = 0;
+  main.cpp:1866:    int otherCount = 0;
+  main.cpp:1867:
+  main.cpp:1904:}
+  main.cpp:1905:
+  main.cpp:1906:{
+> main.cpp:1907:    FileDescriptorNew* d =
+> main.cpp:1908:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:1909:
+  main.cpp:1910:    int firstFreeRosterOffset =
+  main.cpp:1911:        0x9D4648 + (gnum_teams * 0x11C);
+  main.cpp:1912:
+  main.cpp:1913:    int zeroCount = 0;
+  main.cpp:1914:    int ffCount = 0;
+  main.cpp:1915:    int otherCount = 0;
+  main.cpp:1916:
+  main.cpp:1953:}
+  main.cpp:1954:
+  main.cpp:1955:{
+> main.cpp:1956:    FileDescriptorNew* d =
+> main.cpp:1957:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:1958:
+  main.cpp:1959:    int firstFreeTacticsOffset =
+  main.cpp:1960:        0xA09880 + (gnum_teams * 0x274);
+  main.cpp:1961:
+  main.cpp:1962:    int zeroCount = 0;
+  main.cpp:1963:    int ffCount = 0;
+  main.cpp:1964:    int otherCount = 0;
+  main.cpp:1965:
+  main.cpp:2002:}
+  main.cpp:2003:
+  main.cpp:2004:{
+> main.cpp:2005:    FileDescriptorNew* d = (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2006:
+  main.cpp:2007:    wchar_t msg[512];
+  main.cpp:2008:
+  main.cpp:2009:    swprintf_s(
+  main.cpp:2010:        msg, 512,
+  main.cpp:2011:        L"PES 2021 EDIT\n\n"
+  main.cpp:2012:        L"Players: %d\n"
+  main.cpp:2013:        L"Teams: %d\n\n"
+  main.cpp:2037:                gplayers = new player_entry[gnum_players];
+  main.cpp:2038:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:2039:                {
+> main.cpp:2040:                        fill_player_entry20(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:2041:                }
+  main.cpp:2042:
+  main.cpp:2043:                //CLONACION ROBERTO CARLOS
+  main.cpp:2044:                #if 0
+  main.cpp:2045:                {
+> main.cpp:2046:    FileDescriptorNew* d =
+> main.cpp:2047:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2048:
+  main.cpp:2049:    const unsigned long NEW_PLAYER_ID = 0x800000A0;
+  main.cpp:2050:    const unsigned long ORIGINAL_PLAYER_ID = 9087;
+  main.cpp:2051:
+  main.cpp:2052:    int roberto_index = -1;
+  main.cpp:2053:
+  main.cpp:2054:    // Buscar Roberto Carlos
+  main.cpp:2055:    for (int i = 0; i < gnum_players; i++)
+  main.cpp:2176:#endif
+  main.cpp:2177:
+  main.cpp:2178:                {
+> main.cpp:2179:    FileDescriptorNew* d =
+> main.cpp:2180:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2181:
+  main.cpp:2182:    int playerTableEnd =
+  main.cpp:2183:        0x7C + (gnum_players * 0x138);
+  main.cpp:2184:
+  main.cpp:2185:    int teamTableStart = 0x8ED2FC;
+  main.cpp:2186:
+  main.cpp:2187:    int firstNonZero = -1;
+  main.cpp:2188:
+  main.cpp:2248:    wchar_t msg[4096];
+  main.cpp:2249:    msg[0] = L'\0';
+  main.cpp:2250:
+> main.cpp:2251:    FileDescriptorNew* pDescriptorNew =
+> main.cpp:2252:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2253:
+  main.cpp:2254:    int targets[] = {
+  main.cpp:2255:        0x80000044,
+  main.cpp:2256:        0x80000045,
+  main.cpp:2257:        0x80000046,
+  main.cpp:2258:        0x80000047,
+  main.cpp:2259:        0x80000048
+  main.cpp:2260:    };
+  main.cpp:2403:                {
+  main.cpp:2404:                        for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:2405:                        {
+> main.cpp:2406:                                fill_team_ids20(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2407:                        }
+  main.cpp:2408:                }
+  main.cpp:2409:                else
+  main.cpp:2410:                {
+  main.cpp:2411:                        for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:2412:                        {
+> main.cpp:2413:                                fill_team_ids21(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:2414:                        }
+  main.cpp:2415:                }
+  main.cpp:2416:
+  main.cpp:2417:                {
+  main.cpp:2418:    wchar_t msg[256];
+  main.cpp:2419:
+  main.cpp:2420:    swprintf_s(
+  main.cpp:2421:        msg,
+  main.cpp:2482:
+  main.cpp:2483:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2484:                {
+> main.cpp:2485:                        fill_team_rosters20(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:2486:                }
+  main.cpp:2487:
+  main.cpp:2488:
+  main.cpp:2489:
+  main.cpp:2490:
+  main.cpp:2491:if (giPesVersion == 20) current_byte = 0xa01e3c;
+  main.cpp:2492:else current_byte = 0xA09880;
+  main.cpp:2493:
+  main.cpp:2494:for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:2495:{
+> main.cpp:2496:    fill_team_tactics20(current_byte, ghdescriptor, gteams, gnum_teams);
+  main.cpp:2497:}
+  main.cpp:2498:
+  main.cpp:2499:#if 0
+  main.cpp:2500:{
+> main.cpp:2501:    FileDescriptorNew* d = (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2502:
+  main.cpp:2503:    const uint32_t BASE = 0x00A08650;
+  main.cpp:2504:
+  main.cpp:2505:    wchar_t msg[4096];
+  main.cpp:2506:    msg[0] = 0;
+  main.cpp:2507:
+  main.cpp:2508:    for (int i = 0; i < 20; i++)
+  main.cpp:2509:    {
+  main.cpp:2563:
+  main.cpp:2564:#if 0
+  main.cpp:2565:{
+> main.cpp:2566:    FileDescriptorNew* d =
+> main.cpp:2567:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2568:
+  main.cpp:2569:        const uint32_t START = 0x00A09650;
+  main.cpp:2570:        const uint32_t END   = 0x00A09750;
+  main.cpp:2571:
+  main.cpp:2572:    wchar_t msg[16384];
+  main.cpp:2573:    msg[0] = 0;
+  main.cpp:2574:    int pos = 0;
+  main.cpp:2575:
+  main.cpp:2701:
+  main.cpp:2702:#if 0
+  main.cpp:2703:{
+> main.cpp:2704:    FileDescriptorNew* d =
+> main.cpp:2705:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2706:
+  main.cpp:2707:    const uint32_t TEAM_BASE    = 0x008ED2FC;
+  main.cpp:2708:    const uint32_t ROSTER_BASE  = 0x009D4648;
+  main.cpp:2709:    const uint32_t TACTICS_BASE = 0x00A09880;
+  main.cpp:2710:
+  main.cpp:2711:    const uint32_t TEAM_SIZE    = 0x24C;
+  main.cpp:2712:    const uint32_t ROSTER_SIZE  = 0x11C;
+  main.cpp:2713:    const uint32_t TACTICS_SIZE = 0x274;
+  main.cpp:2817:#endif
+  main.cpp:2818:
+  main.cpp:2819:{
+> main.cpp:2820:    FileDescriptorNew* d =
+> main.cpp:2821:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2822:
+  main.cpp:2823:    const uint32_t TEAM_BASE = 0x008ED2FC;
+  main.cpp:2824:    const uint32_t TEAM_SIZE = 0x24C;
+  main.cpp:2825:
+  main.cpp:2826:    int test_index = 100;
+  main.cpp:2827:
+  main.cpp:2828:    uint32_t offset =
+  main.cpp:2829:        TEAM_BASE + (test_index * TEAM_SIZE);
+  main.cpp:2885:// ============================================================
+  main.cpp:2886:#if 1
+  main.cpp:2887:{
+> main.cpp:2888:    FileDescriptorNew* d =
+> main.cpp:2889:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2890:
+  main.cpp:2891:    const uint32_t OFFSETS[] =
+  main.cpp:2892:    {
+  main.cpp:2893:        0x0004F07C,
+  main.cpp:2894:        0x00A08F90,
+  main.cpp:2895:        0x00A09270
+  main.cpp:2896:    };
+  main.cpp:2897:
+  main.cpp:2962://REEMPLAZO DE EQUIPO_CLONACION DE EQUIPO
+  main.cpp:2963:#if 0
+  main.cpp:2964:{
+> main.cpp:2965:    FileDescriptorNew* d =
+> main.cpp:2966:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:2967:
+  main.cpp:2968:    const uint32_t TEAM_BASE = 0x008ED2FC;
+  main.cpp:2969:    const uint32_t TEAM_SIZE = 0x24C;
+  main.cpp:2970:
+  main.cpp:2971:    const int SOURCE_INDEX = 518; // Barcelona 1998-99
+  main.cpp:2972:    const int DEST_INDEX   = 267; // Porto 2003-04
+  main.cpp:2973:
+  main.cpp:2974:    const uint32_t DEST_TEAM_ID = 1222;
+  main.cpp:3137:
+  main.cpp:3138:#if 0
+  main.cpp:3139:{
+> main.cpp:3140:    FileDescriptorNew* d =
+> main.cpp:3141:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:3142:
+  main.cpp:3143:    const uint32_t TEAM_BASE = 0x008ED2FC;
+  main.cpp:3144:    const uint32_t TEAM_SIZE = 0x24C;
+  main.cpp:3145:
+  main.cpp:3146:    const int SOURCE_INDEX = 100;
+  main.cpp:3147:    const int DEST_INDEX = 669;
+  main.cpp:3148:
+  main.cpp:3149:    uint32_t source_offset =
+  main.cpp:3267:// ============================================================
+  main.cpp:3268:
+  main.cpp:3269:{
+> main.cpp:3270:    FileDescriptorNew* d =
+> main.cpp:3271:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:3272:
+  main.cpp:3273:    const uint32_t CATEGORY_BASE = 0x00A08650;
+  main.cpp:3274:
+  main.cpp:3275:    // Slot [20], actualmente 0x3FFFF = libre
+  main.cpp:3276:    const uint32_t CATEGORY_OFFSET =
+  main.cpp:3277:        CATEGORY_BASE + (20 * 4);
+  main.cpp:3278:
+  main.cpp:3279:    uint32_t old_id =
+  main.cpp:3354:void compare_assignment_edits()
+  main.cpp:3355:{
+  main.cpp:3356:    const TCHAR* fileA =
+> main.cpp:3357:    _T("D:\\Games\\pes patch mio\\comandospowershell\\EDIT00000000");
+  main.cpp:3358:
+  main.cpp:3359:    const TCHAR* fileB =
+  main.cpp:3360:    _T("D:\\Games\\pes patch mio\\comandospowershell\\EDIT_ASIGNADO_C.EDIT");
+  main.cpp:3361:
+  main.cpp:3362:    // ============================================================
+  main.cpp:3363:    // OPEN FILE A
+  main.cpp:3364:    // ============================================================
+  main.cpp:3365:
+  main.cpp:3370:        MessageBoxW(
+  main.cpp:3371:            NULL,
+  main.cpp:3372:            L"No se pudo abrir EDIT_ASIGNADO_A.EDIT",
+> main.cpp:3373:            L"COMPARE DECRYPTED EDIT",
+  main.cpp:3374:            MB_OK | MB_ICONERROR
+  main.cpp:3375:        );
+  main.cpp:3376:
+  main.cpp:3377:        return;
+  main.cpp:3378:    }
+  main.cpp:3379:
+> main.cpp:3380:    FileDescriptorNew* descriptorA =
+> main.cpp:3381:        (FileDescriptorNew*)createFileDescriptorNew();
+  main.cpp:3382:
+  main.cpp:3383:    const uint8_t* masterKey =
+  main.cpp:3384:        (const uint8_t*)GetProcAddress(
+> main.cpp:3385:            hPesDecryptDLL,
+  main.cpp:3386:            "MasterKeyPes21"
+  main.cpp:3387:        );
+  main.cpp:3388:
+  main.cpp:3389:    if (masterKey == NULL)
+  main.cpp:3390:    {
+  main.cpp:3391:        MessageBoxW(
+  main.cpp:3392:            NULL,
+  main.cpp:3393:            L"No se pudo obtener MasterKeyPes21.",
+> main.cpp:3394:            L"COMPARE DECRYPTED EDIT",
+  main.cpp:3395:            MB_OK | MB_ICONERROR
+  main.cpp:3396:        );
+  main.cpp:3397:
+  main.cpp:3398:        return;
+  main.cpp:3399:    }
+  main.cpp:3400:
+> main.cpp:3401:    decryptWithKeyNew(
+  main.cpp:3402:        descriptorA,
+  main.cpp:3403:        pfinA,
+  main.cpp:3404:        reinterpret_cast<const char*>(masterKey)
+  main.cpp:3405:    );
+  main.cpp:3406:
+  main.cpp:3407:
+  main.cpp:3408:    // ============================================================
+  main.cpp:3409:    // OPEN FILE B
+  main.cpp:3416:        MessageBoxW(
+  main.cpp:3417:            NULL,
+  main.cpp:3418:            L"No se pudo abrir EDIT_ASIGNADO_B.EDIT",
+> main.cpp:3419:            L"COMPARE DECRYPTED EDIT",
+  main.cpp:3420:            MB_OK | MB_ICONERROR
+  main.cpp:3421:        );
+  main.cpp:3422:
+  main.cpp:3423:        return;
+  main.cpp:3424:    }
+  main.cpp:3425:
+> main.cpp:3426:    FileDescriptorNew* descriptorB =
+> main.cpp:3427:        (FileDescriptorNew*)createFileDescriptorNew();
+  main.cpp:3428:
+> main.cpp:3429:    decryptWithKeyNew(
+  main.cpp:3430:        descriptorB,
+  main.cpp:3431:        pfinB,
+  main.cpp:3432:        reinterpret_cast<const char*>(masterKey)
+  main.cpp:3433:    );
+  main.cpp:3434:
+  main.cpp:3435:
+  main.cpp:3436:    // ============================================================
+  main.cpp:3437:    // BASIC INFORMATION
+  main.cpp:3445:
+  main.cpp:3446:
+  main.cpp:3447:    // ============================================================
+> main.cpp:3448:    // COMPARE DECRYPTED DATA
+  main.cpp:3449:    // ============================================================
+  main.cpp:3450:
+  main.cpp:3451:    uint32_t compareSize =
+  main.cpp:3452:        (sizeA < sizeB) ? sizeA : sizeB;
+  main.cpp:3453:
+  main.cpp:3454:    uint32_t differentBytes = 0;
+  main.cpp:3455:uint32_t firstDifference = 0xFFFFFFFF;
+  main.cpp:3456:
+  main.cpp:3467:    fprintf(
+  main.cpp:3468:        diffFile,
+  main.cpp:3469:        "============================================================\n"
+> main.cpp:3470:        "DECRYPTED EDIT DIFFERENCES\n"
+  main.cpp:3471:        "============================================================\n\n"
+  main.cpp:3472:    );
+  main.cpp:3473:
+  main.cpp:3474:    fprintf(
+  main.cpp:3475:        diffFile,
+  main.cpp:3476:        "Data size A: 0x%08X (%u bytes)\n"
+  main.cpp:3477:        "Data size B: 0x%08X (%u bytes)\n\n",
+  main.cpp:3478:        sizeA,
+  main.cpp:3580:    swprintf_s(
+  main.cpp:3581:        msg,
+  main.cpp:3582:        4096,
+> main.cpp:3583:        L"DECRYPTED EDIT COMPARISON\n\n"
+  main.cpp:3584:        L"Data size A: 0x%08X (%u bytes)\n"
+  main.cpp:3585:        L"Data size B: 0x%08X (%u bytes)\n\n"
+  main.cpp:3586:        L"Different bytes: %u\n"
+  main.cpp:3587:        L"First difference: 0x%08X",
+  main.cpp:3588:        sizeA,
+  main.cpp:3589:        sizeA,
+  main.cpp:3590:        sizeB,
+  main.cpp:3591:        sizeB,
+  main.cpp:3597:    MessageBoxW(
+  main.cpp:3598:        NULL,
+  main.cpp:3599:        msg,
+> main.cpp:3600:        L"COMPARE DECRYPTED EDIT",
+  main.cpp:3601:        MB_OK | MB_ICONINFORMATION
+  main.cpp:3602:    );
+  main.cpp:3603:}
+  main.cpp:3604:
+  main.cpp:3605:void analyze_assignment_rosters()
+  main.cpp:3606:{
+  main.cpp:3607:    const TCHAR* fileA =
+> main.cpp:3608:        _T("D:\\Games\\pes patch mio\\comandospowershell\\EDIT00000000");
+  main.cpp:3609:
+  main.cpp:3610:    const TCHAR* fileB =
+  main.cpp:3611:        _T("D:\\Games\\pes patch mio\\comandospowershell\\EDIT_ASIGNADO_C.EDIT");
+  main.cpp:3612:
+  main.cpp:3613:    uint8_t* pfinA = readFile(fileA, NULL);
+  main.cpp:3614:    uint8_t* pfinB = readFile(fileB, NULL);
+  main.cpp:3615:
+  main.cpp:3616:    if (pfinA == NULL || pfinB == NULL)
+  main.cpp:3624:        return;
+  main.cpp:3625:    }
+  main.cpp:3626:
+> main.cpp:3627:    FileDescriptorNew* descriptorA =
+> main.cpp:3628:        (FileDescriptorNew*)createFileDescriptorNew();
+  main.cpp:3629:
+> main.cpp:3630:    FileDescriptorNew* descriptorB =
+> main.cpp:3631:        (FileDescriptorNew*)createFileDescriptorNew();
+  main.cpp:3632:
+  main.cpp:3633:    const uint8_t* masterKey =
+  main.cpp:3634:        (const uint8_t*)GetProcAddress(
+> main.cpp:3635:            hPesDecryptDLL,
+  main.cpp:3636:            "MasterKeyPes21"
+  main.cpp:3637:        );
+  main.cpp:3638:
+> main.cpp:3639:    decryptWithKeyNew(
+  main.cpp:3640:        descriptorA,
+  main.cpp:3641:        pfinA,
+  main.cpp:3642:        reinterpret_cast<const char*>(masterKey)
+  main.cpp:3643:    );
+  main.cpp:3644:
+> main.cpp:3645:    decryptWithKeyNew(
+  main.cpp:3646:        descriptorB,
+  main.cpp:3647:        pfinB,
+  main.cpp:3648:        reinterpret_cast<const char*>(masterKey)
+  main.cpp:3649:    );
+  main.cpp:3650:
+  main.cpp:3651:    const uint32_t rosterBase = 0x009D4648;
+  main.cpp:3652:    const uint32_t rosterSize = 0x11C;
+  main.cpp:3653:
+  main.cpp:3702:
+  main.cpp:3703:        for (int file = 0; file < 2; file++)
+  main.cpp:3704:        {
+> main.cpp:3705:            FileDescriptorNew* d =
+  main.cpp:3706:                (file == 0) ? descriptorA : descriptorB;
+  main.cpp:3707:
+  main.cpp:3708:            fprintf(
+  main.cpp:3709:                f,
+  main.cpp:3710:                "---------------- FILE %s ----------------\n",
+  main.cpp:3711:                (file == 0) ? "A" : "B"
+  main.cpp:3712:            );
+  main.cpp:3713:
+  main.cpp:3780:void analyze_assignment_unknown()
+  main.cpp:3781:{
+  main.cpp:3782:    const TCHAR* fileA =
+> main.cpp:3783:        _T("D:\\Games\\pes patch mio\\comandospowershell\\EDIT00000000");
+  main.cpp:3784:
+  main.cpp:3785:    const TCHAR* fileB =
+  main.cpp:3786:        _T("D:\\Games\\pes patch mio\\comandospowershell\\EDIT_ASIGNADO_C.EDIT");
+  main.cpp:3787:
+  main.cpp:3788:    uint8_t* pfinA = readFile(fileA, NULL);
+  main.cpp:3789:    uint8_t* pfinB = readFile(fileB, NULL);
+  main.cpp:3790:
+  main.cpp:3791:    if (pfinA == NULL || pfinB == NULL)
+  main.cpp:3792:        return;
+  main.cpp:3793:
+> main.cpp:3794:    FileDescriptorNew* descriptorA =
+> main.cpp:3795:        (FileDescriptorNew*)createFileDescriptorNew();
+  main.cpp:3796:
+> main.cpp:3797:    FileDescriptorNew* descriptorB =
+> main.cpp:3798:        (FileDescriptorNew*)createFileDescriptorNew();
+  main.cpp:3799:
+  main.cpp:3800:    const uint8_t* masterKey =
+  main.cpp:3801:        (const uint8_t*)GetProcAddress(
+> main.cpp:3802:            hPesDecryptDLL,
+  main.cpp:3803:            "MasterKeyPes21"
+  main.cpp:3804:        );
+  main.cpp:3805:
+> main.cpp:3806:    decryptWithKeyNew(
+  main.cpp:3807:        descriptorA,
+  main.cpp:3808:        pfinA,
+  main.cpp:3809:        reinterpret_cast<const char*>(masterKey)
+  main.cpp:3810:    );
+  main.cpp:3811:
+> main.cpp:3812:    decryptWithKeyNew(
+  main.cpp:3813:        descriptorB,
+  main.cpp:3814:        pfinB,
+  main.cpp:3815:        reinterpret_cast<const char*>(masterKey)
+  main.cpp:3816:    );
+  main.cpp:3817:
+  main.cpp:3818:    const uint32_t rosterBase = 0x009D4648;
+  main.cpp:3819:    const uint32_t rosterSize = 0x11C;
+  main.cpp:3820:
+  main.cpp:3861:
+  main.cpp:3862:        for (int file = 0; file < 2; file++)
+  main.cpp:3863:        {
+> main.cpp:3864:            FileDescriptorNew* d =
+  main.cpp:3865:                (file == 0) ? descriptorA : descriptorB;
+  main.cpp:3866:
+  main.cpp:3867:            fprintf(
+  main.cpp:3868:                f,
+  main.cpp:3869:                "---------------- FILE %s ----------------\n",
+  main.cpp:3870:                (file == 0) ? "A" : "B"
+  main.cpp:3871:            );
+  main.cpp:3872:
+  main.cpp:3919:    if (pfin == NULL)
+  main.cpp:3920:        return;
+  main.cpp:3921:
+> main.cpp:3922:    FileDescriptorNew* descriptor =
+> main.cpp:3923:        (FileDescriptorNew*)createFileDescriptorNew();
+  main.cpp:3924:
+  main.cpp:3925:    const uint8_t* masterKey =
+  main.cpp:3926:        (const uint8_t*)GetProcAddress(
+> main.cpp:3927:            hPesDecryptDLL,
+  main.cpp:3928:            "MasterKeyPes21"
+  main.cpp:3929:        );
+  main.cpp:3930:
+> main.cpp:3931:    decryptWithKeyNew(
+  main.cpp:3932:        descriptor,
+  main.cpp:3933:        pfin,
+  main.cpp:3934:        reinterpret_cast<const char*>(masterKey)
+  main.cpp:3935:    );
+  main.cpp:3936:
+  main.cpp:3937:    const uint32_t rosterBase = 0x009D4648;
+  main.cpp:3938:    const uint32_t rosterSize = 0x11C;
+  main.cpp:3939:
+  main.cpp:4032:    if (pfinA == NULL || pfinB == NULL)
+  main.cpp:4033:        return;
+  main.cpp:4034:
+> main.cpp:4035:    FileDescriptorNew* descriptorA =
+> main.cpp:4036:        (FileDescriptorNew*)createFileDescriptorNew();
+  main.cpp:4037:
+> main.cpp:4038:    FileDescriptorNew* descriptorB =
+> main.cpp:4039:        (FileDescriptorNew*)createFileDescriptorNew();
+  main.cpp:4040:
+  main.cpp:4041:    const uint8_t* masterKey =
+  main.cpp:4042:        (const uint8_t*)GetProcAddress(
+> main.cpp:4043:            hPesDecryptDLL,
+  main.cpp:4044:            "MasterKeyPes21"
+  main.cpp:4045:        );
+  main.cpp:4046:
+> main.cpp:4047:    decryptWithKeyNew(
+  main.cpp:4048:        descriptorA,
+  main.cpp:4049:        pfinA,
+  main.cpp:4050:        reinterpret_cast<const char*>(masterKey)
+  main.cpp:4051:    );
+  main.cpp:4052:
+> main.cpp:4053:    decryptWithKeyNew(
+  main.cpp:4054:        descriptorB,
+  main.cpp:4055:        pfinB,
+  main.cpp:4056:        reinterpret_cast<const char*>(masterKey)
+  main.cpp:4057:    );
+  main.cpp:4058:
+  main.cpp:4059:    // ============================================================
+  main.cpp:4060:    // TEAM 4000
+  main.cpp:4061:    // ROSTER INDEX 490
+  main.cpp:4395:                }
+  main.cpp:4396:        }
+  main.cpp:4397:
+> main.cpp:4398:        //Now write any changed player and team entries back into the ghdescriptor
+  main.cpp:4399:        if (giPesVersion == 15)
+  main.cpp:4400:        {
+  main.cpp:4401:                //Extract player info & appearance from array of structs
+  main.cpp:4402:                int current_byte = 0x4C;
+  main.cpp:4403:
+  main.cpp:4404:                for (int ii = 0; ii < gnum_players; ii++)
+  main.cpp:4405:                {
+> main.cpp:4406:                        write_player_entry15(gplayers[ii], current_byte, g_umap_pid_to_startByte, ghdescriptor);
+  main.cpp:4407:                }
+  main.cpp:4408:
+  main.cpp:4409:                //Extract team info from array of structs
+  main.cpp:4410:                current_byte = 0x44AA6C;
+  main.cpp:4411:                for (int ii = 0; ii < gnum_teams; ii++)
+  main.cpp:4412:                {
+> main.cpp:4413:                        write_team_info15(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4414:                }
+  main.cpp:4415:                current_byte = 0x4E45CC;
+  main.cpp:4416:                for (int ii = 0; ii < gnum_teams; ii++)
+  main.cpp:4417:                {
+> main.cpp:4418:                        write_teamplayer_info15(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4419:                }
+  main.cpp:4420:                current_byte = 0x507194;
+  main.cpp:4421:                for (int ii = 0; ii < gnum_teams; ii++)
+  main.cpp:4422:                {
+> main.cpp:4423:                        write_team_tactics15(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4424:                }
+  main.cpp:4425:
+  main.cpp:4426:                //Write out data to file
+  main.cpp:4427:                int outputSize = 0;
+  main.cpp:4428:                uint8_t* output;
+> main.cpp:4429:                output = encryptFile15((FileDescriptor15*)ghdescriptor, &outputSize);
+  main.cpp:4430:                writeFile(pcs_file_name, output, outputSize);
+  main.cpp:4431:        }
+  main.cpp:4432:        else if(giPesVersion==16)
+  main.cpp:4433:        {
+  main.cpp:4434:                //Extract player info & appearance from array of structs
+  main.cpp:4435:                int ii, current_byte = 0x4C, appearance_byte = 0x2AB9CC;
+  main.cpp:4436:                //char strcheck[0x72]; //DEBUG
+  main.cpp:4437:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:4438:                {
+> main.cpp:4439:                        extract_player_entry16(gplayers[ii], current_byte, appearance_byte, ghdescriptor);
+> main.cpp:4440:                        //memcpy(strcheck, &(ghdescriptor->data[0x82C]), 0x70); //DEBUG
+  main.cpp:4441:                        //t2=0;
+  main.cpp:4442:                }
+  main.cpp:4443:
+  main.cpp:4444:                //Extract team info from array of structs
+  main.cpp:4445:                current_byte = 0x46310C;
+  main.cpp:4446:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4447:                {
+> main.cpp:4448:                        extract_team_info16(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4449:                }
+  main.cpp:4450:                current_byte = 0x4FCC6C;
+  main.cpp:4451:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4452:                {
+> main.cpp:4453:                        extract_teamplayer_info16(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4454:                }
+  main.cpp:4455:                current_byte = 0x51F814;
+  main.cpp:4456:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4457:                {
+> main.cpp:4458:                        extract_team_tactics16(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4459:                }
+  main.cpp:4460:
+  main.cpp:4461:                //Write out data to file
+  main.cpp:4462:                int outputSize;
+  main.cpp:4463:                uint8_t *output;
+> main.cpp:4464:                output = encryptWithKeyOld((FileDescriptorOld*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:4465:                writeFile(pcs_file_name, output, outputSize);
+  main.cpp:4466:        }
+  main.cpp:4467:        else if(giPesVersion==17)
+  main.cpp:4468:        {
+  main.cpp:4469:                //Extract player info & appearance from array of structs
+  main.cpp:4470:                int ii, current_byte = 0x78;
+  main.cpp:4471:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:4472:                {
+> main.cpp:4473:                        extract_player_entry17(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:4474:                }
+  main.cpp:4475:
+  main.cpp:4476:                //Extract team info from array of structs
+  main.cpp:4477:                current_byte = 0x3C3E58;
+  main.cpp:4478:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4479:                {
+> main.cpp:4480:                        extract_team_info17(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4481:                }
+  main.cpp:4482:                current_byte = 0x475A90;
+  main.cpp:4483:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4484:                {
+> main.cpp:4485:                        extract_teamplayer_info17(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4486:                }
+  main.cpp:4487:                current_byte = 0x490640;
+  main.cpp:4488:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4489:                {
+> main.cpp:4490:                        extract_team_tactics17(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4491:                }
+  main.cpp:4492:
+  main.cpp:4493:                //Write out data to file
+  main.cpp:4494:                int outputSize;
+  main.cpp:4495:                uint8_t *output;
+> main.cpp:4496:                output = encryptWithKeyOld((FileDescriptorOld*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:4497:                writeFile(pcs_file_name, output, outputSize);
+  main.cpp:4498:        }
+  main.cpp:4499:        else if(giPesVersion==18)
+  main.cpp:4500:        {
+  main.cpp:4501:                //Extract player info & appearance from array of structs
+  main.cpp:4502:                int ii, current_byte = 0x7C;
+  main.cpp:4503:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:4504:                {
+> main.cpp:4505:                        extract_player_entry18(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:4506:                }
+  main.cpp:4507:
+  main.cpp:4508:                //Extract team info from array of structs
+  main.cpp:4509:                current_byte = 0x3C3E5C;
+  main.cpp:4510:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4511:                {
+> main.cpp:4512:                        extract_team_info18(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4513:                }
+  main.cpp:4514:                current_byte = 0x46FF54;
+  main.cpp:4515:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4516:                {
+> main.cpp:4517:                        extract_teamplayer_info18(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4518:                }
+  main.cpp:4519:                current_byte = 0x488B74;
+  main.cpp:4520:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4521:                {
+> main.cpp:4522:                        extract_team_tactics18(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4523:                }
+  main.cpp:4524:
+  main.cpp:4525:                //Write out data to file
+  main.cpp:4526:                int outputSize;
+  main.cpp:4527:                uint8_t *output;
+> main.cpp:4528:                output = encryptWithKeyNew((FileDescriptorNew*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:4529:                writeFile(pcs_file_name, output, outputSize);
+  main.cpp:4530:        }
+  main.cpp:4531:        else if(giPesVersion==19)
+  main.cpp:4532:        {
+  main.cpp:4533:                //Extract player info & appearance from array of structs
+  main.cpp:4534:                int ii, current_byte = 0x7C;
+  main.cpp:4535:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:4536:                {
+> main.cpp:4537:                        extract_player_entry19(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:4538:                }
+  main.cpp:4539:
+  main.cpp:4540:                //Extract team info from array of structs
+  main.cpp:4541:                current_byte = 0x5BCC7C;
+  main.cpp:4542:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4543:                {
+> main.cpp:4544:                        extract_team_info19(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4545:                }
+  main.cpp:4546:                current_byte = 0x6773C4;
+  main.cpp:4547:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4548:                {
+> main.cpp:4549:                        extract_teamplayer_info19(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4550:                }
+  main.cpp:4551:                current_byte = 0x69EC8C;
+  main.cpp:4552:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:4553:                {
+> main.cpp:4554:                        extract_team_tactics19(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4555:                }
+  main.cpp:4556:
+  main.cpp:4557:                //Write out data to file
+  main.cpp:4558:                int outputSize;
+  main.cpp:4559:                uint8_t *output;
+> main.cpp:4560:                output = encryptWithKeyNew((FileDescriptorNew*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:4561:                writeFile(pcs_file_name, output, outputSize);
+  main.cpp:4562:        }
+  main.cpp:4563:        else //PES 20/21
+  main.cpp:4564:        {
+  main.cpp:4565:
+  main.cpp:4566:// ============================================================
+  main.cpp:4567:// DEBUG: SEARCH EDIT-CREATED PLAYER IDS
+  main.cpp:4568:// Saves all results to player_structure_dump.txt
+  main.cpp:4569:// ============================================================
+  main.cpp:4570:
+> main.cpp:4571:FileDescriptorNew* debugDescriptor =
+> main.cpp:4572:    (FileDescriptorNew*)ghdescriptor;
+  main.cpp:4573:
+  main.cpp:4574:int32_t testPlayerA = -2147483580;
+  main.cpp:4575:int32_t testPlayerB = -2147483579;
+  main.cpp:4576:
+  main.cpp:4577:int foundA = 0;
+  main.cpp:4578:int foundB = 0;
+  main.cpp:4579:
+  main.cpp:4580:FILE* dumpFile = NULL;
+  main.cpp:4794:                int ii, current_byte = 0x7C;
+  main.cpp:4795:                for(ii=0;ii<gnum_players;ii++)
+  main.cpp:4796:                {
+> main.cpp:4797:                        extract_player_entry20(gplayers[ii], current_byte, ghdescriptor);
+  main.cpp:4798:                }
+  main.cpp:4799:
+  main.cpp:4800:                //Extract team info from array of structs
+  main.cpp:4801:                current_byte = 0x8ED2FC;
+  main.cpp:4802:                if (giPesVersion == 20)
+  main.cpp:4803:                {
+  main.cpp:4804:                        for (ii = 0; ii < gnum_teams; ii++)
+  main.cpp:4805:                        {
+> main.cpp:4806:                                extract_team_info20(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4807:                        }
+  main.cpp:4808:                }
+  main.cpp:4809:                else
+  main.cpp:4810:                {
+  main.cpp:4811:        #if 0
+  main.cpp:4812:    // ============================================================
+  main.cpp:4813:    // TEST TEAM 368 - ALL STAR BOCA JUNIORS
+  main.cpp:4814:    // ============================================================
+  main.cpp:4877:{
+  main.cpp:4878:    if (ii == 669)
+  main.cpp:4879:    {
+> main.cpp:4880:        FileDescriptorNew* d =
+> main.cpp:4881:            (FileDescriptorNew*)ghdescriptor;
+  main.cpp:4882:
+  main.cpp:4883:        const uint32_t TEAM_BASE = 0x008ED2FC;
+  main.cpp:4884:        const uint32_t TEAM_SIZE = 0x24C;
+  main.cpp:4885:
+  main.cpp:4886:        uint32_t offset =
+  main.cpp:4887:            TEAM_BASE + (669 * TEAM_SIZE);
+  main.cpp:4888:
+  main.cpp:4889:        uint32_t before_id =
+  main.cpp:4903:);
+  main.cpp:4904:    }
+  main.cpp:4905:
+> main.cpp:4906:    extract_team_info21(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:4907:
+  main.cpp:4908:    if (ii == 669)
+  main.cpp:4909:    {
+> main.cpp:4910:        FileDescriptorNew* d =
+> main.cpp:4911:            (FileDescriptorNew*)ghdescriptor;
+  main.cpp:4912:
+  main.cpp:4913:        const uint32_t TEAM_BASE = 0x008ED2FC;
+  main.cpp:4914:        const uint32_t TEAM_SIZE = 0x24C;
+  main.cpp:4915:
+  main.cpp:4916:        uint32_t offset =
+  main.cpp:4917:            TEAM_BASE + (669 * TEAM_SIZE);
+  main.cpp:4918:
+  main.cpp:4919:        uint32_t after_id =
+  main.cpp:4970:        memset(gteams[target].short_name, 0, 4);
+  main.cpp:4971:        memcpy(gteams[target].short_name, "TEST", 4);
+  main.cpp:4972:
+> main.cpp:4973:        // Real players from EDIT00000000
+  main.cpp:4974:        gteams[target].players[0] = 9087;     // ROBERTO CARLOS
+  main.cpp:4975:        gteams[target].players[1] = 25262;    // ADRIANO
+  main.cpp:4976:
+  main.cpp:4977:        // Shirt numbers
+  main.cpp:4978:        gteams[target].numbers[0] = 10;
+  main.cpp:4979:        gteams[target].numbers[1] = 7;
+  main.cpp:4980:
+  main.cpp:4981:        // Internal 4cc state
+  main.cpp:5041:    }
+  main.cpp:5042:    else
+  main.cpp:5043:    {
+> main.cpp:5044:        extract_teamplayer_info20(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:5045:    }
+  main.cpp:5046:}
+  main.cpp:5047:
+  main.cpp:5048:                if (giPesVersion == 20) current_byte = 0xa01e3c;
+  main.cpp:5049:                else current_byte = 0xA09880;
+  main.cpp:5050:                for(ii=0;ii<gnum_teams;ii++)
+  main.cpp:5051:{
+> main.cpp:5052:    extract_team_tactics20(gteams[ii], current_byte, ghdescriptor);
+  main.cpp:5053:
+  main.cpp:5054:}
+  main.cpp:5055:
+  main.cpp:5056:{
+> main.cpp:5057:    FileDescriptorNew* d =
+> main.cpp:5058:        (FileDescriptorNew*)ghdescriptor;
+  main.cpp:5059:
+  main.cpp:5060:    const uint32_t TEAM_BASE = 0x008ED2FC;
+  main.cpp:5061:    const uint32_t ROSTER_BASE = 0x009D4648;
+  main.cpp:5062:    const uint32_t TACTICS_BASE = 0x00A09880;
+  main.cpp:5063:
+  main.cpp:5064:    const uint32_t TEAM_SIZE = 0x24C;
+  main.cpp:5065:    const uint32_t ROSTER_SIZE = 0x11C;
+  main.cpp:5066:    const uint32_t TACTICS_SIZE = 0x274;
+  main.cpp:5112:}
+  main.cpp:5113:
+  main.cpp:5114:
+> main.cpp:5115:FileDescriptorNew* d =
+> main.cpp:5116:    (FileDescriptorNew*)ghdescriptor;
+  main.cpp:5117:
+  main.cpp:5118:uint32_t p1 = *(uint32_t*)(d->data + 0x00000424);
+  main.cpp:5119:uint32_t p2 = *(uint32_t*)(d->data + 0x0006493D);
+  main.cpp:5120:uint32_t p3 = *(uint32_t*)(d->data + 0x009E6E80);
+  main.cpp:5121:
+  main.cpp:5122:wchar_t debug_refs[512];
+  main.cpp:5123:
+  main.cpp:5124:swprintf_s(
+  main.cpp:5196:                //Write out data to file
+  main.cpp:5197:                int outputSize;
+  main.cpp:5198:                uint8_t *output;
+> main.cpp:5199:                output = encryptWithKeyNew((FileDescriptorNew*)ghdescriptor, &outputSize, reinterpret_cast<const char*>(gpMasterKey));
+  main.cpp:5200:                writeFile(pcs_file_name, output, outputSize);
+  main.cpp:5201:                //Add function to DLL to free allocated memory
+  main.cpp:5202:                //freeEncryptArray(output);
+  main.cpp:5203:        }
+  main.cpp:5204:}
+  main.cpp:5205:
+  main.cpp:5206:void fill_list_all_players()
+  main.cpp:5207:{
+  main.cpp:8127:        if (giPesVersion == 17)
+  main.cpp:8128:        {       //Fix kit team IDs in Unknown section so kit preview colors 12 and 2 display properly
+  main.cpp:8129:                int current_byte = 0x425180;
+> main.cpp:8130:                FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  main.cpp:8131:                for (int ii = 0; ii < 2500; ii++) //2500 entries
+  main.cpp:8132:                {
+  main.cpp:8133:                        write_dataOld(0xFFFFC0, 0, 4 * 8, current_byte, pDescriptorOld);
+  main.cpp:8134:                        current_byte += 0x80;
+  main.cpp:8135:                }
+  main.cpp:8136:        }
+  main.cpp:8137:}
+  main.cpp:8138:
+  main.cpp:8755:                        __except(EXCEPTION_EXECUTE_HANDLER)
+  main.cpp:8756:                        {
+  main.cpp:8757:                                TCHAR errBuffer[MAX_PATH] = _T("");
+> main.cpp:8758:                                _stprintf_s(errBuffer, MAX_PATH, _T("File decryption failed with code %d.\nThe EDIT file is from a different PES version and cannot be used for
+comparison."),
+  main.cpp:8759:                                        GetExceptionCode());
+  main.cpp:8760:                                MessageBox(ghw_main, errBuffer, _T("Error!"), MB_ICONEXCLAMATION | MB_OK);
+  main.cpp:8761:                                if(hc_descriptor)
+  main.cpp:8762:                                {
+  main.cpp:8763:                                        if (giPesVersion >= 18)
+> main.cpp:8764:                                                destroyFileDescriptorNew((FileDescriptorNew*)hc_descriptor);
+  main.cpp:8765:                                        else if (giPesVersion >= 16)
+  main.cpp:8766:                                                destroyFileDescriptorOld((FileDescriptorOld*)hc_descriptor);
+  main.cpp:8767:                                        else
+  main.cpp:8768:                                                destroyFileDescriptor15((FileDescriptor15*)hc_descriptor);
+  main.cpp:8769:                                        hc_descriptor = NULL;
+  main.cpp:8770:                                }
+  main.cpp:8771:                                EndDialog(hwnd, IDB_AATFOK);
+  main.cpp:8772:                        }
+  pes15.cpp:1:#include "editor.h"
+  pes15.cpp:2:
+> pes15.cpp:3:void build_appearance_map15(appearance_map& umap_pid_to_startByte, int& current_byte, void* ghdescriptor)
+  pes15.cpp:4:{
+> pes15.cpp:5:  FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:6:  //Appearance entries
+  pes15.cpp:7:  int pid, startByte;
+  pes15.cpp:8:  startByte = current_byte;
+  pes15.cpp:9:  pid = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:10:
+  pes15.cpp:11: umap_pid_to_startByte[pid] = startByte;
+  pes15.cpp:12:
+  pes15.cpp:13: current_byte = startByte + 0x44; //Advance by length of 1 Appearance Entry
+  pes15.cpp:14:}
+  pes15.cpp:15:
+> pes15.cpp:16:void read_player_entry15(player_entry& player, int& current_byte, void* ghdescriptor)
+  pes15.cpp:17:{
+> pes15.cpp:18: FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:19:
+  pes15.cpp:20: player.id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:21:
+  pes15.cpp:22: //Commentary Name
+  pes15.cpp:23: //Unknown A
+  pes15.cpp:24: current_byte += 0x6;
+  pes15.cpp:25:
+  pes15.cpp:26: player.nation = read_data15(0, 2 * 8, current_byte, pDescriptor15); //0xA
+  pes15.cpp:207:}
+  pes15.cpp:208:
+  pes15.cpp:209:
+> pes15.cpp:210:void read_appearance_entry15(player_entry& player, appearance_map& umap_pid_to_startByte, void* ghdescriptor)
+  pes15.cpp:211:{
+> pes15.cpp:212:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:213:
+  pes15.cpp:214:        //Check if played ID has a corresponding start byte in the map, return if not
+  pes15.cpp:215:        auto checkKey = umap_pid_to_startByte.find(player.id);
+  pes15.cpp:216:        if (checkKey == umap_pid_to_startByte.end())
+  pes15.cpp:217:                return;
+  pes15.cpp:218:
+  pes15.cpp:219:        int current_byte = checkKey->second; //Set current byte to PID start byte
+  pes15.cpp:220:        current_byte += 4; //Advance by 4 to get past 4 byte PID entry
+  pes15.cpp:298:}
+  pes15.cpp:299:
+  pes15.cpp:300:
+> pes15.cpp:301:void read_team_ids15(team_entry& team, int& current_byte, void* ghdescriptor)
+  pes15.cpp:302:{
+> pes15.cpp:303:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:304:
+  pes15.cpp:305:        team.id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:306:
+  pes15.cpp:307:        current_byte += 0xE;
+  pes15.cpp:308:        team.b_edit_name = read_data15(0, 1, current_byte, pDescriptor15);
+  pes15.cpp:309:        team.b_edit_shortname = read_data15(1, 1, current_byte, pDescriptor15);
+  pes15.cpp:310:
+  pes15.cpp:311:        current_byte += 0x82;
+  pes15.cpp:329:}
+  pes15.cpp:330:
+  pes15.cpp:331:
+> pes15.cpp:332:void read_team_rosters15(int& current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes15.cpp:333:{
+> pes15.cpp:334:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:335:
+  pes15.cpp:336:        int ii, t_ind;
+  pes15.cpp:337:        unsigned long team_id, player_id;
+  pes15.cpp:338:
+  pes15.cpp:339:        team_id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:340:
+  pes15.cpp:341:        for (t_ind = 0; t_ind < gnum_teams; t_ind++)
+  pes15.cpp:342:        {
+  pes15.cpp:364:}
+  pes15.cpp:365:
+  pes15.cpp:366:
+> pes15.cpp:367:void read_team_tactics15(int& current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes15.cpp:368:{
+> pes15.cpp:369:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:370:
+  pes15.cpp:371:        int t_ind;
+  pes15.cpp:372:        unsigned long team_id;
+  pes15.cpp:373:
+  pes15.cpp:374:        team_id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:375:
+  pes15.cpp:376:        for (t_ind = 0; t_ind < gnum_teams; t_ind++)
+  pes15.cpp:377:        {
+  pes15.cpp:389://-------------------------------------------------------------------------------------
+  pes15.cpp:390:
+  pes15.cpp:391:
+> pes15.cpp:392:void write_player_entry15(player_entry player, int& current_byte, appearance_map& umap_pid_to_startByte, void* ghdescriptor)
+  pes15.cpp:393:{
+> pes15.cpp:394:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:395:
+  pes15.cpp:396:        if (!player.b_changed || !player.b_show)
+  pes15.cpp:397:        {
+  pes15.cpp:398:                current_byte += 0x70;
+  pes15.cpp:399:                return;
+  pes15.cpp:400:        }
+  pes15.cpp:401:
+  pes15.cpp:402:        write_data15(player.id, 0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:665:}
+  pes15.cpp:666:
+  pes15.cpp:667:
+> pes15.cpp:668:void write_team_info15(team_entry team, int& current_byte, void* ghdescriptor)
+  pes15.cpp:669:{
+> pes15.cpp:670:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:671:
+  pes15.cpp:672:        if (!team.b_changed || !team.b_show)
+  pes15.cpp:673:        {
+  pes15.cpp:674:                current_byte += 0x1C8;
+  pes15.cpp:675:                return;
+  pes15.cpp:676:        }
+  pes15.cpp:677:
+  pes15.cpp:678:        //teams.id = read_data15(0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:697:}
+  pes15.cpp:698:
+  pes15.cpp:699:
+> pes15.cpp:700:void write_teamplayer_info15(team_entry team, int& current_byte, void* ghdescriptor)
+  pes15.cpp:701:{
+> pes15.cpp:702:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:703:
+  pes15.cpp:704:        if (!team.b_changed || !team.b_show)
+  pes15.cpp:705:        {
+  pes15.cpp:706:                current_byte += 0xA4;
+  pes15.cpp:707:                return;
+  pes15.cpp:708:        }
+  pes15.cpp:709:
+  pes15.cpp:710:        //write_data15(team_id, 0, 4 * 8, current_byte, pDescriptor15);
+  pes15.cpp:724:}
+  pes15.cpp:725:
+  pes15.cpp:726:
+> pes15.cpp:727:void write_team_tactics15(team_entry team, int& current_byte, void* ghdescriptor)
+  pes15.cpp:728:{
+> pes15.cpp:729:        FileDescriptor15* pDescriptor15 = (FileDescriptor15*)ghdescriptor;
+  pes15.cpp:730:
+  pes15.cpp:731:        if (!team.b_changed)
+  pes15.cpp:732:        {
+  pes15.cpp:733:                current_byte += 0x204;
+  pes15.cpp:734:                return;
+  pes15.cpp:735:        }
+  pes15.cpp:736:
+  pes15.cpp:737:        current_byte += 0x4; //Advance past team ID
+  pes16.cpp:1:#include "editor.h"
+  pes16.cpp:2:
+> pes16.cpp:3:void fill_player_entry16(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes16.cpp:4:{
+> pes16.cpp:5:  FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:6:
+  pes16.cpp:7:  players.id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:8:  /*
+  pes16.cpp:9:  if(players.id==73301)//Debug
+  pes16.cpp:10: {
+  pes16.cpp:11:         int d3=0;
+  pes16.cpp:12: }
+  pes16.cpp:13: */
+  pes16.cpp:192:}
+  pes16.cpp:193:
+  pes16.cpp:194:
+> pes16.cpp:195:void fill_appearance_entry16(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes16.cpp:196:{
+> pes16.cpp:197:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:198:
+  pes16.cpp:199:        //Appearance entries
+  pes16.cpp:200:        unsigned long checkId;
+  pes16.cpp:201:        checkId = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:202:
+  pes16.cpp:203:        if(players.id!=checkId) return;
+  pes16.cpp:204:
+  pes16.cpp:205:        players.b_edit_face = read_dataOld(0, 1, current_byte, pDescriptorOld);
+  pes16.cpp:279:}
+  pes16.cpp:280:
+  pes16.cpp:281:
+> pes16.cpp:282:void fill_team_ids16(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes16.cpp:283:{
+> pes16.cpp:284:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:285:
+  pes16.cpp:286:        team.id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:287:
+  pes16.cpp:288:        current_byte+=0xE;
+  pes16.cpp:289:        team.b_edit_name = read_dataOld(0, 1, current_byte, pDescriptorOld); //(pDescriptorOld->data[current_byte]) & 1;
+  pes16.cpp:290:
+  pes16.cpp:291:        current_byte+=0x82;
+  pes16.cpp:292:
+  pes16.cpp:306:}
+  pes16.cpp:307:
+  pes16.cpp:308:
+> pes16.cpp:309:void fill_team_rosters16(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes16.cpp:310:{
+> pes16.cpp:311:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:312:
+  pes16.cpp:313:        int ii, t_ind;
+  pes16.cpp:314:        unsigned long team_id, player_id;
+  pes16.cpp:315:
+  pes16.cpp:316:        team_id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:317:
+  pes16.cpp:318:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes16.cpp:319:        {
+  pes16.cpp:339:}
+  pes16.cpp:340:
+  pes16.cpp:341:
+> pes16.cpp:342:void fill_team_tactics16(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes16.cpp:343:{
+> pes16.cpp:344:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:345:
+  pes16.cpp:346:        int t_ind;
+  pes16.cpp:347:        unsigned long team_id;
+  pes16.cpp:348:
+  pes16.cpp:349:        team_id = read_dataOld(0, 4*8, current_byte, pDescriptorOld);
+  pes16.cpp:350:
+  pes16.cpp:351:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes16.cpp:352:        {
+  pes16.cpp:361://-------------------------------------------------------------------------------------
+  pes16.cpp:362:
+  pes16.cpp:363:
+> pes16.cpp:364:void extract_player_entry16(player_entry player, int &current_byte, int &appear_byte, void* ghdescriptor)
+  pes16.cpp:365:{
+> pes16.cpp:366:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:367:
+  pes16.cpp:368:        if(!player.b_changed || !player.b_show)
+  pes16.cpp:369:        {
+  pes16.cpp:370:                current_byte += 0x70;
+  pes16.cpp:371:                appear_byte += 0x48;
+  pes16.cpp:372:                return;
+  pes16.cpp:373:        }
+  pes16.cpp:374:
+  pes16.cpp:641:}
+  pes16.cpp:642:
+  pes16.cpp:643:
+> pes16.cpp:644:void extract_team_info16(team_entry team, int &current_byte, void* ghdescriptor)
+  pes16.cpp:645:{
+> pes16.cpp:646:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:647:
+  pes16.cpp:648:        if(!team.b_changed || !team.b_show)
+  pes16.cpp:649:        {
+  pes16.cpp:650:                current_byte += 0x1C8;
+  pes16.cpp:651:                return;
+  pes16.cpp:652:        }
+  pes16.cpp:653:
+  pes16.cpp:654:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld); //0x0-0x4
+  pes16.cpp:688:}
+  pes16.cpp:689:
+  pes16.cpp:690:
+> pes16.cpp:691:void extract_teamplayer_info16(team_entry team, int &current_byte, void* ghdescriptor)
+  pes16.cpp:692:{
+> pes16.cpp:693:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:694:
+  pes16.cpp:695:        if(!team.b_changed || !team.b_show)
+  pes16.cpp:696:        {
+  pes16.cpp:697:                current_byte += 0xA4;
+  pes16.cpp:698:                return;
+  pes16.cpp:699:        }
+  pes16.cpp:700:
+  pes16.cpp:701:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes16.cpp:713:}
+  pes16.cpp:714:
+  pes16.cpp:715:
+> pes16.cpp:716:void extract_team_tactics16(team_entry team, int &current_byte, void* ghdescriptor)
+  pes16.cpp:717:{
+> pes16.cpp:718:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes16.cpp:719:
+  pes16.cpp:720:        if(!team.b_changed)
+  pes16.cpp:721:        {
+  pes16.cpp:722:                current_byte += 0x208;
+  pes16.cpp:723:                return;
+  pes16.cpp:724:        }
+  pes16.cpp:725:
+  pes16.cpp:726:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:1:#include "editor.h"
+  pes17.cpp:2:
+> pes17.cpp:3:void fill_player_entry17(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes17.cpp:4:{
+> pes17.cpp:5:  FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:6:
+  pes17.cpp:7:  players.id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:8:
+  pes17.cpp:9:  current_byte += 0x6;
+  pes17.cpp:10:
+  pes17.cpp:11: players.nation = read_dataOld(0, 2 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:12:
+  pes17.cpp:13: players.height = pDescriptorOld->data[current_byte];
+  pes17.cpp:265:}
+  pes17.cpp:266:
+  pes17.cpp:267:
+> pes17.cpp:268:void fill_team_ids17(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes17.cpp:269:{
+> pes17.cpp:270:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:271:
+  pes17.cpp:272:        team.id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:273:
+  pes17.cpp:274:        current_byte+=0xE; //0x12
+  pes17.cpp:275:        team.color1_red = read_dataOld(0, 6, current_byte, pDescriptorOld); //0x12:0 - 0x12:5
+  pes17.cpp:276:
+  pes17.cpp:277:        team.color1_green = read_dataOld(6, 6, current_byte, pDescriptorOld); //0x12:6 - 0x13:3
+  pes17.cpp:278:
+  pes17.cpp:316:}
+  pes17.cpp:317:
+  pes17.cpp:318:
+> pes17.cpp:319:void fill_team_rosters17(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes17.cpp:320:{
+> pes17.cpp:321:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:322:
+  pes17.cpp:323:        int ii, t_ind;
+  pes17.cpp:324:        unsigned long team_id, player_id;
+  pes17.cpp:325:
+  pes17.cpp:326:        team_id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:327:
+  pes17.cpp:328:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes17.cpp:329:        {
+  pes17.cpp:349:}
+  pes17.cpp:350:
+  pes17.cpp:351:
+> pes17.cpp:352:void fill_team_tactics17(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes17.cpp:353:{
+> pes17.cpp:354:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:355:
+  pes17.cpp:356:        int t_ind;
+  pes17.cpp:357:        unsigned long team_id;
+  pes17.cpp:358:
+  pes17.cpp:359:        team_id = read_dataOld(0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:360:
+  pes17.cpp:361:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes17.cpp:362:        {
+  pes17.cpp:379://---------------------------------------------------------------------------------------------------------
+  pes17.cpp:380:
+  pes17.cpp:381:
+> pes17.cpp:382:void extract_player_entry17(player_entry player, int &current_byte, void* ghdescriptor)
+  pes17.cpp:383:{
+> pes17.cpp:384:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:385:
+  pes17.cpp:386:        if(!player.b_changed)
+  pes17.cpp:387:        {
+  pes17.cpp:388:                current_byte += 0xBC;
+  pes17.cpp:389:                return;
+  pes17.cpp:390:        }
+  pes17.cpp:391:
+  pes17.cpp:392://      unsigned char test[4];
+  pes17.cpp:652:}
+  pes17.cpp:653:
+  pes17.cpp:654:
+> pes17.cpp:655:void extract_team_info17(team_entry team, int &current_byte, void* ghdescriptor)
+  pes17.cpp:656:{
+> pes17.cpp:657:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:658:
+  pes17.cpp:659:        if(!team.b_changed)
+  pes17.cpp:660:        {
+  pes17.cpp:661:                current_byte += 0x1E0;
+  pes17.cpp:662:                return;
+  pes17.cpp:663:        }
+  pes17.cpp:664:
+  pes17.cpp:665:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld); //0 - 4
+  pes17.cpp:702:        current_byte+=0xFE;
+  pes17.cpp:703:}
+  pes17.cpp:704:
+> pes17.cpp:705:void extract_teamplayer_info17(team_entry team, int &current_byte, void* ghdescriptor)
+  pes17.cpp:706:{
+> pes17.cpp:707:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:708:
+  pes17.cpp:709:        if(!team.b_changed)
+  pes17.cpp:710:        {
+  pes17.cpp:711:                current_byte += 0xA4;
+  pes17.cpp:712:                return;
+  pes17.cpp:713:        }
+  pes17.cpp:714:
+  pes17.cpp:715:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes17.cpp:727:}
+  pes17.cpp:728:
+  pes17.cpp:729:
+> pes17.cpp:730:void extract_team_tactics17(team_entry team, int &current_byte, void* ghdescriptor)
+  pes17.cpp:731:{
+> pes17.cpp:732:        FileDescriptorOld* pDescriptorOld = (FileDescriptorOld*)ghdescriptor;
+  pes17.cpp:733:
+  pes17.cpp:734:        if(!team.b_changed)
+  pes17.cpp:735:        {
+  pes17.cpp:736:                current_byte += 0x274;
+  pes17.cpp:737:                return;
+  pes17.cpp:738:        }
+  pes17.cpp:739:
+  pes17.cpp:740:        write_dataOld(team.id, 0, 4 * 8, current_byte, pDescriptorOld);
+  pes18.cpp:1:#include "editor.h"
+  pes18.cpp:2:
+> pes18.cpp:3:void fill_player_entry18(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes18.cpp:4:{
+> pes18.cpp:5:  FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:6:
+  pes18.cpp:7:  players.id = pDescriptorNew->data[current_byte];
+  pes18.cpp:8:  current_byte++;
+  pes18.cpp:9:  players.id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:10: current_byte++;
+  pes18.cpp:11: players.id += pDescriptorNew->data[current_byte] << 16;
+  pes18.cpp:12: current_byte++;
+  pes18.cpp:13: players.id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:378:}
+  pes18.cpp:379:
+  pes18.cpp:380:
+> pes18.cpp:381:void fill_team_ids18(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes18.cpp:382:{
+> pes18.cpp:383:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:384:
+  pes18.cpp:385:        team.id = pDescriptorNew->data[current_byte];
+  pes18.cpp:386:        current_byte++; //1
+  pes18.cpp:387:        team.id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:388:        current_byte++; //2
+  pes18.cpp:389:        team.id += pDescriptorNew->data[current_byte] << 16;
+  pes18.cpp:390:        current_byte++; //3
+  pes18.cpp:391:        team.id += pDescriptorNew->data[current_byte] << 24;
+  pes18.cpp:434:}
+  pes18.cpp:435:
+  pes18.cpp:436:
+> pes18.cpp:437:void fill_team_rosters18(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes18.cpp:438:{
+> pes18.cpp:439:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:440:
+  pes18.cpp:441:        int ii, t_ind;
+  pes18.cpp:442:        unsigned long team_id, player_id;
+  pes18.cpp:443:
+  pes18.cpp:444:        team_id = pDescriptorNew->data[current_byte];
+  pes18.cpp:445:        current_byte++;
+  pes18.cpp:446:        team_id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:447:        current_byte++;
+  pes18.cpp:481:}
+  pes18.cpp:482:
+  pes18.cpp:483:
+> pes18.cpp:484:void fill_team_tactics18(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes18.cpp:485:{
+> pes18.cpp:486:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:487:
+  pes18.cpp:488:        int t_ind;
+  pes18.cpp:489:        unsigned long team_id;
+  pes18.cpp:490:
+  pes18.cpp:491:        team_id = pDescriptorNew->data[current_byte];
+  pes18.cpp:492:        current_byte++;
+  pes18.cpp:493:        team_id += pDescriptorNew->data[current_byte] << 8;
+  pes18.cpp:494:        current_byte++;
+  pes18.cpp:519://---------------------------------------------------------------------------------------------------------
+  pes18.cpp:520:
+  pes18.cpp:521:
+> pes18.cpp:522:void extract_player_entry18(player_entry player, int &current_byte, void* ghdescriptor)
+  pes18.cpp:523:{
+> pes18.cpp:524:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:525:
+  pes18.cpp:526:        if(!player.b_changed)
+  pes18.cpp:527:        {
+  pes18.cpp:528:                current_byte += 0xBC;
+  pes18.cpp:529:                return;
+  pes18.cpp:530:        }
+  pes18.cpp:531:
+  pes18.cpp:532://      unsigned char test[4];
+  pes18.cpp:888:}
+  pes18.cpp:889:
+  pes18.cpp:890:
+> pes18.cpp:891:void extract_team_info18(team_entry team, int &current_byte, void* ghdescriptor)
+  pes18.cpp:892:{
+> pes18.cpp:893:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:894:
+  pes18.cpp:895:        if(!team.b_changed)
+  pes18.cpp:896:        {
+  pes18.cpp:897:                current_byte += 0x1E0;
+  pes18.cpp:898:                return;
+  pes18.cpp:899:        }
+  pes18.cpp:900:
+  pes18.cpp:901:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes18.cpp:941:        current_byte+=0xFE;
+  pes18.cpp:942:}
+  pes18.cpp:943:
+> pes18.cpp:944:void extract_teamplayer_info18(team_entry team, int &current_byte, void* ghdescriptor)
+  pes18.cpp:945:{
+> pes18.cpp:946:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:947:
+  pes18.cpp:948:        if(!team.b_changed)
+  pes18.cpp:949:        {
+  pes18.cpp:950:                current_byte += 0xA4;
+  pes18.cpp:951:                return;
+  pes18.cpp:952:        }
+  pes18.cpp:953:
+  pes18.cpp:954:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes18.cpp:981:}
+  pes18.cpp:982:
+  pes18.cpp:983:
+> pes18.cpp:984:void extract_team_tactics18(team_entry team, int &current_byte, void* ghdescriptor)
+  pes18.cpp:985:{
+> pes18.cpp:986:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes18.cpp:987:
+  pes18.cpp:988:        if(!team.b_changed)
+  pes18.cpp:989:        {
+  pes18.cpp:990:                current_byte += 0x274;
+  pes18.cpp:991:                return;
+  pes18.cpp:992:        }
+  pes18.cpp:993:
+  pes18.cpp:994:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes19.cpp:1:#include "editor.h"
+  pes19.cpp:2:
+> pes19.cpp:3:void fill_player_entry19(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes19.cpp:4:{
+> pes19.cpp:5:  FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:6:
+  pes19.cpp:7:  players.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes19.cpp:8:  /*players.id = pDescriptorNew->data[current_byte];
+  pes19.cpp:9:  current_byte++;
+  pes19.cpp:10: players.id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:11: current_byte++;
+  pes19.cpp:12: players.id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:13: current_byte++;
+  pes19.cpp:277:}
+  pes19.cpp:278:
+  pes19.cpp:279:
+> pes19.cpp:280:void fill_team_ids19(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes19.cpp:281:{
+> pes19.cpp:282:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:283:
+  pes19.cpp:284:        team.id = pDescriptorNew->data[current_byte];
+  pes19.cpp:285:        current_byte++; //1
+  pes19.cpp:286:        team.id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:287:        current_byte++; //2
+  pes19.cpp:288:        team.id += pDescriptorNew->data[current_byte] << 16;
+  pes19.cpp:289:        current_byte++; //3
+  pes19.cpp:290:        team.id += pDescriptorNew->data[current_byte] << 24;
+  pes19.cpp:349:}
+  pes19.cpp:350:
+  pes19.cpp:351:
+> pes19.cpp:352:void fill_team_rosters19(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes19.cpp:353:{
+> pes19.cpp:354:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:355:
+  pes19.cpp:356:        int ii, t_ind;
+  pes19.cpp:357:        unsigned long team_id, player_id;
+  pes19.cpp:358:
+  pes19.cpp:359:        team_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:360:        current_byte++;
+  pes19.cpp:361:        team_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:362:        current_byte++;
+  pes19.cpp:401:}
+  pes19.cpp:402:
+  pes19.cpp:403:
+> pes19.cpp:404:void fill_team_tactics19(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes19.cpp:405:{
+  pes19.cpp:406:        //Total block length: 0x274 bytes
+> pes19.cpp:407:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:408:
+  pes19.cpp:409:        int t_ind;
+  pes19.cpp:410:        unsigned long team_id;
+  pes19.cpp:411:
+  pes19.cpp:412:        team_id = pDescriptorNew->data[current_byte];
+  pes19.cpp:413:        current_byte++;
+  pes19.cpp:414:        team_id += pDescriptorNew->data[current_byte] << 8;
+  pes19.cpp:415:        current_byte++;
+  pes19.cpp:440://---------------------------------------------------------------------------------------------------------
+  pes19.cpp:441:
+  pes19.cpp:442:
+> pes19.cpp:443:void extract_player_entry19(player_entry player, int &current_byte, void* ghdescriptor)
+  pes19.cpp:444:{
+> pes19.cpp:445:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:446:
+  pes19.cpp:447:        if(!player.b_changed)
+  pes19.cpp:448:        {
+  pes19.cpp:449:                current_byte += 0xBC;
+  pes19.cpp:450:                return;
+  pes19.cpp:451:        }
+  pes19.cpp:452:
+  pes19.cpp:453://      unsigned char test[4];
+  pes19.cpp:723:}
+  pes19.cpp:724:
+  pes19.cpp:725:
+> pes19.cpp:726:void extract_team_info19(team_entry team, int &current_byte, void* ghdescriptor)
+  pes19.cpp:727:{
+> pes19.cpp:728:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:729:
+  pes19.cpp:730:        if(!team.b_changed)
+  pes19.cpp:731:        {
+  pes19.cpp:732:                current_byte += 0x1A0;
+  pes19.cpp:733:                return;
+  pes19.cpp:734:        }
+  pes19.cpp:735:
+  pes19.cpp:736:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes19.cpp:794:        current_byte+=0xFE;
+  pes19.cpp:795:}
+  pes19.cpp:796:
+> pes19.cpp:797:void extract_teamplayer_info19(team_entry team, int &current_byte, void* ghdescriptor)
+  pes19.cpp:798:{
+> pes19.cpp:799:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:800:
+  pes19.cpp:801:        if(!team.b_changed)
+  pes19.cpp:802:        {
+  pes19.cpp:803:                current_byte += 0xF4;
+  pes19.cpp:804:                return;
+  pes19.cpp:805:        }
+  pes19.cpp:806:
+  pes19.cpp:807:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes19.cpp:835:}
+  pes19.cpp:836:
+  pes19.cpp:837:
+> pes19.cpp:838:void extract_team_tactics19(team_entry team, int &current_byte, void* ghdescriptor)
+  pes19.cpp:839:{
+> pes19.cpp:840:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes19.cpp:841:
+  pes19.cpp:842:        if(!team.b_changed)
+  pes19.cpp:843:        {
+  pes19.cpp:844:                current_byte += 0x274;
+  pes19.cpp:845:                return;
+  pes19.cpp:846:        }
+  pes19.cpp:847:
+  pes19.cpp:848:        pDescriptorNew->data[current_byte] = team.id & 255; //8/32
+  pes20.cpp:1:#include "editor.h"
+  pes20.cpp:2:
+> pes20.cpp:3:void fill_player_entry20(player_entry &players, int &current_byte, void* ghdescriptor)
+  pes20.cpp:4:{
+> pes20.cpp:5:  FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:6:
+  pes20.cpp:7:  players.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:8:
+  pes20.cpp:9:  current_byte += 0x4;
+  pes20.cpp:10:
+  pes20.cpp:11: players.nation = read_data(0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:12: players.height = read_data(0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:13: players.weight = read_data(0, 8, current_byte, pDescriptorNew);
+  pes20.cpp:202:}
+  pes20.cpp:203:
+  pes20.cpp:204:
+> pes20.cpp:205:void fill_team_ids20(team_entry &team, int &current_byte, void* ghdescriptor)
+  pes20.cpp:206:{
+> pes20.cpp:207:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:208:
+  pes20.cpp:209:        team.id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:210:        team.manager_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:211:
+  pes20.cpp:212:        current_byte+=2; //Team emblem
+  pes20.cpp:213:        //0xA
+  pes20.cpp:214:        team.stadium_id = read_data(0, 2*8, current_byte, pDescriptorNew);
+  pes20.cpp:215:
+  pes20.cpp:255:}
+  pes20.cpp:256:
+  pes20.cpp:257:
+> pes20.cpp:258:void fill_team_ids21(team_entry& team, int& current_byte, void* ghdescriptor)
+  pes20.cpp:259:{
+> pes20.cpp:260:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:261:
+  pes20.cpp:262:        team.id = read_data(0, 4 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:263:        team.manager_id = read_data(0, 4 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:264:
+  pes20.cpp:265:        current_byte += 2; //Team emblem
+  pes20.cpp:266:        //0xA
+  pes20.cpp:267:        team.stadium_id = read_data(0, 2 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:268:
+  pes20.cpp:308:}
+  pes20.cpp:309:
+  pes20.cpp:310:
+> pes20.cpp:311:void fill_team_rosters20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes20.cpp:312:{
+> pes20.cpp:313:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:314:
+  pes20.cpp:315:        int ii, t_ind;
+  pes20.cpp:316:        unsigned long team_id, player_id;
+  pes20.cpp:317:
+  pes20.cpp:318:        team_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:319:
+  pes20.cpp:320:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes20.cpp:321:        {
+  pes20.cpp:341:}
+  pes20.cpp:342:
+  pes20.cpp:343:
+> pes20.cpp:344:void fill_team_tactics20(int &current_byte, void* ghdescriptor, team_entry* gteams, int gnum_teams)
+  pes20.cpp:345:{
+  pes20.cpp:346:        //Total block length: 0x274 bytes
+> pes20.cpp:347:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:348:
+  pes20.cpp:349:        int t_ind;
+  pes20.cpp:350:        unsigned long team_id;
+  pes20.cpp:351:
+  pes20.cpp:352:        team_id = read_data(0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:353:
+  pes20.cpp:354:        //Find team array entry that matches this ID
+  pes20.cpp:355:        for(t_ind=0;t_ind<gnum_teams;t_ind++)
+  pes20.cpp:373://---------------------------------------------------------------------------------------------------------
+  pes20.cpp:374:
+  pes20.cpp:375:
+> pes20.cpp:376:void extract_player_entry20(player_entry player, int &current_byte, void* ghdescriptor)
+  pes20.cpp:377:{
+> pes20.cpp:378:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:379:
+  pes20.cpp:380:        if(!player.b_changed)
+  pes20.cpp:381:        {
+  pes20.cpp:382:                current_byte += 0xF0+0x48;
+  pes20.cpp:383:                return;
+  pes20.cpp:384:        }
+  pes20.cpp:385:
+  pes20.cpp:386:        write_data(player.id, 0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:576:}
+  pes20.cpp:577:
+  pes20.cpp:578:
+> pes20.cpp:579:void extract_team_info20(team_entry team, int &current_byte, void* ghdescriptor)
+  pes20.cpp:580:{
+> pes20.cpp:581:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:582:
+  pes20.cpp:583:        if(!team.b_changed)
+  pes20.cpp:584:        {
+  pes20.cpp:585:                current_byte += 0x210;
+  pes20.cpp:586:                return;
+  pes20.cpp:587:        }
+  pes20.cpp:588:
+  pes20.cpp:589:        write_data(team.id,             0, 4*8, current_byte, pDescriptorNew);
+  pes20.cpp:631:}
+  pes20.cpp:632:
+  pes20.cpp:633:
+> pes20.cpp:634:void extract_team_info21(team_entry team, int& current_byte, void* ghdescriptor)
+  pes20.cpp:635:{
+> pes20.cpp:636:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:637:
+  pes20.cpp:638:        if (!team.b_changed)
+  pes20.cpp:639:        {
+  pes20.cpp:640:                current_byte += 0x24C;
+  pes20.cpp:641:                return;
+  pes20.cpp:642:        }
+  pes20.cpp:643:
+  pes20.cpp:644:        write_data(team.id, 0, 4 * 8, current_byte, pDescriptorNew);
+  pes20.cpp:686:}
+  pes20.cpp:687:
+  pes20.cpp:688:
+> pes20.cpp:689:void extract_teamplayer_info20(team_entry team, int &current_byte, void* ghdescriptor)
+  pes20.cpp:690:{
+> pes20.cpp:691:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:692:
+  pes20.cpp:693:                if (team.id == 368)
+  pes20.cpp:694:        {
+  pes20.cpp:695:                wchar_t msg[512];
+  pes20.cpp:696:
+  pes20.cpp:697:                swprintf_s(
+  pes20.cpp:698:                        msg,
+  pes20.cpp:699:                        512,
+  pes20.cpp:743:}
+  pes20.cpp:744:
+  pes20.cpp:745:
+> pes20.cpp:746:void extract_team_tactics20(team_entry team, int &current_byte, void* ghdescriptor)
+  pes20.cpp:747:{
+> pes20.cpp:748:        FileDescriptorNew* pDescriptorNew = (FileDescriptorNew*)ghdescriptor;
+  pes20.cpp:749:
+  pes20.cpp:750:        if(!team.b_changed)
+  pes20.cpp:751:        {
+  pes20.cpp:752:                current_byte += 0x274;
+  pes20.cpp:753:                return;
+  pes20.cpp:754:        }
+  pes20.cpp:755:
+  pes20.cpp:756:        write_data(team.id, 0, 4*8, current_byte, pDescriptorNew);
+  crypt.h:27:    uint8_t fileTypeString[32];
+  crypt.h:28:};
+  crypt.h:29:
+> crypt.h:30:struct FileDescriptorNew
+  crypt.h:31:{
+  crypt.h:32:    uint8_t *encryptionHeader;
+  crypt.h:33:    struct FileHeaderNew *fileHeader;
+  crypt.h:34:
+  crypt.h:35:    uint8_t *description;
+  crypt.h:36:    uint8_t *logo;
+  crypt.h:37:    uint8_t *data;
+  crypt.h:38:    uint8_t *serial;
+  crypt.h:66:
+  crypt.h:67://struct FileDescriptor CRYPTER_EXPORT *createFileDescriptor();
+  crypt.h:68:typedef struct FileDescriptorOld* (__cdecl *pf_createFileDescriptorOld)();
+> crypt.h:69:typedef struct FileDescriptorNew* (__cdecl *pf_createFileDescriptorNew)();
+  crypt.h:70:typedef struct FileDescriptor15* (__cdecl* pf_createFileDescriptor15)();
+  crypt.h:71:
+  crypt.h:72://void CRYPTER_EXPORT destroyFileDescriptor(struct FileDescriptor *desc);
+  crypt.h:73:typedef void (__cdecl *pf_destroyFileDescriptorOld)(struct FileDescriptorOld*);
+> crypt.h:74:typedef void (__cdecl *pf_destroyFileDescriptorNew)(struct FileDescriptorNew*);
+  crypt.h:75:typedef void (__cdecl *pf_destroyFileDescriptor15)(struct FileDescriptor15*);
+  crypt.h:76:
+> crypt.h:77://void CRYPTER_EXPORT decryptWithKey(struct FileDescriptor *descriptor, const uint8_t *input, const char *masterKey);
+> crypt.h:78:typedef void (__cdecl *pf_decryptWithKeyOld)(struct FileDescriptorOld*, const uint8_t*, const char*);
+> crypt.h:79:typedef void (__cdecl *pf_decryptWithKeyNew)(struct FileDescriptorNew*, const uint8_t*, const char*);
+> crypt.h:80:typedef void (__cdecl *pf_decryptFile15)(struct FileDescriptor15*, const uint8_t*);
+  crypt.h:81:
+  crypt.h:82://uint8_t CRYPTER_EXPORT *encryptWithKey(const struct FileDescriptor *descriptor, int *size, const char *masterKey);
+  crypt.h:83:typedef uint8_t* (__cdecl *pf_encryptWithKeyOld)(const struct FileDescriptorOld*, int*, const char*);
+> crypt.h:84:typedef uint8_t* (__cdecl *pf_encryptWithKeyNew)(const struct FileDescriptorNew*, int*, const char*);
+  crypt.h:85:typedef uint8_t* (__cdecl *pf_encryptFile15)(const struct FileDescriptor15*, int*);
+  crypt.h:86:
+  crypt.h:87:uint8_t *readFile(const TCHAR *path, uint32_t *sizePtr);
+  crypt.h:88:
+  crypt.h:89:void writeFile(const TCHAR *path, const uint8_t *data, int size);
+  crypt.h:90:
+  crypt.h:91:#endif /* _CRYPT_H */
+  editor.h:742:void save_comparator(HWND, int, player_entry*, int, team_entry*, int, TCHAR*, void*);
+  editor.h:743:
+  editor.h:744://data_util.cpp functions
+> editor.h:745:int read_data(int, int, int&, FileDescriptorNew*);
+> editor.h:746:void write_data(int, int, int, int&, FileDescriptorNew*);
+  editor.h:747:int read_dataOld(int, int, int&, FileDescriptorOld*);
+  editor.h:748:void write_dataOld(int, int, int, int&, FileDescriptorOld*);
+  editor.h:749:int read_data15(int, int, int&, FileDescriptor15*);
+  editor.h:750:void write_data15(int, int, int, int&, FileDescriptor15*);
+  editor.h:751:
+  editor.h:752://fpc.cpp functions
+  editor.h:753:void enable_fpc_invis_for_displayed_player(HWND, int);
+  editor.h:754:void disable_fpc_invis_for_displayed_player(HWND, int);
+
